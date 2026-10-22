@@ -1,0 +1,109 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>J4 二维机构简图</title><link rel="stylesheet" href="site.css"></head><body><header class="site-header"><div class="site-header-inner"><a class="site-brand" href="index.html">ET2 关节阻力分析<small>机械传动模型</small></a><nav class="site-nav" aria-label="模型导航"><a href="index.html">总览</a><a href="j2.html">J2</a><a href="j3.html">J3</a><a href="j4.html" aria-current="page">J4</a></nav></div></header><main class="model-shell"><div id="j4-mechanism" class="j4-viz" data-layout-version="unified-v1">
+  <h2>J4 机构与阻力贡献</h2>
+  <div class="j4-controls">
+    <button id="j4-play" class="btn btn-primary" type="button" aria-pressed="true">暂停</button>
+    <label class="form-label" for="j4-angle">J4角度 <output id="j4-angle-value" class="tabular-nums">0.0°</output></label>
+    <input id="j4-angle" class="form-range" type="range" min="-10" max="10" step="0.1" value="0">
+  </div>
+  <div class="j4-layout">
+    <section>
+      <svg id="j4-diagram" viewBox="0 0 560 520" role="img" aria-labelledby="j4-title j4-desc">
+        <title id="j4-title">J4机构X-Z等比例投影</title>
+        <desc id="j4-desc">J4到B为主动定长杆，A端固定，A到B为长度随姿态变化的推杆。</desc>
+        <g class="grid"><line x1="52" y1="35" x2="52" y2="475"></line><line x1="52" y1="475" x2="535" y2="475"></line><text x="20" y="260" transform="rotate(-90 20 260)">Z / mm</text><text x="290" y="507">X / mm</text></g>
+        <text x="62" y="24">X–Z侧视图　⊙ Y轴旋转副　▭ 移动副</text>
+        <line id="j4-active" class="active-link"></line>
+        <line id="j4-rod-body" class="rod-body"></line><line id="j4-rod-shaft" class="rod-shaft"></line>
+        <path id="j4-angle-arc" class="angle-arc"></path><text id="j4-angle-label"></text>
+        <g id="j4-slider" class="slider"><rect x="-9" y="-6" width="18" height="12"></rect></g>
+        <g id="j4-nodes"></g>
+        <g class="labels"><text id="j4-active-label">J4—B 主动杆L（定长）</text><text id="j4-body-label">推杆固定筒体</text><text id="j4-shaft-label">伸缩段</text></g>
+        <g class="callouts">
+          <g><line id="j4-call-j-line"></line><text id="j4-call-j">J4等效轴（固定）</text></g>
+          <g><line id="j4-call-a-line"></line><text id="j4-call-a">A端鱼眼旋转副（固定）</text></g>
+          <g><line id="j4-call-b-line"></line><text id="j4-call-b">B端鱼眼旋转副</text></g>
+          <g><line id="j4-call-m-line"></line><text id="j4-call-m">推杆移动副</text></g>
+        </g>
+      </svg>
+      <div class="j4-readout text-small"><span>推杆长度 <b id="j4-rod-length"></b></span><span>传动系数 <b id="j4-rod-jac"></b></span></div>
+      <div id="j4-joint-key" class="table-responsive"><table class="table table-sm mechanism-key">
+        <thead><tr><th>标记</th><th>类型</th><th>坐标 / mm</th><th>作用</th></tr></thead>
+        <tbody>
+          <tr><td>J4</td><td>等效轴</td><td>(22.993, 93, −830.923)</td><td>控制输出轴</td></tr>
+          <tr><td>A</td><td>鱼眼旋转副</td><td>(132.882, 93, −595.536)</td><td>位置固定</td></tr>
+          <tr><td>B</td><td>鱼眼旋转副</td><td>(−23.096, 93, −829.275)</td><td>主动杆L端点</td></tr>
+          <tr><td>推杆</td><td>移动副</td><td>A—B</td><td>轴向伸缩</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+    <section>
+      <h3>静摩擦启动力矩</h3>
+      <div class="j4-inputs text-small">
+        <label>A端副 <input data-static="a" type="number" value="1" min="0" step="0.1"> N·m</label>
+        <label>B端副 <input data-static="b" type="number" value="1" min="0" step="0.1"> N·m</label>
+        <label>推杆轴向 <input data-static="rod" type="number" value="10" min="0" step="1"> N</label>
+      </div>
+      <div class="viz-grid">
+        <div class="card viz-stat"><div class="text-muted">当前J4总启动力矩</div><div id="j4-total-torque" class="viz-stat-value"></div></div>
+        <div class="card viz-stat"><div class="text-muted">±10°峰值</div><div id="j4-peak-torque" class="viz-stat-value"></div><div id="j4-peak-angle" class="text-small text-muted"></div></div>
+      </div>
+      <svg id="j4-chart" viewBox="0 0 500 260" role="img" aria-label="J4各运动副静摩擦贡献度曲线"></svg>
+      <div id="j4-static-parts" class="j4-readout text-small"></div>
+      <h3>运行阻力（1 Hz、±10°）</h3>
+      <div class="table-responsive"><table class="table table-sm">
+        <thead><tr><th>运动副</th><th>动摩擦</th><th>黏性系数</th></tr></thead>
+        <tbody>
+          <tr><td>A端副</td><td><input data-run="a-c" type="number" value="1" min="0" step="0.1"> N·m</td><td><input data-run="a-b" type="number" value="0" min="0" step="0.01"> N·m·s/rad</td></tr>
+          <tr><td>B端副</td><td><input data-run="b-c" type="number" value="1" min="0" step="0.1"> N·m</td><td><input data-run="b-b" type="number" value="0" min="0" step="0.01"> N·m·s/rad</td></tr>
+          <tr><td>推杆</td><td><input data-run="rod-c" type="number" value="10" min="0" step="1"> N</td><td><input data-run="rod-b" type="number" value="0" min="0" step="1"> N·s/m</td></tr>
+        </tbody>
+      </table></div>
+      <div class="viz-grid">
+        <div class="card viz-stat"><div class="text-muted">当前运行阻力</div><div id="j4-run-current" class="viz-stat-value"></div></div>
+        <div class="card viz-stat"><div class="text-muted">周期峰值</div><div id="j4-run-peak" class="viz-stat-value"></div></div>
+        <div class="card viz-stat"><div class="text-muted">单周期耗散</div><div id="j4-run-energy" class="viz-stat-value"></div></div>
+      </div>
+      <div id="j4-run-parts" class="j4-readout text-small"></div>
+    </section>
+  </div>
+</div>
+
+<style>
+#j4-mechanism{color:var(--foreground);max-width:1100px;margin:auto}#j4-mechanism h2{margin-bottom:10px}#j4-mechanism h3{margin:12px 0 8px}.j4-controls{display:grid;grid-template-columns:auto 180px 1fr;gap:12px;align-items:center;margin-bottom:10px}.j4-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(350px,.92fr);gap:18px}.j4-layout section{min-width:0}#j4-diagram,#j4-chart{width:100%;height:auto;border:1px solid var(--border);background:var(--background)}#j4-diagram text,#j4-chart text{fill:var(--foreground);font-size:12px}.grid line{stroke:var(--border)}.active-link{stroke:var(--viz-series-1);stroke-width:9;stroke-linecap:round}.rod-body{stroke:var(--viz-series-3);stroke-width:12;stroke-linecap:round;opacity:.45}.rod-shaft{stroke:var(--viz-series-3);stroke-width:4;stroke-linecap:round}.angle-arc{fill:none;stroke:var(--viz-series-4);stroke-width:3}.node circle{fill:var(--background);stroke:var(--viz-series-1);stroke-width:4}.node.fixed circle{stroke:var(--muted-foreground)}.node .dot{fill:currentColor;stroke:none}.slider rect{fill:var(--background);stroke:var(--viz-series-3);stroke-width:3}.callouts line{stroke:var(--muted-foreground);stroke-width:1}.j4-readout{display:flex;gap:14px;flex-wrap:wrap;padding-top:7px}.j4-inputs{display:grid;grid-template-columns:1fr 1fr;gap:7px 12px;margin-bottom:8px}.j4-inputs label{display:flex;justify-content:space-between;align-items:center;gap:6px}.j4-inputs input,.table input{width:64px;color:var(--foreground);background:var(--background);border:1px solid var(--input);padding:4px}.chart-grid{stroke:var(--border);stroke-width:1}.chart-line{fill:none;stroke-width:2}.chart-guide{stroke:var(--muted-foreground);stroke-dasharray:4 4}.chart-marker{stroke:var(--background);stroke-width:2}@media(max-width:780px){.j4-layout{grid-template-columns:1fr}.j4-controls{grid-template-columns:auto 1fr}.j4-controls input{grid-column:1/-1}}
+#j4-mechanism .labels,#j4-mechanism .callouts{display:none}
+</style>
+
+<script data-j4-core>
+(() => {
+  const J={x:22.993,z:-830.923},B0={x:-23.096,z:-829.275},A={x:132.882,z:-595.536},M0={x:9.21,z:-782.801};
+  const distance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z),angle=(a,b)=>Math.atan2(b.z-a.z,b.x-a.x),wrap=v=>Math.atan2(Math.sin(v),Math.cos(v));
+  const rotate=(p,c,r)=>({x:c.x+(p.x-c.x)*Math.cos(r)-(p.z-c.z)*Math.sin(r),z:c.z+(p.x-c.x)*Math.sin(r)+(p.z-c.z)*Math.cos(r)}),lengths={JB:distance(J,B0),body:distance(A,M0)};
+  function base(degrees){const r=degrees*Math.PI/180,B=rotate(B0,J,r);return {degrees,radians:r,J,B,A,rodLength:distance(A,B)}}
+  function coordinates(s){const rod=angle(s.A,s.B),crank=angle(s.J,s.B);return {a:rod,b:wrap(angle(s.B,s.A)-angle(s.B,s.J))}}
+  function solve(degrees){const s=base(degrees),e=.001,lo=base(degrees-e),hi=base(degrees+e),dr=2*e*Math.PI/180,lc=coordinates(lo),hc=coordinates(hi);s.rates={a:wrap(hc.a-lc.a)/dr,b:wrap(hc.b-lc.b)/dr};s.rodJacobian=(hi.rodLength-lo.rodLength)/dr;return s}
+  function equivalentTorque(s,loads){const parts={a:Math.max(0,loads.a||0)*Math.abs(s.rates.a),b:Math.max(0,loads.b||0)*Math.abs(s.rates.b),rod:Math.max(0,loads.rod||0)*Math.abs(s.rodJacobian)/1000};return {parts,total:Object.values(parts).reduce((x,y)=>x+y,0)}}
+  function runningResistance(s,qdot,loads){const parts={},powerParts={};for(const k of ['a','b']){const rate=Math.abs(s.rates[k]),speed=rate*Math.abs(qdot),local=Math.max(0,loads[k]?.coulomb||0)+Math.max(0,loads[k]?.viscous||0)*speed;parts[k]=local*rate;powerParts[k]=local*speed}const jac=Math.abs(s.rodJacobian)/1000,speed=jac*Math.abs(qdot),local=Math.max(0,loads.rod?.coulomb||0)+Math.max(0,loads.rod?.viscous||0)*speed;parts.rod=local*jac;powerParts.rod=local*speed;return {parts,total:Object.values(parts).reduce((x,y)=>x+y,0),powerParts,power:Object.values(powerParts).reduce((x,y)=>x+y,0)}}
+  window.J4Model={solve,distance,equivalentTorque,runningResistance,lengths,nominal:{J,B:B0,A,M:M0}};
+})();
+</script>
+
+<script>
+(() => {
+  const root=document.getElementById('j4-mechanism'),M=window.J4Model,slider=root.querySelector('#j4-angle'),play=root.querySelector('#j4-play'),ns='http://www.w3.org/2000/svg';
+  const pts=Object.values(M.nominal),minX=Math.min(...pts.map(p=>p.x))-30,maxX=Math.max(...pts.map(p=>p.x))+30,minZ=Math.min(...pts.map(p=>p.z))-30,maxZ=Math.max(...pts.map(p=>p.z))+30,scale=Math.min(450/(maxX-minX),400/(maxZ-minZ)),project=p=>({x:65+(p.x-minX)*scale,y:455-(p.z-minZ)*scale});
+  const setLine=(id,a,b)=>{const e=root.querySelector(id),u=project(a),v=project(b);e.setAttribute('x1',u.x);e.setAttribute('y1',u.y);e.setAttribute('x2',v.x);e.setAttribute('y2',v.y)};
+  const label=(id,a,b,dy)=>{const e=root.querySelector(id),u=project(a),v=project(b);e.setAttribute('x',(u.x+v.x)/2);e.setAttribute('y',(u.y+v.y)/2+dy);e.setAttribute('text-anchor','middle')};
+  function callout(id,p,dx,dy){const v=project(p),l=root.querySelector(`#${id}-line`),t=root.querySelector(`#${id}`),x=v.x+dx,y=v.y+dy;l.setAttribute('x1',v.x);l.setAttribute('y1',v.y);l.setAttribute('x2',x);l.setAttribute('y2',y-4);t.setAttribute('x',x+(dx<0?-4:4));t.setAttribute('y',y);t.setAttribute('text-anchor',dx<0?'end':'start')}
+  function nodes(s){const g=root.querySelector('#j4-nodes');g.innerHTML='';[['J4',s.J,true],['A',s.A,true],['B',s.B,false]].forEach(([n,p,f])=>{const v=project(p),e=document.createElementNS(ns,'g');e.setAttribute('class','node'+(f?' fixed':''));e.setAttribute('transform',`translate(${v.x} ${v.y})`);e.innerHTML=`<circle r="10"></circle><circle class="dot" r="3"></circle><text x="11" y="-11">${n}</text>`;g.appendChild(e)})}
+  function angleMark(s){const b=project(s.B),j=project(s.J),a=project(s.A),r=28,u=Math.atan2(j.y-b.y,j.x-b.x),v=Math.atan2(a.y-b.y,a.x-b.x),d=Math.atan2(Math.sin(v-u),Math.cos(v-u)),e=u+d,start={x:b.x+r*Math.cos(u),y:b.y+r*Math.sin(u)},end={x:b.x+r*Math.cos(e),y:b.y+r*Math.sin(e)},mid=u+d/2;root.querySelector('#j4-angle-arc').setAttribute('d',`M ${start.x} ${start.y} A ${r} ${r} 0 0 ${d>0?1:0} ${end.x} ${end.y}`);const dot=(x,y)=>x.x*y.x+x.z*y.z,uj={x:s.J.x-s.B.x,z:s.J.z-s.B.z},ua={x:s.A.x-s.B.x,z:s.A.z-s.B.z},ang=Math.acos(dot(uj,ua)/(Math.hypot(uj.x,uj.z)*Math.hypot(ua.x,ua.z)))*180/Math.PI,t=root.querySelector('#j4-angle-label');t.setAttribute('x',b.x+43*Math.cos(mid));t.setAttribute('y',b.y+43*Math.sin(mid)+4);t.setAttribute('text-anchor','middle');t.textContent=`∠J4-B-A ${ang.toFixed(1)}°`}
+  const staticLoads=()=>Object.fromEntries(['a','b','rod'].map(k=>[k,Math.max(0,Number(root.querySelector(`[data-static="${k}"]`).value)||0)])),runLoads=()=>Object.fromEntries(['a','b','rod'].map(k=>[k,{coulomb:Math.max(0,Number(root.querySelector(`[data-run="${k}-c"]`).value)||0),viscous:Math.max(0,Number(root.querySelector(`[data-run="${k}-b"]`).value)||0)}]));
+  function contribution(s){const r=M.equivalentTorque(s,staticLoads()),sum=r.total||1;return {result:r,pct:Object.fromEntries(Object.entries(r.parts).map(([k,v])=>[k,100*v/sum]))}}
+  function staticPeak(){const loads=staticLoads();let best={total:-1,angle:0};for(let d=-10;d<=10.001;d+=.1){const total=M.equivalentTorque(M.solve(d),loads).total;if(total>best.total)best={total,angle:d}}return best}
+  function cycle(angle){const loads=runLoads(),amp=10*Math.PI/180,w=2*Math.PI,q=angle*Math.PI/180,vel=w*Math.sqrt(Math.max(0,amp*amp-q*q)),current=M.runningResistance(M.solve(angle),vel,loads),energy={a:0,b:0,rod:0},steps=360,dt=1/steps;let peak=0;for(let i=0;i<steps;i++){const t=i/steps,r=M.runningResistance(M.solve(10*Math.sin(2*Math.PI*t)),amp*w*Math.cos(2*Math.PI*t),loads);peak=Math.max(peak,r.total);for(const k of Object.keys(energy))energy[k]+=r.powerParts[k]*dt}return {current,peak,energy,totalEnergy:Object.values(energy).reduce((x,y)=>x+y,0)}}
+  const series=[['a','A端','var(--viz-series-1)'],['b','B端','var(--viz-series-2)'],['rod','推杆','var(--viz-series-3)']];
+  function chart(angle){const svg=root.querySelector('#j4-chart'),W=500,H=260,L=45,R=12,T=25,B=38,x=d=>L+(d+10)/20*(W-L-R),y=v=>T+(100-v)/100*(H-T-B);let h='';[0,25,50,75,100].forEach(v=>h+=`<line class="chart-grid" x1="${L}" y1="${y(v)}" x2="${W-R}" y2="${y(v)}"></line><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${v}%</text>`);[-10,0,10].forEach(v=>h+=`<text x="${x(v)}" y="${H-13}" text-anchor="middle">${v}°</text>`);const samples=[];for(let d=-10;d<=10.001;d+=.5)samples.push({d,p:contribution(M.solve(d)).pct});series.forEach(([k,n,c],i)=>{h+=`<path class="chart-line" stroke="${c}" d="${samples.map((v,j)=>(j?'L':'M')+x(v.d)+' '+y(v.p[k])).join(' ')}"></path><line x1="${52+i*118}" y1="13" x2="${69+i*118}" y2="13" stroke="${c}" stroke-width="3"></line><text x="${74+i*118}" y="17">${n}</text>`});const now=contribution(M.solve(angle)).pct;h+=`<line class="chart-guide" x1="${x(angle)}" y1="${T}" x2="${x(angle)}" y2="${H-B}"></line>`;series.forEach(([k,n,c])=>h+=`<circle class="chart-marker" cx="${x(angle)}" cy="${y(now[k])}" r="4" fill="${c}"></circle>`);svg.innerHTML=h}
+  function render(){const d=Number(slider.value),s=M.solve(d),unit={x:(s.B.x-s.A.x)/s.rodLength,z:(s.B.z-s.A.z)/s.rodLength},m={x:s.A.x+unit.x*M.lengths.body,z:s.A.z+unit.z*M.lengths.body};setLine('#j4-active',s.J,s.B);setLine('#j4-rod-body',s.A,m);setLine('#j4-rod-shaft',m,s.B);nodes(s);const mv=project(m),av=project(s.A),bv=project(s.B),rot=Math.atan2(bv.y-av.y,bv.x-av.x)*180/Math.PI;root.querySelector('#j4-slider').setAttribute('transform',`translate(${mv.x} ${mv.y}) rotate(${rot})`);label('#j4-active-label',s.J,s.B,-12);label('#j4-body-label',s.A,m,-10);label('#j4-shaft-label',m,s.B,18);callout('j4-call-j',s.J,-95,35);callout('j4-call-a',s.A,-25,-28);callout('j4-call-b',s.B,-100,50);callout('j4-call-m',m,45,-22);angleMark(s);const start=contribution(s),peak=staticPeak(),run=cycle(d),names={a:'A端',b:'B端',rod:'推杆'};root.querySelector('#j4-angle-value').textContent=d.toFixed(1)+'°';root.querySelector('#j4-rod-length').textContent=s.rodLength.toFixed(2)+' mm';root.querySelector('#j4-rod-jac').textContent=(s.rodJacobian/1000).toFixed(4)+' m/rad';root.querySelector('#j4-total-torque').textContent=start.result.total.toFixed(3)+' N·m';root.querySelector('#j4-peak-torque').textContent=peak.total.toFixed(3)+' N·m';root.querySelector('#j4-peak-angle').textContent=`发生于 ${peak.angle.toFixed(1)}°`;root.querySelector('#j4-static-parts').textContent=series.map(([k,n])=>`${n} ${start.result.parts[k].toFixed(3)} N·m（${start.pct[k].toFixed(1)}%）`).join('｜');root.querySelector('#j4-run-current').textContent=run.current.total.toFixed(3)+' N·m';root.querySelector('#j4-run-peak').textContent=run.peak.toFixed(3)+' N·m';root.querySelector('#j4-run-energy').textContent=run.totalEnergy.toFixed(3)+' J';root.querySelector('#j4-run-parts').textContent=Object.keys(names).map(k=>`${names[k]}耗散 ${(100*run.energy[k]/(run.totalEnergy||1)).toFixed(1)}%`).join('｜');chart(d)}
+  let running=true,startTime=performance.now();function tick(now){if(running){slider.value=(10*Math.sin(2*Math.PI*((now-startTime)/1000))).toFixed(2);render()}requestAnimationFrame(tick)}play.addEventListener('click',()=>{running=!running;play.textContent=running?'暂停':'播放';play.setAttribute('aria-pressed',String(running));if(running)startTime=performance.now()});slider.addEventListener('input',()=>{running=false;play.textContent='播放';play.setAttribute('aria-pressed','false');render()});root.querySelectorAll('[data-static],[data-run]').forEach(e=>e.addEventListener('input',render));render();requestAnimationFrame(tick);
+})();
+</script>
+</main></body></html>

@@ -1,0 +1,153 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>J3 二维机构简图</title><link rel="stylesheet" href="site.css"></head><body><header class="site-header"><div class="site-header-inner"><a class="site-brand" href="index.html">ET2 关节阻力分析<small>机械传动模型</small></a><nav class="site-nav" aria-label="模型导航"><a href="index.html">总览</a><a href="j2.html">J2</a><a href="j3.html" aria-current="page">J3</a><a href="j4.html">J4</a></nav></div></header><main class="model-shell"><div id="j3-mechanism" class="j3-viz" data-layout-version="unified-v1">
+  <h2>J3 闭链机构与阻力贡献</h2>
+  <div class="j3-controls">
+    <button id="j3-play" class="btn btn-primary" type="button" aria-pressed="true">暂停</button>
+    <label class="form-label" for="j3-angle">J3角度 <output id="j3-angle-value" class="tabular-nums">0.0°</output></label>
+    <input id="j3-angle" class="form-range" type="range" min="-10" max="10" step="0.1" value="0">
+  </div>
+  <div class="j3-layout">
+    <section>
+      <svg id="j3-diagram" viewBox="0 0 570 500" role="img" aria-labelledby="j3-title j3-desc">
+        <title id="j3-title">J3机构X-Z等比例投影</title>
+        <desc id="j3-desc">J3到P为固定参考杆，J3到Q为主动输出杆，P-A和A-Q是两根定长杆，A-B为变长推杆。</desc>
+        <g class="grid">
+          <line x1="48" y1="30" x2="48" y2="460"></line><line x1="48" y1="460" x2="548" y2="460"></line>
+          <text x="18" y="250" transform="rotate(-90 18 250)">Z / mm</text><text x="290" y="490">X / mm</text>
+        </g>
+        <text id="j3-side-view-caption" x="58" y="22">X–Z 对侧视图　⊙ Y轴旋转副　▭ 移动副</text>
+        <g class="structure">
+          <line id="j3-jp" class="reference"/><line id="j3-pa"/><line id="j3-aq"/><line id="j3-jq" class="output"/>
+          <line id="j3-rod" class="rod"/><line id="j3-rod-shaft" class="rod-shaft"/>
+          <path id="j3-angle-arc" class="angle-arc"></path>
+        </g>
+        <g id="j3-nodes"></g>
+        <g id="j3-slider-node" class="slider-node"><rect x="-9" y="-6" width="18" height="12"></rect></g>
+        <g id="j3-joint-callouts" class="joint-callouts">
+          <g><line id="joint-label-j3-line"></line><text id="joint-label-j3">J3 等效旋转副（Y轴）</text></g>
+          <g><line id="joint-label-p-line"></line><text id="joint-label-p">P 旋转副（Y轴）</text></g>
+          <g><line id="joint-label-a-line"></line><text id="joint-label-a">A 旋转副 / 推杆A端</text></g>
+          <g><line id="joint-label-q-line"></line><text id="joint-label-q">Q 旋转副（参考侧）</text></g>
+          <g><line id="joint-label-b-line"></line><text id="joint-label-b">B 端鱼眼旋转副（固定）</text></g>
+          <g><line id="joint-label-slider-line"></line><text id="joint-label-slider">推杆移动副</text></g>
+        </g>
+        <g class="labels">
+          <text id="j3-output-label">J3—P 固定参考杆</text>
+          <text id="j3-jq-label">J3—Q 主动输出杆</text>
+          <text id="j3-pa-label">大腿下连杆（定长）</text>
+          <text id="j3-aq-label">膝盖上连杆（定长）</text>
+          <text id="j3-rod-label">可伸缩推杆</text>
+          <text id="j3-angle-label"></text>
+        </g>
+      </svg>
+      <div class="j3-readout text-small">
+        <span>推杆长度 <b id="j3-rod-length" class="tabular-nums"></b></span>
+        <span>推杆传动系数 <b id="j3-rod-jac" class="tabular-nums"></b></span>
+      </div>
+      <div id="j3-joint-key" class="table-responsive"><table class="table table-sm mechanism-key">
+        <thead><tr><th>标记</th><th>类型</th><th>坐标 / mm</th><th>作用</th></tr></thead>
+        <tbody>
+          <tr><td>J3</td><td>等效轴</td><td>(202.630, 93, −491.421)</td><td>控制输出轴</td></tr>
+          <tr><td>P</td><td>旋转副</td><td>(196.295, 93, −429.316)</td><td>固定参考侧</td></tr>
+          <tr><td>A</td><td>旋转副</td><td>(115.999, 93, −465.999)</td><td>两定长杆交点</td></tr>
+          <tr><td>Q</td><td>旋转副</td><td>(188.356, 93, −523.377)</td><td>J3主动杆端</td></tr>
+          <tr><td>推杆</td><td>移动副</td><td>B—A</td><td>轴向伸缩</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+    <section>
+      <h3>等效轴启动力矩贡献</h3>
+      <div class="j3-inputs text-small">
+        <label>P副 <input data-load="p" type="number" value="1" min="0" step="0.1"> N·m</label>
+        <label>A副 <input data-load="a" type="number" value="1" min="0" step="0.1"> N·m</label>
+        <label>Q副 <input data-load="q" type="number" value="1" min="0" step="0.1"> N·m</label>
+        <label>推杆 <input data-load="rod" type="number" value="10" min="0" step="1"> N</label>
+      </div>
+      <div class="viz-grid">
+        <div class="card viz-stat"><div class="text-muted">当前J3总等效启动力矩</div><div id="j3-total-torque" class="viz-stat-value tabular-nums"></div></div>
+        <div class="card viz-stat"><div class="text-muted">±10°行程峰值</div><div id="j3-peak-torque" class="viz-stat-value tabular-nums"></div><div id="j3-peak-angle" class="text-small text-muted"></div></div>
+      </div>
+      <svg id="j3-chart" viewBox="0 0 520 285" role="img" aria-label="J3在正负十度范围内各连接副对等效轴启动力矩的贡献率"></svg>
+      <div id="j3-current" class="j3-current text-small"></div>
+      <h3>运行阻力（1 Hz、±10°）</h3>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead><tr><th>运动副</th><th>动摩擦</th><th>黏性系数</th></tr></thead>
+          <tbody>
+            <tr><td>P副</td><td><input data-run="p-c" type="number" value="1" min="0" step="0.1"> N·m</td><td><input data-run="p-b" type="number" value="0" min="0" step="0.01"> N·m·s/rad</td></tr>
+            <tr><td>A副</td><td><input data-run="a-c" type="number" value="1" min="0" step="0.1"> N·m</td><td><input data-run="a-b" type="number" value="0" min="0" step="0.01"> N·m·s/rad</td></tr>
+            <tr><td>Q副</td><td><input data-run="q-c" type="number" value="1" min="0" step="0.1"> N·m</td><td><input data-run="q-b" type="number" value="0" min="0" step="0.01"> N·m·s/rad</td></tr>
+            <tr><td>推杆</td><td><input data-run="rod-c" type="number" value="10" min="0" step="1"> N</td><td><input data-run="rod-b" type="number" value="0" min="0" step="1"> N·s/m</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="viz-grid">
+        <div class="card viz-stat"><div class="text-muted">当前运行阻力</div><div id="j3-run-current" class="viz-stat-value tabular-nums"></div></div>
+        <div class="card viz-stat"><div class="text-muted">周期峰值</div><div id="j3-run-peak" class="viz-stat-value tabular-nums"></div></div>
+        <div class="card viz-stat"><div class="text-muted">单周期耗散</div><div id="j3-run-energy" class="viz-stat-value tabular-nums"></div></div>
+      </div>
+      <div id="j3-run-contribution" class="j3-current text-small"></div>
+    </section>
+  </div>
+</div>
+
+<style>
+#j3-mechanism{color:var(--foreground);max-width:1100px;margin:auto}#j3-mechanism h2{margin-bottom:10px}#j3-mechanism h3{margin:12px 0 8px}.j3-controls{display:grid;grid-template-columns:auto 190px 1fr;gap:12px;align-items:center;margin-bottom:10px}.j3-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(340px,.92fr);gap:18px}.j3-layout section{min-width:0}#j3-diagram,#j3-chart{width:100%;height:auto;border:1px solid var(--border);background:var(--background)}.grid line{stroke:var(--border);stroke-width:1}.grid text,.labels text,#j3-nodes text,#j3-chart text,#j3-side-view-caption,.joint-callouts text{fill:var(--foreground);font-size:12px}.structure line{stroke:var(--foreground);stroke-width:6;stroke-linecap:round}.structure .output{stroke:var(--viz-series-1);stroke-width:9}.structure .reference{stroke:var(--muted-foreground)}.structure .rod{stroke:var(--viz-series-3);stroke-width:10;opacity:.45}.structure .rod-shaft{stroke:var(--viz-series-3);stroke-width:4}.angle-arc{fill:none;stroke:var(--viz-series-4);stroke-width:3}.node circle{fill:var(--background);stroke:var(--viz-series-1);stroke-width:4}.node circle.axis{fill:var(--viz-series-1);stroke:none}.node.fixed circle{stroke:var(--muted-foreground)}.node text{font-weight:500}.slider-node rect{fill:var(--background);stroke:var(--viz-series-3);stroke-width:3}.joint-callouts line{stroke:var(--muted-foreground);stroke-width:1}.joint-callouts text{font-weight:500}.j3-readout,.j3-current{display:flex;gap:18px;flex-wrap:wrap;padding-top:7px}.j3-inputs{display:grid;grid-template-columns:1fr 1fr;gap:7px 12px;margin-bottom:8px}.j3-inputs label{display:flex;align-items:center;justify-content:space-between;gap:6px}.j3-inputs input,.table input{width:64px;color:var(--foreground);background:var(--background);border:1px solid var(--input);padding:4px}.chart-grid{stroke:var(--border);stroke-width:1}.chart-axis{stroke:var(--muted-foreground);stroke-width:1}.chart-line{fill:none;stroke-width:2}.chart-marker{stroke:var(--background);stroke-width:2}.chart-guide{stroke:var(--muted-foreground);stroke-dasharray:4 4}.chart-legend text{font-size:11px}@media(max-width:780px){.j3-layout{grid-template-columns:1fr}.j3-controls{grid-template-columns:auto 1fr}.j3-controls input{grid-column:1/-1}}
+#j3-output-label,#j3-jq-label,#j3-pa-label,#j3-aq-label,#j3-rod-label,.joint-callouts{display:none}
+</style>
+
+<script data-j3-core>
+(() => {
+  const J={x:202.63,z:-491.421}, P0={x:196.295,z:-429.316}, A0={x:115.999,z:-465.999}, Q={x:188.356,z:-523.377}, B={x:-44.062,z:-162.46};
+  const distance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
+  const lengths={JP:distance(J,P0),PA:distance(P0,A0),AQ:distance(A0,Q),JQ:distance(J,Q)};
+  const rotate=(p,c,r)=>({x:c.x+(p.x-c.x)*Math.cos(r)-(p.z-c.z)*Math.sin(r),z:c.z+(p.x-c.x)*Math.sin(r)+(p.z-c.z)*Math.cos(r)});
+  function closure(P,Qp){
+    const dx=Qp.x-P.x,dz=Qp.z-P.z,d=Math.hypot(dx,dz),a=(lengths.PA**2-lengths.AQ**2+d*d)/(2*d),h=Math.sqrt(Math.max(0,lengths.PA**2-a*a));
+    const m={x:P.x+a*dx/d,z:P.z+a*dz/d}, c1={x:m.x-h*dz/d,z:m.z+h*dx/d}, c2={x:m.x+h*dz/d,z:m.z-h*dx/d};
+    return distance(c1,A0)<distance(c2,A0)?c1:c2;
+  }
+  function base(degrees){const t=degrees*Math.PI/180,P=P0,Qp=rotate(Q,J,t),A=closure(P,Qp);return {degrees,J,P,A,Q:Qp,B,rodLength:distance(A,B)};}
+  function angle(a,b){return Math.atan2(b.z-a.z,b.x-a.x)}
+  function wrap(v){return Math.atan2(Math.sin(v),Math.cos(v))}
+  function qapDegrees(s){const u={x:s.Q.x-s.A.x,z:s.Q.z-s.A.z},v={x:s.P.x-s.A.x,z:s.P.z-s.A.z};return Math.acos(Math.max(-1,Math.min(1,(u.x*v.x+u.z*v.z)/(Math.hypot(u.x,u.z)*Math.hypot(v.x,v.z)))))*180/Math.PI}
+  function solve(degrees){
+    const s=base(degrees),e=.001,lo=base(degrees-e),hi=base(degrees+e),dr=2*e*Math.PI/180;
+    s.rodJacobian=(hi.rodLength-lo.rodLength)/dr;
+    s.rates={
+      p:wrap(angle(hi.P,hi.A)-angle(lo.P,lo.A))/dr,
+      a:wrap((angle(hi.A,hi.Q)-angle(hi.P,hi.A))-(angle(lo.A,lo.Q)-angle(lo.P,lo.A)))/dr,
+      q:wrap((angle(hi.A,hi.Q)-angle(hi.J,hi.Q))-(angle(lo.A,lo.Q)-angle(lo.J,lo.Q)))/dr
+    };
+    return s;
+  }
+  function equivalentTorque(s,loads){const parts={p:Math.max(0,loads.p||0)*Math.abs(s.rates.p),a:Math.max(0,loads.a||0)*Math.abs(s.rates.a),q:Math.max(0,loads.q||0)*Math.abs(s.rates.q),rod:Math.max(0,loads.rod||0)*Math.abs(s.rodJacobian)/1000};return {parts,total:Object.values(parts).reduce((x,y)=>x+y,0)}}
+  function runningResistance(s,qdot,loads){const parts={},powerParts={};for(const k of ['p','a','q']){const rate=Math.abs(s.rates[k]),speed=rate*Math.abs(qdot),local=Math.max(0,loads[k]?.coulomb||0)+Math.max(0,loads[k]?.viscous||0)*speed;parts[k]=local*rate;powerParts[k]=local*speed}const jac=Math.abs(s.rodJacobian)/1000,speed=jac*Math.abs(qdot),local=Math.max(0,loads.rod?.coulomb||0)+Math.max(0,loads.rod?.viscous||0)*speed;parts.rod=local*jac;powerParts.rod=local*speed;return {parts,total:Object.values(parts).reduce((x,y)=>x+y,0),powerParts,power:Object.values(powerParts).reduce((x,y)=>x+y,0)}}
+  window.J3Model={solve,distance,qapDegrees,equivalentTorque,runningResistance,lengths,nominal:{J,P:P0,A:A0,Q,B}};
+})();
+</script>
+
+<script>
+(() => {
+  const root=document.getElementById('j3-mechanism'),M=window.J3Model,slider=root.querySelector('#j3-angle'),play=root.querySelector('#j3-play');
+  const svg=root.querySelector('#j3-diagram'), nodes=root.querySelector('#j3-nodes'), ns='http://www.w3.org/2000/svg';
+  const all=[M.nominal.J,M.nominal.P,M.nominal.A,M.nominal.Q,M.nominal.B],minX=Math.min(...all.map(p=>p.x))-25,maxX=Math.max(...all.map(p=>p.x))+25,minZ=Math.min(...all.map(p=>p.z))-25,maxZ=Math.max(...all.map(p=>p.z))+25;
+  const scale=Math.min(470/(maxX-minX),400/(maxZ-minZ)),project=p=>({x:62+(p.x-minX)*scale,y:445-(p.z-minZ)*scale});
+  const line=(id,a,b)=>{const e=root.querySelector(id),u=project(a),v=project(b);e.setAttribute('x1',u.x);e.setAttribute('y1',u.y);e.setAttribute('x2',v.x);e.setAttribute('y2',v.y)};
+  const midpoint=(a,b)=>({x:(a.x+b.x)/2,z:(a.z+b.z)/2});
+  const putLabel=(id,a,b,dy=0)=>{const e=root.querySelector(id),p=project(midpoint(a,b));e.setAttribute('x',p.x+5);e.setAttribute('y',p.y+dy)};
+  function callout(id,p,dx,dy){const v=project(p),lineEl=root.querySelector(`#${id}-line`),textEl=root.querySelector(`#${id}`),tx=v.x+dx,ty=v.y+dy;lineEl.setAttribute('x1',v.x);lineEl.setAttribute('y1',v.y);lineEl.setAttribute('x2',tx);lineEl.setAttribute('y2',ty-4);textEl.setAttribute('x',tx+(dx<0?-4:4));textEl.setAttribute('y',ty);textEl.setAttribute('text-anchor',dx<0?'end':'start')}
+  function drawNodes(s){nodes.innerHTML='';[['J3',s.J,true],['P',s.P,false],['A',s.A,false],['Q',s.Q,true],['B',s.B,true]].forEach(([name,p,fixed])=>{const v=project(p),g=document.createElementNS(ns,'g');g.setAttribute('class','node'+(fixed?' fixed':''));g.setAttribute('transform',`translate(${v.x} ${v.y})`);g.innerHTML=`<circle r="9"></circle><circle class="axis" r="3"></circle><text x="11" y="-11">${name}</text>`;nodes.appendChild(g)})}
+  function drawQapAngle(s){const a=project(s.A),p=project(s.P),q=project(s.Q),r=25,start=Math.atan2(p.y-a.y,p.x-a.x),end=Math.atan2(q.y-a.y,q.x-a.x),delta=Math.atan2(Math.sin(end-start),Math.cos(end-start)),finish=start+delta,sx=a.x+r*Math.cos(start),sy=a.y+r*Math.sin(start),ex=a.x+r*Math.cos(finish),ey=a.y+r*Math.sin(finish),sweep=delta>0?1:0,mid=start+delta/2,labelR=39;root.querySelector('#j3-angle-arc').setAttribute('d',`M ${sx} ${sy} A ${r} ${r} 0 0 ${sweep} ${ex} ${ey}`);const label=root.querySelector('#j3-angle-label');label.setAttribute('x',a.x+labelR*Math.cos(mid));label.setAttribute('y',a.y+labelR*Math.sin(mid)+4);label.setAttribute('text-anchor','middle');label.textContent=`∠QAP ${M.qapDegrees(s).toFixed(1)}°`}
+  const currentLoads=()=>Object.fromEntries(['p','a','q','rod'].map(k=>[k,Math.max(0,Number(root.querySelector(`[data-load="${k}"]`).value)||0)]));
+  function contributions(s){const result=M.equivalentTorque(s,currentLoads()),sum=result.total||1;return {vals:result.parts,total:result.total,pct:Object.fromEntries(Object.entries(result.parts).map(([k,v])=>[k,100*v/sum]))}}
+  function cyclePeak(){const loads=currentLoads();let best={total:-1,angle:0};for(let d=-10;d<=10.0001;d+=.1){const total=M.equivalentTorque(M.solve(d),loads).total;if(total>best.total)best={total,angle:d}}return best}
+  const runLoads=()=>Object.fromEntries(['p','a','q','rod'].map(k=>[k,{coulomb:Math.max(0,Number(root.querySelector(`[data-run="${k}-c"]`).value)||0),viscous:Math.max(0,Number(root.querySelector(`[data-run="${k}-b"]`).value)||0)}]));
+  function runCycle(angle){const loads=runLoads(),amp=10*Math.PI/180,omega=2*Math.PI,q=angle*Math.PI/180,qdot=omega*Math.sqrt(Math.max(0,amp*amp-q*q)),current=M.runningResistance(M.solve(angle),qdot,loads),steps=360,dt=1/steps,energy={p:0,a:0,q:0,rod:0};let peak=0;for(let i=0;i<steps;i++){const t=i/steps,deg=10*Math.sin(2*Math.PI*t),vel=amp*omega*Math.cos(2*Math.PI*t),r=M.runningResistance(M.solve(deg),vel,loads);peak=Math.max(peak,r.total);for(const k of Object.keys(energy))energy[k]+=r.powerParts[k]*dt}return {current,peak,energy,totalEnergy:Object.values(energy).reduce((x,y)=>x+y,0)}}
+  const series=[['p','P副','var(--viz-series-1)'],['a','A副','var(--viz-series-2)'],['q','Q副','var(--viz-series-4)'],['rod','推杆','var(--viz-series-3)']];
+  function drawChart(angle){const chart=root.querySelector('#j3-chart'),W=520,H=285,L=48,R=12,T=26,B=42,x=d=>L+(d+10)/20*(W-L-R),y=v=>T+(100-v)/100*(H-T-B);let h='';for(let v=0;v<=100;v+=25)h+=`<line class="chart-grid" x1="${L}" y1="${y(v)}" x2="${W-R}" y2="${y(v)}"></line><text x="${L-7}" y="${y(v)+4}" text-anchor="end">${v}%</text>`;[-10,-5,0,5,10].forEach(v=>h+=`<text x="${x(v)}" y="${H-18}" text-anchor="middle">${v}°</text>`);h+=`<line class="chart-axis" x1="${L}" y1="${T}" x2="${L}" y2="${H-B}"></line><line class="chart-axis" x1="${L}" y1="${H-B}" x2="${W-R}" y2="${H-B}"></line>`;const samples=[];for(let d=-10;d<=10.0001;d+=.5)samples.push({d,c:contributions(M.solve(d)).pct});series.forEach(([k,n,c],i)=>{h+=`<path class="chart-line" stroke="${c}" d="${samples.map((v,j)=>(j?'L':'M')+x(v.d).toFixed(2)+' '+y(v.c[k]).toFixed(2)).join(' ')}"></path>`;h+=`<g class="chart-legend"><line x1="${55+i*112}" y1="13" x2="${72+i*112}" y2="13" stroke="${c}" stroke-width="3"></line><text x="${77+i*112}" y="17">${n}</text></g>`});const now=contributions(M.solve(angle)).pct;h+=`<line class="chart-guide" x1="${x(angle)}" y1="${T}" x2="${x(angle)}" y2="${H-B}"></line>`;series.forEach(([k,n,c])=>h+=`<circle class="chart-marker" cx="${x(angle)}" cy="${y(now[k])}" r="4" fill="${c}"></circle>`);h+=`<text x="${(L+W-R)/2}" y="${H-3}" text-anchor="middle">J3角度 / °</text><text x="13" y="${(T+H-B)/2}" transform="rotate(-90 13 ${(T+H-B)/2})" text-anchor="middle">贡献率</text>`;chart.innerHTML=h}
+  function render(){const d=Number(slider.value),s=M.solve(d),m={x:s.B.x+(s.A.x-s.B.x)*.76,z:s.B.z+(s.A.z-s.B.z)*.76};line('#j3-jp',s.J,s.P);line('#j3-pa',s.P,s.A);line('#j3-aq',s.A,s.Q);line('#j3-jq',s.J,s.Q);line('#j3-rod',s.B,s.A);line('#j3-rod-shaft',m,s.A);drawNodes(s);const mv=project(m),bv=project(s.B),avp=project(s.A),rodAngle=Math.atan2(avp.y-bv.y,avp.x-bv.x)*180/Math.PI;root.querySelector('#j3-slider-node').setAttribute('transform',`translate(${mv.x} ${mv.y}) rotate(${rodAngle})`);callout('joint-label-j3',s.J,-118,33);callout('joint-label-p',s.P,-70,-34);callout('joint-label-a',s.A,-95,22);callout('joint-label-q',s.Q,-116,48);callout('joint-label-b',s.B,18,28);callout('joint-label-slider',m,42,-18);putLabel('#j3-output-label',s.J,s.P,-7);putLabel('#j3-jq-label',s.J,s.Q,20);putLabel('#j3-pa-label',s.P,s.A,-7);putLabel('#j3-aq-label',s.A,s.Q,16);putLabel('#j3-rod-label',s.B,s.A,-8);drawQapAngle(s);root.querySelector('#j3-angle-value').textContent=d.toFixed(1)+'°';root.querySelector('#j3-rod-length').textContent=s.rodLength.toFixed(2)+' mm';root.querySelector('#j3-rod-jac').textContent=(s.rodJacobian/1000).toFixed(4)+' m/rad';const c=contributions(s),peak=cyclePeak(),run=runCycle(d);root.querySelector('#j3-total-torque').textContent=c.total.toFixed(3)+' N·m';root.querySelector('#j3-peak-torque').textContent=peak.total.toFixed(3)+' N·m';root.querySelector('#j3-peak-angle').textContent=`发生于 ${peak.angle.toFixed(1)}°`;root.querySelector('#j3-current').innerHTML=series.map(([k,n])=>`<span>${n}：<b class="tabular-nums">${c.vals[k].toFixed(3)} N·m（${c.pct[k].toFixed(1)}%）</b></span>`).join('');root.querySelector('#j3-run-current').textContent=run.current.total.toFixed(3)+' N·m';root.querySelector('#j3-run-peak').textContent=run.peak.toFixed(3)+' N·m';root.querySelector('#j3-run-energy').textContent=run.totalEnergy.toFixed(3)+' J';root.querySelector('#j3-run-contribution').innerHTML=series.map(([k,n])=>`<span>${n}耗散：<b>${(100*run.energy[k]/(run.totalEnergy||1)).toFixed(1)}%</b></span>`).join('');drawChart(d)}
+  let running=true,start=performance.now();function tick(now){if(running){slider.value=(10*Math.sin(2*Math.PI*((now-start)/1000))).toFixed(2);render()}requestAnimationFrame(tick)}
+  play.addEventListener('click',()=>{running=!running;play.textContent=running?'暂停':'播放';play.setAttribute('aria-pressed',String(running));if(running)start=performance.now()-Math.asin(Number(slider.value)/10)/(2*Math.PI)*1000});slider.addEventListener('input',()=>{running=false;play.textContent='播放';play.setAttribute('aria-pressed','false');render()});root.querySelectorAll('[data-load],[data-run]').forEach(e=>e.addEventListener('input',render));render();requestAnimationFrame(tick);
+})();
+</script>
+</main></body></html>
