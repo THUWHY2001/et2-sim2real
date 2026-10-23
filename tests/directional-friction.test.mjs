@@ -21,7 +21,7 @@ assert.equal(D.frictionMagnitude({
   negative: { coulomb: 7, viscous: 3 },
 }, -0.5), 8.5);
 
-for (const file of ["j2.html", "j3.html", "j4.html"]) {
+for (const file of ["j2.html", "j3.html", "j4.html", "arm-j3.html"]) {
   const page = readFileSync(new URL(`../dist/${file}`, import.meta.url), "utf8");
   assert.match(page, /data-start-direction/, `${file} must expose an equivalent-axis start direction selector`);
   assert.match(page, /正向/, `${file} must label positive-direction inputs`);
