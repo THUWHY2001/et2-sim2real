@@ -12,6 +12,9 @@ const near = (actual, expected, tolerance=1e-5) => assert.ok(Math.abs(actual-exp
 const distance = (a,b) => Math.hypot(...a.map((v,i)=>v-b[i]));
 
 const nominal = M.solve(0);
+near(nominal.coordinates.rod, distance(M.nominal.Q,M.nominal.S), 1e-8);
+near(M.lengths.pushrodReference, distance(M.nominal.Q,M.nominal.S), 1e-8);
+assert.equal("T" in nominal.points, false, "pushrod has only Q(A) and S(B) endpoints");
 for (let i=0;i<3;i++) {
   near(nominal.points.P[i], M.nominal.P[i]);
   near(nominal.points.Q[i], M.nominal.Q[i]);
@@ -26,6 +29,7 @@ for (const degrees of [-10,-5,0,5,10]) {
   near(distance(state.points.Q,state.points.R), M.lengths.K, 1e-4);
   near(distance(state.points.R,M.nominal.R), 0, 1e-8);
   near(distance(state.points.S,M.nominal.S), 0, 1e-8);
+  near(state.coordinates.rod, distance(state.points.Q,state.points.S), 1e-8);
   for (const key of ["p","q","r","b","rod"]) assert.ok(Number.isFinite(state.rates[key]), `${key} rate is not finite at ${degrees}°`);
 }
 

@@ -23,5 +23,7 @@ assert.match(page,/>Z \/ mm</);
 assert.match(page,/>X \/ mm</);
 assert.match(page,/id="arm-j3-axis"/);
 assert.doesNotMatch(page,/局部 U|局部 V|J3法向局部平面/);
+assert.match(page,/A端Q→B端鱼眼/);
+assert.doesNotMatch(page,/Q→T|>T<|arm-j3-body/);
 
 console.log("arm J3 page regression test passed");
