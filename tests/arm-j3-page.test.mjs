@@ -21,7 +21,7 @@ assert.match(page,/P副[\s\S]*Q副[\s\S]*R副[\s\S]*B端鱼眼[\s\S]*推杆/);
 assert.match(page,/手臂J3全局X-Z投影机构图/);
 assert.match(page,/>Z \/ mm</);
 assert.match(page,/>X \/ mm</);
-assert.match(page,/id="arm-j3-axis"/);
+assert.doesNotMatch(page,/id="arm-j3-axis"|\.arm-axis\{/);
 assert.doesNotMatch(page,/局部 U|局部 V|J3法向局部平面/);
 assert.match(page,/A端Q→B端鱼眼/);
 assert.doesNotMatch(page,/Q→T|>T<|arm-j3-body/);
