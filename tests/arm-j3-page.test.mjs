@@ -6,8 +6,8 @@ const page=readFileSync("arm-j3.html","utf8");
 
 assert.match(index,/id="arm"[\s\S]*href="arm-j3\.html"[\s\S]*手臂 J3/);
 assert.match(page,/<title>手臂 J3/);
-assert.match(page,/src="directional-friction\.js"/);
-assert.match(page,/src="arm-j3-model\.js"/);
+assert.match(page,/src="directional-friction\.js\?v=[^"]+"/);
+assert.match(page,/src="arm-j3-model\.js\?v=[^"]+"/);
 assert.match(page,/data-arm-static="p-positive"/);
 assert.match(page,/data-arm-static="p-negative"/);
 assert.match(page,/data-arm-static="rod-positive"/);
