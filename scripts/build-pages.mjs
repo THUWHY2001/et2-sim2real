@@ -25,7 +25,7 @@ const chartResizeScript = `<script>(()=>{document.querySelectorAll('[data-chart-
 function document(title, current, body, joint = null, modelScript = null) {
   const scripts=joint?`<script src="directional-friction.js"></script>${modelScript?`<script src="${modelScript}"></script>`:''}`:'';
   const subnav=joint?(current==='arm'?armJointNav(joint):jointNav(joint)):'';
-  return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>${title}</title><link rel="stylesheet" href="site.css?v=20261023-1">${scripts}</head><body>${nav(current)}${subnav}${body}${joint ? chartResizeScript : ""}</body></html>`;
+  return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>${title}</title><link rel="stylesheet" href="site.css?v=20261023-2">${scripts}</head><body>${nav(current)}${subnav}${body}${joint ? chartResizeScript : ""}</body></html>`;
 }
 
 copyFileSync(path.join(root, "src", "directional-friction.js"), path.join(dist, "directional-friction.js"));
