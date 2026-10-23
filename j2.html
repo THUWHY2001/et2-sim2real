@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>J2 二维机构简图｜模块连接副-等效旋转轴的灵敏度分析</title><link rel="stylesheet" href="site.css?v=20261022-2"></head><body><header class="site-header"><div class="site-header-inner"><a class="site-brand" href="index.html">模块连接副-等效旋转轴的灵敏度分析</a><nav class="site-nav" aria-label="模块导航"><a href="index.html">总览</a><a href="j2.html" aria-current="page">腿足</a><a href="index.html#head-neck">头颈</a><a href="index.html#torso">躯干</a><a href="index.html#arm">手臂</a></nav></div></header><nav class="joint-nav" aria-label="腿足等效旋转轴"><span>腿足</span><a class="joint-tab" href="j2.html" aria-current="page">J2</a><a class="joint-tab" href="j3.html">J3</a><a class="joint-tab" href="j4.html">J4</a></nav><main class="model-shell"><div id="leg-2d-mechanism" class="leg-mechanism-viz" data-layout-version="unified-v1">
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>J2 二维机构简图｜模块连接副-等效旋转轴的灵敏度分析</title><link rel="stylesheet" href="site.css?v=20261023-1"></head><body><header class="site-header"><div class="site-header-inner"><a class="site-brand" href="index.html">模块连接副-等效旋转轴的灵敏度分析</a><nav class="site-nav" aria-label="模块导航"><a href="index.html">总览</a><a href="j2.html" aria-current="page">腿足</a><a href="index.html#head-neck">头颈</a><a href="index.html#torso">躯干</a><a href="index.html#arm">手臂</a></nav></div></header><nav class="joint-nav" aria-label="腿足等效旋转轴"><span>腿足</span><a class="joint-tab" href="j2.html" aria-current="page">J2</a><a class="joint-tab" href="j3.html">J3</a><a class="joint-tab" href="j4.html">J4</a></nav><main class="model-shell"><div id="leg-2d-mechanism" class="leg-mechanism-viz" data-layout-version="unified-v1">
   <h2>J2 二维机构简图（X–Z 投影）</h2>
   <div class="viz-row text-small text-muted" aria-label="图例">
     <span><i class="axis-swatch"></i>Y 向转轴（投影为点）</span>
@@ -129,6 +129,7 @@
     <button type="button" data-series="rod2" aria-pressed="true"><i class="series-swatch series-rod2"></i>推杆点2</button>
     <button type="button" data-series="rod" aria-pressed="true"><i class="series-swatch series-rod"></i>推杆轴向</button>
   </div>
+  <div class="chart-panel" data-chart-panel><div class="chart-tools" aria-label="贡献度图显示控制"><span>图表大小</span><button type="button" data-chart-action="out" aria-label="缩小贡献度图">−</button><output data-chart-scale>100%</output><button type="button" data-chart-action="in" aria-label="放大贡献度图">＋</button><button type="button" data-chart-action="reset">还原</button><button type="button" data-chart-action="fullscreen">全屏</button></div><div class="chart-viewport"><div class="chart-stage" data-chart-stage>
   <svg id="j2-friction-chart" class="friction-chart" viewBox="0 0 560 255" role="img" aria-labelledby="friction-title friction-desc">
     <title id="friction-title">J2一赫兹正弦激励下各旋转副等效阻力贡献度</title>
     <desc id="friction-desc">假设四个旋转副具有相同摩擦阻力矩，曲线显示一个周期内由瞬时角速度雅可比计算的归一化贡献度。</desc>
@@ -162,6 +163,7 @@
       <circle id="marker-rod" class="series-rod" r="4"></circle>
     </g>
   </svg>
+  </div></div></div>
   <p id="friction-live" class="selected-detail text-small" aria-live="polite">等摩擦阻力矩假设｜轴1 44.8%｜轴2 24.0%｜轴3 28.9%｜推杆点2 2.4%</p>
   <h3>运行阻力（1 Hz、±10°）</h3>
   <div class="table-responsive"><table class="table table-sm">
@@ -537,4 +539,4 @@
     window.addEventListener('pagehide', () => cancelAnimationFrame(animationFrame), { once: true });
   })();
 </script>
-</main></body></html>
+</main><script>(()=>{document.querySelectorAll('[data-chart-panel]').forEach(panel=>{const stage=panel.querySelector('[data-chart-stage]'),output=panel.querySelector('[data-chart-scale]');let scale=1;const apply=()=>{stage.style.width=(scale*100)+'%';output.textContent=Math.round(scale*100)+'%';panel.querySelector('[data-chart-action="out"]').disabled=scale<=.75;panel.querySelector('[data-chart-action="in"]').disabled=scale>=2};panel.addEventListener('click',event=>{const button=event.target.closest('[data-chart-action]');if(!button)return;const action=button.dataset.chartAction;if(action==='out')scale=Math.max(.75,scale-.25);if(action==='in')scale=Math.min(2,scale+.25);if(action==='reset')scale=1;if(action==='fullscreen'){if(document.fullscreenElement===panel)document.exitFullscreen();else if(panel.requestFullscreen)panel.requestFullscreen();else panel.classList.toggle('chart-expanded')}apply()});document.addEventListener('fullscreenchange',()=>{const button=panel.querySelector('[data-chart-action="fullscreen"]');button.textContent=document.fullscreenElement===panel?'退出全屏':'全屏'});apply()})})();</script></body></html>
