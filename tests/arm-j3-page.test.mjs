@@ -18,5 +18,10 @@ assert.match(page,/data-chart-panel/);
 assert.match(page,/data-chart-action="in"/);
 assert.match(page,/data-chart-action="fullscreen"/);
 assert.match(page,/P副[\s\S]*Q副[\s\S]*R副[\s\S]*B端鱼眼[\s\S]*推杆/);
+assert.match(page,/手臂J3全局X-Z投影机构图/);
+assert.match(page,/>Z \/ mm</);
+assert.match(page,/>X \/ mm</);
+assert.match(page,/id="arm-j3-axis"/);
+assert.doesNotMatch(page,/局部 U|局部 V|J3法向局部平面/);
 
 console.log("arm J3 page regression test passed");
