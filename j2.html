@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>J2 二维机构简图｜模块连接副-等效旋转轴的灵敏度分析</title><link rel="stylesheet" href="site.css?v=20261023-1"></head><body><header class="site-header"><div class="site-header-inner"><a class="site-brand" href="index.html">模块连接副-等效旋转轴的灵敏度分析</a><nav class="site-nav" aria-label="模块导航"><a href="index.html">总览</a><a href="j2.html" aria-current="page">腿足</a><a href="index.html#head-neck">头颈</a><a href="index.html#torso">躯干</a><a href="index.html#arm">手臂</a></nav></div></header><nav class="joint-nav" aria-label="腿足等效旋转轴"><span>腿足</span><a class="joint-tab" href="j2.html" aria-current="page">J2</a><a class="joint-tab" href="j3.html">J3</a><a class="joint-tab" href="j4.html">J4</a></nav><main class="model-shell"><div id="leg-2d-mechanism" class="leg-mechanism-viz" data-layout-version="unified-v1">
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>J2 二维机构简图｜模块连接副-等效旋转轴的灵敏度分析</title><link rel="stylesheet" href="site.css?v=20261023-1"><script src="directional-friction.js"></script></head><body><header class="site-header"><div class="site-header-inner"><a class="site-brand" href="index.html">模块连接副-等效旋转轴的灵敏度分析</a><nav class="site-nav" aria-label="模块导航"><a href="index.html">总览</a><a href="j2.html" aria-current="page">腿足</a><a href="index.html#head-neck">头颈</a><a href="index.html#torso">躯干</a><a href="index.html#arm">手臂</a></nav></div></header><nav class="joint-nav" aria-label="腿足等效旋转轴"><span>腿足</span><a class="joint-tab" href="j2.html" aria-current="page">J2</a><a class="joint-tab" href="j3.html">J3</a><a class="joint-tab" href="j4.html">J4</a></nav><main class="model-shell"><div id="leg-2d-mechanism" class="leg-mechanism-viz" data-layout-version="unified-v1">
   <h2>J2 二维机构简图（X–Z 投影）</h2>
   <div class="viz-row text-small text-muted" aria-label="图例">
     <span><i class="axis-swatch"></i>Y 向转轴（投影为点）</span>
@@ -110,12 +110,13 @@
   </table></div>
   </section><section>
   <h3>静摩擦启动力矩</h3>
+  <label class="text-small">等效轴启动方向 <select data-start-direction><option value="1">正向</option><option value="-1">反向</option></select></label>
   <div class="j2-inputs text-small">
-    <label>轴1 <input data-j2-static="axis1" type="number" value="1" min="0" step="0.1"> N·m</label>
-    <label>轴2 <input data-j2-static="axis2" type="number" value="1" min="0" step="0.1"> N·m</label>
-    <label>轴3 <input data-j2-static="axis3" type="number" value="1" min="0" step="0.1"> N·m</label>
-    <label>推杆点2 <input data-j2-static="point2" type="number" value="1" min="0" step="0.1"> N·m</label>
-    <label>推杆轴向 <input data-j2-static="rod" type="number" value="10" min="0" step="1"> N</label>
+    <label>轴1 正向 <input data-j2-static="axis1-positive" type="number" value="1" min="0" step="0.1"> N·m</label><label>轴1 反向 <input data-j2-static="axis1-negative" type="number" value="1" min="0" step="0.1"> N·m</label>
+    <label>轴2 正向 <input data-j2-static="axis2-positive" type="number" value="1" min="0" step="0.1"> N·m</label><label>轴2 反向 <input data-j2-static="axis2-negative" type="number" value="1" min="0" step="0.1"> N·m</label>
+    <label>轴3 正向 <input data-j2-static="axis3-positive" type="number" value="1" min="0" step="0.1"> N·m</label><label>轴3 反向 <input data-j2-static="axis3-negative" type="number" value="1" min="0" step="0.1"> N·m</label>
+    <label>推杆点2 正向 <input data-j2-static="point2-positive" type="number" value="1" min="0" step="0.1"> N·m</label><label>推杆点2 反向 <input data-j2-static="point2-negative" type="number" value="1" min="0" step="0.1"> N·m</label>
+    <label>推杆 伸出 <input data-j2-static="rod-positive" type="number" value="10" min="0" step="1"> N</label><label>推杆 缩回 <input data-j2-static="rod-negative" type="number" value="10" min="0" step="1"> N</label>
   </div>
   <div class="viz-grid">
     <div class="card viz-stat"><div class="text-muted">当前J2总等效启动力矩</div><div id="j2-total-torque" class="viz-stat-value tabular-nums"></div></div>
@@ -167,13 +168,13 @@
   <p id="friction-live" class="selected-detail text-small" aria-live="polite">等摩擦阻力矩假设｜轴1 44.8%｜轴2 24.0%｜轴3 28.9%｜推杆点2 2.4%</p>
   <h3>运行阻力（1 Hz、±10°）</h3>
   <div class="table-responsive"><table class="table table-sm">
-    <thead><tr><th>运动副</th><th>动摩擦</th><th>黏性系数</th></tr></thead>
+    <thead><tr><th>运动副</th><th>正向/伸出动摩擦</th><th>正向黏性</th><th>反向/缩回动摩擦</th><th>反向黏性</th></tr></thead>
     <tbody>
-      <tr><td>轴1</td><td><input data-j2-run="axis1-c" type="number" value="1" min="0" step="0.1"> N·m</td><td><input data-j2-run="axis1-b" type="number" value="0" min="0" step="0.01"> N·m·s/rad</td></tr>
-      <tr><td>轴2</td><td><input data-j2-run="axis2-c" type="number" value="1" min="0" step="0.1"> N·m</td><td><input data-j2-run="axis2-b" type="number" value="0" min="0" step="0.01"> N·m·s/rad</td></tr>
-      <tr><td>轴3</td><td><input data-j2-run="axis3-c" type="number" value="1" min="0" step="0.1"> N·m</td><td><input data-j2-run="axis3-b" type="number" value="0" min="0" step="0.01"> N·m·s/rad</td></tr>
-      <tr><td>推杆点2</td><td><input data-j2-run="point2-c" type="number" value="1" min="0" step="0.1"> N·m</td><td><input data-j2-run="point2-b" type="number" value="0" min="0" step="0.01"> N·m·s/rad</td></tr>
-      <tr><td>推杆轴向</td><td><input data-j2-run="rod-c" type="number" value="10" min="0" step="1"> N</td><td><input data-j2-run="rod-b" type="number" value="0" min="0" step="1"> N·s/m</td></tr>
+      <tr><td>轴1</td><td><input data-j2-run="axis1-positive-c" type="number" value="1"></td><td><input data-j2-run="axis1-positive-b" type="number" value="0"></td><td><input data-j2-run="axis1-negative-c" type="number" value="1"></td><td><input data-j2-run="axis1-negative-b" type="number" value="0"></td></tr>
+      <tr><td>轴2</td><td><input data-j2-run="axis2-positive-c" type="number" value="1"></td><td><input data-j2-run="axis2-positive-b" type="number" value="0"></td><td><input data-j2-run="axis2-negative-c" type="number" value="1"></td><td><input data-j2-run="axis2-negative-b" type="number" value="0"></td></tr>
+      <tr><td>轴3</td><td><input data-j2-run="axis3-positive-c" type="number" value="1"></td><td><input data-j2-run="axis3-positive-b" type="number" value="0"></td><td><input data-j2-run="axis3-negative-c" type="number" value="1"></td><td><input data-j2-run="axis3-negative-b" type="number" value="0"></td></tr>
+      <tr><td>推杆点2</td><td><input data-j2-run="point2-positive-c" type="number" value="1"></td><td><input data-j2-run="point2-positive-b" type="number" value="0"></td><td><input data-j2-run="point2-negative-c" type="number" value="1"></td><td><input data-j2-run="point2-negative-b" type="number" value="0"></td></tr>
+      <tr><td>推杆轴向</td><td><input data-j2-run="rod-positive-c" type="number" value="10"></td><td><input data-j2-run="rod-positive-b" type="number" value="0"></td><td><input data-j2-run="rod-negative-c" type="number" value="10"></td><td><input data-j2-run="rod-negative-b" type="number" value="0"></td></tr>
     </tbody>
   </table></div>
   <div class="viz-grid">
@@ -258,8 +259,8 @@
   function base(degrees){const r=degrees*Math.PI/180,axis3=rotate(nominal.axis3,nominal.j2,r),axis2=closure(nominal.axis1,lengths.axis1Axis2,axis3,lengths.axis2Axis3,nominal.axis2),point2=rotate(nominal.point2,nominal.j2,r),lower=rotate(nominal.lower,nominal.j2,r);return {degrees,radians:r,j2:nominal.j2,axis1:nominal.axis1,axis2,axis3,point2,lower,rodLength:distance(axis2,point2)}}
   function coordinates(s){const a1=angle(s.axis1,s.axis2),upper=angle(s.axis2,s.axis3),rod=angle(s.axis2,s.point2);return {axis1:a1,axis2:wrap(upper-a1),axis3:wrap(s.radians-upper),point2:wrap(s.radians-rod)}}
   function solve(degrees){const s=base(degrees),e=.001,lo=base(degrees-e),hi=base(degrees+e),dr=2*e*Math.PI/180,lc=coordinates(lo),hc=coordinates(hi);s.rates={};for(const k of ['axis1','axis2','axis3','point2'])s.rates[k]=wrap(hc[k]-lc[k])/dr;s.rodJacobian=(hi.rodLength-lo.rodLength)/dr;return s}
-  function equivalentTorque(s,loads){const parts={};for(const k of ['axis1','axis2','axis3','point2'])parts[k]=Math.max(0,loads[k]||0)*Math.abs(s.rates[k]);parts.rod=Math.max(0,loads.rod||0)*Math.abs(s.rodJacobian)/1000;return {parts,total:Object.values(parts).reduce((a,b)=>a+b,0)}}
-  function runningResistance(s,qdot,loads){const parts={},powerParts={};for(const k of ['axis1','axis2','axis3','point2']){const rate=Math.abs(s.rates[k]),speed=rate*Math.abs(qdot),local=Math.max(0,loads[k]?.coulomb||0)+Math.max(0,loads[k]?.viscous||0)*speed;parts[k]=local*rate;powerParts[k]=local*speed}const jac=Math.abs(s.rodJacobian)/1000,speed=jac*Math.abs(qdot),local=Math.max(0,loads.rod?.coulomb||0)+Math.max(0,loads.rod?.viscous||0)*speed;parts.rod=local*jac;powerParts.rod=local*speed;return {parts,total:Object.values(parts).reduce((a,b)=>a+b,0),powerParts,power:Object.values(powerParts).reduce((a,b)=>a+b,0)}}
+  function equivalentTorque(s,loads,qDirection=1){const D=window.DirectionalFriction,parts={};for(const k of ['axis1','axis2','axis3','point2'])parts[k]=D.directionalValue(loads[k],s.rates[k]*qDirection,qDirection)*Math.abs(s.rates[k]);const jac=s.rodJacobian/1000;parts.rod=D.directionalValue(loads.rod,jac*qDirection,qDirection)*Math.abs(jac);return {parts,total:Object.values(parts).reduce((a,b)=>a+b,0)}}
+  function runningResistance(s,qdot,loads){const D=window.DirectionalFriction,parts={},powerParts={},directions={};for(const k of ['axis1','axis2','axis3','point2']){const localVelocity=s.rates[k]*qdot,local=D.frictionMagnitude(loads[k],localVelocity,qdot);parts[k]=local*Math.abs(s.rates[k]);powerParts[k]=local*Math.abs(localVelocity);directions[k]=D.directionKey(localVelocity,qdot)}const jac=s.rodJacobian/1000,localVelocity=jac*qdot,local=D.frictionMagnitude(loads.rod,localVelocity,qdot);parts.rod=local*Math.abs(jac);powerParts.rod=local*Math.abs(localVelocity);directions.rod=D.directionKey(localVelocity,qdot);const total=Object.values(parts).reduce((a,b)=>a+b,0);return {parts,total,signedTotal:-Math.sign(qdot||1)*total,powerParts,power:Object.values(powerParts).reduce((a,b)=>a+b,0),directions}}
   window.J2Model={solve,distance,equivalentTorque,runningResistance,nominal,lengths};
 })();
 </script>
@@ -369,9 +370,10 @@
         rod2: wrapAngle(state.radians - rodAngle),
       };
     };
-    const staticLoads = () => Object.fromEntries(['axis1','axis2','axis3','point2','rod'].map(k => [k, Math.max(0, Number(root.querySelector(`[data-j2-static="${k}"]`).value) || 0)]));
-    const frictionContribution = (degrees) => {
-      const result = resistanceModel.equivalentTorque(resistanceModel.solve(degrees), staticLoads());
+    const startDirection = () => Number(root.querySelector('[data-start-direction]').value) || 1;
+    const staticLoads = () => Object.fromEntries(['axis1','axis2','axis3','point2','rod'].map(k => [k, Object.fromEntries(['positive','negative'].map(d => [d, Math.max(0, Number(root.querySelector(`[data-j2-static="${k}-${d}"]`).value) || 0)]))]));
+    const frictionContribution = (degrees, direction = startDirection()) => {
+      const result = resistanceModel.equivalentTorque(resistanceModel.solve(degrees), staticLoads(), direction);
       const total = result.total || 1;
       return {axis1:100*result.parts.axis1/total,axis2:100*result.parts.axis2/total,axis3:100*result.parts.axis3/total,rod2:100*result.parts.point2/total,rod:100*result.parts.rod/total};
     };
@@ -388,7 +390,8 @@
       const samples = Array.from({ length: 201 }, (_, index) => {
         const seconds = index / 200;
         const degrees = 10 * Math.sin(2 * Math.PI * seconds);
-        return { seconds, contribution: frictionContribution(degrees) };
+        const direction = Math.cos(2 * Math.PI * seconds) >= 0 ? 1 : -1;
+        return { seconds, contribution: frictionContribution(degrees, direction) };
       });
       frictionSeries.forEach(({ key }) => {
         const path = samples.map((sample, index) => `${index ? 'L' : 'M'}${chartX(sample.seconds).toFixed(2)} ${chartY(sample.contribution[key]).toFixed(2)}`).join(' ');
@@ -414,26 +417,26 @@
         cursor.setAttribute('x1', x); cursor.setAttribute('x2', x);
       }
     };
-    const runLoads = () => Object.fromEntries(['axis1','axis2','axis3','point2','rod'].map(k => [k, {
-      coulomb: Math.max(0, Number(root.querySelector(`[data-j2-run="${k}-c"]`).value) || 0),
-      viscous: Math.max(0, Number(root.querySelector(`[data-j2-run="${k}-b"]`).value) || 0),
-    }]));
-    const staticPeak = () => {const loads=staticLoads();let best={total:-1,angle:0};for(let d=-10;d<=10.0001;d+=.1){const total=resistanceModel.equivalentTorque(resistanceModel.solve(d),loads).total;if(total>best.total)best={total,angle:d}}return best};
-    const runCycle = (angle) => {
-      const loads=runLoads(),amp=10*Math.PI/180,omega=2*Math.PI,q=angle*Math.PI/180,qdot=omega*Math.sqrt(Math.max(0,amp*amp-q*q));
-      const current=resistanceModel.runningResistance(resistanceModel.solve(angle),qdot,loads),energy={axis1:0,axis2:0,axis3:0,point2:0,rod:0},steps=360,dt=1/steps;let peak=0;
-      for(let i=0;i<steps;i++){const t=i/steps,deg=10*Math.sin(2*Math.PI*t),vel=amp*omega*Math.cos(2*Math.PI*t),r=resistanceModel.runningResistance(resistanceModel.solve(deg),vel,loads);peak=Math.max(peak,r.total);for(const k of Object.keys(energy))energy[k]+=r.powerParts[k]*dt}
-      return {current,peak,energy,totalEnergy:Object.values(energy).reduce((a,b)=>a+b,0)};
+    const runLoads = () => Object.fromEntries(['axis1','axis2','axis3','point2','rod'].map(k => [k, Object.fromEntries(['positive','negative'].map(d => [d, {
+      coulomb: Math.max(0, Number(root.querySelector(`[data-j2-run="${k}-${d}-c"]`).value) || 0),
+      viscous: Math.max(0, Number(root.querySelector(`[data-j2-run="${k}-${d}-b"]`).value) || 0),
+    }]))]));
+    const staticPeak = () => {const loads=staticLoads(),dir=startDirection();let best={total:-1,angle:0};for(let d=-10;d<=10.0001;d+=.1){const total=resistanceModel.equivalentTorque(resistanceModel.solve(d),loads,dir).total;if(total>best.total)best={total,angle:d}}return best};
+    const runCycle = (angle, direction = startDirection()) => {
+      const loads=runLoads(),amp=10*Math.PI/180,omega=2*Math.PI,q=angle*Math.PI/180,qdot=direction*omega*Math.sqrt(Math.max(0,amp*amp-q*q));
+      const current=resistanceModel.runningResistance(resistanceModel.solve(angle),qdot,loads),energy={axis1:0,axis2:0,axis3:0,point2:0,rod:0},directionEnergy={positive:0,negative:0},steps=360,dt=1/steps;let peak=0;
+      for(let i=0;i<steps;i++){const t=i/steps,deg=10*Math.sin(2*Math.PI*t),vel=amp*omega*Math.cos(2*Math.PI*t),r=resistanceModel.runningResistance(resistanceModel.solve(deg),vel,loads);peak=Math.max(peak,r.total);for(const k of Object.keys(energy))energy[k]+=r.powerParts[k]*dt;directionEnergy[vel>=0?'positive':'negative']+=r.power*dt}
+      return {current,peak,energy,directionEnergy,totalEnergy:Object.values(energy).reduce((a,b)=>a+b,0)};
     };
-    const updateResistancePanels = (degrees) => {
-      const state=resistanceModel.solve(degrees),start=resistanceModel.equivalentTorque(state,staticLoads()),peak=staticPeak(),run=runCycle(degrees),names={axis1:'轴1',axis2:'轴2',axis3:'轴3',point2:'推杆点2',rod:'推杆轴向'};
+    const updateResistancePanels = (degrees, direction = startDirection()) => {
+      const state=resistanceModel.solve(degrees),start=resistanceModel.equivalentTorque(state,staticLoads(),startDirection()),peak=staticPeak(),run=runCycle(degrees,direction),names={axis1:'轴1',axis2:'轴2',axis3:'轴3',point2:'推杆点2',rod:'推杆轴向'};
       root.querySelector('#j2-total-torque').textContent=start.total.toFixed(3)+' N·m';
       root.querySelector('#j2-peak-torque').textContent=peak.total.toFixed(3)+' N·m';
       root.querySelector('#j2-peak-angle').textContent=`发生于 ${peak.angle.toFixed(1)}°`;
       root.querySelector('#j2-run-current').textContent=run.current.total.toFixed(3)+' N·m';
       root.querySelector('#j2-run-peak').textContent=run.peak.toFixed(3)+' N·m';
       root.querySelector('#j2-run-energy').textContent=run.totalEnergy.toFixed(3)+' J';
-      root.querySelector('#j2-run-contribution').textContent=Object.keys(names).map(k=>`${names[k]}耗散 ${(100*run.energy[k]/(run.totalEnergy||1)).toFixed(1)}%`).join('｜');
+      root.querySelector('#j2-run-contribution').textContent=Object.keys(names).map(k=>`${names[k]}耗散 ${(100*run.energy[k]/(run.totalEnergy||1)).toFixed(1)}%`).join('｜')+`｜正行程 ${run.directionEnergy.positive.toFixed(3)} J｜反行程 ${run.directionEnergy.negative.toFixed(3)} J`;
     };
     const update = (degrees, phaseSeconds = null) => {
       const radians = degrees * Math.PI / 180;
@@ -485,7 +488,8 @@
       root.querySelector('#relation-label').textContent = `J2—轴3定长 ${lengths.j2Axis3.toFixed(2)} mm`;
       detail.textContent = `J2 = ${degrees.toFixed(1)}°｜传动点距 ${rodLength.toFixed(2)} mm｜真实可伸缩段 ${telescopicLength.toFixed(2)} mm｜轴1—轴2—轴3 ${axis2JointAngle.toFixed(2)}°｜轴2—轴3—下端点 ${axis3JointAngle.toFixed(2)}°。`;
       updateFrictionDisplay(degrees, phaseSeconds);
-      updateResistancePanels(degrees);
+      const motionDirection = phaseSeconds === null ? startDirection() : (Math.cos(2 * Math.PI * phaseSeconds) >= 0 ? 1 : -1);
+      updateResistancePanels(degrees, motionDirection);
     };
     let playing = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let startTime = performance.now();
@@ -531,7 +535,7 @@
         detail.textContent = `${node.dataset.name}｜${node.dataset.coordinate}`;
       });
     });
-    root.querySelectorAll('[data-j2-static]').forEach(input => input.addEventListener('input', () => {buildFrictionChart();update(Number(slider.value));}));
+    root.querySelectorAll('[data-j2-static],[data-start-direction]').forEach(input => input.addEventListener('input', () => {buildFrictionChart();update(Number(slider.value));}));
     root.querySelectorAll('[data-j2-run]').forEach(input => input.addEventListener('input', () => update(Number(slider.value))));
     buildFrictionChart();
     update(0);
