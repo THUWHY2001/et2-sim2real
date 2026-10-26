@@ -8,6 +8,7 @@ for (const file of ["j2.html", "j3.html", "j4.html", "arm-j3.html"]) {
     assert.match(page, new RegExp(`data-chart-action="${action}"`), `${file} must expose the ${action} chart control`);
   }
   assert.match(page, /data-chart-scale/, `${file} must show the current chart scale`);
+  assert.match(page, /initChartResizeControls/, `${file} must support controls on charts rendered after page load`);
 }
 
 console.log("chart resize controls regression test passed");
