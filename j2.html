@@ -12,6 +12,17 @@
     <label class="form-label" for="leg-angle">J2 角度 <output id="leg-angle-value" class="tabular-nums">0.0°</output></label>
     <input id="leg-angle" class="form-range" type="range" min="-10" max="10" step="0.1" value="0" aria-label="J2角度">
   </div>
+  <section class="j2-length-panel card" aria-labelledby="j2-length-title">
+    <div class="j2-length-head"><div><h3 id="j2-length-title">非推杆连杆长度试算</h3><p class="text-small text-muted">输入相对标准态的长度偏差 ΔL；J2 初始角和 1 Hz、±10° 激励保持不变。</p></div><button id="j2-length-reset" class="btn" type="button">恢复标准态</button></div>
+    <div class="j2-length-inputs text-small">
+      <label>J2—轴3 <span>标准 <output data-j2-length-base="j2Axis3"></output> + <input data-j2-length="j2Axis3" type="number" value="0" step="0.1"> mm</span></label>
+      <label>轴1—轴2 <span>标准 <output data-j2-length-base="axis1Axis2"></output> + <input data-j2-length="axis1Axis2" type="number" value="0" step="0.1"> mm</span></label>
+      <label>轴2—轴3 <span>标准 <output data-j2-length-base="axis2Axis3"></output> + <input data-j2-length="axis2Axis3" type="number" value="0" step="0.1"> mm</span></label>
+      <label>轴3—下端点 <span>标准 <output data-j2-length-base="axis3Lower"></output> + <input data-j2-length="axis3Lower" type="number" value="0" step="0.1"> mm</span></label>
+      <label>下端点—推杆点2 <span>标准 <output data-j2-length-base="point2Lower"></output> + <input data-j2-length="point2Lower" type="number" value="0" step="0.1"> mm</span></label>
+    </div>
+    <p id="j2-length-status" class="text-small" role="status">标准态｜全部 ΔL = 0 mm</p>
+  </section>
   <div class="j2-layout"><section>
   <svg viewBox="0 0 560 555" role="img" aria-labelledby="leg-viz-title leg-viz-desc">
     <title id="leg-viz-title">J2 腿部二维机构连接简图</title>
@@ -98,7 +109,7 @@
   </svg>
   <p id="leg-node-detail" class="selected-detail text-small" aria-live="polite">J2 = 0.0°｜传动点距 305.84 mm｜真实可伸缩段 94.81 mm｜轴1—轴2—轴3 101.26°｜轴2—轴3—下端点 105.37°。</p>
   <div id="j2-joint-key" class="table-responsive"><table class="table table-sm mechanism-key">
-    <thead><tr><th>标记</th><th>类型</th><th>坐标 / mm</th><th>作用</th></tr></thead>
+    <thead><tr><th>标记</th><th>类型</th><th>标准态坐标 / mm</th><th>作用</th></tr></thead>
     <tbody>
       <tr><td>J2</td><td>等效轴</td><td>(24.745, 93, −87.460)</td><td>控制输出轴</td></tr>
       <tr><td>轴1</td><td>旋转副</td><td>(50.372, 93, −54.614)</td><td>固定参考侧</td></tr>
@@ -198,6 +209,16 @@
   #leg-2d-mechanism .viz-controls{margin:8px 0 2px}
   #leg-2d-mechanism .viz-controls .form-label{min-width:145px}
   #leg-2d-mechanism .viz-controls .form-range{min-width:180px;flex:1}
+  #leg-2d-mechanism .j2-length-panel{margin:10px 0 14px;padding:12px 14px}
+  #leg-2d-mechanism .j2-length-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+  #leg-2d-mechanism .j2-length-head h3{margin:0 0 3px}
+  #leg-2d-mechanism .j2-length-head p,#leg-2d-mechanism #j2-length-status{margin:0}
+  #leg-2d-mechanism .j2-length-inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;margin:10px 0}
+  #leg-2d-mechanism .j2-length-inputs label{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  #leg-2d-mechanism .j2-length-inputs label span{display:flex;align-items:center;gap:5px;white-space:nowrap}
+  #leg-2d-mechanism .j2-length-inputs input{width:68px;color:var(--foreground);background:var(--background);border:1px solid var(--input);padding:4px}
+  #leg-2d-mechanism #j2-length-status[data-state="variant"]{color:var(--viz-series-3)}
+  #leg-2d-mechanism #j2-length-status[data-state="invalid"]{color:var(--destructive)}
   #leg-2d-mechanism .viz-row span{display:inline-flex;align-items:center;gap:6px}
   #leg-2d-mechanism .axis-swatch{width:12px;height:12px;border:2px solid var(--viz-series-1);border-radius:50%;box-sizing:border-box}
   #leg-2d-mechanism .link-swatch,#leg-2d-mechanism .rod-swatch,#leg-2d-mechanism .relation-swatch,#leg-2d-mechanism .angle-swatch{display:inline-block;width:24px;height:3px;background:var(--foreground)}
@@ -245,7 +266,7 @@
   #leg-2d-mechanism .series-rod2{color:var(--viz-series-4);stroke:var(--viz-series-4);fill:var(--viz-series-4)}
   #leg-2d-mechanism .series-rod{color:var(--viz-series-5);stroke:var(--viz-series-5);fill:var(--viz-series-5)}
   #leg-2d-mechanism #friction-cursor{stroke:var(--foreground);stroke-width:1;stroke-dasharray:4 4;opacity:.7}
-  @media(max-width:780px){#leg-2d-mechanism .j2-layout{grid-template-columns:1fr}}
+  @media(max-width:780px){#leg-2d-mechanism .j2-layout{grid-template-columns:1fr}#leg-2d-mechanism .j2-length-inputs{grid-template-columns:1fr}}
   @media(max-width:520px){#leg-2d-mechanism .viz-row{gap:10px}#leg-2d-mechanism svg{min-height:330px}}
 </style>
 
@@ -254,11 +275,14 @@
   const nominal={j2:{x:24.745,z:-87.460},axis1:{x:50.372,z:-54.614},axis2:{x:88.282,z:-118.119},axis3:{x:37.725,z:-163.787},point2:{x:194.761,z:-404.826},lower:{x:202.630,z:-491.421}};
   const distance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z),wrap=v=>Math.atan2(Math.sin(v),Math.cos(v)),angle=(a,b)=>Math.atan2(b.z-a.z,b.x-a.x);
   const rotate=(p,c,r)=>({x:c.x+(p.x-c.x)*Math.cos(r)-(p.z-c.z)*Math.sin(r),z:c.z+(p.x-c.x)*Math.sin(r)+(p.z-c.z)*Math.cos(r)});
-  const lengths={axis1Axis2:distance(nominal.axis1,nominal.axis2),axis2Axis3:distance(nominal.axis2,nominal.axis3)};
-  function closure(a,ra,b,rb,preferred){const dx=b.x-a.x,dz=b.z-a.z,d=Math.hypot(dx,dz),along=(ra*ra-rb*rb+d*d)/(2*d),h=Math.sqrt(Math.max(0,ra*ra-along*along)),m={x:a.x+along*dx/d,z:a.z+along*dz/d},c1={x:m.x-h*dz/d,z:m.z+h*dx/d},c2={x:m.x+h*dz/d,z:m.z-h*dx/d};return distance(c1,preferred)<=distance(c2,preferred)?c1:c2}
-  function base(degrees){const r=degrees*Math.PI/180,axis3=rotate(nominal.axis3,nominal.j2,r),axis2=closure(nominal.axis1,lengths.axis1Axis2,axis3,lengths.axis2Axis3,nominal.axis2),point2=rotate(nominal.point2,nominal.j2,r),lower=rotate(nominal.lower,nominal.j2,r);return {degrees,radians:r,j2:nominal.j2,axis1:nominal.axis1,axis2,axis3,point2,lower,rodLength:distance(axis2,point2)}}
+  const direction=(a,b)=>{const d=distance(a,b);return{x:(b.x-a.x)/d,z:(b.z-a.z)/d}},move=(a,u,d)=>({x:a.x+u.x*d,z:a.z+u.z*d});
+  const directions={j2Axis3:direction(nominal.j2,nominal.axis3),axis3Lower:direction(nominal.axis3,nominal.lower),lowerPoint2:direction(nominal.lower,nominal.point2)};
+  const lengths={j2Axis3:distance(nominal.j2,nominal.axis3),axis1Axis2:distance(nominal.axis1,nominal.axis2),axis2Axis3:distance(nominal.axis2,nominal.axis3),axis3Lower:distance(nominal.axis3,nominal.lower),point2Lower:distance(nominal.point2,nominal.lower)};
+  function normalizedLengths(overrides={}){const active={...lengths,...overrides};for(const [key,value] of Object.entries(active))if(!Number.isFinite(value)||value<=0)throw new Error(`${key} 杆长必须大于 0`);return active}
+  function closure(a,ra,b,rb,preferred){const dx=b.x-a.x,dz=b.z-a.z,d=Math.hypot(dx,dz);if(!d||d>ra+rb+1e-7||d<Math.abs(ra-rb)-1e-7)throw new Error('J2 闭环无法成立');const along=(ra*ra-rb*rb+d*d)/(2*d),h2=ra*ra-along*along;if(h2<-1e-7)throw new Error('J2 闭环无法成立');const h=Math.sqrt(Math.max(0,h2)),m={x:a.x+along*dx/d,z:a.z+along*dz/d},c1={x:m.x-h*dz/d,z:m.z+h*dx/d},c2={x:m.x+h*dz/d,z:m.z-h*dx/d};return distance(c1,preferred)<=distance(c2,preferred)?c1:c2}
+  function base(degrees,overrides){const active=normalizedLengths(overrides),r=degrees*Math.PI/180,axis3Zero=move(nominal.j2,directions.j2Axis3,active.j2Axis3),lowerZero=move(axis3Zero,directions.axis3Lower,active.axis3Lower),point2Zero=move(lowerZero,directions.lowerPoint2,active.point2Lower),axis3=rotate(axis3Zero,nominal.j2,r),lower=rotate(lowerZero,nominal.j2,r),point2=rotate(point2Zero,nominal.j2,r),axis2=closure(nominal.axis1,active.axis1Axis2,axis3,active.axis2Axis3,nominal.axis2);return {degrees,radians:r,j2:nominal.j2,axis1:nominal.axis1,axis2,axis3,point2,lower,rodLength:distance(axis2,point2),lengths:active}}
   function coordinates(s){const a1=angle(s.axis1,s.axis2),upper=angle(s.axis2,s.axis3),rod=angle(s.axis2,s.point2);return {axis1:a1,axis2:wrap(upper-a1),axis3:wrap(s.radians-upper),point2:wrap(s.radians-rod)}}
-  function solve(degrees){const s=base(degrees),e=.001,lo=base(degrees-e),hi=base(degrees+e),dr=2*e*Math.PI/180,lc=coordinates(lo),hc=coordinates(hi);s.rates={};for(const k of ['axis1','axis2','axis3','point2'])s.rates[k]=wrap(hc[k]-lc[k])/dr;s.rodJacobian=(hi.rodLength-lo.rodLength)/dr;return s}
+  function solve(degrees,overrides){const s=base(degrees,overrides),e=.001,lo=base(degrees-e,overrides),hi=base(degrees+e,overrides),dr=2*e*Math.PI/180,lc=coordinates(lo),hc=coordinates(hi);s.rates={};for(const k of ['axis1','axis2','axis3','point2'])s.rates[k]=wrap(hc[k]-lc[k])/dr;s.rodJacobian=(hi.rodLength-lo.rodLength)/dr;return s}
   function equivalentTorque(s,loads,qDirection=1){const D=window.DirectionalFriction,parts={};for(const k of ['axis1','axis2','axis3','point2'])parts[k]=D.directionalValue(loads[k],s.rates[k]*qDirection,qDirection)*Math.abs(s.rates[k]);const jac=s.rodJacobian/1000;parts.rod=D.directionalValue(loads.rod,jac*qDirection,qDirection)*Math.abs(jac);return {parts,total:Object.values(parts).reduce((a,b)=>a+b,0)}}
   function runningResistance(s,qdot,loads){const D=window.DirectionalFriction,parts={},powerParts={},directions={};for(const k of ['axis1','axis2','axis3','point2']){const localVelocity=s.rates[k]*qdot,local=D.frictionMagnitude(loads[k],localVelocity,qdot);parts[k]=local*Math.abs(s.rates[k]);powerParts[k]=local*Math.abs(localVelocity);directions[k]=D.directionKey(localVelocity,qdot)}const jac=s.rodJacobian/1000,localVelocity=jac*qdot,local=D.frictionMagnitude(loads.rod,localVelocity,qdot);parts.rod=local*Math.abs(jac);powerParts.rod=local*Math.abs(localVelocity);directions.rod=D.directionKey(localVelocity,qdot);const total=Object.values(parts).reduce((a,b)=>a+b,0);return {parts,total,signedTotal:-Math.sign(qdot||1)*total,powerParts,power:Object.values(powerParts).reduce((a,b)=>a+b,0),directions}}
   window.J2Model={solve,distance,equivalentTorque,runningResistance,nominal,lengths};
@@ -273,6 +297,8 @@
     const slider = root.querySelector('#leg-angle');
     const angleValue = root.querySelector('#leg-angle-value');
     const playButton = root.querySelector('#leg-play');
+    const lengthStatus = root.querySelector('#j2-length-status');
+    const lengthInputs = [...root.querySelectorAll('[data-j2-length]')];
     const points = {
       j2: { x: 24.745, z: -87.460 },
       axis1: { x: 50.372, z: -54.614 },
@@ -291,34 +317,21 @@
       const cosine = (ux * vx + uz * vz) / (Math.hypot(ux, uz) * Math.hypot(vx, vz));
       return Math.acos(Math.max(-1, Math.min(1, cosine))) * 180 / Math.PI;
     };
-    const rotateAround = (point, center, radians) => {
-      const dx = point.x - center.x;
-      const dz = point.z - center.z;
-      return { x: center.x + dx * Math.cos(radians) - dz * Math.sin(radians), z: center.z + dx * Math.sin(radians) + dz * Math.cos(radians) };
-    };
     const projectionScale = 1.0;
     const project = (point) => ({ x: 95 + projectionScale * point.x, y: 5 - projectionScale * point.z });
-    const circleIntersection = (a, ra, b, rb, preferred) => {
-      const dx = b.x - a.x;
-      const dz = b.z - a.z;
-      const d = Math.hypot(dx, dz);
-      const along = (ra * ra - rb * rb + d * d) / (2 * d);
-      const height = Math.sqrt(Math.max(0, ra * ra - along * along));
-      const base = { x: a.x + along * dx / d, z: a.z + along * dz / d };
-      const candidates = [
-        { x: base.x - height * dz / d, z: base.z + height * dx / d },
-        { x: base.x + height * dz / d, z: base.z - height * dx / d },
-      ];
-      return distance(candidates[0], preferred) <= distance(candidates[1], preferred) ? candidates[0] : candidates[1];
+    const standardLengths = resistanceModel.lengths;
+    const lengthNames={j2Axis3:'J2—轴3',axis1Axis2:'轴1—轴2',axis2Axis3:'轴2—轴3',axis3Lower:'轴3—下端点',point2Lower:'下端点—推杆点2'};
+    const rodBodyLength = distance(points.strokeEnd, points.point2);
+    const currentLengths = () => Object.fromEntries(Object.entries(standardLengths).map(([key,base]) => {
+      const input=root.querySelector(`[data-j2-length="${key}"]`);
+      return [key,base+(Number(input?.value)||0)];
+    }));
+    const updateLengthStatus = active => {
+      const changed=Object.keys(standardLengths).filter(key=>Math.abs(active[key]-standardLengths[key])>1e-9);
+      lengthStatus.dataset.state=changed.length?'variant':'standard';
+      lengthStatus.textContent=changed.length?`变体态｜${changed.map(key=>`${lengthNames[key]} ΔL=${(active[key]-standardLengths[key]).toFixed(2)} mm`).join('｜')}｜闭环有效`:'标准态｜全部 ΔL = 0 mm';
     };
-    const lengths = {
-      axis1Axis2: distance(points.axis1, points.axis2),
-      axis2Axis3: distance(points.axis2, points.axis3),
-      j2Axis3: distance(points.j2, points.axis3),
-      axis3Lower: distance(points.axis3, points.lower),
-      point2Lower: distance(points.point2, points.lower),
-      rodBody: distance(points.strokeEnd, points.point2),
-    };
+    root.querySelectorAll('[data-j2-length-base]').forEach(output=>{output.textContent=standardLengths[output.dataset.j2LengthBase].toFixed(2)+' mm'});
     const setLine = (id, a, b) => {
       const element = root.querySelector(`#${id}`);
       element.setAttribute('x1', a.x); element.setAttribute('y1', a.y);
@@ -350,30 +363,10 @@
       label.setAttribute('text-anchor', Math.cos(middleAngle) < -0.2 ? 'end' : Math.cos(middleAngle) > 0.2 ? 'start' : 'middle');
       label.textContent = labelText;
     };
-    const wrapAngle = (radians) => Math.atan2(Math.sin(radians), Math.cos(radians));
-    const kinematicsAt = (degrees) => {
-      const radians = degrees * Math.PI / 180;
-      const axis3 = rotateAround(points.axis3, points.j2, radians);
-      const axis2 = circleIntersection(points.axis1, lengths.axis1Axis2, axis3, lengths.axis2Axis3, points.axis2);
-      const point2 = rotateAround(points.point2, points.j2, radians);
-      return { radians, axis2, axis3, point2 };
-    };
-    const jointCoordinates = (degrees) => {
-      const state = kinematicsAt(degrees);
-      const axis1Angle = Math.atan2(state.axis2.z - points.axis1.z, state.axis2.x - points.axis1.x);
-      const upperLinkAngle = Math.atan2(state.axis3.z - state.axis2.z, state.axis3.x - state.axis2.x);
-      const rodAngle = Math.atan2(state.point2.z - state.axis2.z, state.point2.x - state.axis2.x);
-      return {
-        axis1: axis1Angle,
-        axis2: wrapAngle(upperLinkAngle - axis1Angle),
-        axis3: wrapAngle(state.radians - upperLinkAngle),
-        rod2: wrapAngle(state.radians - rodAngle),
-      };
-    };
     const startDirection = () => Number(root.querySelector('[data-start-direction]').value) || 1;
     const staticLoads = () => Object.fromEntries(['axis1','axis2','axis3','point2','rod'].map(k => [k, Object.fromEntries(['positive','negative'].map(d => [d, Math.max(0, Number(root.querySelector(`[data-j2-static="${k}-${d}"]`).value) || 0)]))]));
     const frictionContribution = (degrees, direction = startDirection()) => {
-      const result = resistanceModel.equivalentTorque(resistanceModel.solve(degrees), staticLoads(), direction);
+      const result = resistanceModel.equivalentTorque(resistanceModel.solve(degrees,currentLengths()), staticLoads(), direction);
       const total = result.total || 1;
       return {axis1:100*result.parts.axis1/total,axis2:100*result.parts.axis2/total,axis3:100*result.parts.axis3/total,rod2:100*result.parts.point2/total,rod:100*result.parts.rod/total};
     };
@@ -421,15 +414,15 @@
       coulomb: Math.max(0, Number(root.querySelector(`[data-j2-run="${k}-${d}-c"]`).value) || 0),
       viscous: Math.max(0, Number(root.querySelector(`[data-j2-run="${k}-${d}-b"]`).value) || 0),
     }]))]));
-    const staticPeak = () => {const loads=staticLoads(),dir=startDirection();let best={total:-1,angle:0};for(let d=-10;d<=10.0001;d+=.1){const total=resistanceModel.equivalentTorque(resistanceModel.solve(d),loads,dir).total;if(total>best.total)best={total,angle:d}}return best};
+    const staticPeak = () => {const loads=staticLoads(),dir=startDirection(),active=currentLengths();let best={total:-1,angle:0};for(let d=-10;d<=10.0001;d+=.1){const total=resistanceModel.equivalentTorque(resistanceModel.solve(d,active),loads,dir).total;if(total>best.total)best={total,angle:d}}return best};
     const runCycle = (angle, direction = startDirection()) => {
       const loads=runLoads(),amp=10*Math.PI/180,omega=2*Math.PI,q=angle*Math.PI/180,qdot=direction*omega*Math.sqrt(Math.max(0,amp*amp-q*q));
-      const current=resistanceModel.runningResistance(resistanceModel.solve(angle),qdot,loads),energy={axis1:0,axis2:0,axis3:0,point2:0,rod:0},directionEnergy={positive:0,negative:0},steps=360,dt=1/steps;let peak=0;
-      for(let i=0;i<steps;i++){const t=i/steps,deg=10*Math.sin(2*Math.PI*t),vel=amp*omega*Math.cos(2*Math.PI*t),r=resistanceModel.runningResistance(resistanceModel.solve(deg),vel,loads);peak=Math.max(peak,r.total);for(const k of Object.keys(energy))energy[k]+=r.powerParts[k]*dt;directionEnergy[vel>=0?'positive':'negative']+=r.power*dt}
+      const active=currentLengths(),current=resistanceModel.runningResistance(resistanceModel.solve(angle,active),qdot,loads),energy={axis1:0,axis2:0,axis3:0,point2:0,rod:0},directionEnergy={positive:0,negative:0},steps=360,dt=1/steps;let peak=0;
+      for(let i=0;i<steps;i++){const t=i/steps,deg=10*Math.sin(2*Math.PI*t),vel=amp*omega*Math.cos(2*Math.PI*t),r=resistanceModel.runningResistance(resistanceModel.solve(deg,active),vel,loads);peak=Math.max(peak,r.total);for(const k of Object.keys(energy))energy[k]+=r.powerParts[k]*dt;directionEnergy[vel>=0?'positive':'negative']+=r.power*dt}
       return {current,peak,energy,directionEnergy,totalEnergy:Object.values(energy).reduce((a,b)=>a+b,0)};
     };
     const updateResistancePanels = (degrees, direction = startDirection()) => {
-      const state=resistanceModel.solve(degrees),start=resistanceModel.equivalentTorque(state,staticLoads(),startDirection()),peak=staticPeak(),run=runCycle(degrees,direction),names={axis1:'轴1',axis2:'轴2',axis3:'轴3',point2:'推杆点2',rod:'推杆轴向'};
+      const state=resistanceModel.solve(degrees,currentLengths()),start=resistanceModel.equivalentTorque(state,staticLoads(),startDirection()),peak=staticPeak(),run=runCycle(degrees,direction),names={axis1:'轴1',axis2:'轴2',axis3:'轴3',point2:'推杆点2',rod:'推杆轴向'};
       root.querySelector('#j2-total-torque').textContent=start.total.toFixed(3)+' N·m';
       root.querySelector('#j2-peak-torque').textContent=peak.total.toFixed(3)+' N·m';
       root.querySelector('#j2-peak-angle').textContent=`发生于 ${peak.angle.toFixed(1)}°`;
@@ -439,13 +432,10 @@
       root.querySelector('#j2-run-contribution').textContent=Object.keys(names).map(k=>`${names[k]}耗散 ${(100*run.energy[k]/(run.totalEnergy||1)).toFixed(1)}%`).join('｜')+`｜正行程 ${run.directionEnergy.positive.toFixed(3)} J｜反行程 ${run.directionEnergy.negative.toFixed(3)} J`;
     };
     const update = (degrees, phaseSeconds = null) => {
-      const radians = degrees * Math.PI / 180;
-      const axis3 = rotateAround(points.axis3, points.j2, radians);
-      const axis2 = circleIntersection(points.axis1, lengths.axis1Axis2, axis3, lengths.axis2Axis3, points.axis2);
-      const lower = rotateAround(points.lower, points.j2, radians);
-      const point2 = rotateAround(points.point2, points.j2, radians);
+      const activeLengths=currentLengths(),state=resistanceModel.solve(degrees,activeLengths);
+      const {axis2,axis3,lower,point2}=state;
       const rodLength = distance(axis2, point2);
-      const bodyRatio = lengths.rodBody / rodLength;
+      const bodyRatio = rodBodyLength / rodLength;
       const strokeEnd = {
         x: point2.x + (axis2.x - point2.x) * bodyRatio,
         z: point2.z + (axis2.z - point2.z) * bodyRatio,
@@ -482,11 +472,12 @@
       root.querySelector('#relation-label').setAttribute('x', pJ2.x + 65);
       root.querySelector('#relation-label').setAttribute('y', pJ2.y + 50);
       root.querySelector('#relation-arc').setAttribute('d', `M${pJ2.x + 8} ${pJ2.y + 10} Q${(pJ2.x + pAxis3.x) / 2 + 18} ${(pJ2.y + pAxis3.y) / 2 - 8} ${pAxis3.x} ${pAxis3.y - 16}`);
-      const telescopicLength = rodLength - lengths.rodBody;
+      const telescopicLength = rodLength - rodBodyLength;
       angleValue.textContent = `${degrees.toFixed(1)}°`;
-      root.querySelector('#inner-label').textContent = `轴1—轴2定长 ${lengths.axis1Axis2.toFixed(2)} mm`;
-      root.querySelector('#relation-label').textContent = `J2—轴3定长 ${lengths.j2Axis3.toFixed(2)} mm`;
+      root.querySelector('#inner-label').textContent = `轴1—轴2定长 ${activeLengths.axis1Axis2.toFixed(2)} mm`;
+      root.querySelector('#relation-label').textContent = `J2—轴3定长 ${activeLengths.j2Axis3.toFixed(2)} mm`;
       detail.textContent = `J2 = ${degrees.toFixed(1)}°｜传动点距 ${rodLength.toFixed(2)} mm｜真实可伸缩段 ${telescopicLength.toFixed(2)} mm｜轴1—轴2—轴3 ${axis2JointAngle.toFixed(2)}°｜轴2—轴3—下端点 ${axis3JointAngle.toFixed(2)}°。`;
+      updateLengthStatus(activeLengths);
       updateFrictionDisplay(degrees, phaseSeconds);
       const motionDirection = phaseSeconds === null ? startDirection() : (Math.cos(2 * Math.PI * phaseSeconds) >= 0 ? 1 : -1);
       updateResistancePanels(degrees, motionDirection);
@@ -494,12 +485,26 @@
     let playing = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let startTime = performance.now();
     let animationFrame = 0;
+    const refresh = (degrees, phaseSeconds = null, rebuildChart = false) => {
+      try {
+        if(rebuildChart)buildFrictionChart();
+        update(degrees,phaseSeconds);
+        return true;
+      } catch(error) {
+        playing=false;
+        playButton.textContent='播放';
+        playButton.setAttribute('aria-pressed','false');
+        lengthStatus.dataset.state='invalid';
+        lengthStatus.textContent=`当前尺寸无解：${error.message}`;
+        return false;
+      }
+    };
     const animate = (now) => {
       if (playing) {
         const phaseSeconds = ((now - startTime) / 1000) % 1;
         const degrees = 10 * Math.sin(2 * Math.PI * phaseSeconds);
         slider.value = degrees.toFixed(1);
-        update(degrees, phaseSeconds);
+        refresh(degrees, phaseSeconds);
       }
       animationFrame = requestAnimationFrame(animate);
     };
@@ -516,7 +521,7 @@
       playing = false;
       playButton.textContent = '播放';
       playButton.setAttribute('aria-pressed', 'false');
-      update(Number(slider.value));
+      refresh(Number(slider.value));
       if (window.openai?.setWidgetState) window.openai.setWidgetState({ modelContent: { j2AngleDeg: Number(slider.value) }, privateContent: { playing: false } }).catch(() => {});
     });
     root.querySelectorAll('.chart-legend button').forEach((button) => {
@@ -535,10 +540,11 @@
         detail.textContent = `${node.dataset.name}｜${node.dataset.coordinate}`;
       });
     });
-    root.querySelectorAll('[data-j2-static],[data-start-direction]').forEach(input => input.addEventListener('input', () => {buildFrictionChart();update(Number(slider.value));}));
-    root.querySelectorAll('[data-j2-run]').forEach(input => input.addEventListener('input', () => update(Number(slider.value))));
-    buildFrictionChart();
-    update(0);
+    root.querySelectorAll('[data-j2-static],[data-start-direction]').forEach(input => input.addEventListener('input', () => refresh(Number(slider.value),null,true)));
+    root.querySelectorAll('[data-j2-run]').forEach(input => input.addEventListener('input', () => refresh(Number(slider.value))));
+    lengthInputs.forEach(input=>input.addEventListener('input',()=>refresh(Number(slider.value),null,true)));
+    root.querySelector('#j2-length-reset').addEventListener('click',()=>{lengthInputs.forEach(input=>input.value='0');refresh(Number(slider.value),null,true)});
+    refresh(0,null,true);
     animationFrame = requestAnimationFrame(animate);
     window.addEventListener('pagehide', () => cancelAnimationFrame(animationFrame), { once: true });
   })();
