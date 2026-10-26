@@ -195,6 +195,10 @@
   </div>
   <p id="j2-run-contribution" class="selected-detail text-small"></p>
   </section></div>
+  <section class="j2-tolerance-section" aria-labelledby="j2-tolerance-title">
+    <div class="j2-tolerance-head"><h2 id="j2-tolerance-title">连杆长度公差分析</h2><p class="text-small text-muted">各连杆以标准长度为中心单独变化，其余连杆保持标准尺寸。纵轴为 J2 在 1 Hz、±10°行程内的峰值等效启动力矩。</p></div>
+    <div id="j2-tolerance-charts" class="j2-tolerance-grid"></div>
+  </section>
 </div>
 
 <style>
@@ -219,6 +223,19 @@
   #leg-2d-mechanism .j2-length-inputs input{width:68px;color:var(--foreground);background:var(--background);border:1px solid var(--input);padding:4px}
   #leg-2d-mechanism #j2-length-status[data-state="variant"]{color:var(--viz-series-3)}
   #leg-2d-mechanism #j2-length-status[data-state="invalid"]{color:var(--destructive)}
+  #leg-2d-mechanism .j2-tolerance-section{margin-top:22px;padding-top:18px;border-top:1px solid var(--border)}
+  #leg-2d-mechanism .j2-tolerance-head h2{margin:0 0 4px}
+  #leg-2d-mechanism .j2-tolerance-head p{margin:0 0 12px}
+  #leg-2d-mechanism .j2-tolerance-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  #leg-2d-mechanism .j2-tolerance-card{padding:12px;min-width:0}
+  #leg-2d-mechanism .j2-tolerance-card h3{margin:0 0 2px}
+  #leg-2d-mechanism .j2-tolerance-meta{margin:0 0 6px}
+  #leg-2d-mechanism .j2-tolerance-chart{max-height:280px}
+  #leg-2d-mechanism .j2-tolerance-chart [data-chart-frame]{fill:none;stroke:var(--border);stroke-width:1}
+  #leg-2d-mechanism .j2-tolerance-chart .tolerance-fit{fill:none;stroke:var(--viz-series-1);stroke-width:2.5}
+  #leg-2d-mechanism .j2-tolerance-chart .tolerance-point{fill:var(--viz-series-3)}
+  #leg-2d-mechanism .j2-tolerance-chart .tolerance-zero{stroke:var(--muted-foreground);stroke-width:1;stroke-dasharray:4 4}
+  #leg-2d-mechanism .j2-tolerance-summary{margin:5px 0 0}
   #leg-2d-mechanism .viz-row span{display:inline-flex;align-items:center;gap:6px}
   #leg-2d-mechanism .axis-swatch{width:12px;height:12px;border:2px solid var(--viz-series-1);border-radius:50%;box-sizing:border-box}
   #leg-2d-mechanism .link-swatch,#leg-2d-mechanism .rod-swatch,#leg-2d-mechanism .relation-swatch,#leg-2d-mechanism .angle-swatch{display:inline-block;width:24px;height:3px;background:var(--foreground)}
@@ -266,7 +283,7 @@
   #leg-2d-mechanism .series-rod2{color:var(--viz-series-4);stroke:var(--viz-series-4);fill:var(--viz-series-4)}
   #leg-2d-mechanism .series-rod{color:var(--viz-series-5);stroke:var(--viz-series-5);fill:var(--viz-series-5)}
   #leg-2d-mechanism #friction-cursor{stroke:var(--foreground);stroke-width:1;stroke-dasharray:4 4;opacity:.7}
-  @media(max-width:780px){#leg-2d-mechanism .j2-layout{grid-template-columns:1fr}#leg-2d-mechanism .j2-length-inputs{grid-template-columns:1fr}}
+  @media(max-width:780px){#leg-2d-mechanism .j2-layout,#leg-2d-mechanism .j2-tolerance-grid{grid-template-columns:1fr}#leg-2d-mechanism .j2-length-inputs{grid-template-columns:1fr}}
   @media(max-width:520px){#leg-2d-mechanism .viz-row{gap:10px}#leg-2d-mechanism svg{min-height:330px}}
 </style>
 
@@ -285,7 +302,12 @@
   function solve(degrees,overrides){const s=base(degrees,overrides),e=.001,lo=base(degrees-e,overrides),hi=base(degrees+e,overrides),dr=2*e*Math.PI/180,lc=coordinates(lo),hc=coordinates(hi);s.rates={};for(const k of ['axis1','axis2','axis3','point2'])s.rates[k]=wrap(hc[k]-lc[k])/dr;s.rodJacobian=(hi.rodLength-lo.rodLength)/dr;return s}
   function equivalentTorque(s,loads,qDirection=1){const D=window.DirectionalFriction,parts={};for(const k of ['axis1','axis2','axis3','point2'])parts[k]=D.directionalValue(loads[k],s.rates[k]*qDirection,qDirection)*Math.abs(s.rates[k]);const jac=s.rodJacobian/1000;parts.rod=D.directionalValue(loads.rod,jac*qDirection,qDirection)*Math.abs(jac);return {parts,total:Object.values(parts).reduce((a,b)=>a+b,0)}}
   function runningResistance(s,qdot,loads){const D=window.DirectionalFriction,parts={},powerParts={},directions={};for(const k of ['axis1','axis2','axis3','point2']){const localVelocity=s.rates[k]*qdot,local=D.frictionMagnitude(loads[k],localVelocity,qdot);parts[k]=local*Math.abs(s.rates[k]);powerParts[k]=local*Math.abs(localVelocity);directions[k]=D.directionKey(localVelocity,qdot)}const jac=s.rodJacobian/1000,localVelocity=jac*qdot,local=D.frictionMagnitude(loads.rod,localVelocity,qdot);parts.rod=local*Math.abs(jac);powerParts.rod=local*Math.abs(localVelocity);directions.rod=D.directionKey(localVelocity,qdot);const total=Object.values(parts).reduce((a,b)=>a+b,0);return {parts,total,signedTotal:-Math.sign(qdot||1)*total,powerParts,power:Object.values(powerParts).reduce((a,b)=>a+b,0),directions}}
-  window.J2Model={solve,distance,equivalentTorque,runningResistance,nominal,lengths};
+  function toleranceForLength(length){if(!Number.isFinite(length)||length<=0)throw new Error('杆长必须大于 0');return Math.max(1,Math.floor(length/100))}
+  function peakStartupTorque(overrides,loads,qDirection=1){let best={torque:-Infinity,peakAngle:0};for(let index=0;index<=200;index++){const degrees=-10+index*.1,total=equivalentTorque(solve(degrees,overrides),loads,qDirection).total;if(total>best.torque)best={torque:total,peakAngle:degrees}}return best}
+  function toleranceCurve(key,loads,qDirection=1,sampleCount=41){if(!(key in lengths))throw new Error(`未知连杆：${key}`);const count=Math.max(3,Math.round(sampleCount)),tolerance=toleranceForLength(lengths[key]),points=Array.from({length:count},(_,index)=>{const delta=-tolerance+2*tolerance*index/(count-1),peak=peakStartupTorque({...lengths,[key]:lengths[key]+delta},loads,qDirection);return{delta,torque:peak.torque,peakAngle:peak.peakAngle}});return{key,standardLength:lengths[key],tolerance,points}}
+  function solve3(matrix,vector){const a=matrix.map((row,index)=>[...row,vector[index]]);for(let column=0;column<3;column++){let pivot=column;for(let row=column+1;row<3;row++)if(Math.abs(a[row][column])>Math.abs(a[pivot][column]))pivot=row;[a[column],a[pivot]]=[a[pivot],a[column]];if(Math.abs(a[column][column])<1e-14)throw new Error('拟合矩阵不可逆');for(let row=column+1;row<3;row++){const factor=a[row][column]/a[column][column];for(let k=column;k<4;k++)a[row][k]-=factor*a[column][k]}}const result=[0,0,0];for(let row=2;row>=0;row--){let value=a[row][3];for(let k=row+1;k<3;k++)value-=a[row][k]*result[k];result[row]=value/a[row][row]}return result}
+  function quadraticFit(points){if(!Array.isArray(points)||points.length<3)throw new Error('二次拟合至少需要 3 个点');const sx=points.reduce((s,p)=>s+p.delta,0),sx2=points.reduce((s,p)=>s+p.delta**2,0),sx3=points.reduce((s,p)=>s+p.delta**3,0),sx4=points.reduce((s,p)=>s+p.delta**4,0),sy=points.reduce((s,p)=>s+p.torque,0),sxy=points.reduce((s,p)=>s+p.delta*p.torque,0),sx2y=points.reduce((s,p)=>s+p.delta**2*p.torque,0),[a,b,c]=solve3([[sx4,sx3,sx2],[sx3,sx2,sx],[sx2,sx,points.length]],[sx2y,sxy,sy]),mean=sy/points.length,ssTotal=points.reduce((s,p)=>s+(p.torque-mean)**2,0),ssResidual=points.reduce((s,p)=>s+(p.torque-(a*p.delta**2+b*p.delta+c))**2,0),r2=ssTotal<1e-20?1:1-ssResidual/ssTotal;return{a,b,c,r2,predict:delta=>a*delta**2+b*delta+c}}
+  window.J2Model={solve,distance,equivalentTorque,runningResistance,toleranceForLength,toleranceCurve,quadraticFit,nominal,lengths};
 })();
 </script>
 
@@ -391,6 +413,16 @@
         root.querySelector(`#series-${key}`).setAttribute('d', path);
       });
     };
+    const toleranceKeys=['j2Axis3','axis1Axis2','axis2Axis3','axis3Lower','point2Lower'];
+    const buildToleranceCharts = () => {
+      const host=root.querySelector('#j2-tolerance-charts'),loads=staticLoads(),direction=startDirection();
+      host.innerHTML=toleranceKeys.map(key=>{
+        const analysis=resistanceModel.toleranceCurve(key,loads,direction,41),fit=resistanceModel.quadraticFit(analysis.points),width=520,height=255,left=66,right=18,top=25,bottom=48,plotWidth=width-left-right,plotHeight=height-top-bottom;
+        const fitPoints=Array.from({length:101},(_,index)=>{const delta=-analysis.tolerance+2*analysis.tolerance*index/100;return{delta,torque:fit.predict(delta)}}),allTorques=[...analysis.points.map(point=>point.torque),...fitPoints.map(point=>point.torque)],rawMin=Math.min(...allTorques),rawMax=Math.max(...allTorques),padding=Math.max((rawMax-rawMin)*.12,.002),yMin=rawMin-padding,yMax=rawMax+padding;
+        const x=delta=>left+(delta+analysis.tolerance)/(2*analysis.tolerance)*plotWidth,y=torque=>top+(yMax-torque)/(yMax-yMin)*plotHeight,path=fitPoints.map((point,index)=>`${index?'L':'M'}${x(point.delta).toFixed(2)} ${y(point.torque).toFixed(2)}`).join(' '),dots=analysis.points.map(point=>`<circle class="tolerance-point" cx="${x(point.delta).toFixed(2)}" cy="${y(point.torque).toFixed(2)}" r="1.7"></circle>`).join(''),yTicks=Array.from({length:5},(_,index)=>{const value=yMin+(yMax-yMin)*index/4,py=y(value);return`<line x1="${left}" y1="${py.toFixed(2)}" x2="${width-right}" y2="${py.toFixed(2)}"></line><text x="${left-8}" y="${(py+4).toFixed(2)}" text-anchor="end">${value.toFixed(3)}</text>`}).join(''),xTicks=[-analysis.tolerance,0,analysis.tolerance].map(value=>`<line x1="${x(value)}" y1="${height-bottom}" x2="${x(value)}" y2="${height-bottom+6}"></line><text x="${x(value)}" y="${height-24}" text-anchor="middle">${value>0?'+':''}${value}</text>`).join(''),standard=analysis.points.reduce((best,point)=>Math.abs(point.delta)<Math.abs(best.delta)?point:best),minTorque=Math.min(...analysis.points.map(point=>point.torque)),maxTorque=Math.max(...analysis.points.map(point=>point.torque)),sign=value=>value<0?`− ${Math.abs(value).toExponential(2)}`:`+ ${value.toExponential(2)}`;
+        return `<article class="card j2-tolerance-card" data-chart-panel><h3>${lengthNames[key]}</h3><p class="j2-tolerance-meta text-small text-muted">标准长度 ${analysis.standardLength.toFixed(2)} mm｜公差范围 ±${analysis.tolerance.toFixed(0)} mm</p><div class="chart-tools" aria-label="${lengthNames[key]}公差图显示控制"><span>图表大小</span><button type="button" data-chart-action="out" aria-label="缩小${lengthNames[key]}公差图">−</button><output data-chart-scale>100%</output><button type="button" data-chart-action="in" aria-label="放大${lengthNames[key]}公差图">＋</button><button type="button" data-chart-action="reset">还原</button><button type="button" data-chart-action="fullscreen">全屏</button></div><div class="chart-viewport"><div class="chart-stage" data-chart-stage><svg class="j2-tolerance-chart" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="tol-title-${key} tol-desc-${key}"><title id="tol-title-${key}">${lengthNames[key]}长度公差与J2峰值等效启动力矩</title><desc id="tol-desc-${key}">横轴为相对标准长度的变化量，纵轴为一赫兹正负十度行程内峰值等效启动力矩；圆点为闭环解算值，曲线为二次拟合。</desc><rect data-chart-frame x="${left}" y="${top}" width="${plotWidth}" height="${plotHeight}"></rect><g class="chart-grid" aria-hidden="true">${yTicks}${xTicks}<text class="axis-title" x="${width/2}" y="${height-4}" text-anchor="middle">长度偏差 ΔL / mm</text><text class="axis-title" x="16" y="${top+plotHeight/2}" transform="rotate(-90 16 ${top+plotHeight/2})" text-anchor="middle">峰值等效启动力矩 / N·m</text></g><line class="tolerance-zero" x1="${x(0)}" y1="${top}" x2="${x(0)}" y2="${height-bottom}"></line><path class="tolerance-fit" d="${path}"></path><g>${dots}</g></svg></div></div><p class="j2-tolerance-summary text-small">标准态 ${standard.torque.toFixed(3)} N·m｜公差区间 ${minTorque.toFixed(3)}–${maxTorque.toFixed(3)} N·m<br>拟合：τ = ${fit.a.toExponential(2)}ΔL² ${sign(fit.b)}ΔL ${sign(fit.c)}，R²=${fit.r2.toFixed(5)}</p></article>`;
+      }).join('');
+    };
     const updateFrictionDisplay = (degrees, phaseSeconds = null) => {
       const contribution = frictionContribution(degrees);
       root.querySelector('#friction-live').textContent = `轴1 ${contribution.axis1.toFixed(1)}%｜轴2 ${contribution.axis2.toFixed(1)}%｜轴3 ${contribution.axis3.toFixed(1)}%｜推杆点2 ${contribution.rod2.toFixed(1)}%｜推杆轴向 ${contribution.rod.toFixed(1)}%`;
@@ -487,7 +519,7 @@
     let animationFrame = 0;
     const refresh = (degrees, phaseSeconds = null, rebuildChart = false) => {
       try {
-        if(rebuildChart)buildFrictionChart();
+        if(rebuildChart){buildFrictionChart();buildToleranceCharts()}
         update(degrees,phaseSeconds);
         return true;
       } catch(error) {
