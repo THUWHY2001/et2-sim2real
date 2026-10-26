@@ -89,6 +89,10 @@
       <div id="j3-run-contribution" class="j3-current text-small"></div>
     </section>
   </div>
+  <section class="link-tolerance-section" aria-labelledby="j3-tolerance-title">
+    <div class="link-tolerance-head"><h2 id="j3-tolerance-title">连杆长度公差分析</h2><p class="text-small text-muted">JP、PA、AQ、JQ 分别在标准尺寸公差内单独变化，每个采样点均重新解算闭环及传动系数。纵轴为 J3 在 1 Hz、±10°行程内的峰值等效启动力矩，并给出标准态灵敏度、最大变化率及拟合 R²。</p></div>
+    <div id="j3-tolerance-charts" class="link-tolerance-grid"></div>
+  </section>
 </div>
 
 <style>
@@ -102,17 +106,20 @@
   const distance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
   const lengths={JP:distance(J,P0),PA:distance(P0,A0),AQ:distance(A0,Q),JQ:distance(J,Q)};
   const rotate=(p,c,r)=>({x:c.x+(p.x-c.x)*Math.cos(r)-(p.z-c.z)*Math.sin(r),z:c.z+(p.x-c.x)*Math.sin(r)+(p.z-c.z)*Math.cos(r)});
-  function closure(P,Qp){
-    const dx=Qp.x-P.x,dz=Qp.z-P.z,d=Math.hypot(dx,dz),a=(lengths.PA**2-lengths.AQ**2+d*d)/(2*d),h=Math.sqrt(Math.max(0,lengths.PA**2-a*a));
+  const direction=(a,b)=>{const d=distance(a,b);return{x:(b.x-a.x)/d,z:(b.z-a.z)/d}},move=(a,u,d)=>({x:a.x+u.x*d,z:a.z+u.z*d});
+  const directions={JP:direction(J,P0),JQ:direction(J,Q)};
+  function normalizedLengths(overrides={}){const active={...lengths,...overrides};for(const [key,value] of Object.entries(active))if(!Number.isFinite(value)||value<=0)throw new Error(`${key} 杆长必须大于 0`);return active}
+  function closure(P,Qp,active){
+    const dx=Qp.x-P.x,dz=Qp.z-P.z,d=Math.hypot(dx,dz);if(!d||d>active.PA+active.AQ+1e-7||d<Math.abs(active.PA-active.AQ)-1e-7)throw new Error('J3 闭环无法成立');const a=(active.PA**2-active.AQ**2+d*d)/(2*d),h2=active.PA**2-a*a;if(h2<-1e-7)throw new Error('J3 闭环无法成立');const h=Math.sqrt(Math.max(0,h2));
     const m={x:P.x+a*dx/d,z:P.z+a*dz/d}, c1={x:m.x-h*dz/d,z:m.z+h*dx/d}, c2={x:m.x+h*dz/d,z:m.z-h*dx/d};
     return distance(c1,A0)<distance(c2,A0)?c1:c2;
   }
-  function base(degrees){const t=degrees*Math.PI/180,P=P0,Qp=rotate(Q,J,t),A=closure(P,Qp);return {degrees,J,P,A,Q:Qp,B,rodLength:distance(A,B)};}
+  function base(degrees,overrides){const active=normalizedLengths(overrides),t=degrees*Math.PI/180,P=move(J,directions.JP,active.JP),Q0=move(J,directions.JQ,active.JQ),Qp=rotate(Q0,J,t),A=closure(P,Qp,active);return {degrees,J,P,A,Q:Qp,B,rodLength:distance(A,B),lengths:active};}
   function angle(a,b){return Math.atan2(b.z-a.z,b.x-a.x)}
   function wrap(v){return Math.atan2(Math.sin(v),Math.cos(v))}
   function qapDegrees(s){const u={x:s.Q.x-s.A.x,z:s.Q.z-s.A.z},v={x:s.P.x-s.A.x,z:s.P.z-s.A.z};return Math.acos(Math.max(-1,Math.min(1,(u.x*v.x+u.z*v.z)/(Math.hypot(u.x,u.z)*Math.hypot(v.x,v.z)))))*180/Math.PI}
-  function solve(degrees){
-    const s=base(degrees),e=.001,lo=base(degrees-e),hi=base(degrees+e),dr=2*e*Math.PI/180;
+  function solve(degrees,overrides){
+    const s=base(degrees,overrides),e=.001,lo=base(degrees-e,overrides),hi=base(degrees+e,overrides),dr=2*e*Math.PI/180;
     s.rodJacobian=(hi.rodLength-lo.rodLength)/dr;
     s.rates={
       p:wrap(angle(hi.P,hi.A)-angle(lo.P,lo.A))/dr,
@@ -141,6 +148,8 @@
   function drawQapAngle(s){const a=project(s.A),p=project(s.P),q=project(s.Q),r=25,start=Math.atan2(p.y-a.y,p.x-a.x),end=Math.atan2(q.y-a.y,q.x-a.x),delta=Math.atan2(Math.sin(end-start),Math.cos(end-start)),finish=start+delta,sx=a.x+r*Math.cos(start),sy=a.y+r*Math.sin(start),ex=a.x+r*Math.cos(finish),ey=a.y+r*Math.sin(finish),sweep=delta>0?1:0,mid=start+delta/2,labelR=39;root.querySelector('#j3-angle-arc').setAttribute('d',`M ${sx} ${sy} A ${r} ${r} 0 0 ${sweep} ${ex} ${ey}`);const label=root.querySelector('#j3-angle-label');label.setAttribute('x',a.x+labelR*Math.cos(mid));label.setAttribute('y',a.y+labelR*Math.sin(mid)+4);label.setAttribute('text-anchor','middle');label.textContent=`∠QAP ${M.qapDegrees(s).toFixed(1)}°`}
   const startDirection=()=>Number(root.querySelector('[data-start-direction]').value)||1;
   const currentLoads=()=>Object.fromEntries(['p','a','q','rod'].map(k=>[k,Object.fromEntries(['positive','negative'].map(d=>[d,Math.max(0,Number(root.querySelector(`[data-load="${k}-${d}"]`).value)||0)]))]));
+  const toleranceLinks=[{key:'JP',label:'J3—P 参考杆'},{key:'PA',label:'P—A 大腿下连杆'},{key:'AQ',label:'A—Q 膝盖上连杆'},{key:'JQ',label:'J3—Q 输出杆'}];
+  const renderTolerance=()=>window.LinkTolerance.render({host:root.querySelector('#j3-tolerance-charts'),model:M,links:toleranceLinks,loads:currentLoads(),direction:startDirection(),jointLabel:'J3'});
   function contributions(s){const result=M.equivalentTorque(s,currentLoads(),startDirection()),sum=result.total||1;return {vals:result.parts,total:result.total,pct:Object.fromEntries(Object.entries(result.parts).map(([k,v])=>[k,100*v/sum]))}}
   function cyclePeak(){const loads=currentLoads(),dir=startDirection();let best={total:-1,angle:0};for(let d=-10;d<=10.0001;d+=.1){const total=M.equivalentTorque(M.solve(d),loads,dir).total;if(total>best.total)best={total,angle:d}}return best}
   const runLoads=()=>Object.fromEntries(['p','a','q','rod'].map(k=>[k,Object.fromEntries(['positive','negative'].map(d=>[d,{coulomb:Math.max(0,Number(root.querySelector(`[data-run="${k}-${d}-c"]`).value)||0),viscous:Math.max(0,Number(root.querySelector(`[data-run="${k}-${d}-b"]`).value)||0)}]))]));
@@ -150,6 +159,6 @@
   function drawChart(angle){const chart=root.querySelector('#j3-chart'),W=520,H=285,L=48,R=12,T=26,B=42,x=d=>L+(d+10)/20*(W-L-R),y=v=>T+(100-v)/100*(H-T-B);let h='';for(let v=0;v<=100;v+=25)h+=`<line class="chart-grid" x1="${L}" y1="${y(v)}" x2="${W-R}" y2="${y(v)}"></line><text x="${L-7}" y="${y(v)+4}" text-anchor="end">${v}%</text>`;[-10,-5,0,5,10].forEach(v=>h+=`<text x="${x(v)}" y="${H-18}" text-anchor="middle">${v}°</text>`);h+=`<line class="chart-axis" x1="${L}" y1="${T}" x2="${L}" y2="${H-B}"></line><line class="chart-axis" x1="${L}" y1="${H-B}" x2="${W-R}" y2="${H-B}"></line>`;const samples=[];for(let d=-10;d<=10.0001;d+=.5)samples.push({d,c:contributions(M.solve(d)).pct});series.forEach(([k,n,c],i)=>{h+=`<path class="chart-line" stroke="${c}" d="${samples.map((v,j)=>(j?'L':'M')+x(v.d).toFixed(2)+' '+y(v.c[k]).toFixed(2)).join(' ')}"></path>`;h+=`<g class="chart-legend"><line x1="${55+i*112}" y1="13" x2="${72+i*112}" y2="13" stroke="${c}" stroke-width="3"></line><text x="${77+i*112}" y="17">${n}</text></g>`});const now=contributions(M.solve(angle)).pct;h+=`<line class="chart-guide" x1="${x(angle)}" y1="${T}" x2="${x(angle)}" y2="${H-B}"></line>`;series.forEach(([k,n,c])=>h+=`<circle class="chart-marker" cx="${x(angle)}" cy="${y(now[k])}" r="4" fill="${c}"></circle>`);h+=`<text x="${(L+W-R)/2}" y="${H-3}" text-anchor="middle">J3角度 / °</text><text x="13" y="${(T+H-B)/2}" transform="rotate(-90 13 ${(T+H-B)/2})" text-anchor="middle">贡献率</text>`;chart.innerHTML=h}
   function render(){const d=Number(slider.value),s=M.solve(d),m={x:s.B.x+(s.A.x-s.B.x)*.76,z:s.B.z+(s.A.z-s.B.z)*.76};line('#j3-jp',s.J,s.P);line('#j3-pa',s.P,s.A);line('#j3-aq',s.A,s.Q);line('#j3-jq',s.J,s.Q);line('#j3-rod',s.B,s.A);line('#j3-rod-shaft',m,s.A);drawNodes(s);const mv=project(m),bv=project(s.B),avp=project(s.A),rodAngle=Math.atan2(avp.y-bv.y,avp.x-bv.x)*180/Math.PI;root.querySelector('#j3-slider-node').setAttribute('transform',`translate(${mv.x} ${mv.y}) rotate(${rodAngle})`);callout('joint-label-j3',s.J,-118,33);callout('joint-label-p',s.P,-70,-34);callout('joint-label-a',s.A,-95,22);callout('joint-label-q',s.Q,-116,48);callout('joint-label-b',s.B,18,28);callout('joint-label-slider',m,42,-18);putLabel('#j3-output-label',s.J,s.P,-7);putLabel('#j3-jq-label',s.J,s.Q,20);putLabel('#j3-pa-label',s.P,s.A,-7);putLabel('#j3-aq-label',s.A,s.Q,16);putLabel('#j3-rod-label',s.B,s.A,-8);drawQapAngle(s);root.querySelector('#j3-angle-value').textContent=d.toFixed(1)+'°';root.querySelector('#j3-rod-length').textContent=s.rodLength.toFixed(2)+' mm';root.querySelector('#j3-rod-jac').textContent=(s.rodJacobian/1000).toFixed(4)+' m/rad';const c=contributions(s),peak=cyclePeak(),run=runCycle(d);root.querySelector('#j3-total-torque').textContent=c.total.toFixed(3)+' N·m';root.querySelector('#j3-peak-torque').textContent=peak.total.toFixed(3)+' N·m';root.querySelector('#j3-peak-angle').textContent=`发生于 ${peak.angle.toFixed(1)}°`;root.querySelector('#j3-current').innerHTML=series.map(([k,n])=>`<span>${n}：<b class="tabular-nums">${c.vals[k].toFixed(3)} N·m（${c.pct[k].toFixed(1)}%）</b></span>`).join('');root.querySelector('#j3-run-current').textContent=run.current.total.toFixed(3)+' N·m';root.querySelector('#j3-run-peak').textContent=run.peak.toFixed(3)+' N·m';root.querySelector('#j3-run-energy').textContent=run.totalEnergy.toFixed(3)+' J';root.querySelector('#j3-run-contribution').innerHTML=series.map(([k,n])=>`<span>${n}耗散：<b>${(100*run.energy[k]/(run.totalEnergy||1)).toFixed(1)}%</b></span>`).join('')+`<span>正行程 ${run.directionEnergy.positive.toFixed(3)} J｜反行程 ${run.directionEnergy.negative.toFixed(3)} J</span>`;drawChart(d)}
   let running=true,start=performance.now();function tick(now){if(running){const phase=(now-start)/1000;liveDirection=Math.cos(2*Math.PI*phase)>=0?1:-1;slider.value=(10*Math.sin(2*Math.PI*phase)).toFixed(2);render()}requestAnimationFrame(tick)}
-  play.addEventListener('click',()=>{running=!running;play.textContent=running?'暂停':'播放';play.setAttribute('aria-pressed',String(running));if(running)start=performance.now()-Math.asin(Number(slider.value)/10)/(2*Math.PI)*1000});slider.addEventListener('input',()=>{running=false;play.textContent='播放';play.setAttribute('aria-pressed','false');render()});root.querySelectorAll('[data-load],[data-run],[data-start-direction]').forEach(e=>e.addEventListener('input',render));render();requestAnimationFrame(tick);
+  play.addEventListener('click',()=>{running=!running;play.textContent=running?'暂停':'播放';play.setAttribute('aria-pressed',String(running));if(running)start=performance.now()-Math.asin(Number(slider.value)/10)/(2*Math.PI)*1000});slider.addEventListener('input',()=>{running=false;play.textContent='播放';play.setAttribute('aria-pressed','false');render()});root.querySelectorAll('[data-load],[data-run],[data-start-direction]').forEach(e=>e.addEventListener('input',render));root.querySelectorAll('[data-load],[data-start-direction]').forEach(e=>e.addEventListener('input',renderTolerance));render();renderTolerance();requestAnimationFrame(tick);
 })();
 </script>
