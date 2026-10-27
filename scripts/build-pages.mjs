@@ -7,7 +7,7 @@ const dist = path.join(root, "dist");
 mkdirSync(dist, {recursive: true});
 
 const siteTitle = "模块连接副-等效旋转轴的灵敏度分析";
-const assetVersion = "20261026-1";
+const assetVersion = "20261027-1";
 const modules = [
   ["index", "总览", "index.html"],
   ["leg", "腿足", "j2.html"],
@@ -24,15 +24,17 @@ const armJointNav = current => `<nav class="joint-nav" aria-label="手臂等效�
 const chartResizeScript = `<script>(()=>{const initialized=new WeakSet();window.initChartResizeControls=(root=document)=>{root.querySelectorAll('[data-chart-panel]').forEach(panel=>{if(initialized.has(panel))return;initialized.add(panel);const stage=panel.querySelector('[data-chart-stage]'),output=panel.querySelector('[data-chart-scale]');let scale=1;const apply=()=>{stage.style.width=(scale*100)+'%';output.textContent=Math.round(scale*100)+'%';panel.querySelector('[data-chart-action="out"]').disabled=scale<=.75;panel.querySelector('[data-chart-action="in"]').disabled=scale>=2};panel.addEventListener('click',event=>{const button=event.target.closest('[data-chart-action]');if(!button)return;const action=button.dataset.chartAction;if(action==='out')scale=Math.max(.75,scale-.25);if(action==='in')scale=Math.min(2,scale+.25);if(action==='reset')scale=1;if(action==='fullscreen'){if(document.fullscreenElement===panel)document.exitFullscreen();else if(panel.requestFullscreen)panel.requestFullscreen();else panel.classList.toggle('chart-expanded')}apply()});document.addEventListener('fullscreenchange',()=>{const button=panel.querySelector('[data-chart-action="fullscreen"]');button.textContent=document.fullscreenElement===panel?'退出全屏':'全屏'});apply()})};window.initChartResizeControls(document)})();</script>`;
 
 function document(title, current, body, joint = null, modelScript = null) {
-  const scripts=joint?`<script src="directional-friction.js?v=${assetVersion}"></script><script src="link-tolerance.js?v=${assetVersion}"></script>${modelScript?`<script src="${modelScript}?v=${assetVersion}"></script>`:''}`:'';
+  const scripts=joint?`<script src="directional-friction.js?v=${assetVersion}"></script><script src="link-tolerance.js?v=${assetVersion}"></script><script src="link-length-controls.js?v=${assetVersion}"></script>${modelScript?`<script src="${modelScript}?v=${assetVersion}"></script>`:''}`:'';
   const subnav=joint?(current==='arm'?armJointNav(joint):jointNav(joint)):'';
-  return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>${title}</title><link rel="stylesheet" href="site.css?v=20261023-2">${scripts}</head><body>${nav(current)}${subnav}${body}${joint ? chartResizeScript : ""}</body></html>`;
+  return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>${title}</title><link rel="stylesheet" href="site.css?v=${assetVersion}">${scripts}</head><body>${nav(current)}${subnav}${body}${joint ? chartResizeScript : ""}</body></html>`;
 }
 
 copyFileSync(path.join(root, "src", "directional-friction.js"), path.join(dist, "directional-friction.js"));
 copyFileSync(path.join(root, "src", "directional-friction.js"), path.join(root, "directional-friction.js"));
 copyFileSync(path.join(root, "src", "link-tolerance.js"), path.join(dist, "link-tolerance.js"));
 copyFileSync(path.join(root, "src", "link-tolerance.js"), path.join(root, "link-tolerance.js"));
+copyFileSync(path.join(root, "src", "link-length-controls.js"), path.join(dist, "link-length-controls.js"));
+copyFileSync(path.join(root, "src", "link-length-controls.js"), path.join(root, "link-length-controls.js"));
 copyFileSync(path.join(root, "src", "arm-j3-model.js"), path.join(dist, "arm-j3-model.js"));
 copyFileSync(path.join(root, "src", "arm-j3-model.js"), path.join(root, "arm-j3-model.js"));
 copyFileSync(path.join(root, "site.css"), path.join(dist, "site.css"));
