@@ -11,6 +11,9 @@ assert.match(page,/id="arm-j5-view"/,"J5 diagram exposes a view selector");
 assert.match(page,/<option value="oblique"[^>]*>三维斜视<\/option>/,"reference-like oblique view is available");
 assert.match(page,/<option value="xz">X–Z侧视<\/option>/,"engineering side view remains available");
 assert.match(page,/p\[1\]-viewBounds\.centerY/,"oblique projection uses the hard-point Y coordinate");
+assert.match(page,/id="arm-j5-angle-1"/,"page displays the J5A-lower1-upper1 included angle");
+assert.match(page,/id="arm-j5-angle-2"/,"page displays the J5B-lower2-upper2 included angle");
+assert.match(page,/const includedAngle=/,"included angles are calculated from the live 3D hard points");
 for(const text of ["J5 等效轴","连杆1","连杆2","推杆1","推杆2","上端鱼眼1","下端鱼眼1","上端鱼眼2","下端鱼眼2"])
   assert.match(page,new RegExp(text),`page exposes ${text}`);
 for(const key of ["upper1","lower1","upper2","lower2","rod1","rod2"]){
