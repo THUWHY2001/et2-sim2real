@@ -14,7 +14,6 @@ const modules = [
   ["neck", "头颈", "index.html#head-neck"],
   ["torso", "躯干", "index.html#torso"],
   ["arm", "手臂", "arm-j3.html"],
-  ["arm-j6", "J6", "arm-j6.html"],
 ];
 
 const nav = current => `<header class="site-header"><div class="site-header-inner"><a class="site-brand" href="index.html">${siteTitle}</a><nav class="site-nav" aria-label="模块导航">${modules.map(([id,label,href])=>`<a href="${href}"${id===current?' aria-current="page"':''}>${label}</a>`).join("")}</nav></div></header>`;
@@ -27,8 +26,7 @@ const chartResizeScript = `<script>(()=>{const initialized=new WeakSet();window.
 function document(title, current, body, joint = null, modelScript = null) {
   const scripts=joint?`<script src="directional-friction.js?v=${assetVersion}"></script><script src="link-tolerance.js?v=${assetVersion}"></script><script src="link-length-controls.js?v=${assetVersion}"></script>${modelScript?`<script src="${modelScript}?v=${assetVersion}"></script>`:''}`:'';
   const subnav=joint?(current==='arm'?armJointNav(joint):jointNav(joint)):'';
-  const topCurrent=joint==='arm-j6'?'arm-j6':current;
-  return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>${title}</title><link rel="stylesheet" href="site.css?v=${assetVersion}">${scripts}</head><body>${nav(topCurrent)}${subnav}${body}${joint ? chartResizeScript : ""}</body></html>`;
+  return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>${title}</title><link rel="stylesheet" href="site.css?v=${assetVersion}">${scripts}</head><body>${nav(current)}${subnav}${body}${joint ? chartResizeScript : ""}</body></html>`;
 }
 
 copyFileSync(path.join(root, "src", "directional-friction.js"), path.join(dist, "directional-friction.js"));
