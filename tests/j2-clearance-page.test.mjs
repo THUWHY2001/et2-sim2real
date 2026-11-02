@@ -1,0 +1,19 @@
+import assert from "node:assert/strict";
+import {existsSync,readFileSync} from "node:fs";
+
+assert.ok(existsSync("j2-clearance.html"),"build produces an independent J2 clearance page");
+const page=readFileSync("j2-clearance.html","utf8"),resistance=readFileSync("j2.html","utf8");
+assert.match(page,/<title>J2 间隙与死区分析/);
+assert.match(page,/src="j2-clearance-model\.js\?v=[^"]+"/);
+assert.match(page,/href="j2\.html"[^>]*>阻力贡献<\/a>/);
+assert.match(page,/href="j2-clearance\.html"[^>]*aria-current="page"[^>]*>间隙\/死区<\/a>/);
+assert.match(resistance,/href="j2-clearance\.html"[^>]*>间隙\/死区<\/a>/);
+for(const key of ["axis1","axis2","axis3","point2"]){
+  for(const side of ["radial-positive","radial-negative","axial-positive","axial-negative"])
+    assert.match(page,new RegExp(`data-j2-gap="${key}-${side}"`),`${key} exposes ${side}`);
+}
+assert.match(page,/data-j2-gap="rod-positive"/);assert.match(page,/data-j2-gap="rod-negative"/);
+for(const id of ["j2-gap-current","j2-gap-bias","j2-gap-peak","j2-gap-chart","j2-gap-ranking"])
+  assert.match(page,new RegExp(`id="${id}"`));
+assert.match(page,/理想 X–Z 二维模型中，轴向间隙的一阶贡献为 0/);
+console.log("J2 clearance page regression test passed");

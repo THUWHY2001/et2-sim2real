@@ -1,5 +1,6 @@
 <div id="leg-2d-mechanism" class="leg-mechanism-viz" data-layout-version="unified-v1">
   <h2>J2 二维机构简图（X–Z 投影）</h2>
+  <nav class="analysis-mode-nav" aria-label="J2分析类型"><a href="j2.html" aria-current="page">阻力贡献</a><a href="j2-clearance.html">间隙/死区</a></nav>
   <div class="viz-row text-small text-muted" aria-label="图例">
     <span><i class="axis-swatch"></i>Y 向转轴（投影为点）</span>
     <span><i class="link-swatch"></i>刚性连杆</span>
@@ -202,6 +203,7 @@
 </div>
 
 <style>
+  .analysis-mode-nav{display:flex;gap:6px;margin:4px 0 12px}.analysis-mode-nav a{padding:7px 13px;border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--muted-foreground)}.analysis-mode-nav a[aria-current="page"]{color:var(--primary);border-color:var(--primary);background:var(--background)}
   #leg-2d-mechanism{color:var(--foreground);width:100%;max-width:1100px;margin:auto}
   #leg-2d-mechanism .j2-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(350px,.92fr);gap:18px}
   #leg-2d-mechanism .j2-layout section{min-width:0}

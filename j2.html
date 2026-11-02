@@ -1,5 +1,6 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>J2 二维机构简图｜模块连接副-等效旋转轴的灵敏度分析</title><link rel="stylesheet" href="site.css?v=20261030-1"><script src="directional-friction.js?v=20261030-1"></script><script src="link-tolerance.js?v=20261030-1"></script><script src="link-length-controls.js?v=20261030-1"></script></head><body><header class="site-header"><div class="site-header-inner"><a class="site-brand" href="index.html">模块连接副-等效旋转轴的灵敏度分析</a><nav class="site-nav" aria-label="模块导航"><a href="index.html">总览</a><a href="j2.html" aria-current="page">腿足</a><a href="index.html#head-neck">头颈</a><a href="index.html#torso">躯干</a><a href="arm-j3.html">手臂</a></nav></div></header><nav class="joint-nav" aria-label="腿足等效旋转轴"><span>腿足</span><a class="joint-tab" href="j2.html" aria-current="page">J2</a><a class="joint-tab" href="j3.html">J3</a><a class="joint-tab" href="j4.html">J4</a></nav><main class="model-shell"><div id="leg-2d-mechanism" class="leg-mechanism-viz" data-layout-version="unified-v1">
   <h2>J2 二维机构简图（X–Z 投影）</h2>
+  <nav class="analysis-mode-nav" aria-label="J2分析类型"><a href="j2.html" aria-current="page">阻力贡献</a><a href="j2-clearance.html">间隙/死区</a></nav>
   <div class="viz-row text-small text-muted" aria-label="图例">
     <span><i class="axis-swatch"></i>Y 向转轴（投影为点）</span>
     <span><i class="link-swatch"></i>刚性连杆</span>
@@ -202,6 +203,7 @@
 </div>
 
 <style>
+  .analysis-mode-nav{display:flex;gap:6px;margin:4px 0 12px}.analysis-mode-nav a{padding:7px 13px;border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--muted-foreground)}.analysis-mode-nav a[aria-current="page"]{color:var(--primary);border-color:var(--primary);background:var(--background)}
   #leg-2d-mechanism{color:var(--foreground);width:100%;max-width:1100px;margin:auto}
   #leg-2d-mechanism .j2-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(350px,.92fr);gap:18px}
   #leg-2d-mechanism .j2-layout section{min-width:0}
