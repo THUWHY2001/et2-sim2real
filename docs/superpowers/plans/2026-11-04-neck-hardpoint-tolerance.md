@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** 在头颈 J0/J1 上试点八个硬点的 1 mm 球形公差分析，输出静态启动力矩与动态运行阻力的贡献度排名。
+**Goal:** 在头颈 J0/J1 上试点八个硬点的 1 mm 球形公差分析，输出静态启动力矩与动态运行阻力的单点及两点组合贡献度排名。
 
 **Architecture:** 保留 `NeckModel` 作为标准态计算基础，新建纯计算模块 `NeckToleranceModel`，以标准轴线、偏移后的零件局部硬点和虚功映射计算静态/动态阻力变化。J0/J1 共用一个公差分析页面片段；新旧贡献度差异仅在本地核验并通过当前对话反馈，不进入网页或公开文件。
 
@@ -75,7 +75,7 @@
 
 **Interfaces:**
 - Consumes: Task 1 `createState`
-- Produces: `jointLoads(state,parameters,direction,mode)`, `equivalentResistance(...)`, `cycle(...)`, `rankContributions(...)`
+- Produces: `jointLoads(state,parameters,direction,mode)`, `equivalentResistance(...)`, `cycle(...)`, `rankContributions(...)`, `rankPairContributions(...)`
 
 - [ ] **Step 1: Write failing resistance tests**
 
@@ -94,16 +94,20 @@
 
   `rankContributions` scans a deterministic unit-sphere direction set plus local refinement for each hardpoint while all other points remain standard. Return independent static peak and dynamic peak/RMS/mean-absolute/energy rankings.
 
-- [ ] **Step 5: Add normalization and finite-result tests**
+- [ ] **Step 5: Implement two-point combination search**
 
-  Assert contributions total 100% when total impact is nonzero and all return 0% when it is zero; asymmetric and zero parameter cases remain finite.
+  `rankPairContributions` evaluates all 28 hardpoint pairs with deterministic joint direction refinement, keeps each offset inside its own 1 mm sphere and returns the most sensitive pairs with both directions, torque increment and normalized pair contribution.
 
-- [ ] **Step 6: Run focused test and verify GREEN**
+- [ ] **Step 6: Add normalization, pair-boundary and finite-result tests**
+
+  Assert single-point and pair contributions total 100% when their respective totals are nonzero and all return 0% when zero; all 28 unique pairs are evaluated; neither point exceeds 1 mm; asymmetric and zero parameter cases remain finite.
+
+- [ ] **Step 7: Run focused test and verify GREEN**
 
   Run: `node tests/neck-tolerance-model.test.mjs`
   Expected: PASS.
 
-- [ ] **Step 7: Commit**
+- [ ] **Step 8: Commit**
 
   `git commit -m "Calculate neck tolerance resistance contributions"`
 
@@ -138,7 +142,7 @@
 
 - [ ] **Step 5: Add result presentation**
 
-  Display static/dynamic rankings, torque impact, percentage, worst direction/angle and contribution interval placeholders. All-zero reset must show the current standard model.
+  Display static/dynamic single-point rankings plus the most sensitive point-pair ranking, torque impact, percentage, worst direction/angle and contribution interval placeholders. All-zero reset must show the current standard model.
 
 - [ ] **Step 6: Run page and focused model tests**
 
