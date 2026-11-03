@@ -1,12 +1,12 @@
 <div id="leg-2d-mechanism" class="leg-mechanism-viz" data-layout-version="unified-v1">
-  <h2>J2 二维机构简图（X–Z 投影）</h2>
+  <h2>J2 三维机构简图</h2>
   <nav class="analysis-mode-nav" aria-label="J2分析类型"><a href="j2.html" aria-current="page">阻力贡献</a><a href="j2-clearance.html">间隙/死区</a></nav>
   <div class="viz-row text-small text-muted" aria-label="图例">
-    <span><i class="axis-swatch"></i>Y 向转轴（投影为点）</span>
+    <span><i class="axis-swatch"></i>Y 向转轴</span>
     <span><i class="link-swatch"></i>刚性连杆</span>
     <span><i class="rod-swatch"></i>可伸缩推杆</span>
     <span><i class="relation-swatch"></i>J2 驱动刚性组件</span>
-    <span><i class="angle-swatch"></i>随动夹角</span>
+    <span>拖动旋转｜滚轮缩放</span>
   </div>
   <div class="viz-controls" aria-label="运动控制">
     <button id="leg-play" class="btn btn-primary" type="button" aria-pressed="true">暂停</button>
@@ -25,89 +25,13 @@
     <p id="j2-length-status" class="text-small" role="status">标准态｜全部 ΔL = 0 mm</p>
   </section>
   <div class="j2-layout"><section>
-  <svg viewBox="0 0 560 555" role="img" aria-labelledby="leg-viz-title leg-viz-desc">
-    <title id="leg-viz-title">J2 腿部二维机构连接简图</title>
-    <desc id="leg-viz-desc">所有转轴均沿 Y 方向，因此在 X-Z 平面投影成点。J2 驱动轴3、下端点和推杆下端滑动轴承组成的刚性组件；轴2由两根定长杆闭环解算。推杆上下端均为滑动轴承，并区分真实可伸缩段和固定筒体段。</desc>
-
-    <g class="grid" aria-hidden="true">
-      <line x1="70" y1="55" x2="70" y2="515"></line>
-      <line x1="70" y1="55" x2="540" y2="55"></line>
-      <line x1="70" y1="155" x2="540" y2="155"></line>
-      <line x1="70" y1="255" x2="540" y2="255"></line>
-      <line x1="70" y1="355" x2="540" y2="355"></line>
-      <line x1="70" y1="455" x2="540" y2="455"></line>
-      <text x="58" y="59" text-anchor="end">−50</text>
-      <text x="58" y="159" text-anchor="end">−150</text>
-      <text x="58" y="259" text-anchor="end">−250</text>
-      <text x="58" y="359" text-anchor="end">−350</text>
-      <text x="58" y="459" text-anchor="end">−450</text>
-      <text class="axis-title" data-axis="y" x="18" y="285" transform="rotate(-90 18 285)">Z / mm</text>
-      <text class="axis-title" data-axis="x" x="305" y="545">X / mm</text>
-    </g>
-
-    <g class="relation" aria-label="轴3随J2转动关系">
-      <line id="relation-line" x1="83" y1="96" x2="117" y2="180"></line>
-      <path id="relation-arc" d="M91 108 A42 42 0 0 1 117 143"></path>
-      <text id="relation-label" x="131" y="137">J2—轴3定长</text>
-    </g>
-
-    <g class="links" aria-label="机构连杆">
-      <line id="inner-link" class="rigid inner-link" x1="150" y1="60" x2="249" y2="130"></line>
-      <text id="inner-label" x="203" y="82">轴1—轴2定长</text>
-
-      <line id="upper-link" class="rigid upper-link" x1="249" y1="130" x2="117" y2="180"></line>
-      <text id="upper-label" x="173" y="172">大腿上连杆</text>
-
-      <line id="rod-telescopic" class="rod shaft" x1="249" y1="130" x2="335" y2="228"></line>
-      <line id="rod-body" class="rod casing" x1="335" y1="228" x2="526" y2="445"></line>
-      <text id="rod-extension-label" x="292" y="171" transform="rotate(48 292 171)">真实可伸缩段</text>
-      <text id="rod-body-label" x="431" y="327" transform="rotate(48 431 327)">推杆固定筒体</text>
-
-      <line id="lower-link" class="rigid lower-link" x1="117" y1="180" x2="546" y2="540"></line>
-      <text id="lower-label" x="321" y="382" transform="rotate(40 321 382)">轴3—下端点刚性件</text>
-
-      <line id="closure-link" class="rigid closure-link" x1="526" y1="445" x2="546" y2="540"></line>
-      <text id="closure-label" x="557" y="489">固定相对位置</text>
-    </g>
-
-    <g class="joint-angles" aria-label="随动夹角">
-      <path id="axis2-angle-arc"></path>
-      <text id="axis2-angle-label">轴1—轴2—轴3</text>
-      <path id="axis3-angle-arc"></path>
-      <text id="axis3-angle-label">轴2—轴3—下端点</text>
-    </g>
-
-    <g class="nodes">
-      <g class="node" data-name="J2 等效轴" data-coordinate="轴线：(24.745, 40.75, −87.460) → (24.745, 145.25, −87.460)；测试时固定" transform="translate(120 92)" role="button" aria-label="J2 等效旋转轴，点击查看坐标">
-        <circle r="10"></circle><circle class="axis-dot" r="3"></circle>
-        <text x="-10" y="-17">J2 等效轴（固定）</text>
-      </g>
-      <g class="node" data-name="轴1" data-coordinate="轴线：(50.372, 47.75, −54.614) → (50.372, 138.25, −54.614)" transform="translate(145 60)" role="button" aria-label="轴1，点击查看坐标">
-        <circle r="9"></circle><circle class="axis-dot" r="3"></circle>
-        <text x="-5" y="-16">轴1</text>
-      </g>
-      <g id="node-axis2" class="node" data-name="推杆上端滑动轴承 / 轴2" data-coordinate="轴线：(88.282, 72.7, −118.119) → (88.282, 113.3, −118.119)；中心：(88.282, 93, −118.119)" transform="translate(249 130)" role="button" aria-label="推杆上端滑动轴承和轴2，点击查看坐标">
-        <circle r="10"></circle><circle class="axis-dot" r="3"></circle>
-        <text x="12" y="-13">轴2 / 推杆上端滑动轴承</text>
-      </g>
-      <g id="node-axis3" class="node" data-name="轴3 / 上连杆传动点" data-coordinate="轴线：(37.725, 73, −163.787) → (37.725, 113, −163.787)；轴上点：(37.725, 93, −163.787)" transform="translate(117 180)" role="button" aria-label="轴3和上连杆传动点，点击查看坐标">
-        <circle r="10"></circle><circle class="axis-dot" r="3"></circle>
-        <text x="-7" y="24">轴3 / 轴上点</text>
-      </g>
-      <g id="node-point2" class="node endpoint" data-name="推杆下端滑动轴承" data-coordinate="中心：(194.761, 93, −404.826)" transform="translate(526 445)" role="button" aria-label="推杆下端滑动轴承，点击查看坐标">
-        <circle r="8"></circle>
-        <text x="-10" y="-15">推杆下端滑动轴承</text>
-      </g>
-      <g id="node-stroke-end" class="node stroke-point" data-name="真实可伸缩段末端" data-coordinate="基准坐标：(121.786, 93.001, −206.815)；运动时沿两传动点连线随动" transform="translate(335 228)" role="button" aria-label="真实可伸缩段末端，点击查看坐标">
-        <circle r="7"></circle>
-        <text x="10" y="-8">伸缩段末端</text>
-      </g>
-      <g id="node-lower" class="node endpoint" data-name="下端连杆点" data-coordinate="下端点：(202.630, 93, −491.421)" transform="translate(546 540)" role="button" aria-label="下端连杆点，点击查看坐标">
-        <circle r="8"></circle>
-        <text x="10" y="-7">下端点</text>
-      </g>
-    </g>
-  </svg>
+  <div class="j2-3d-stage">
+    <canvas id="j2-3d-canvas" role="img" aria-label="J2腿部三维机构图，可拖动旋转并使用滚轮缩放"></canvas>
+    <div class="j2-3d-tools" aria-label="三维视图控制">
+      <button class="btn" type="button" data-j2-view="side">X–Z 侧视</button>
+      <button class="btn" type="button" data-j2-view="reset">重置视角</button>
+    </div>
+  </div>
   <p id="leg-node-detail" class="selected-detail text-small" aria-live="polite">J2 = 0.0°｜传动点距 305.84 mm｜真实可伸缩段 94.81 mm｜轴1—轴2—轴3 101.26°｜轴2—轴3—下端点 105.37°。</p>
   <div id="j2-joint-key" class="table-responsive"><table class="table table-sm mechanism-key">
     <thead><tr><th>标记</th><th>类型</th><th>标准态坐标 / mm</th><th>作用</th></tr></thead>
@@ -303,6 +227,7 @@
     const slider = root.querySelector('#leg-angle');
     const angleValue = root.querySelector('#leg-angle-value');
     const playButton = root.querySelector('#leg-play');
+    const threeView = window.J2ThreeView.create(root.querySelector('#j2-3d-canvas'));
     const lengthStatus = root.querySelector('#j2-length-status');
     const lengthInputs = [...root.querySelectorAll('[data-j2-length]')];
     const points = {
@@ -323,8 +248,6 @@
       const cosine = (ux * vx + uz * vz) / (Math.hypot(ux, uz) * Math.hypot(vx, vz));
       return Math.acos(Math.max(-1, Math.min(1, cosine))) * 180 / Math.PI;
     };
-    const projectionScale = 1.0;
-    const project = (point) => ({ x: 95 + projectionScale * point.x, y: 5 - projectionScale * point.z });
     const standardLengths = resistanceModel.lengths;
     const lengthNames={j2Axis3:'J2—轴3',axis1Axis2:'轴1—轴2',axis2Axis3:'轴2—轴3',axis3Lower:'轴3—下端点',point2Lower:'下端点—推杆下端滑动轴承'};
     const rodBodyLength = distance(points.strokeEnd, points.point2);
@@ -338,37 +261,6 @@
       lengthStatus.textContent=changed.length?`变体态｜${changed.map(key=>`${lengthNames[key]} ΔL=${(active[key]-standardLengths[key]).toFixed(2)} mm`).join('｜')}｜闭环有效`:'标准态｜全部 ΔL = 0 mm';
     };
     root.querySelectorAll('[data-j2-length-base]').forEach(output=>{output.textContent=standardLengths[output.dataset.j2LengthBase].toFixed(2)+' mm'});
-    const setLine = (id, a, b) => {
-      const element = root.querySelector(`#${id}`);
-      element.setAttribute('x1', a.x); element.setAttribute('y1', a.y);
-      element.setAttribute('x2', b.x); element.setAttribute('y2', b.y);
-    };
-    const setLabel = (id, a, b, offsetY = -8, rotate = true) => {
-      const element = root.querySelector(`#${id}`);
-      const x = (a.x + b.x) / 2;
-      const y = (a.y + b.y) / 2 + offsetY;
-      const degrees = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI;
-      element.setAttribute('x', x); element.setAttribute('y', y);
-      if (rotate) element.setAttribute('transform', `rotate(${degrees} ${x} ${y})`);
-      else element.removeAttribute('transform');
-    };
-    const setAngleArc = (arcId, labelId, first, vertex, second, radius, labelRadius, labelText) => {
-      const firstAngle = Math.atan2(first.y - vertex.y, first.x - vertex.x);
-      const secondAngle = Math.atan2(second.y - vertex.y, second.x - vertex.x);
-      let delta = secondAngle - firstAngle;
-      while (delta > Math.PI) delta -= Math.PI * 2;
-      while (delta < -Math.PI) delta += Math.PI * 2;
-      const endAngle = firstAngle + delta;
-      const start = { x: vertex.x + radius * Math.cos(firstAngle), y: vertex.y + radius * Math.sin(firstAngle) };
-      const end = { x: vertex.x + radius * Math.cos(endAngle), y: vertex.y + radius * Math.sin(endAngle) };
-      root.querySelector(`#${arcId}`).setAttribute('d', `M${start.x} ${start.y} A${radius} ${radius} 0 0 ${delta >= 0 ? 1 : 0} ${end.x} ${end.y}`);
-      const middleAngle = firstAngle + delta / 2;
-      const label = root.querySelector(`#${labelId}`);
-      label.setAttribute('x', vertex.x + labelRadius * Math.cos(middleAngle));
-      label.setAttribute('y', vertex.y + labelRadius * Math.sin(middleAngle));
-      label.setAttribute('text-anchor', Math.cos(middleAngle) < -0.2 ? 'end' : Math.cos(middleAngle) > 0.2 ? 'start' : 'middle');
-      label.textContent = labelText;
-    };
     const startDirection = () => Number(root.querySelector('[data-start-direction]').value) || 1;
     const staticLoads = () => Object.fromEntries(['axis1','axis2','axis3','point2','rod'].map(k => [k, Object.fromEntries(['positive','negative'].map(d => [d, Math.max(0, Number(root.querySelector(`[data-j2-static="${k}-${d}"]`).value) || 0)]))]));
     const frictionContribution = (degrees, direction = startDirection()) => {
@@ -448,42 +340,11 @@
         x: point2.x + (axis2.x - point2.x) * bodyRatio,
         z: point2.z + (axis2.z - point2.z) * bodyRatio,
       };
-      const pJ2 = project(points.j2);
-      const pAxis1 = project(points.axis1);
-      const pAxis2 = project(axis2);
-      const pAxis3 = project(axis3);
-      const pPoint2 = project(point2);
-      const pStrokeEnd = project(strokeEnd);
-      const pLower = project(lower);
-      setLine('inner-link', pAxis1, pAxis2);
-      setLine('upper-link', pAxis2, pAxis3);
-      setLine('rod-telescopic', pAxis2, pStrokeEnd);
-      setLine('rod-body', pStrokeEnd, pPoint2);
-      setLine('lower-link', pAxis3, pLower);
-      setLine('closure-link', pPoint2, pLower);
-      setLine('relation-line', pJ2, pAxis3);
-      root.querySelector('#node-axis2').setAttribute('transform', `translate(${pAxis2.x} ${pAxis2.y})`);
-      root.querySelector('#node-axis3').setAttribute('transform', `translate(${pAxis3.x} ${pAxis3.y})`);
-      root.querySelector('#node-point2').setAttribute('transform', `translate(${pPoint2.x} ${pPoint2.y})`);
-      root.querySelector('#node-stroke-end').setAttribute('transform', `translate(${pStrokeEnd.x} ${pStrokeEnd.y})`);
-      root.querySelector('#node-lower').setAttribute('transform', `translate(${pLower.x} ${pLower.y})`);
-      setLabel('inner-label', pAxis1, pAxis2, -14, false);
-      setLabel('upper-label', pAxis2, pAxis3, 24, false);
-      setLabel('rod-extension-label', pAxis2, pStrokeEnd, -9, true);
-      setLabel('rod-body-label', pStrokeEnd, pPoint2, -9, true);
-      setLabel('lower-label', pAxis3, pLower);
-      setLabel('closure-label', pPoint2, pLower, -12, false);
       const axis2JointAngle = includedAngle(points.axis1, axis2, axis3);
       const axis3JointAngle = includedAngle(axis2, axis3, lower);
-      setAngleArc('axis2-angle-arc', 'axis2-angle-label', pAxis1, pAxis2, pAxis3, 29, 43, `${axis2JointAngle.toFixed(1)}°`);
-      setAngleArc('axis3-angle-arc', 'axis3-angle-label', pAxis2, pAxis3, pLower, 31, 46, `${axis3JointAngle.toFixed(1)}°`);
-      root.querySelector('#relation-label').setAttribute('x', pJ2.x + 65);
-      root.querySelector('#relation-label').setAttribute('y', pJ2.y + 50);
-      root.querySelector('#relation-arc').setAttribute('d', `M${pJ2.x + 8} ${pJ2.y + 10} Q${(pJ2.x + pAxis3.x) / 2 + 18} ${(pJ2.y + pAxis3.y) / 2 - 8} ${pAxis3.x} ${pAxis3.y - 16}`);
+      threeView.render({j2:points.j2,axis1:points.axis1,axis2,axis3,strokeEnd,point2,lower});
       const telescopicLength = rodLength - rodBodyLength;
       angleValue.textContent = `${degrees.toFixed(1)}°`;
-      root.querySelector('#inner-label').textContent = `轴1—轴2定长 ${activeLengths.axis1Axis2.toFixed(2)} mm`;
-      root.querySelector('#relation-label').textContent = `J2—轴3定长 ${activeLengths.j2Axis3.toFixed(2)} mm`;
       detail.textContent = `J2 = ${degrees.toFixed(1)}°｜传动点距 ${rodLength.toFixed(2)} mm｜真实可伸缩段 ${telescopicLength.toFixed(2)} mm｜轴1—轴2—轴3 ${axis2JointAngle.toFixed(2)}°｜轴2—轴3—下端点 ${axis3JointAngle.toFixed(2)}°。`;
       updateLengthStatus(activeLengths);
       updateFrictionDisplay(degrees, phaseSeconds);
@@ -552,8 +413,10 @@
     root.querySelectorAll('[data-j2-run]').forEach(input => input.addEventListener('input', () => refresh(Number(slider.value))));
     lengthInputs.forEach(input=>input.addEventListener('input',()=>refresh(Number(slider.value),null,true)));
     root.querySelector('#j2-length-reset').addEventListener('click',()=>{lengthInputs.forEach(input=>input.value='0');refresh(Number(slider.value),null,true)});
+    root.querySelector('[data-j2-view="side"]').addEventListener('click',()=>threeView.sideView());
+    root.querySelector('[data-j2-view="reset"]').addEventListener('click',()=>threeView.resetView());
     refresh(0,null,true);
     animationFrame = requestAnimationFrame(animate);
-    window.addEventListener('pagehide', () => cancelAnimationFrame(animationFrame), { once: true });
+    window.addEventListener('pagehide', () => {cancelAnimationFrame(animationFrame);threeView.destroy()}, { once: true });
   })();
 </script>
