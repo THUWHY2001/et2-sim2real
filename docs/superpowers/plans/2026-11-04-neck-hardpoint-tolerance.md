@@ -214,4 +214,3 @@
 - [ ] **Step 4: Commit verified corrections**
 
   `git commit -m "Verify neck tolerance analysis pilot"`
-
