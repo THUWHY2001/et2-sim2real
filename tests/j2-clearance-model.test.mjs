@@ -49,4 +49,15 @@ assert.equal(rodPresentation.type,"axial");
 assert.equal(rodPresentation.positive.gap,.2);
 assert.equal(rodPresentation.negative.gap,.1);
 
+const j2Only=empty();j2Only.j2={positive:.3,negative:.1};
+const j2=M.analyze(0,j2Only);
+assert.ok(M.keys.includes("j2"),"J2 equivalent rotation axis participates in ranking");
+assert.ok(Math.abs(j2.individual.j2.deadzone-.4)<1e-9);
+assert.ok(Math.abs(j2.individual.j2.bias-.1)<1e-9);
+assert.ok(Math.abs(j2.contribution.j2-100)<1e-9);
+const j2Presentation=M.presentation(2,j2Only,"j2");
+assert.equal(j2Presentation.type,"angular");
+assert.equal(j2Presentation.positive.actual,2.3);
+assert.equal(j2Presentation.negative.actual,1.9);
+
 console.log("J2 clearance model regression test passed");
