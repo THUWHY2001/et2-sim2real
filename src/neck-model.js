@@ -33,7 +33,7 @@
     return{joint,degrees,radians,axis,lower1:points.lower1,lower2:points.lower2,upper1,upper2,com,rod1,rod2,lengths:{rod1:distance(points.lower1,upper1),rod2:distance(points.lower2,upper2)}};
   }
 
-  function gravityTorqueOf(state){const force={x:0,y:0,z:-mass*g};return dot(cross(sub(state.com,state.axis.a),force),state.axis.u)}
+  function gravityTorqueOf(state){const force={x:0,y:0,z:-mass*g};return dot(cross(sub(state.com,state.axis.a),force),state.axis.u)/1000}
   function vectorRate(a,b,step){return norm(sub(b,a))/(2*step)}
 
   function solve(joint,degrees){

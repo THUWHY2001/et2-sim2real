@@ -26,6 +26,8 @@ assert.equal(j1.rates.P1,1);
 assert.equal(j1.rates.R1,0);
 assert.ok(Number.isFinite(j0.gravityTorque));
 assert.ok(Number.isFinite(j1.gravityTorque));
+assert.ok(Math.abs(j0zero.gravityTorque-M.mass*M.g*.000204)<1e-9,"gravity moment must convert mm to m");
+assert.ok(Math.abs(j1zero.gravityTorque+M.mass*M.g*.006149)<1e-9,"J1 gravity arm must be in metres");
 for(const value of Object.values(j0.supportLoads))assert.ok(Number.isFinite(value)&&value>=0);
 
 const rotary=()=>({static:{positive:1,negative:1.2},dynamic:{positive:.7,negative:.8},kN:0,preload:0});
