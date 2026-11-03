@@ -37,8 +37,6 @@ copyFileSync(path.join(root, "src", "link-length-controls.js"), path.join(dist, 
 copyFileSync(path.join(root, "src", "link-length-controls.js"), path.join(root, "link-length-controls.js"));
 copyFileSync(path.join(root, "src", "j2-clearance-model.js"), path.join(dist, "j2-clearance-model.js"));
 copyFileSync(path.join(root, "src", "j2-clearance-model.js"), path.join(root, "j2-clearance-model.js"));
-copyFileSync(path.join(root, "src", "j2-3d-view.js"), path.join(dist, "j2-3d-view.js"));
-copyFileSync(path.join(root, "src", "j2-3d-view.js"), path.join(root, "j2-3d-view.js"));
 copyFileSync(path.join(root, "src", "arm-j3-model.js"), path.join(dist, "arm-j3-model.js"));
 copyFileSync(path.join(root, "src", "arm-j3-model.js"), path.join(root, "arm-j3-model.js"));
 copyFileSync(path.join(root, "src", "arm-j5-model.js"), path.join(dist, "arm-j5-model.js"));
@@ -48,7 +46,7 @@ copyFileSync(path.join(root, "src", "arm-j6-model.js"), path.join(root, "arm-j6-
 copyFileSync(path.join(root, "site.css"), path.join(dist, "site.css"));
 
 const models = [
-  {id:"j2", title:"J2 三维机构简图", fragment:"j2.fragment.html", section:"leg", modelScript:"j2-3d-view.js"},
+  {id:"j2", title:"J2 二维机构简图", fragment:"j2.fragment.html", section:"leg"},
   {id:"j2-clearance", title:"J2 间隙与死区分析", fragment:"j2-clearance.fragment.html", section:"leg", navJoint:"j2", modelScript:"j2-clearance-model.js", modelVersion:"20261103-3"},
   {id:"j3", title:"J3 二维机构简图", fragment:"j3.fragment.html", section:"leg"},
   {id:"j4", title:"J4 二维机构简图", fragment:"j4.fragment.html", section:"leg"},
