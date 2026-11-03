@@ -203,5 +203,36 @@
     return{static:withContribution(staticItems),dynamic:withContribution(dynamicItems)};
   }
 
-  window.NeckToleranceModel={pointKeys,limit,validateOffsets,projectOffset,applyOffset,createState,createDefaultParameters,sideLoad,equivalentResistance,responseMetrics,rankContributions,rankPairContributions};
+  const cloneParameters=parameters=>({
+    points:Object.fromEntries(pointKeys.map(key=>[key,{...(parameters.points?.[key]||{})}])),
+    rods:Object.fromEntries(['rod1','rod2'].map(key=>[key,{...(parameters.rods?.[key]||{})}])),
+    servoTorsionalStiffness:{...(parameters.servoTorsionalStiffness||{})},zeroPin:{...(parameters.zeroPin||{})},
+  });
+  const seededRandom=seed=>{let value=(Number(seed)||1)>>>0;return()=>{value=(1664525*value+1013904223)>>>0;return value/4294967296}};
+  const quantile=(values,p)=>{const sorted=[...values].sort((a,b)=>a-b),position=(sorted.length-1)*p,lower=Math.floor(position),upper=Math.ceil(position);return sorted[lower]+(sorted[upper]-sorted[lower])*(position-lower)};
+  function sampleParameters(parameters,ranges,random){
+    const sampled=cloneParameters(parameters),lower=Math.max(0,Number(ranges?.lowerFactor)??.1),upper=Math.max(lower,Number(ranges?.upperFactor)??10);
+    const factor=()=>lower===upper?lower:(lower>0?Math.exp(Math.log(lower)+random()*(Math.log(upper)-Math.log(lower))):random()*upper);
+    for(const key of pointKeys)for(const name of ['radialStiffness','clearancePositive','clearanceNegative','staticLoadCoefficient','dynamicLoadCoefficient'])sampled.points[key][name]=(Number(sampled.points[key][name])||0)*factor();
+    for(const key of ['rod1','rod2'])for(const name of ['axialStiffness','staticLoadCoefficient','dynamicLoadCoefficient'])sampled.rods[key][name]=(Number(sampled.rods[key][name])||0)*factor();
+    return sampled;
+  }
+  function robustMode(mode,nominal,samples){
+    const byPoint=Object.fromEntries(pointKeys.map(key=>[key,[]])),ranks=Object.fromEntries(pointKeys.map(key=>[key,[]]));
+    for(const result of samples)result[mode].items.forEach((item,index)=>{byPoint[item.point].push(item.contribution);ranks[item.point].push(index+1)});
+    const items=pointKeys.map(point=>{
+      const values=byPoint[point],positions=ranks[point],meanRank=positions.reduce((sum,value)=>sum+value,0)/positions.length;
+      const variance=positions.reduce((sum,value)=>sum+(value-meanRank)**2,0)/positions.length;
+      return{point,nominalContribution:nominal[mode].items.find(item=>item.point===point)?.contribution||0,low:quantile(values,.05),high:quantile(values,.95),firstProbability:positions.filter(rank=>rank===1).length/positions.length,topThreeProbability:positions.filter(rank=>rank<=3).length/positions.length,rankStability:1-Math.min(1,Math.sqrt(variance)/7),meanRank};
+    }).sort((a,b)=>b.firstProbability-a.firstProbability||a.meanRank-b.meanRank);
+    return{items};
+  }
+  function robustRanking(joint,parameters=createDefaultParameters(),loads={},ranges={lowerFactor:.1,upperFactor:10},options={}){
+    const count=Math.max(1,Math.floor(Number(options.samples)||24)),random=seededRandom(options.seed||5913),rankingOptions={directions:options.directions,steps:options.steps||24,refine:options.refine};
+    const nominal=rankContributions(joint,parameters,loads,rankingOptions),samples=[];
+    for(let index=0;index<count;index++)samples.push(rankContributions(joint,sampleParameters(parameters,ranges,random),loads,rankingOptions));
+    return{static:robustMode('static',nominal,samples),dynamic:robustMode('dynamic',nominal,samples),samples:count,seed:options.seed||5913};
+  }
+
+  window.NeckToleranceModel={pointKeys,limit,validateOffsets,projectOffset,applyOffset,createState,createDefaultParameters,sideLoad,equivalentResistance,responseMetrics,rankContributions,rankPairContributions,robustRanking};
 })();

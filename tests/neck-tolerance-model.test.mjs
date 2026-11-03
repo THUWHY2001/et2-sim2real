@@ -91,4 +91,21 @@ const zeroRanking=T.rankContributions("J1",zeroParameters,{},searchOptions);
 assert.ok(zeroRanking.static.items.every(item=>item.contribution===0&&Number.isFinite(item.impact)));
 assert.ok(zeroRanking.dynamic.items.every(item=>item.contribution===0&&Number.isFinite(item.impact)));
 
+const robustOptions={samples:4,seed:5913,directions:searchOptions.directions,steps:8,refine:false};
+const robustA=T.robustRanking("J0",parameters,loads,{lowerFactor:.5,upperFactor:2},robustOptions);
+const robustB=T.robustRanking("J0",parameters,loads,{lowerFactor:.5,upperFactor:2},robustOptions);
+assert.equal(JSON.stringify(robustA),JSON.stringify(robustB),"same seed must reproduce robust ranking");
+for(const mode of ['static','dynamic'])for(const item of robustA[mode].items){
+  assert.ok(item.low<=item.high);
+  assert.ok(item.firstProbability>=0&&item.firstProbability<=1);
+  assert.ok(item.topThreeProbability>=0&&item.topThreeProbability<=1);
+  assert.ok(item.rankStability>=0&&item.rankStability<=1);
+}
+const collapsed=T.robustRanking("J0",parameters,loads,{lowerFactor:1,upperFactor:1},{...robustOptions,samples:2});
+const nominal=T.rankContributions("J0",parameters,loads,{...searchOptions,steps:8});
+for(const mode of ['static','dynamic'])for(const item of collapsed[mode].items){
+  const expected=nominal[mode].items.find(entry=>entry.point===item.point).contribution;
+  assert.ok(Math.abs(item.low-expected)<1e-9&&Math.abs(item.high-expected)<1e-9);
+}
+
 console.log("neck tolerance model regression test passed");

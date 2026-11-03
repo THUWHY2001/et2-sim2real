@@ -42,6 +42,8 @@ copyFileSync(path.join(root, "src", "neck-model.js"), path.join(dist, "neck-mode
 copyFileSync(path.join(root, "src", "neck-model.js"), path.join(root, "neck-model.js"));
 copyFileSync(path.join(root, "src", "neck-3d-view.js"), path.join(dist, "neck-3d-view.js"));
 copyFileSync(path.join(root, "src", "neck-3d-view.js"), path.join(root, "neck-3d-view.js"));
+copyFileSync(path.join(root, "src", "neck-tolerance-model.js"), path.join(dist, "neck-tolerance-model.js"));
+copyFileSync(path.join(root, "src", "neck-tolerance-model.js"), path.join(root, "neck-tolerance-model.js"));
 copyFileSync(path.join(root, "src", "arm-j3-model.js"), path.join(dist, "arm-j3-model.js"));
 copyFileSync(path.join(root, "src", "arm-j3-model.js"), path.join(root, "arm-j3-model.js"));
 copyFileSync(path.join(root, "src", "arm-j5-model.js"), path.join(dist, "arm-j5-model.js"));
@@ -57,6 +59,8 @@ const models = [
   {id:"j4", title:"J4 二维机构简图", fragment:"j4.fragment.html", section:"leg"},
   {id:"neck-j0", title:"头颈 J0 Roll", fragment:"neck-joint.fragment.html", section:"neck", modelScript:"neck-model.js", transform:fragment=>fragment.replaceAll('__JOINT__','J0').replaceAll('__JOINT_LOWER__','j0').replaceAll('__MOTION__','Roll').replaceAll('__VIEW__','Y–Z').replaceAll('__AXIS_COORD__','R1 (-52,0,479.66) → R2 (-40,0,479.66)')},
   {id:"neck-j1", title:"头颈 J1 Pitch", fragment:"neck-joint.fragment.html", section:"neck", modelScript:"neck-model.js", transform:fragment=>fragment.replaceAll('__JOINT__','J1').replaceAll('__JOINT_LOWER__','j1').replaceAll('__MOTION__','Pitch').replaceAll('__VIEW__','X–Z').replaceAll('__AXIS_COORD__','P1 (-16,20,479.66) → P2 (-16,-20,479.66)')},
+  {id:"neck-j0-tolerance", title:"头颈 J0 硬点公差分析", fragment:"neck-tolerance.fragment.html", section:"neck", navJoint:"neck-j0", modelScript:"neck-model.js", transform:fragment=>fragment.replaceAll('__JOINT__','J0').replaceAll('__JOINT_LOWER__','j0')},
+  {id:"neck-j1-tolerance", title:"头颈 J1 硬点公差分析", fragment:"neck-tolerance.fragment.html", section:"neck", navJoint:"neck-j1", modelScript:"neck-model.js", transform:fragment=>fragment.replaceAll('__JOINT__','J1').replaceAll('__JOINT_LOWER__','j1')},
   {id:"arm-j3", title:"手臂 J3 机构简图", fragment:"arm-j3.fragment.html", section:"arm", modelScript:"arm-j3-model.js"},
   {id:"arm-j5", title:"手臂 J5 机构简图", fragment:"arm-j5.fragment.html", section:"arm", modelScript:"arm-j5-model.js"},
   {id:"arm-j6", title:"手臂 J6 机构简图", fragment:"arm-j5.fragment.html", section:"arm", modelScript:"arm-j6-model.js", transform:fragment=>fragment.replaceAll('arm-j5','arm-j6').replaceAll('ArmJ5Model','ArmJ6Model').replaceAll('J5','J6').replace('(25.986,335.600,−92.703)—(17.524,336.576,−95.609)','(25.282,328.524,−106.969)—(25.869,355.606,−96.874)').replaceAll('两根推杆同步伸缩','两根推杆反向伸缩').replace('手臂 J6 并联双推杆机构与阻力贡献','手臂 J6 手腕Pitch双推杆机构与阻力贡献')},
