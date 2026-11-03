@@ -4,7 +4,7 @@ import {existsSync,readFileSync} from "node:fs";
 assert.ok(existsSync("j2-clearance.html"),"build produces an independent J2 clearance page");
 const page=readFileSync("j2-clearance.html","utf8"),resistance=readFileSync("j2.html","utf8");
 assert.match(page,/<title>J2 间隙与死区分析/);
-assert.match(page,/src="j2-clearance-model\.js\?v=[^"]+"/);
+assert.match(page,/src="j2-clearance-model\.js\?v=20261103-1"/);
 assert.match(page,/href="j2\.html"[^>]*>阻力贡献<\/a>/);
 assert.match(page,/href="j2-clearance\.html"[^>]*aria-current="page"[^>]*>间隙\/死区<\/a>/);
 assert.match(resistance,/href="j2-clearance\.html"[^>]*>间隙\/死区<\/a>/);

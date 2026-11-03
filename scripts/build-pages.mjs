@@ -23,8 +23,8 @@ const armJointNav = current => `<nav class="joint-nav" aria-label="手臂等效�
 
 const chartResizeScript = `<script>(()=>{const initialized=new WeakSet();window.initChartResizeControls=(root=document)=>{root.querySelectorAll('[data-chart-panel]').forEach(panel=>{if(initialized.has(panel))return;initialized.add(panel);const stage=panel.querySelector('[data-chart-stage]'),output=panel.querySelector('[data-chart-scale]');let scale=1;const apply=()=>{stage.style.width=(scale*100)+'%';output.textContent=Math.round(scale*100)+'%';panel.querySelector('[data-chart-action="out"]').disabled=scale<=.75;panel.querySelector('[data-chart-action="in"]').disabled=scale>=2};panel.addEventListener('click',event=>{const button=event.target.closest('[data-chart-action]');if(!button)return;const action=button.dataset.chartAction;if(action==='out')scale=Math.max(.75,scale-.25);if(action==='in')scale=Math.min(2,scale+.25);if(action==='reset')scale=1;if(action==='fullscreen'){if(document.fullscreenElement===panel)document.exitFullscreen();else if(panel.requestFullscreen)panel.requestFullscreen();else panel.classList.toggle('chart-expanded')}apply()});document.addEventListener('fullscreenchange',()=>{const button=panel.querySelector('[data-chart-action="fullscreen"]');button.textContent=document.fullscreenElement===panel?'退出全屏':'全屏'});apply()})};window.initChartResizeControls(document)})();</script>`;
 
-function document(title, current, body, joint = null, modelScript = null) {
-  const scripts=joint?`<script src="directional-friction.js?v=${assetVersion}"></script><script src="link-tolerance.js?v=${assetVersion}"></script><script src="link-length-controls.js?v=${assetVersion}"></script>${modelScript?`<script src="${modelScript}?v=${assetVersion}"></script>`:''}`:'';
+function document(title, current, body, joint = null, modelScript = null, modelVersion = assetVersion) {
+  const scripts=joint?`<script src="directional-friction.js?v=${assetVersion}"></script><script src="link-tolerance.js?v=${assetVersion}"></script><script src="link-length-controls.js?v=${assetVersion}"></script>${modelScript?`<script src="${modelScript}?v=${modelVersion}"></script>`:''}`:'';
   const subnav=joint?(current==='arm'?armJointNav(joint):jointNav(joint)):'';
   return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>${title}</title><link rel="stylesheet" href="site.css?v=${assetVersion}">${scripts}</head><body>${nav(current)}${subnav}${body}${joint ? chartResizeScript : ""}</body></html>`;
 }
@@ -47,7 +47,7 @@ copyFileSync(path.join(root, "site.css"), path.join(dist, "site.css"));
 
 const models = [
   {id:"j2", title:"J2 二维机构简图", fragment:"j2.fragment.html", section:"leg"},
-  {id:"j2-clearance", title:"J2 间隙与死区分析", fragment:"j2-clearance.fragment.html", section:"leg", navJoint:"j2", modelScript:"j2-clearance-model.js"},
+  {id:"j2-clearance", title:"J2 间隙与死区分析", fragment:"j2-clearance.fragment.html", section:"leg", navJoint:"j2", modelScript:"j2-clearance-model.js", modelVersion:"20261103-1"},
   {id:"j3", title:"J3 二维机构简图", fragment:"j3.fragment.html", section:"leg"},
   {id:"j4", title:"J4 二维机构简图", fragment:"j4.fragment.html", section:"leg"},
   {id:"arm-j3", title:"手臂 J3 机构简图", fragment:"arm-j3.fragment.html", section:"arm", modelScript:"arm-j3-model.js"},
@@ -58,7 +58,7 @@ const models = [
 for (const model of models) {
   let fragment = readFileSync(path.join(root, "src", model.fragment), "utf8");
   if(model.transform)fragment=model.transform(fragment);
-  const page = document(`${model.title}｜${siteTitle}`, model.section, `<main class="model-shell">${fragment}</main>`, model.navJoint||model.id, model.modelScript);
+  const page = document(`${model.title}｜${siteTitle}`, model.section, `<main class="model-shell">${fragment}</main>`, model.navJoint||model.id, model.modelScript, model.modelVersion);
   writeFileSync(path.join(dist, `${model.id}.html`), page);
   writeFileSync(path.join(root, `${model.id}.html`), page);
 }
