@@ -20,14 +20,14 @@
       <label>轴1—轴2 <span>标准 <output data-j2-length-base="axis1Axis2"></output> + <input data-j2-length="axis1Axis2" type="number" value="0" step="0.1"> mm</span></label>
       <label>轴2—轴3 <span>标准 <output data-j2-length-base="axis2Axis3"></output> + <input data-j2-length="axis2Axis3" type="number" value="0" step="0.1"> mm</span></label>
       <label>轴3—下端点 <span>标准 <output data-j2-length-base="axis3Lower"></output> + <input data-j2-length="axis3Lower" type="number" value="0" step="0.1"> mm</span></label>
-      <label>下端点—推杆下端滑套轴承 <span>标准 <output data-j2-length-base="point2Lower"></output> + <input data-j2-length="point2Lower" type="number" value="0" step="0.1"> mm</span></label>
+      <label>下端点—推杆下端滑动轴承 <span>标准 <output data-j2-length-base="point2Lower"></output> + <input data-j2-length="point2Lower" type="number" value="0" step="0.1"> mm</span></label>
     </div>
     <p id="j2-length-status" class="text-small" role="status">标准态｜全部 ΔL = 0 mm</p>
   </section>
   <div class="j2-layout"><section>
   <svg viewBox="0 0 560 555" role="img" aria-labelledby="leg-viz-title leg-viz-desc">
     <title id="leg-viz-title">J2 腿部二维机构连接简图</title>
-    <desc id="leg-viz-desc">所有转轴均沿 Y 方向，因此在 X-Z 平面投影成点。J2 驱动轴3、下端点和推杆下端滑套轴承组成的刚性组件；轴2由两根定长杆闭环解算。推杆上下端均为滑套轴承，并区分真实可伸缩段和固定筒体段。</desc>
+    <desc id="leg-viz-desc">所有转轴均沿 Y 方向，因此在 X-Z 平面投影成点。J2 驱动轴3、下端点和推杆下端滑动轴承组成的刚性组件；轴2由两根定长杆闭环解算。推杆上下端均为滑动轴承，并区分真实可伸缩段和固定筒体段。</desc>
 
     <g class="grid" aria-hidden="true">
       <line x1="70" y1="55" x2="70" y2="515"></line>
@@ -86,17 +86,17 @@
         <circle r="9"></circle><circle class="axis-dot" r="3"></circle>
         <text x="-5" y="-16">轴1</text>
       </g>
-      <g id="node-axis2" class="node" data-name="推杆上端滑套轴承 / 轴2" data-coordinate="轴线：(88.282, 72.7, −118.119) → (88.282, 113.3, −118.119)；中心：(88.282, 93, −118.119)" transform="translate(249 130)" role="button" aria-label="推杆上端滑套轴承和轴2，点击查看坐标">
+      <g id="node-axis2" class="node" data-name="推杆上端滑动轴承 / 轴2" data-coordinate="轴线：(88.282, 72.7, −118.119) → (88.282, 113.3, −118.119)；中心：(88.282, 93, −118.119)" transform="translate(249 130)" role="button" aria-label="推杆上端滑动轴承和轴2，点击查看坐标">
         <circle r="10"></circle><circle class="axis-dot" r="3"></circle>
-        <text x="12" y="-13">轴2 / 推杆上端滑套轴承</text>
+        <text x="12" y="-13">轴2 / 推杆上端滑动轴承</text>
       </g>
       <g id="node-axis3" class="node" data-name="轴3 / 上连杆传动点" data-coordinate="轴线：(37.725, 73, −163.787) → (37.725, 113, −163.787)；轴上点：(37.725, 93, −163.787)" transform="translate(117 180)" role="button" aria-label="轴3和上连杆传动点，点击查看坐标">
         <circle r="10"></circle><circle class="axis-dot" r="3"></circle>
         <text x="-7" y="24">轴3 / 轴上点</text>
       </g>
-      <g id="node-point2" class="node endpoint" data-name="推杆下端滑套轴承" data-coordinate="中心：(194.761, 93, −404.826)" transform="translate(526 445)" role="button" aria-label="推杆下端滑套轴承，点击查看坐标">
+      <g id="node-point2" class="node endpoint" data-name="推杆下端滑动轴承" data-coordinate="中心：(194.761, 93, −404.826)" transform="translate(526 445)" role="button" aria-label="推杆下端滑动轴承，点击查看坐标">
         <circle r="8"></circle>
-        <text x="-10" y="-15">推杆下端滑套轴承</text>
+        <text x="-10" y="-15">推杆下端滑动轴承</text>
       </g>
       <g id="node-stroke-end" class="node stroke-point" data-name="真实可伸缩段末端" data-coordinate="基准坐标：(121.786, 93.001, −206.815)；运动时沿两传动点连线随动" transform="translate(335 228)" role="button" aria-label="真实可伸缩段末端，点击查看坐标">
         <circle r="7"></circle>
@@ -114,9 +114,9 @@
     <tbody>
       <tr><td>J2</td><td>等效轴</td><td>(24.745, 93, −87.460)</td><td>控制输出轴</td></tr>
       <tr><td>轴1</td><td>旋转副</td><td>(50.372, 93, −54.614)</td><td>固定参考侧</td></tr>
-      <tr><td>轴2</td><td>推杆上端滑套轴承</td><td>(88.282, 93, −118.119)</td><td>销轴—衬套，绕Y轴转动</td></tr>
+      <tr><td>轴2</td><td>推杆上端滑动轴承</td><td>(88.282, 93, −118.119)</td><td>销轴—衬套，绕Y轴转动</td></tr>
       <tr><td>轴3</td><td>旋转副</td><td>(37.725, 93, −163.787)</td><td>J2主动组件</td></tr>
-      <tr><td>点2</td><td>推杆下端滑套轴承</td><td>(194.761, 93, −404.826)</td><td>销轴—衬套，绕Y轴转动</td></tr>
+      <tr><td>点2</td><td>推杆下端滑动轴承</td><td>(194.761, 93, −404.826)</td><td>销轴—衬套，绕Y轴转动</td></tr>
       <tr><td>推杆</td><td>移动副</td><td>轴2—点2</td><td>轴向伸缩</td></tr>
     </tbody>
   </table></div>
@@ -125,9 +125,9 @@
   <label class="text-small">等效轴启动方向 <select data-start-direction><option value="1">正向</option><option value="-1">反向</option></select></label>
   <div class="j2-inputs text-small">
     <label>轴1 正向 <input data-j2-static="axis1-positive" type="number" value="1" min="0" step="0.1"> N·m</label><label>轴1 反向 <input data-j2-static="axis1-negative" type="number" value="1" min="0" step="0.1"> N·m</label>
-    <label>推杆上端滑套轴承 正向 <input data-j2-static="axis2-positive" type="number" value="1" min="0" step="0.1"> N·m</label><label>推杆上端滑套轴承 反向 <input data-j2-static="axis2-negative" type="number" value="1" min="0" step="0.1"> N·m</label>
+    <label>推杆上端滑动轴承 正向 <input data-j2-static="axis2-positive" type="number" value="1" min="0" step="0.1"> N·m</label><label>推杆上端滑动轴承 反向 <input data-j2-static="axis2-negative" type="number" value="1" min="0" step="0.1"> N·m</label>
     <label>轴3 正向 <input data-j2-static="axis3-positive" type="number" value="1" min="0" step="0.1"> N·m</label><label>轴3 反向 <input data-j2-static="axis3-negative" type="number" value="1" min="0" step="0.1"> N·m</label>
-    <label>推杆下端滑套轴承 正向 <input data-j2-static="point2-positive" type="number" value="1" min="0" step="0.1"> N·m</label><label>推杆下端滑套轴承 反向 <input data-j2-static="point2-negative" type="number" value="1" min="0" step="0.1"> N·m</label>
+    <label>推杆下端滑动轴承 正向 <input data-j2-static="point2-positive" type="number" value="1" min="0" step="0.1"> N·m</label><label>推杆下端滑动轴承 反向 <input data-j2-static="point2-negative" type="number" value="1" min="0" step="0.1"> N·m</label>
     <label>推杆 伸出 <input data-j2-static="rod-positive" type="number" value="10" min="0" step="1"> N</label><label>推杆 缩回 <input data-j2-static="rod-negative" type="number" value="10" min="0" step="1"> N</label>
   </div>
   <div class="viz-grid">
@@ -137,9 +137,9 @@
   <h3>1 Hz / ±10° 静摩擦贡献度</h3>
   <div class="chart-legend viz-row text-small" aria-label="贡献度曲线图例">
     <button type="button" data-series="axis1" aria-pressed="true"><i class="series-swatch series-axis1"></i>轴1</button>
-    <button type="button" data-series="axis2" aria-pressed="true"><i class="series-swatch series-axis2"></i>推杆上端滑套轴承（轴2）</button>
+    <button type="button" data-series="axis2" aria-pressed="true"><i class="series-swatch series-axis2"></i>推杆上端滑动轴承（轴2）</button>
     <button type="button" data-series="axis3" aria-pressed="true"><i class="series-swatch series-axis3"></i>轴3</button>
-    <button type="button" data-series="rod2" aria-pressed="true"><i class="series-swatch series-rod2"></i>推杆下端滑套轴承</button>
+    <button type="button" data-series="rod2" aria-pressed="true"><i class="series-swatch series-rod2"></i>推杆下端滑动轴承</button>
     <button type="button" data-series="rod" aria-pressed="true"><i class="series-swatch series-rod"></i>推杆轴向</button>
   </div>
   <div class="chart-panel" data-chart-panel><div class="chart-tools" aria-label="贡献度图显示控制"><span>图表大小</span><button type="button" data-chart-action="out" aria-label="缩小贡献度图">−</button><output data-chart-scale>100%</output><button type="button" data-chart-action="in" aria-label="放大贡献度图">＋</button><button type="button" data-chart-action="reset">还原</button><button type="button" data-chart-action="fullscreen">全屏</button></div><div class="chart-viewport"><div class="chart-stage" data-chart-stage>
@@ -177,15 +177,15 @@
     </g>
   </svg>
   </div></div></div>
-  <p id="friction-live" class="selected-detail text-small" aria-live="polite">等摩擦阻力矩假设｜轴1 44.8%｜上端滑套 24.0%｜轴3 28.9%｜下端滑套 2.4%</p>
+  <p id="friction-live" class="selected-detail text-small" aria-live="polite">等摩擦阻力矩假设｜轴1 44.8%｜上端滑动轴承 24.0%｜轴3 28.9%｜下端滑动轴承 2.4%</p>
   <h3>运行阻力（1 Hz、±10°）</h3>
   <div class="table-responsive"><table class="table table-sm">
     <thead><tr><th>运动副</th><th>正向/伸出动摩擦</th><th>正向黏性</th><th>反向/缩回动摩擦</th><th>反向黏性</th></tr></thead>
     <tbody>
       <tr><td>轴1</td><td><input data-j2-run="axis1-positive-c" type="number" value="1"></td><td><input data-j2-run="axis1-positive-b" type="number" value="0"></td><td><input data-j2-run="axis1-negative-c" type="number" value="1"></td><td><input data-j2-run="axis1-negative-b" type="number" value="0"></td></tr>
-      <tr><td>推杆上端滑套轴承</td><td><input data-j2-run="axis2-positive-c" type="number" value="1"></td><td><input data-j2-run="axis2-positive-b" type="number" value="0"></td><td><input data-j2-run="axis2-negative-c" type="number" value="1"></td><td><input data-j2-run="axis2-negative-b" type="number" value="0"></td></tr>
+      <tr><td>推杆上端滑动轴承</td><td><input data-j2-run="axis2-positive-c" type="number" value="1"></td><td><input data-j2-run="axis2-positive-b" type="number" value="0"></td><td><input data-j2-run="axis2-negative-c" type="number" value="1"></td><td><input data-j2-run="axis2-negative-b" type="number" value="0"></td></tr>
       <tr><td>轴3</td><td><input data-j2-run="axis3-positive-c" type="number" value="1"></td><td><input data-j2-run="axis3-positive-b" type="number" value="0"></td><td><input data-j2-run="axis3-negative-c" type="number" value="1"></td><td><input data-j2-run="axis3-negative-b" type="number" value="0"></td></tr>
-      <tr><td>推杆下端滑套轴承</td><td><input data-j2-run="point2-positive-c" type="number" value="1"></td><td><input data-j2-run="point2-positive-b" type="number" value="0"></td><td><input data-j2-run="point2-negative-c" type="number" value="1"></td><td><input data-j2-run="point2-negative-b" type="number" value="0"></td></tr>
+      <tr><td>推杆下端滑动轴承</td><td><input data-j2-run="point2-positive-c" type="number" value="1"></td><td><input data-j2-run="point2-positive-b" type="number" value="0"></td><td><input data-j2-run="point2-negative-c" type="number" value="1"></td><td><input data-j2-run="point2-negative-b" type="number" value="0"></td></tr>
       <tr><td>推杆轴向</td><td><input data-j2-run="rod-positive-c" type="number" value="10"></td><td><input data-j2-run="rod-positive-b" type="number" value="0"></td><td><input data-j2-run="rod-negative-c" type="number" value="10"></td><td><input data-j2-run="rod-negative-b" type="number" value="0"></td></tr>
     </tbody>
   </table></div>
@@ -326,7 +326,7 @@
     const projectionScale = 1.0;
     const project = (point) => ({ x: 95 + projectionScale * point.x, y: 5 - projectionScale * point.z });
     const standardLengths = resistanceModel.lengths;
-    const lengthNames={j2Axis3:'J2—轴3',axis1Axis2:'轴1—轴2',axis2Axis3:'轴2—轴3',axis3Lower:'轴3—下端点',point2Lower:'下端点—推杆下端滑套轴承'};
+    const lengthNames={j2Axis3:'J2—轴3',axis1Axis2:'轴1—轴2',axis2Axis3:'轴2—轴3',axis3Lower:'轴3—下端点',point2Lower:'下端点—推杆下端滑动轴承'};
     const rodBodyLength = distance(points.strokeEnd, points.point2);
     const currentLengths = () => Object.fromEntries(Object.entries(standardLengths).map(([key,base]) => {
       const input=root.querySelector(`[data-j2-length="${key}"]`);
@@ -378,9 +378,9 @@
     };
     const frictionSeries = [
       { key: 'axis1', label: '轴1' },
-      { key: 'axis2', label: '推杆上端滑套轴承' },
+      { key: 'axis2', label: '推杆上端滑动轴承' },
       { key: 'axis3', label: '轴3' },
-      { key: 'rod2', label: '推杆下端滑套轴承' },
+      { key: 'rod2', label: '推杆下端滑动轴承' },
       { key: 'rod', label: '推杆轴向' },
     ];
     const chartX = (seconds) => 54 + 470 * seconds;
@@ -401,7 +401,7 @@
     const buildToleranceCharts = () => window.LinkTolerance.render({host:root.querySelector('#j2-tolerance-charts'),model:resistanceModel,links:toleranceLinks,loads:staticLoads(),direction:startDirection(),jointLabel:'J2'});
     const updateFrictionDisplay = (degrees, phaseSeconds = null) => {
       const contribution = frictionContribution(degrees);
-      root.querySelector('#friction-live').textContent = `轴1 ${contribution.axis1.toFixed(1)}%｜推杆上端滑套 ${contribution.axis2.toFixed(1)}%｜轴3 ${contribution.axis3.toFixed(1)}%｜推杆下端滑套 ${contribution.rod2.toFixed(1)}%｜推杆轴向 ${contribution.rod.toFixed(1)}%`;
+      root.querySelector('#friction-live').textContent = `轴1 ${contribution.axis1.toFixed(1)}%｜推杆上端滑动轴承 ${contribution.axis2.toFixed(1)}%｜轴3 ${contribution.axis3.toFixed(1)}%｜推杆下端滑动轴承 ${contribution.rod2.toFixed(1)}%｜推杆轴向 ${contribution.rod.toFixed(1)}%`;
       const cursor = root.querySelector('#friction-cursor');
       const visible = phaseSeconds !== null;
       cursor.style.visibility = visible ? 'visible' : 'hidden';
@@ -430,7 +430,7 @@
       return {current,peak,energy,directionEnergy,totalEnergy:Object.values(energy).reduce((a,b)=>a+b,0)};
     };
     const updateResistancePanels = (degrees, direction = startDirection()) => {
-      const state=resistanceModel.solve(degrees,currentLengths()),start=resistanceModel.equivalentTorque(state,staticLoads(),startDirection()),peak=staticPeak(),run=runCycle(degrees,direction),names={axis1:'轴1',axis2:'推杆上端滑套轴承',axis3:'轴3',point2:'推杆下端滑套轴承',rod:'推杆轴向'};
+      const state=resistanceModel.solve(degrees,currentLengths()),start=resistanceModel.equivalentTorque(state,staticLoads(),startDirection()),peak=staticPeak(),run=runCycle(degrees,direction),names={axis1:'轴1',axis2:'推杆上端滑动轴承',axis3:'轴3',point2:'推杆下端滑动轴承',rod:'推杆轴向'};
       root.querySelector('#j2-total-torque').textContent=start.total.toFixed(3)+' N·m';
       root.querySelector('#j2-peak-torque').textContent=peak.total.toFixed(3)+' N·m';
       root.querySelector('#j2-peak-angle').textContent=`发生于 ${peak.angle.toFixed(1)}°`;
