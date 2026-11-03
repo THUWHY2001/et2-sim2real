@@ -24,8 +24,6 @@
       <tr><td>推杆下端滑套轴承（点2）</td><td><input data-j2-gap="point2-radial-positive" type="number" min="0" step="0.01" value="0.05"></td><td><input data-j2-gap="point2-radial-negative" type="number" min="0" step="0.01" value="0.05"></td><td><input data-j2-gap="point2-axial-positive" type="number" min="0" step="0.01" value="0"></td><td><input data-j2-gap="point2-axial-negative" type="number" min="0" step="0.01" value="0"></td></tr>
       <tr><td>推杆轴向背隙</td><td><input data-j2-gap="rod-positive" type="number" min="0" step="0.01" value="0.10"></td><td><input data-j2-gap="rod-negative" type="number" min="0" step="0.01" value="0.10"></td><td colspan="2" class="text-muted">伸出侧 / 缩回侧</td></tr>
     </tbody></table></div>
-    <p class="text-small"><strong>为什么上端滑套、下端滑套与推杆背隙可能同灵敏度：</strong>轴2和点2分别是推杆上、下端滑套轴承。两端都由推杆轴向载荷压向衬套接触边界，其径向游隙沿推杆方向的有效分量为 <span class="formula">δL = c<sub>r</sub>|n·e<sub>rod</sub>|</span>；当前两力杆假设下 <span class="formula">n∥e<sub>rod</sub></span>，故 δL=c<sub>r</sub>。推杆轴向背隙同样直接形成 δL，因此三者在相同毫米输入下经 <span class="formula">Δq≈δL/|dL/dq|</span> 折算后可得到相同单位灵敏度。这不代表重复计算；三项对应不同零件位置，实际贡献度由各自实测间隙决定。</p>
-    <p class="text-small text-muted">理想 X–Z 二维模型中，轴向间隙的一阶贡献为 0；输入接口保留，待三维轴向与止推接触约束加入后启用。</p>
   </section>
 
   <section class="card screening-card">
