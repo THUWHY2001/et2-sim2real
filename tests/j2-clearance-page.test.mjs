@@ -24,6 +24,7 @@ for(const key of ["j2","axis1","axis2","axis3","point2","rod"])
 for(const id of ["j2-gap-mechanism","j2-gap-magnifier","j2-gap-demo-contact","j2-gap-demo-difference"])
   assert.match(page,new RegExp(`id="${id}"`),`${id} is available to the live diagram`);
 assert.match(page,/间隙位移为放大示意，数值计算仍使用真实输入/);
+assert.doesNotMatch(page,/主机构图保持真实几何，只高亮所选连接副/,'the removed explanatory copy stays off the page');
 assert.match(page,/function drawMagnifier\(p,progress\)/,'magnifier accepts a continuous contact progress');
 assert.match(page,/data-gap-live-pin/,'magnifier renders one live moving bearing pin');
 assert.match(page,/contactProgress/,'animation maintains a continuous visual contact state');

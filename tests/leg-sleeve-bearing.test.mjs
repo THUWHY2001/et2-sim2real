@@ -19,8 +19,8 @@ assert.match(j4,/A端滑动轴承/);
 assert.match(j4,/B端滑动轴承/);
 for(const source of [j2,clearance,j3,j4]) assert.doesNotMatch(source,/鱼眼|滑套轴承/);
 
-assert.match(clearance,/主机构图保持真实几何/);
+assert.doesNotMatch(clearance,/主机构图保持真实几何/);
 assert.doesNotMatch(clearance,/ghost\.axis3/);
 assert.doesNotMatch(clearance,/posV=/);
 
-console.log("Leg pushrod sleeve-bearing regression test passed");
+console.log("Leg pushrod sliding-bearing regression test passed");
