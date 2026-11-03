@@ -67,6 +67,11 @@ assert.ok(staticResistance.parts.R1>dynamicResistance.parts.R1,"static and dynam
 assert.ok(Number.isFinite(staticResistance.frictionTotal));
 assert.ok(Number.isFinite(staticResistance.driveTorque));
 
+const commonRodShift={...zero,lower1:{x:0,y:1,z:0},upper1:{x:0,y:1,z:0}};
+const commonState=T.createState("J0",0,commonRodShift);
+const commonResistance=T.equivalentResistance("J0",commonState,parameters,loads,1,"static");
+assert.ok(commonResistance.sideLoads.lower1<1e-9&&commonResistance.sideLoads.upper1<1e-9,"common endpoint translation must not create duplicate rod side load");
+
 const searchOptions={directions:[{x:1,y:0,z:0},{x:-1,y:0,z:0},{x:0,y:1,z:0},{x:0,y:-1,z:0},{x:0,y:0,z:1},{x:0,y:0,z:-1}],steps:12,refine:false};
 const single=T.rankContributions("J0",parameters,loads,searchOptions);
 assert.equal(single.static.items.length,8);
@@ -84,6 +89,8 @@ for(const item of pairs.static.items){
   assert.ok(Math.hypot(item.directions[0].x,item.directions[0].y,item.directions[0].z)<=1+1e-12);
   assert.ok(Math.hypot(item.directions[1].x,item.directions[1].y,item.directions[1].z)<=1+1e-12);
 }
+const refinedPairs=T.rankPairContributions("J0",parameters,loads,{steps:8});
+assert.ok(refinedPairs.static.items.some(item=>item.directions.some(direction=>[direction.x,direction.y,direction.z].filter(value=>Math.abs(value)>.05).length>=2)),"default pair search must refine beyond six cardinal directions");
 const zeroParameters=T.createDefaultParameters();
 for(const point of T.pointKeys)zeroParameters.points[point]={radialStiffness:0,clearancePositive:0,clearanceNegative:0,staticLoadCoefficient:0,dynamicLoadCoefficient:0};
 for(const rod of ['rod1','rod2'])zeroParameters.rods[rod]={axialStiffness:0,staticLoadCoefficient:0,dynamicLoadCoefficient:0};

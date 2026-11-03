@@ -59,11 +59,7 @@
     const radialResiduals={};
     for(const key of ['R1','R2'])radialResiduals[key]=distanceToAxis(zeroPoints[key],axes.J0);
     for(const key of ['P1','P2'])radialResiduals[key]=distanceToAxis(zeroPoints[key],axes.J1);
-    const nominalRod1=unit(sub(M.points.upper1,M.points.lower1)),nominalRod2=unit(sub(M.points.upper2,M.points.lower2));
-    const closureResiduals={
-      lower1:norm(cross(delta.lower1,nominalRod1)),upper1:norm(cross(delta.upper1,nominalRod1)),
-      lower2:norm(cross(delta.lower2,nominalRod2)),upper2:norm(cross(delta.upper2,nominalRod2)),
-    };
+    const closureResiduals={lower1:0,upper1:0,lower2:0,upper2:0};
     return{joint,degrees,radians,axis,points,com,rod1,rod2,radialResiduals,closureResiduals,lengths:{rod1:distance(points.lower1,points.upper1),rod2:distance(points.lower2,points.upper2)}};
   }
 
@@ -82,6 +78,10 @@
     state.rates=rates;
     const nominal=M.solve(joint,degrees);
     state.lengthErrors={rod1:state.lengths.rod1-nominal.lengths.rod1,rod2:state.lengths.rod2-nominal.lengths.rod2};
+    const rod1Error=sub(sub(state.points.upper1,state.points.lower1),sub(nominal.upper1,nominal.lower1));
+    const rod2Error=sub(sub(state.points.upper2,state.points.lower2),sub(nominal.upper2,nominal.lower2));
+    const transverse1=norm(cross(rod1Error,nominal.rod1)),transverse2=norm(cross(rod2Error,nominal.rod2));
+    state.closureResiduals={lower1:transverse1,upper1:transverse1,lower2:transverse2,upper2:transverse2};
     state.gravityTorque=nominal.gravityTorque;
     return state;
   }
@@ -102,10 +102,16 @@
   const measured=(load,mode,direction)=>Math.max(0,Number(load?.[mode]?.[directionKey(direction)])||0);
   function equivalentResistance(joint,state,parameters=createDefaultParameters(),loads={},direction=1,mode='static'){
     const config=M.keys[joint],parts=Object.fromEntries([...pointKeys,'rod1','rod2'].map(key=>[key,0])),sideLoads={};
+    const axialForces={};
+    for(const key of ['rod1','rod2']){
+      const rodParameters=parameters.rods?.[key]||{};
+      axialForces[key]=Math.max(0,Number(rodParameters.axialStiffness)||0)*Math.abs(state.lengthErrors[key]||0);
+    }
     for(const key of pointKeys){
       const residual=key[0]==='R'||key[0]==='P'?state.radialResiduals[key]:(state.closureResiduals[key]||0);
       const pointParameters=parameters.points?.[key]||{};
-      const load=sideLoad(residual,pointParameters,direction);
+      const rodLoad=key==='lower1'||key==='upper1'?axialForces.rod1:key==='lower2'||key==='upper2'?axialForces.rod2:0;
+      const load=sideLoad(residual,pointParameters,direction)+rodLoad;
       sideLoads[key]=load;
       if(config.rotary.includes(key)){
         const coefficient=Math.max(0,Number(pointParameters[mode==='static'?'staticLoadCoefficient':'dynamicLoadCoefficient'])||0);
@@ -113,11 +119,9 @@
         parts[key]=friction*Math.abs(state.rates[key]||0);
       }
     }
-    const axialForces={};
     for(const key of ['rod1','rod2']){
       const rodParameters=parameters.rods?.[key]||{};
-      const axialForce=Math.max(0,Number(rodParameters.axialStiffness)||0)*Math.abs(state.lengthErrors[key]||0);
-      axialForces[key]=axialForce;
+      const axialForce=axialForces[key];
       const coefficient=Math.max(0,Number(rodParameters[mode==='static'?'staticLoadCoefficient':'dynamicLoadCoefficient'])||0);
       const resistance=measured(loads[key],mode,direction)+coefficient*axialForce;
       parts[key]=resistance*Math.abs(state.rodJacobians[key]||0)/1000;
@@ -187,15 +191,24 @@
   }
 
   function rankPairContributions(joint,parameters=createDefaultParameters(),loads={},options={}){
-    const directions=normalizedDirections(options.directions?.length?options.directions:pairDirections()),zero=cloneOffsets(),staticItems=[],dynamicItems=[];
+    const explicit=options.directions?.length,baseDirections=normalizedDirections(explicit?options.directions:pairDirections()),zero=cloneOffsets(),staticItems=[],dynamicItems=[];
+    const seeds=explicit?null:Object.fromEntries(pointKeys.map(key=>[key,bestForPoint(joint,key,parameters,loads,{...options,steps:options.steps||72})]));
     for(let a=0;a<pointKeys.length;a++)for(let b=a+1;b<pointKeys.length;b++){
       const first=pointKeys[a],second=pointKeys[b];let bestStatic=null,bestDynamic=null;
-      for(const firstDirection of directions)for(const secondDirection of directions){
+      const staticFirst=explicit||options.refine===false?baseDirections:refineDirections(seeds[first].static.direction);
+      const staticSecond=explicit||options.refine===false?baseDirections:refineDirections(seeds[second].static.direction);
+      const dynamicFirst=explicit||options.refine===false?baseDirections:refineDirections(seeds[first].dynamic.direction);
+      const dynamicSecond=explicit||options.refine===false?baseDirections:refineDirections(seeds[second].dynamic.direction);
+      for(const firstDirection of staticFirst)for(const secondDirection of staticSecond){
         const offsets=cloneOffsets(zero);offsets[first]=scale(firstDirection,limit);offsets[second]=scale(secondDirection,limit);
         const metrics=responseMetrics(joint,offsets,parameters,loads,options.steps||72);
         const staticItem={points:[first,second],directions:[firstDirection,secondDirection],impact:metrics.staticPeak,metrics};
-        const dynamicItem={points:[first,second],directions:[firstDirection,secondDirection],impact:metrics.dynamicPeak,metrics};
         if(!bestStatic||staticItem.impact>bestStatic.impact)bestStatic=staticItem;
+      }
+      for(const firstDirection of dynamicFirst)for(const secondDirection of dynamicSecond){
+        const offsets=cloneOffsets(zero);offsets[first]=scale(firstDirection,limit);offsets[second]=scale(secondDirection,limit);
+        const metrics=responseMetrics(joint,offsets,parameters,loads,options.steps||72);
+        const dynamicItem={points:[first,second],directions:[firstDirection,secondDirection],impact:metrics.dynamicPeak,metrics};
         if(!bestDynamic||dynamicItem.impact>bestDynamic.impact)bestDynamic=dynamicItem;
       }
       staticItems.push(bestStatic);dynamicItems.push(bestDynamic);
