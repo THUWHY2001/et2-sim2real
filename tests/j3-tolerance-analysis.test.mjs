@@ -19,7 +19,7 @@ for(const key of ["JP","PA","AQ","JQ"]){
   assert.ok(Number.isFinite(state.rodJacobian)&&Object.values(state.rates).every(Number.isFinite),`${key} keeps a finite Jacobian`);
 }
 assert.throws(()=>M.solve(0,{PA:1}),/闭环/,"invalid J3 closure must be rejected");
-const loads=Object.fromEntries(["p","a","q","rod"].map(key=>[key,{positive:key==="rod"?10:1,negative:key==="rod"?10:1}]));
+const loads=Object.fromEntries(["p","a","q","b","rod"].map(key=>[key,{positive:key==="rod"?10:1,negative:key==="rod"?10:1}]));
 const results=T.analyze({model:M,links:["JP","PA","AQ","JQ"].map(key=>({key,label:key})),loads,direction:1,sampleCount:7});
 assert.equal(results.length,4,"all four non-pushrod links are analyzed");
 assert.ok(results.every(result=>result.points.length>=3&&Number.isFinite(result.sensitivity)&&result.maxChangePercent>0),"each J3 link yields a usable tolerance curve");
