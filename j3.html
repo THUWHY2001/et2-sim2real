@@ -35,9 +35,9 @@
         <g id="j3-joint-callouts" class="joint-callouts">
           <g><line id="joint-label-j3-line"></line><text id="joint-label-j3">J3 等效旋转副（Y轴）</text></g>
           <g><line id="joint-label-p-line"></line><text id="joint-label-p">P 旋转副（Y轴）</text></g>
-          <g><line id="joint-label-a-line"></line><text id="joint-label-a">A端滑套轴承（Y轴）</text></g>
+          <g><line id="joint-label-a-line"></line><text id="joint-label-a">A端滑动轴承（Y轴）</text></g>
           <g><line id="joint-label-q-line"></line><text id="joint-label-q">Q 旋转副（参考侧）</text></g>
-          <g><line id="joint-label-b-line"></line><text id="joint-label-b">B端滑套轴承（固定，Y轴）</text></g>
+          <g><line id="joint-label-b-line"></line><text id="joint-label-b">B端滑动轴承（固定，Y轴）</text></g>
           <g><line id="joint-label-slider-line"></line><text id="joint-label-slider">推杆移动副</text></g>
         </g>
         <g class="labels">
@@ -58,9 +58,9 @@
         <tbody>
           <tr><td>J3</td><td>等效轴</td><td>(202.630, 93, −491.421)</td><td>控制输出轴</td></tr>
           <tr><td>P</td><td>旋转副</td><td>(196.295, 93, −429.316)</td><td>固定参考侧</td></tr>
-          <tr><td>A</td><td>A端滑套轴承</td><td>(115.999, 93, −465.999)</td><td>推杆输出端，绕Y轴转动</td></tr>
+          <tr><td>A</td><td>A端滑动轴承</td><td>(115.999, 93, −465.999)</td><td>推杆输出端，绕Y轴转动</td></tr>
           <tr><td>Q</td><td>旋转副</td><td>(188.356, 93, −523.377)</td><td>J3主动杆端</td></tr>
-          <tr><td>B</td><td>B端滑套轴承</td><td>固定端</td><td>推杆固定端，绕Y轴转动</td></tr>
+          <tr><td>B</td><td>B端滑动轴承</td><td>固定端</td><td>推杆固定端，绕Y轴转动</td></tr>
           <tr><td>推杆</td><td>移动副</td><td>B—A</td><td>轴向伸缩</td></tr>
         </tbody>
       </table></div>
@@ -70,9 +70,9 @@
       <label class="text-small">等效轴启动方向 <select data-start-direction><option value="1">正向</option><option value="-1">反向</option></select></label>
       <div class="j3-inputs text-small">
         <label>P副 正向 <input data-load="p-positive" type="number" value="1" min="0" step="0.1"> N·m</label><label>P副 反向 <input data-load="p-negative" type="number" value="1" min="0" step="0.1"> N·m</label>
-        <label>A端滑套轴承 正向 <input data-load="a-positive" type="number" value="1" min="0" step="0.1"> N·m</label><label>A端滑套轴承 反向 <input data-load="a-negative" type="number" value="1" min="0" step="0.1"> N·m</label>
+        <label>A端滑动轴承 正向 <input data-load="a-positive" type="number" value="1" min="0" step="0.1"> N·m</label><label>A端滑动轴承 反向 <input data-load="a-negative" type="number" value="1" min="0" step="0.1"> N·m</label>
         <label>Q副 正向 <input data-load="q-positive" type="number" value="1" min="0" step="0.1"> N·m</label><label>Q副 反向 <input data-load="q-negative" type="number" value="1" min="0" step="0.1"> N·m</label>
-        <label>B端滑套轴承 正向 <input data-load="b-positive" type="number" value="1" min="0" step="0.1"> N·m</label><label>B端滑套轴承 反向 <input data-load="b-negative" type="number" value="1" min="0" step="0.1"> N·m</label>
+        <label>B端滑动轴承 正向 <input data-load="b-positive" type="number" value="1" min="0" step="0.1"> N·m</label><label>B端滑动轴承 反向 <input data-load="b-negative" type="number" value="1" min="0" step="0.1"> N·m</label>
         <label>推杆 伸出 <input data-load="rod-positive" type="number" value="10" min="0" step="1"> N</label><label>推杆 缩回 <input data-load="rod-negative" type="number" value="10" min="0" step="1"> N</label>
       </div>
       <div class="viz-grid">
@@ -87,9 +87,9 @@
           <thead><tr><th>运动副</th><th>正向/伸出动摩擦</th><th>正向黏性</th><th>反向/缩回动摩擦</th><th>反向黏性</th></tr></thead>
           <tbody>
             <tr><td>P副</td><td><input data-run="p-positive-c" type="number" value="1"></td><td><input data-run="p-positive-b" type="number" value="0"></td><td><input data-run="p-negative-c" type="number" value="1"></td><td><input data-run="p-negative-b" type="number" value="0"></td></tr>
-            <tr><td>A端滑套轴承</td><td><input data-run="a-positive-c" type="number" value="1"></td><td><input data-run="a-positive-b" type="number" value="0"></td><td><input data-run="a-negative-c" type="number" value="1"></td><td><input data-run="a-negative-b" type="number" value="0"></td></tr>
+            <tr><td>A端滑动轴承</td><td><input data-run="a-positive-c" type="number" value="1"></td><td><input data-run="a-positive-b" type="number" value="0"></td><td><input data-run="a-negative-c" type="number" value="1"></td><td><input data-run="a-negative-b" type="number" value="0"></td></tr>
             <tr><td>Q副</td><td><input data-run="q-positive-c" type="number" value="1"></td><td><input data-run="q-positive-b" type="number" value="0"></td><td><input data-run="q-negative-c" type="number" value="1"></td><td><input data-run="q-negative-b" type="number" value="0"></td></tr>
-            <tr><td>B端滑套轴承</td><td><input data-run="b-positive-c" type="number" value="1"></td><td><input data-run="b-positive-b" type="number" value="0"></td><td><input data-run="b-negative-c" type="number" value="1"></td><td><input data-run="b-negative-b" type="number" value="0"></td></tr>
+            <tr><td>B端滑动轴承</td><td><input data-run="b-positive-c" type="number" value="1"></td><td><input data-run="b-positive-b" type="number" value="0"></td><td><input data-run="b-negative-c" type="number" value="1"></td><td><input data-run="b-negative-b" type="number" value="0"></td></tr>
             <tr><td>推杆</td><td><input data-run="rod-positive-c" type="number" value="10"></td><td><input data-run="rod-positive-b" type="number" value="0"></td><td><input data-run="rod-negative-c" type="number" value="10"></td><td><input data-run="rod-negative-b" type="number" value="0"></td></tr>
           </tbody>
         </table>

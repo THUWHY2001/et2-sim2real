@@ -24,8 +24,10 @@ for(const key of ["j2","axis1","axis2","axis3","point2","rod"])
 for(const id of ["j2-gap-mechanism","j2-gap-magnifier","j2-gap-demo-contact","j2-gap-demo-difference"])
   assert.match(page,new RegExp(`id="${id}"`),`${id} is available to the live diagram`);
 assert.match(page,/间隙位移为放大示意，数值计算仍使用真实输入/);
-for(const label of ["反向贴合 q−","过渡空行程","正向贴合 q\+"])
-  assert.match(page,new RegExp(label),`${label} is explained in the three-state graphic`);
+assert.match(page,/function drawMagnifier\(p,progress\)/,'magnifier accepts a continuous contact progress');
+assert.match(page,/data-gap-live-pin/,'magnifier renders one live moving bearing pin');
+assert.match(page,/contactProgress/,'animation maintains a continuous visual contact state');
+assert.doesNotMatch(page,/states=\[\{key:'negative'/,'the static three-panel magnifier is removed');
 assert.match(page,/J2等效旋转轴/);
 assert.match(page,/line\(g\.point2,g\.lower/,'mechanism diagram draws the rigid point2-to-lower member');
 for(const id of ["j2-screening-summary","j2-screening-sensitivity","j2-screening-contribution","j2-screening-curves","j2-screening-table"])
