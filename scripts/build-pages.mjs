@@ -47,7 +47,7 @@ copyFileSync(path.join(root, "site.css"), path.join(dist, "site.css"));
 
 const models = [
   {id:"j2", title:"J2 二维机构简图", fragment:"j2.fragment.html", section:"leg"},
-  {id:"j2-clearance", title:"J2 间隙与死区分析", fragment:"j2-clearance.fragment.html", section:"leg", navJoint:"j2", modelScript:"j2-clearance-model.js", modelVersion:"20261103-1"},
+  {id:"j2-clearance", title:"J2 间隙与死区分析", fragment:"j2-clearance.fragment.html", section:"leg", navJoint:"j2", modelScript:"j2-clearance-model.js", modelVersion:"20261103-2"},
   {id:"j3", title:"J3 二维机构简图", fragment:"j3.fragment.html", section:"leg"},
   {id:"j4", title:"J4 二维机构简图", fragment:"j4.fragment.html", section:"leg"},
   {id:"arm-j3", title:"手臂 J3 机构简图", fragment:"arm-j3.fragment.html", section:"arm", modelScript:"arm-j3-model.js"},

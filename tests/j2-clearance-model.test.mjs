@@ -60,4 +60,18 @@ assert.equal(j2Presentation.type,"angular");
 assert.equal(j2Presentation.positive.actual,2.3);
 assert.equal(j2Presentation.negative.actual,1.9);
 
+const j2Screen=M.screening(j2Only),j2ScreenItem=j2Screen.items.find(item=>item.key==="j2");
+assert.equal(j2ScreenItem.unit,"°");
+assert.ok(Math.abs(j2ScreenItem.impact-.4)<1e-9);
+assert.ok(Math.abs(j2ScreenItem.sensitivity-1)<1e-9);
+assert.ok(Math.abs(j2ScreenItem.curve.at(-1).deadzone-j2ScreenItem.impact)<1e-9);
+assert.equal(j2Screen.items.find(item=>item.key==="axis1").impact,0);
+
+const axis2Only=empty();axis2Only.axis2.radialPositive=.1;axis2Only.axis2.radialNegative=.1;
+const axis2WithJ2=structuredClone(axis2Only);axis2WithJ2.j2={positive:20,negative:20};
+const axis2Impact=M.screening(axis2Only).items.find(item=>item.key==="axis2").impact;
+const isolatedAxis2Impact=M.screening(axis2WithJ2).items.find(item=>item.key==="axis2").impact;
+assert.ok(Math.abs(axis2Impact-isolatedAxis2Impact)<1e-9,"screening isolates unrelated gaps");
+assert.ok(Math.abs(j2Screen.items.reduce((sum,item)=>sum+item.contribution,0)-100)<1e-9);
+
 console.log("J2 clearance model regression test passed");
