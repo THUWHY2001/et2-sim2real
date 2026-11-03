@@ -4,7 +4,7 @@ import {existsSync,readFileSync} from "node:fs";
 assert.ok(existsSync("j2-clearance.html"),"build produces an independent J2 clearance page");
 const page=readFileSync("j2-clearance.html","utf8"),resistance=readFileSync("j2.html","utf8");
 assert.match(page,/<title>J2 间隙与死区分析/);
-assert.match(page,/src="j2-clearance-model\.js\?v=20261103-2"/);
+assert.match(page,/src="j2-clearance-model\.js\?v=20261103-3"/);
 assert.match(page,/href="j2\.html"[^>]*>阻力贡献<\/a>/);
 assert.match(page,/href="j2-clearance\.html"[^>]*aria-current="page"[^>]*>间隙\/死区<\/a>/);
 assert.match(resistance,/href="j2-clearance\.html"[^>]*>间隙\/死区<\/a>/);
@@ -33,6 +33,9 @@ assert.match(page,/J2等效旋转轴/);
 assert.match(page,/line\(g\.point2,g\.lower/,'mechanism diagram draws the rigid point2-to-lower member');
 for(const id of ["j2-screening-summary","j2-screening-sensitivity","j2-screening-contribution","j2-screening-curves","j2-screening-table"])
   assert.match(page,new RegExp(`id="${id}"`),`${id} is present in the leadership decision view`);
+for(const id of ["j2-motion-projection","j2-motion-projection-chart","j2-motion-projection-summary"])
+  assert.match(page,new RegExp(`id="${id}"`),`${id} is present in the posture sensitivity view`);
+assert.match(page,/M\.motionProjection\(\)/);
 assert.match(page,/每次只改变一个连接副/);
 assert.match(page,/<details[^>]*id="j2-gap-animation-details"(?![^>]*\sopen)/,'dynamic mechanism explanation is collapsed by default');
 console.log("J2 clearance page regression test passed");

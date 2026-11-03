@@ -74,4 +74,17 @@ const isolatedAxis2Impact=M.screening(axis2WithJ2).items.find(item=>item.key==="
 assert.ok(Math.abs(axis2Impact-isolatedAxis2Impact)<1e-9,"screening isolates unrelated gaps");
 assert.ok(Math.abs(j2Screen.items.reduce((sum,item)=>sum+item.contribution,0)-100)<1e-9);
 
+const motion=M.motionProjection();
+assert.equal(motion.samples.length,81,"motion projection follows the full -10 to +10 degree sweep");
+assert.equal(motion.samples[0].degrees,-10);
+assert.equal(motion.samples.at(-1).degrees,10);
+for(const sample of motion.samples){
+  assert.ok(Number.isFinite(sample.dLdq));
+  assert.ok(Number.isFinite(sample.sensitivity.rod));
+  assert.ok(Math.abs(sample.projection.axis2-1)<1e-6);
+  assert.ok(Math.abs(sample.projection.point2-1)<1e-6);
+  assert.ok(Math.abs(sample.sensitivity.axis2-sample.sensitivity.point2)<1e-8);
+  assert.ok(Math.abs(sample.sensitivity.axis2-sample.sensitivity.rod)<1e-8);
+}
+
 console.log("J2 clearance model regression test passed");
