@@ -10,6 +10,7 @@ assert.match(page, /src="j2-3d-view\.js\?/);
 assert.match(page, /id="j2-3d-canvas"/);
 assert.match(page, /data-j2-view="side"/);
 assert.match(page, /data-j2-view="reset"/);
+assert.match(page, /\.j2-3d-stage\{position:relative/, "J2 3D layout styles must ship inside the page to avoid stale shared CSS");
 assert.doesNotMatch(page, /aria-labelledby="leg-viz-title leg-viz-desc"/, "old main 2D SVG must be replaced");
 for (const key of ["j2Axis3","axis1Axis2","axis2Axis3","axis3Lower","point2Lower"]) {
   assert.match(page, new RegExp(`data-j2-length="${key}"`));
