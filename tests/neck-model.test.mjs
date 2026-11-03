@@ -8,6 +8,8 @@ vm.runInNewContext(source,{window,Math});
 const M=window.NeckModel;
 
 assert.equal(M.points.upper2.y,-32);
+assert.equal(M.points.R1.x,-52);
+assert.equal(M.points.R2.x,-40);
 assert.deepEqual({...M.points.com},{x:-9.851,y:.204,z:408.752});
 
 const j0=M.solve("J0",5),j0zero=M.solve("J0",0);
@@ -26,7 +28,7 @@ assert.equal(j1.rates.P1,1);
 assert.equal(j1.rates.R1,0);
 assert.ok(Number.isFinite(j0.gravityTorque));
 assert.ok(Number.isFinite(j1.gravityTorque));
-assert.ok(Math.abs(j0zero.gravityTorque-M.mass*M.g*.000204)<1e-9,"gravity moment must convert mm to m");
+assert.ok(Math.abs(j0zero.gravityTorque+M.mass*M.g*.000204)<1e-9,"gravity moment must follow corrected R1-to-R2 axis direction and convert mm to m");
 assert.ok(Math.abs(j1zero.gravityTorque+M.mass*M.g*.006149)<1e-9,"J1 gravity arm must be in metres");
 for(const value of Object.values(j0.supportLoads))assert.ok(Number.isFinite(value)&&value>=0);
 
