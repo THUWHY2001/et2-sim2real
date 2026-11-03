@@ -40,6 +40,8 @@ copyFileSync(path.join(root, "src", "j2-clearance-model.js"), path.join(dist, "j
 copyFileSync(path.join(root, "src", "j2-clearance-model.js"), path.join(root, "j2-clearance-model.js"));
 copyFileSync(path.join(root, "src", "neck-model.js"), path.join(dist, "neck-model.js"));
 copyFileSync(path.join(root, "src", "neck-model.js"), path.join(root, "neck-model.js"));
+copyFileSync(path.join(root, "src", "neck-3d-view.js"), path.join(dist, "neck-3d-view.js"));
+copyFileSync(path.join(root, "src", "neck-3d-view.js"), path.join(root, "neck-3d-view.js"));
 copyFileSync(path.join(root, "src", "arm-j3-model.js"), path.join(dist, "arm-j3-model.js"));
 copyFileSync(path.join(root, "src", "arm-j3-model.js"), path.join(root, "arm-j3-model.js"));
 copyFileSync(path.join(root, "src", "arm-j5-model.js"), path.join(dist, "arm-j5-model.js"));
