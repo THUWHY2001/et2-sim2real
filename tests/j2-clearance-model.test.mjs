@@ -31,4 +31,22 @@ assert.equal(cycle.forward.length,81);assert.equal(cycle.reverse.length,81);
 assert.ok(cycle.peakDeadzone>0);assert.ok(Number.isFinite(cycle.peakAngle));
 assert.ok(Math.abs(Object.values(M.analyze(0,all).contribution).reduce((a,b)=>a+b,0)-100)<1e-6);
 
+const zeroPresentation=M.presentation(0,empty(),"axis2");
+assert.equal(zeroPresentation.type,"radial");
+assert.equal(zeroPresentation.positive.gap,0);
+assert.equal(zeroPresentation.negative.gap,0);
+assert.deepEqual(zeroPresentation.positive.geometry.axis2Rod,zeroPresentation.negative.geometry.axis2Rod);
+
+const asymmetric=empty();asymmetric.axis2.radialPositive=.2;asymmetric.axis2.radialNegative=.05;
+const axis2Presentation=M.presentation(0,asymmetric,"axis2");
+assert.equal(axis2Presentation.positive.gap,.2);
+assert.equal(axis2Presentation.negative.gap,.05);
+assert.ok(axis2Presentation.positive.actual>axis2Presentation.negative.actual);
+assert.ok(Number.isFinite(axis2Presentation.direction.x));
+
+const rodPresentation=M.presentation(0,rodGaps,"rod");
+assert.equal(rodPresentation.type,"axial");
+assert.equal(rodPresentation.positive.gap,.2);
+assert.equal(rodPresentation.negative.gap,.1);
+
 console.log("J2 clearance model regression test passed");

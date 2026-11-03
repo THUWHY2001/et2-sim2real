@@ -16,4 +16,9 @@ assert.match(page,/data-j2-gap="rod-positive"/);assert.match(page,/data-j2-gap="
 for(const id of ["j2-gap-current","j2-gap-bias","j2-gap-peak","j2-gap-chart","j2-gap-ranking"])
   assert.match(page,new RegExp(`id="${id}"`));
 assert.match(page,/理想 X–Z 二维模型中，轴向间隙的一阶贡献为 0/);
+for(const key of ["axis1","axis2","axis3","point2","rod"])
+  assert.match(page,new RegExp(`data-gap-demo="${key}"`),`${key} can be selected in the mechanism demonstration`);
+for(const id of ["j2-gap-mechanism","j2-gap-magnifier","j2-gap-demo-contact","j2-gap-demo-difference"])
+  assert.match(page,new RegExp(`id="${id}"`),`${id} is available to the live diagram`);
+assert.match(page,/间隙位移为放大示意，数值计算仍使用真实输入/);
 console.log("J2 clearance page regression test passed");
