@@ -170,4 +170,34 @@ const eightB=T.customContribution("J1",eightTarget,parameters,loads,{steps:2});
 assert.equal(eightA.static.evaluatedSubsets,256);
 assert.equal(JSON.stringify(eightA),JSON.stringify(eightB),"custom contribution must be deterministic");
 
+const dynamicSnapshot=JSON.stringify(twoCustom);
+const dynamicCycle=T.dynamicContribution("J0",twoCustom,parameters,loads,{samples:5});
+assert.equal(dynamicCycle.samples.length,5);
+assert.equal(dynamicCycle.samples[0].time,0);
+assert.equal(dynamicCycle.samples[4].time,1);
+assert.ok(Math.abs(dynamicCycle.samples[0].angleDegrees-dynamicCycle.samples[4].angleDegrees)<1e-9,"cycle angle must close");
+assert.equal(dynamicCycle.samples[0].direction,1);
+assert.equal(dynamicCycle.samples[2].direction,-1,"half-cycle must use reverse friction inputs");
+assert.equal(JSON.stringify(twoCustom),dynamicSnapshot,"dynamic analysis must not mutate target offsets");
+for(const sample of dynamicCycle.samples)for(const mode of ['static','dynamic']){
+  assert.ok(Math.abs(sample[mode].items.reduce((sum,item)=>sum+item.signedImpact,0)-sample[mode].delta)<1e-9,"time-sample Shapley allocation must conserve the total increment");
+  assert.ok(Math.abs(sample[mode].current-sample[mode].baseline-sample[mode].delta)<1e-9);
+}
+for(const mode of ['static','dynamic']){
+  assert.ok(Math.abs(dynamicCycle.samples[0][mode].delta-dynamicCycle.samples[4][mode].delta)<1e-9,"cycle resistance must close");
+}
+
+const dynamicSingle=T.dynamicContribution("J1",customTarget,parameters,loads,{samples:5});
+for(const sample of dynamicSingle.samples)for(const mode of ['static','dynamic']){
+  assert.equal(sample[mode].items.length,1);
+  if(Math.abs(sample[mode].delta)>1e-12)assert.ok(Math.abs(sample[mode].items[0].contribution-100)<1e-9);
+}
+
+const dynamicZero=T.dynamicContribution("J0",zero,parameters,loads,{samples:5});
+assert.equal(dynamicZero.activePoints.length,0);
+for(const sample of dynamicZero.samples)for(const mode of ['static','dynamic']){
+  assert.equal(sample[mode].delta,0);
+  assert.deepEqual([...sample[mode].items],[]);
+}
+
 console.log("neck tolerance model regression test passed");

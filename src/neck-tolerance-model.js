@@ -304,5 +304,34 @@
     return{activePoints:active.map(key=>({point:key,offset:{...target[key]},magnitude:norm(target[key])})),static:customModeResult('static',active,target,staticValues,metricsMap,worst),dynamic:customModeResult('dynamic',active,target,dynamicValues,metricsMap,worst)};
   }
 
-  window.NeckToleranceModel={pointKeys,limit,validateOffsets,projectOffset,applyOffset,createState,createDefaultParameters,sideLoad,equivalentResistance,responseMetrics,rankContributions,rankPairContributions,robustRanking,customPath,shapleyAllocate,customContribution};
+  function dynamicModeSample(active,values){
+    const fullMask=(1<<active.length)-1,baseline=values.get(0)||0,current=values.get(fullMask)||0,delta=current-baseline;
+    const game=new Map([...values].map(([mask,value])=>[mask,value-baseline])),allocation=shapleyAllocate(active,game);
+    const absoluteTotal=active.reduce((sum,key)=>sum+Math.abs(allocation.get(key)||0),0);
+    const items=active.map(key=>{
+      const signedImpact=allocation.get(key)||0;
+      return{point:key,signedImpact,contribution:absoluteTotal?100*Math.abs(signedImpact)/absoluteTotal:0,effect:signedImpact>1e-12?'aggravate':signedImpact<-1e-12?'mitigate':'neutral'};
+    }).sort((a,b)=>b.contribution-a.contribution);
+    return{baseline,current,delta,items};
+  }
+
+  function dynamicContribution(joint,targetOffsets,parameters=createDefaultParameters(),loads={},options={}){
+    const validation=validateOffsets(targetOffsets);
+    if(!validation.valid)throw new RangeError('硬点偏移超出 1 mm 球形边界');
+    const target=cloneOffsets(targetOffsets),active=activeKeys(target),subsetCount=1<<active.length,count=Math.max(2,Math.floor(Number(options.samples)||49)),samples=[];
+    for(let index=0;index<count;index++){
+      const time=index/(count-1),radians=10*Math.PI/180*Math.sin(2*Math.PI*time),velocity=10*Math.PI/180*2*Math.PI*Math.cos(2*Math.PI*time),angleDegrees=radians*180/Math.PI,direction=velocity>=0?1:-1;
+      const staticValues=new Map(),dynamicValues=new Map();
+      for(let mask=0;mask<subsetCount;mask++){
+        const offsets=cloneOffsets();active.forEach((key,bit)=>{if(mask&(1<<bit))offsets[key]={...target[key]}});
+        const state=createState(joint,angleDegrees,offsets);
+        staticValues.set(mask,equivalentResistance(joint,state,parameters,loads,direction,'static').frictionTotal);
+        dynamicValues.set(mask,equivalentResistance(joint,state,parameters,loads,direction,'dynamic').frictionTotal);
+      }
+      samples.push({time,angleDegrees,velocityDegreesPerSecond:velocity*180/Math.PI,direction,static:dynamicModeSample(active,staticValues),dynamic:dynamicModeSample(active,dynamicValues)});
+    }
+    return{activePoints:active.map(key=>({point:key,offset:{...target[key]},magnitude:norm(target[key])})),samples};
+  }
+
+  window.NeckToleranceModel={pointKeys,limit,validateOffsets,projectOffset,applyOffset,createState,createDefaultParameters,sideLoad,equivalentResistance,responseMetrics,rankContributions,rankPairContributions,robustRanking,customPath,shapleyAllocate,customContribution,dynamicContribution};
 })();
