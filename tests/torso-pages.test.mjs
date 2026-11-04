@@ -40,6 +40,15 @@ assert.match(joint,/目标输出轴等效阻力矩/);
 assert.match(joint,/演示默认值/);
 assert.match(joint,/defaultLoads=\{static:1,dynamic:\.7\}/);
 assert.doesNotMatch(joint,/1\+index\*\.1|\.7\+index\*\.07/,"uniform defaults must not vary by connection-pair index");
+for(const marker of ["data-torso-live-bars","data-torso-live-mode=\"static\"","data-torso-live-mode=\"dynamic\"","data-torso-key"]){
+  assert.match(joint,new RegExp(marker),`live contribution view requires ${marker}`);
+}
+assert.match(joint,/function renderContributionBars/);
+assert.match(joint,/sort\(\(a,b\)=>b\.contribution-a\.contribution\)/,"live ranking must sort descending");
+assert.match(joint,/等效阻力矩/);
+assert.match(joint,/N·m/);
+assert.match(joint,/function setHighlight/);
+assert.match(joint,/classList\.toggle\('is-highlighted'/);
 assert.match(joint,/pointerdown/);
 assert.match(joint,/wheel/);
 
