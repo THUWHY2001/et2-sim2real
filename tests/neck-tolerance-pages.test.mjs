@@ -49,6 +49,8 @@ for(const [page,joint] of [[j0,"J0"],[j1,"J1"]]){
   assert.match(page,/data-cycle-state/);
   assert.match(page,/data-cycle-static-chart/);
   assert.match(page,/data-cycle-dynamic-chart/);
+  assert.match(page,/data-cycle-static-share-chart/);
+  assert.match(page,/data-cycle-dynamic-share-chart/);
   assert.match(page,/data-cycle-static-peak/);
   assert.match(page,/data-cycle-dynamic-peak/);
   assert.match(page,/data-cycle-static-ranking/);
