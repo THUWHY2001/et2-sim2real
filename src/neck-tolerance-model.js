@@ -333,5 +333,23 @@
     return{activePoints:active.map(key=>({point:key,offset:{...target[key]},magnitude:norm(target[key])})),samples};
   }
 
-  window.NeckToleranceModel={pointKeys,limit,validateOffsets,projectOffset,applyOffset,createState,createDefaultParameters,sideLoad,equivalentResistance,responseMetrics,rankContributions,rankPairContributions,robustRanking,customPath,shapleyAllocate,customContribution,dynamicContribution};
+  function cycleModePriority(active,samples,mode){
+    const raw=active.map(point=>{
+      const values=samples.map(sample=>Math.abs(sample[mode]?.items?.find(item=>item.point===point)?.signedImpact||0));
+      let integral=0;for(let index=1;index<samples.length;index++)integral+=(values[index-1]+values[index])*.5*Math.max(0,samples[index].time-samples[index-1].time);
+      return{point,integral,peakImpact:Math.max(0,...values)};
+    }),totalIntegral=raw.reduce((sum,item)=>sum+item.integral,0),totalPeak=raw.reduce((sum,item)=>sum+item.peakImpact,0);
+    return{totalIntegral,totalPeak,items:raw.map(item=>({...item,share:totalIntegral?100*item.integral/totalIntegral:0,peakShare:totalPeak?100*item.peakImpact/totalPeak:0}))};
+  }
+
+  function cyclePriority(dynamicResult){
+    const active=(dynamicResult?.activePoints||[]).map(item=>typeof item==='string'?item:item.point),samples=dynamicResult?.samples||[],staticMode=cycleModePriority(active,samples,'static'),dynamicMode=cycleModePriority(active,samples,'dynamic');
+    const items=active.map((point,index)=>{
+      const staticItem=staticMode.items.find(item=>item.point===point),dynamicItem=dynamicMode.items.find(item=>item.point===point),score=Math.max(staticItem.share,dynamicItem.share,staticItem.peakShare,dynamicItem.peakShare),recommendation=score>=30?'high':score>=10?'medium':'low';
+      return{point,staticShare:staticItem.share,dynamicShare:dynamicItem.share,staticPeakShare:staticItem.peakShare,dynamicPeakShare:dynamicItem.peakShare,staticPeakImpact:staticItem.peakImpact,dynamicPeakImpact:dynamicItem.peakImpact,score,recommendation,index};
+    }).sort((a,b)=>b.score-a.score||a.index-b.index).map(({index,...item})=>item);
+    return{static:staticMode,dynamic:dynamicMode,items};
+  }
+
+  window.NeckToleranceModel={pointKeys,limit,validateOffsets,projectOffset,applyOffset,createState,createDefaultParameters,sideLoad,equivalentResistance,responseMetrics,rankContributions,rankPairContributions,robustRanking,customPath,shapleyAllocate,customContribution,dynamicContribution,cyclePriority};
 })();

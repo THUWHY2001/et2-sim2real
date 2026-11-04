@@ -202,4 +202,38 @@ for(const sample of dynamicZero.samples)for(const mode of ['static','dynamic']){
   assert.deepEqual([...sample[mode].items],[]);
 }
 
+const zeroPriority=T.cyclePriority(dynamicZero);
+assert.deepEqual([...zeroPriority.items],[]);
+assert.equal(zeroPriority.static.totalIntegral,0);
+
+const singlePriority=T.cyclePriority(dynamicSingle);
+assert.equal(singlePriority.items.length,1);
+assert.equal(singlePriority.items[0].staticShare,100);
+assert.equal(singlePriority.items[0].dynamicShare,100);
+assert.equal(singlePriority.items[0].recommendation,'high');
+
+const priorityPoints=['lower1','upper1','lower2'];
+const prioritySynthetic={activePoints:priorityPoints.map(point=>({point})),samples:[0,.5,1].map((time,index)=>({
+  time,
+  static:{items:[
+    {point:'lower1',signedImpact:index===1?-7:7},
+    {point:'upper1',signedImpact:2},
+    {point:'lower2',signedImpact:1},
+  ]},
+  dynamic:{items:[
+    {point:'lower1',signedImpact:index===1?-7:7},
+    {point:'upper1',signedImpact:2},
+    {point:'lower2',signedImpact:1},
+  ]},
+}))};
+const priority=T.cyclePriority(prioritySynthetic);
+assert.ok(Math.abs(priority.static.items.reduce((sum,item)=>sum+item.share,0)-100)<1e-9);
+assert.deepEqual(priority.items.map(item=>item.point),['lower1','upper1','lower2']);
+assert.ok(Math.abs(priority.items[0].staticShare-70)<1e-9,"absolute integration must retain sign-changing influence");
+assert.ok(Math.abs(priority.items[1].staticShare-20)<1e-9);
+assert.ok(Math.abs(priority.items[2].staticShare-10)<1e-9);
+assert.equal(priority.items[0].recommendation,'high');
+assert.equal(priority.items[1].recommendation,'medium');
+assert.equal(priority.items[2].recommendation,'medium');
+
 console.log("neck tolerance model regression test passed");
