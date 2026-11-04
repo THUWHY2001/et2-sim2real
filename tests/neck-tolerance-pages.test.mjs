@@ -44,6 +44,16 @@ for(const [page,joint] of [[j0,"J0"],[j1,"J1"]]){
   assert.match(page,/data-custom-utilization/);
   assert.match(page,/data-custom-interaction/);
   assert.match(page,/请先设置至少一个非零硬点偏移/);
+  assert.match(page,/完整动态周期分析/);
+  assert.match(page,/data-run-dynamic/);
+  assert.match(page,/data-cycle-state/);
+  assert.match(page,/data-cycle-static-chart/);
+  assert.match(page,/data-cycle-dynamic-chart/);
+  assert.match(page,/data-cycle-static-peak/);
+  assert.match(page,/data-cycle-dynamic-peak/);
+  assert.match(page,/data-cycle-static-ranking/);
+  assert.match(page,/data-cycle-dynamic-ranking/);
+  assert.match(page,/最大阻力增量时刻/);
   assert.match(page,/标零销参数接口（预留）/);
   assert.match(page,/disabled[^>]*data-zero-pin/);
   assert.doesNotMatch(page,/新旧版本|旧版对比|贡献度差值|排名变化/);
