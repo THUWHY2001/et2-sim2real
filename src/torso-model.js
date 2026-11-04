@@ -72,5 +72,71 @@
     return{state,points:worldPoints,rodLengths,rodErrors,closureResiduals,platform};
   }
 
-  window.TorsoModel={points,lengths,zeroState,worldGeometry};
+  const maxAbs=values=>Math.max(...values.map(value=>Math.abs(value)));
+  const finite=values=>values.every(Number.isFinite);
+  const solve2=(a,b,c,d,e,f)=>{
+    const determinant=a*d-b*c;
+    if(!Number.isFinite(determinant)||Math.abs(determinant)<1e-12)return null;
+    return[(e*d-b*f)/determinant,(a*f-e*c)/determinant];
+  };
+
+  function newton(makeState,initial){
+    let x=[...initial],lastState=null,lastGeometry=null,lastResidual=Infinity;
+    const evaluate=value=>{
+      const state=makeState(value),geometry=worldGeometry(state);
+      return{state,geometry,residuals:[geometry.rodErrors.L,geometry.rodErrors.R]};
+    };
+    for(let iteration=0;iteration<=40;iteration++){
+      const current=evaluate(x),residual=maxAbs(current.residuals);
+      lastState=current.state;lastGeometry=current.geometry;lastResidual=residual;
+      if(residual<1e-9)return{converged:true,iterations:iteration,residual,state:current.state,geometry:current.geometry};
+      if(iteration===40||!finite(current.residuals))break;
+      const h=1e-4,jacobian=[[],[]];
+      for(let column=0;column<2;column++){
+        const lo=[...x],hi=[...x];lo[column]-=h;hi[column]+=h;
+        const rLo=evaluate(lo).residuals,rHi=evaluate(hi).residuals;
+        jacobian[0][column]=(rHi[0]-rLo[0])/(2*h);
+        jacobian[1][column]=(rHi[1]-rLo[1])/(2*h);
+      }
+      const delta=solve2(jacobian[0][0],jacobian[0][1],jacobian[1][0],jacobian[1][1],-current.residuals[0],-current.residuals[1]);
+      if(!delta||!finite(delta))break;
+      const bounded=delta.map(value=>Math.max(-12,Math.min(12,value)));
+      let accepted=false;
+      for(const factor of [1,.5,.25,.125,.0625,.03125]){
+        const trial=[x[0]+bounded[0]*factor,x[1]+bounded[1]*factor];
+        const next=evaluate(trial),nextResidual=maxAbs(next.residuals);
+        if(Number.isFinite(nextResidual)&&nextResidual<residual){x=trial;accepted=true;break}
+      }
+      if(!accepted)break;
+    }
+    return{converged:false,iterations:40,residual:lastResidual,state:null,geometry:null,attemptedState:lastState,attemptedGeometry:lastGeometry};
+  }
+
+  function solveJoint(joint,outputDegrees,previousState=null){
+    const output=Number(outputDegrees);
+    if(!Number.isFinite(output))return{converged:false,iterations:0,residual:Infinity,state:null,geometry:null};
+    if(joint==='J0'){
+      const state={...zeroState(),yaw:output},geometry=worldGeometry(state);
+      return{converged:true,iterations:0,residual:maxAbs(Object.values(geometry.rodErrors)),state,geometry};
+    }
+    if(joint==='J1'){
+      const initial=previousState?[previousState.crankL,previousState.pitch]:[-.6878331741392661*output,0];
+      return newton(([crank,pitch])=>({yaw:0,roll:output,pitch,crankL:crank,crankR:-crank}),initial);
+    }
+    if(joint==='J2'){
+      const initial=previousState?[previousState.crankL,previousState.roll]:[-1.1122594417717997*output,0];
+      return newton(([crank,roll])=>({yaw:0,roll,pitch:output,crankL:crank,crankR:crank}),initial);
+    }
+    throw new Error(`未知躯干关节 ${joint}`);
+  }
+
+  function solveActive(inputs={},previousState=null){
+    const yaw=Number(inputs.yaw??0),crankL=Number(inputs.crankL??0),crankR=Number(inputs.crankR??0);
+    if(!finite([yaw,crankL,crankR]))return{converged:false,iterations:0,residual:Infinity,state:null,geometry:null};
+    const a=.6878331741392661,b=1.1122594417717997;
+    const initial=previousState?[previousState.roll,previousState.pitch]:[(crankR-crankL)/(2*a),-(crankL+crankR)/(2*b)];
+    return newton(([roll,pitch])=>({yaw,roll,pitch,crankL,crankR}),initial);
+  }
+
+  window.TorsoModel={points,lengths,zeroState,worldGeometry,solveJoint,solveActive};
 })();
