@@ -76,8 +76,11 @@
     rates.upper1=vectorRate(loUpper1,hiUpper1,step);
     rates.upper2=vectorRate(loUpper2,hiUpper2,step);
     state.rates=rates;
-    const nominal=M.solve(joint,degrees);
-    state.lengthErrors={rod1:state.lengths.rod1-nominal.lengths.rod1,rod2:state.lengths.rod2-nominal.lengths.rod2};
+    const nominal=M.solve(joint,degrees),toleranceZero=geometry(joint,0,offsets),nominalZero=M.solve(joint,0);
+    state.lengthErrors={
+      rod1:(state.lengths.rod1-toleranceZero.lengths.rod1)-(nominal.lengths.rod1-nominalZero.lengths.rod1),
+      rod2:(state.lengths.rod2-toleranceZero.lengths.rod2)-(nominal.lengths.rod2-nominalZero.lengths.rod2),
+    };
     const rod1Error=sub(sub(state.points.upper1,state.points.lower1),sub(nominal.upper1,nominal.lower1));
     const rod2Error=sub(sub(state.points.upper2,state.points.lower2),sub(nominal.upper2,nominal.lower2));
     const transverse1=norm(cross(rod1Error,nominal.rod1)),transverse2=norm(cross(rod2Error,nominal.rod2));

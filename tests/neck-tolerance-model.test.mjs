@@ -72,6 +72,15 @@ const commonState=T.createState("J0",0,commonRodShift);
 const commonResistance=T.equivalentResistance("J0",commonState,parameters,loads,1,"static");
 assert.ok(commonResistance.sideLoads.lower1<1e-9&&commonResistance.sideLoads.upper1<1e-9,"common endpoint translation must not create duplicate rod side load");
 
+const calibratedOffset={...zero,lower1:{x:.5,y:0,z:0}};
+const calibratedZero=T.createState("J0",0,calibratedOffset);
+assert.ok(Math.abs(calibratedZero.lengthErrors.rod1)<1e-12,"pushrod axial tolerance preload must reset to zero after calibration");
+const calibratedFive=T.createState("J0",5,calibratedOffset);
+const actualZero=T.createState("J0",0,calibratedOffset).lengths.rod1;
+const nominalZero=M.solve("J0",0).lengths.rod1;
+const expectedStrokeError=(calibratedFive.lengths.rod1-actualZero)-(M.solve("J0",5).lengths.rod1-nominalZero);
+assert.ok(Math.abs(calibratedFive.lengthErrors.rod1-expectedStrokeError)<1e-9,"axial load must use stroke error relative to the calibrated zero length");
+
 const searchOptions={directions:[{x:1,y:0,z:0},{x:-1,y:0,z:0},{x:0,y:1,z:0},{x:0,y:-1,z:0},{x:0,y:0,z:1},{x:0,y:0,z:-1}],steps:12,refine:false};
 const single=T.rankContributions("J0",parameters,loads,searchOptions);
 assert.equal(single.static.items.length,8);

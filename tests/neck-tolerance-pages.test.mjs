@@ -34,6 +34,7 @@ for(const [page,joint] of [[j0,"J0"],[j1,"J1"]]){
   assert.match(page,/data-base-load=/);
   assert.match(page,/推杆轴向参数/);
   assert.match(page,/data-rod-parameter=/);
+  assert.match(page,/标零后实际长度作为无轴向预载基准/);
   assert.match(page,/标零销参数接口（预留）/);
   assert.match(page,/disabled[^>]*data-zero-pin/);
   assert.doesNotMatch(page,/新旧版本|旧版对比|贡献度差值|排名变化/);
