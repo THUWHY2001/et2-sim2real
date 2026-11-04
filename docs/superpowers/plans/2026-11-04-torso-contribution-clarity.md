@@ -15,7 +15,7 @@
 - 不改变硬点、闭链解算、1 Hz ±10° 工况和虚功折算公式。
 - J0/J1/J2 的贡献度目标分别固定为 Yaw/Roll/Pitch 输出轴等效阻力矩。
 - 曲柄项必须命名为电机曲柄轴旋转副，并明确不是刚性曲柄杆本体摩擦。
-- 默认阻力值必须标明仅为演示值。
+- 所有连接副默认静摩擦值相同、默认动摩擦值相同、正反向初值相同，同时保留逐项调节；默认值必须标明仅为演示值。
 - 页面继续由 `scripts/build-pages.mjs` 生成并发布到现有 GitHub Pages。
 
 ## Review Focus
@@ -38,7 +38,7 @@
 - Consumes: `__JOINT__`、`__MOTION__` 模板变量和现有 `rateKeys`。
 - Produces: `names`、`sources`、目标轴说明和演示值提示，供实时及周期图复用。
 
-- [ ] **Step 1: Write the failing test** — 断言页面含“左电机曲柄轴旋转副”“不是刚性曲柄杆本体摩擦”“目标输出轴等效阻力矩”“演示默认值”。
+- [ ] **Step 1: Write the failing test** — 断言页面含“左电机曲柄轴旋转副”“不是刚性曲柄杆本体摩擦”“目标输出轴等效阻力矩”“演示默认值”，并验证所有连接副的默认静摩擦相同、默认动摩擦相同且正反向初值相同。
 - [ ] **Step 2: Run test to verify it fails** — `node tests/torso-pages.test.mjs`，预期因新文案缺失失败。
 - [ ] **Step 3: Implement the semantic copy and source mapping** — 名称、来源说明和 J0/J1/J2 目标轴动态文案全部由同一映射生成。
 - [ ] **Step 4: Run test to verify it passes** — `node scripts/build-pages.mjs; node tests/torso-pages.test.mjs`。
