@@ -45,6 +45,12 @@ for(const [page,joint] of [[j0,"J0"],[j1,"J1"]]){
   assert.match(page,/data-custom-interaction/);
   assert.match(page,/请先设置至少一个非零硬点偏移/);
   assert.match(page,/完整动态周期分析/);
+  assert.match(page,/硬点管控优先级/);
+  assert.match(page,/data-cycle-priority/);
+  assert.match(page,/data-cycle-details/);
+  assert.match(page,/可评估放宽/);
+  assert.match(page,/周期积分贡献度/);
+  assert.doesNotMatch(page,/<details[^>]*data-cycle-details[^>]*\sopen(?:\s|>)/);
   assert.match(page,/data-run-dynamic/);
   assert.match(page,/data-cycle-state/);
   assert.match(page,/data-cycle-static-chart/);
