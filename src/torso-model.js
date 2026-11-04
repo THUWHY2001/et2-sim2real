@@ -17,6 +17,7 @@
   const scale=(a,s)=>({x:a.x*s,y:a.y*s,z:a.z*s});
   const dot=(a,b)=>a.x*b.x+a.y*b.y+a.z*b.z;
   const norm=a=>Math.hypot(a.x,a.y,a.z);
+  const unit=a=>{const length=norm(a);return length?scale(a,1/length):{x:0,y:0,z:0}};
   const distance=(a,b)=>norm(sub(a,b));
   const radians=degrees=>degrees*Math.PI/180;
   const multiply=(a,b)=>[
@@ -29,6 +30,7 @@
     y:matrix[1][0]*vector.x+matrix[1][1]*vector.y+matrix[1][2]*vector.z,
     z:matrix[2][0]*vector.x+matrix[2][1]*vector.y+matrix[2][2]*vector.z,
   });
+  const transpose=matrix=>[[matrix[0][0],matrix[1][0],matrix[2][0]],[matrix[0][1],matrix[1][1],matrix[2][1]],[matrix[0][2],matrix[1][2],matrix[2][2]]];
   const Rx=angle=>{const c=Math.cos(angle),s=Math.sin(angle);return[[1,0,0],[0,c,-s],[0,s,c]]};
   const Ry=angle=>{const c=Math.cos(angle),s=Math.sin(angle);return[[c,0,s],[0,1,0],[-s,0,c]]};
   const Rz=angle=>{const c=Math.cos(angle),s=Math.sin(angle);return[[c,-s,0],[s,c,0],[0,0,1]]};
@@ -69,7 +71,9 @@
       L:rodLengths.L*rodLengths.L-lengths.rodL*lengths.rodL,
       R:rodLengths.R*rodLengths.R-lengths.rodR*lengths.rodR,
     };
-    return{state,points:worldPoints,rodLengths,rodErrors,closureResiduals,platform};
+    const platformWorld=multiply(yaw,platform);
+    const orientations={base:yaw,platform:platformWorld,crankL:multiply(platformWorld,Ry(radians(state.crankL))),crankR:multiply(platformWorld,Ry(radians(state.crankR)))};
+    return{state,points:worldPoints,rodLengths,rodErrors,closureResiduals,platform,orientations};
   }
 
   const maxAbs=values=>Math.max(...values.map(value=>Math.abs(value)));
@@ -138,5 +142,70 @@
     return newton(([roll,pitch])=>({yaw,roll,pitch,crankL,crankR}),initial);
   }
 
-  window.TorsoModel={points,lengths,zeroState,worldGeometry,solveJoint,solveActive};
+  const rateKeys=['yaw','roll','pitch','crankL','crankR','ballLUpper','ballLLower','ballRUpper','ballRLower'];
+  const outputOf=(joint,state)=>joint==='J0'?state.yaw:joint==='J1'?state.roll:state.pitch;
+  function articulationDirections(geometry){
+    const p=geometry.points,o=geometry.orientations;
+    const rodL=unit(sub(p.upperBallL,p.lowerBallL)),rodR=unit(sub(p.upperBallR,p.lowerBallR));
+    return{
+      ballLLower:transform(transpose(o.base),rodL),
+      ballRLower:transform(transpose(o.base),rodR),
+      ballLUpper:transform(transpose(o.crankL),scale(rodL,-1)),
+      ballRUpper:transform(transpose(o.crankR),scale(rodR,-1)),
+    };
+  }
+
+  function rates(joint,outputDegrees,previousState=null){
+    const center=solveJoint(joint,outputDegrees,previousState);
+    if(!center.converged)return{converged:false,solution:center,values:null};
+    const h=.001,lo=solveJoint(joint,outputDegrees-h,center.state),hi=solveJoint(joint,outputDegrees+h,center.state);
+    if(!lo.converged||!hi.converged)return{converged:false,solution:center,values:null};
+    const denominator=2*radians(h),values={};
+    for(const key of ['yaw','roll','pitch','crankL','crankR'])values[key]=radians(hi.state[key]-lo.state[key])/denominator;
+    const dLo=articulationDirections(lo.geometry),dHi=articulationDirections(hi.geometry);
+    for(const key of ['ballLUpper','ballLLower','ballRUpper','ballRLower'])values[key]=norm(sub(dHi[key],dLo[key]))/denominator;
+    return{converged:finite(Object.values(values)),solution:center,values};
+  }
+
+  const directionKey=direction=>direction>=0?'positive':'negative';
+  const measured=(load,mode,direction)=>Math.max(0,Number(load?.[mode]?.[directionKey(direction)])||0);
+  function equivalentResistance(joint,solution,loads={},direction=1,mode='static'){
+    if(!solution?.converged)return{complete:false,total:0,parts:{},contribution:{}};
+    const rate=rates(joint,outputOf(joint,solution.state),solution.state);
+    if(!rate.converged)return{complete:false,total:0,parts:{},contribution:{}};
+    const parts={};
+    for(const key of rateKeys)parts[key]=measured(loads[key],mode,direction)*Math.abs(rate.values[key]);
+    const total=Object.values(parts).reduce((sum,value)=>sum+value,0),contribution={};
+    for(const key of rateKeys)contribution[key]=total?100*parts[key]/total:0;
+    return{complete:true,total,parts,contribution,rates:rate.values,mode,direction};
+  }
+
+  function cycle(joint,loads={},options={}){
+    const sampleCount=Math.max(5,Math.floor(Number(options.samples)||121)),samples=[];
+    let previous=null;
+    for(let index=0;index<sampleCount;index++){
+      const time=index/(sampleCount-1),phase=2*Math.PI*time,output=10*Math.sin(phase),direction=Math.cos(phase)>=0?1:-1;
+      const solution=solveJoint(joint,output,previous);
+      if(!solution.converged)return{complete:false,failingIndex:index,time,solution,samples};
+      previous=solution.state;
+      const staticResult=equivalentResistance(joint,solution,loads,direction,'static');
+      const dynamicResult=equivalentResistance(joint,solution,loads,direction,'dynamic');
+      if(!staticResult.complete||!dynamicResult.complete)return{complete:false,failingIndex:index,time,solution,samples};
+      samples.push({index,time,output,direction,solution,static:staticResult,dynamic:dynamicResult});
+    }
+    const integrate=mode=>{
+      const totals=Object.fromEntries(rateKeys.map(key=>[key,0]));
+      const dt=1/(sampleCount-1);
+      for(let index=1;index<samples.length;index++)for(const key of rateKeys)totals[key]+=.5*(Math.abs(samples[index-1][mode].parts[key])+Math.abs(samples[index][mode].parts[key]))*dt;
+      const denominator=Object.values(totals).reduce((sum,value)=>sum+value,0);
+      return rateKeys.map(key=>({key,integral:totals[key],contribution:denominator?100*totals[key]/denominator:0})).sort((a,b)=>b.contribution-a.contribution);
+    };
+    return{
+      complete:true,samples,
+      rankings:{static:integrate('static'),dynamic:integrate('dynamic')},
+      peaks:{static:Math.max(...samples.map(sample=>sample.static.total)),dynamic:Math.max(...samples.map(sample=>sample.dynamic.total))},
+    };
+  }
+
+  window.TorsoModel={points,lengths,rateKeys,zeroState,worldGeometry,solveJoint,solveActive,rates,equivalentResistance,cycle};
 })();

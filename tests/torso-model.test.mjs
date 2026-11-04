@@ -97,4 +97,47 @@ const invalid=M.solveActive({yaw:0,crankL:Number.NaN,crankR:0});
 assert.equal(invalid.converged,false,"invalid active input must fail explicitly");
 assert.equal(invalid.geometry,null,"invalid active input must not fabricate geometry");
 
+const rateKeys=["yaw","roll","pitch","crankL","crankR","ballLUpper","ballLLower","ballRUpper","ballRLower"];
+const ratesJ0=M.rates("J0",0);
+assert.equal(ratesJ0.converged,true,"J0 rates must solve");
+close(ratesJ0.values.yaw,1,1e-9,"J0 yaw rate");
+for(const key of rateKeys.filter(key=>key!=="yaw"))close(ratesJ0.values[key],0,1e-7,`J0 ${key} relative rate`);
+const ratesJ1=M.rates("J1",0),ratesJ2=M.rates("J2",0);
+assert.equal(ratesJ1.converged,true,"J1 rates must solve");
+assert.equal(ratesJ2.converged,true,"J2 rates must solve");
+close(ratesJ1.values.roll,1,1e-7,"J1 roll rate");
+close(ratesJ1.values.crankL,-.6878331741392661,5e-5,"J1 left crank rate");
+close(ratesJ1.values.crankR,.6878331741392661,5e-5,"J1 right crank rate");
+close(ratesJ2.values.pitch,1,1e-7,"J2 pitch rate");
+close(ratesJ2.values.crankL,-1.1122594417717997,5e-5,"J2 left crank rate");
+close(ratesJ2.values.crankR,-1.1122594417717997,5e-5,"J2 right crank rate");
+for(const rates of [ratesJ1,ratesJ2])for(const key of rateKeys){assert.ok(Number.isFinite(rates.values[key]),`${key} rate must be finite`);if(key.startsWith("ball"))assert.ok(rates.values[key]>=0,`${key} swing rate must be nonnegative`)}
+
+const load=(sPos,sNeg,dPos,dNeg)=>({static:{positive:sPos,negative:sNeg},dynamic:{positive:dPos,negative:dNeg}});
+const loads={};
+rateKeys.forEach((key,index)=>loads[key]=load(index+1,index+1.5,(index+1)*.6,(index+1)*.8));
+const j0Positive=M.equivalentResistance("J0",M.solveJoint("J0",0),loads,1,"static");
+const j0Negative=M.equivalentResistance("J0",M.solveJoint("J0",0),loads,-1,"static");
+close(j0Positive.total,1,1e-8,"J0 positive static total");
+close(j0Negative.total,1.5,1e-8,"J0 negative static total");
+close(j0Positive.contribution.yaw,100,1e-8,"J0 yaw contribution");
+for(const joint of ["J1","J2"]){
+  const solution=M.solveJoint(joint,3);
+  const result=M.equivalentResistance(joint,solution,loads,1,"dynamic");
+  assert.ok(result.total>0,`${joint} dynamic resistance must be positive`);
+  close(result.total,Object.values(result.parts).reduce((sum,value)=>sum+value,0),1e-10,`${joint} parts sum`);
+  close(Object.values(result.contribution).reduce((sum,value)=>sum+value,0),100,1e-8,`${joint} contribution sum`);
+}
+
+for(const joint of ["J1","J2"]){
+  const cycle=M.cycle(joint,loads,{samples:121});
+  assert.equal(cycle.complete,true,`${joint} cycle must complete`);
+  assert.equal(cycle.samples.length,121,`${joint} cycle sample count`);
+  close(Math.max(...cycle.samples.map(sample=>sample.output)),10,1e-9,`${joint} positive output peak`);
+  close(Math.min(...cycle.samples.map(sample=>sample.output)),-10,1e-9,`${joint} negative output peak`);
+  assert.ok(Math.max(...cycle.samples.flatMap(sample=>[Math.abs(sample.solution.geometry.rodErrors.L),Math.abs(sample.solution.geometry.rodErrors.R)]))<1e-6,`${joint} cycle closure`);
+  close(cycle.rankings.static.reduce((sum,item)=>sum+item.contribution,0),100,1e-8,`${joint} static cycle contribution`);
+  close(cycle.rankings.dynamic.reduce((sum,item)=>sum+item.contribution,0),100,1e-8,`${joint} dynamic cycle contribution`);
+}
+
 console.log("torso source geometry regression test passed");
