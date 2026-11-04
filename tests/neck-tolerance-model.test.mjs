@@ -124,4 +124,50 @@ for(const mode of ['static','dynamic'])for(const item of collapsed[mode].items){
   assert.ok(Math.abs(item.low-expected)<1e-9&&Math.abs(item.high-expected)<1e-9);
 }
 
+const customTarget={...zero,lower1:{x:.5,y:0,z:0}};
+const customSnapshot=JSON.stringify(customTarget);
+const customPath=T.customPath("J0",customTarget,parameters,loads,{samples:5,steps:8});
+assert.equal(customPath.samples.length,5);
+assert.equal(customPath.samples[0].progress,0);
+assert.equal(customPath.samples[4].progress,1);
+assert.equal(customPath.samples[0].staticPeak,0);
+assert.equal(customPath.samples[0].dynamicPeak,0);
+const directCustom=T.responseMetrics("J0",customTarget,parameters,loads,8);
+assert.ok(Math.abs(customPath.samples[4].staticPeak-directCustom.staticPeak)<1e-12);
+assert.ok(Math.abs(customPath.samples[4].dynamicPeak-directCustom.dynamicPeak)<1e-12);
+assert.equal(JSON.stringify(customTarget),customSnapshot,"custom path must not mutate target offsets");
+assert.throws(()=>T.customPath("J0",{...zero,lower1:{x:1,y:1,z:0}},parameters,loads),/1 mm/);
+
+const emptyCustom=T.customContribution("J0",zero,parameters,loads,{steps:8,directions:searchOptions.directions,refine:false});
+assert.equal(emptyCustom.activePoints.length,0);
+assert.equal(emptyCustom.static.evaluatedSubsets,1);
+assert.deepEqual([...emptyCustom.static.items],[]);
+assert.equal(emptyCustom.static.totalImpact,0);
+
+const singleCustom=T.customContribution("J0",customTarget,parameters,loads,{steps:8,directions:searchOptions.directions,refine:false});
+for(const mode of ['static','dynamic']){
+  assert.equal(singleCustom[mode].items.length,1);
+  assert.ok(Math.abs(singleCustom[mode].items[0].signedImpact-singleCustom[mode].totalImpact)<1e-9);
+  assert.ok(Math.abs(singleCustom[mode].items[0].contribution-100)<1e-9);
+  assert.ok(singleCustom[mode].items[0].worstCaseUtilization>=0&&singleCustom[mode].items[0].worstCaseUtilization<=100+1e-9);
+}
+
+const twoCustom={...zero,lower1:{x:.5,y:0,z:0},upper1:{x:0,y:.4,z:0}};
+const twoContribution=T.customContribution("J0",twoCustom,parameters,loads,{steps:8});
+for(const mode of ['static','dynamic']){
+  assert.equal(twoContribution[mode].evaluatedSubsets,4);
+  assert.ok(Math.abs(twoContribution[mode].items.reduce((sum,item)=>sum+item.signedImpact,0)-twoContribution[mode].totalImpact)<1e-9);
+  assert.ok(Math.abs(twoContribution[mode].items.reduce((sum,item)=>sum+item.contribution,0)-100)<1e-9);
+}
+
+const synthetic=T.shapleyAllocate(['A','B'],new Map([[0,0],[1,10],[2,2],[3,4]]));
+assert.equal(synthetic.get('A'),6);
+assert.equal(synthetic.get('B'),-2);
+
+const eightTarget=Object.fromEntries(T.pointKeys.map((key,index)=>[key,{x:(index+1)/100,y:0,z:0}]));
+const eightA=T.customContribution("J1",eightTarget,parameters,loads,{steps:2});
+const eightB=T.customContribution("J1",eightTarget,parameters,loads,{steps:2});
+assert.equal(eightA.static.evaluatedSubsets,256);
+assert.equal(JSON.stringify(eightA),JSON.stringify(eightB),"custom contribution must be deterministic");
+
 console.log("neck tolerance model regression test passed");
