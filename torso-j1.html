@@ -29,12 +29,12 @@
   </div>
 
   <section class="panel">
-    <div class="panel-heading"><div><h2>连接副阻力输入</h2><p>旋转副与球铰摆动阻力均输入 N·m；系统按各连接副自身瞬时速度方向选取正向或反向值，球铰不计无法由硬点唯一确定的连杆自旋。</p></div></div>
+    <div class="panel-heading"><div><h2>连接副阻力输入</h2><p>所有连接副采用相同的演示默认值，静摩擦 1.00 N·m、动摩擦 0.70 N·m，正反向初值相同且均可单独调节。系统按各连接副自身瞬时速度方向选取对应值。</p></div></div>
     <div class="table-wrap"><table class="engineering-table torso-load-table"><thead><tr><th>连接副</th><th>静摩擦 正向</th><th>静摩擦 反向</th><th>动摩擦 正向</th><th>动摩擦 反向</th></tr></thead><tbody data-torso-loads></tbody></table></div>
   </section>
 
   <section class="panel">
-    <div class="panel-heading"><div><h2>当前姿态阻力</h2><p>由逐姿态相对转角雅可比按虚功折算到 J1 输出轴。</p></div></div>
+    <div class="panel-heading"><div><h2>当前姿态贡献度</h2><p>表示各连接副阻力对 <strong data-torso-target-axis></strong>目标输出轴等效阻力矩的贡献，不是几何位移贡献或零件受力比例。</p></div></div>
     <div data-torso-instant class="torso-instant"></div>
   </section>
 
@@ -48,7 +48,10 @@
   'use strict';
   const root=document.querySelector('[data-torso-joint="J1"]'),joint='J1',M=window.TorsoModel;
   const svg=root.querySelector('[data-torso-svg]'),camera=window.Torso3DView.createCamera({width:720,height:540,center:{x:-42,y:0,z:52},scale:3.2});
-  const names={yaw:'Yaw轴',roll:'Roll轴',pitch:'Pitch轴',crankL:'左曲柄',crankR:'右曲柄',ballLUpper:'左上球铰',ballLLower:'左下球铰',ballRUpper:'右上球铰',ballRLower:'右下球铰'};
+  const names={yaw:'Yaw输出轴旋转副',roll:'Roll输出轴旋转副',pitch:'Pitch输出轴旋转副',crankL:'左电机曲柄轴旋转副',crankR:'右电机曲柄轴旋转副',ballLUpper:'左上球铰',ballLLower:'左下球铰',ballRUpper:'右上球铰',ballRLower:'右下球铰'};
+  const sources={yaw:'Yaw实体输出轴支承/轴承处的转动阻力',roll:'J1 Roll实体输出轴支承/轴承处的转动阻力',pitch:'J2 Pitch实体输出轴支承/轴承处的转动阻力',crankL:'左主动轴支承、轴承或减速输出端阻力；不是刚性曲柄杆本体摩擦',crankR:'右主动轴支承、轴承或减速输出端阻力；不是刚性曲柄杆本体摩擦',ballLUpper:'左连杆上端球铰的摆动阻力',ballLLower:'左连杆下端球铰的摆动阻力',ballRUpper:'右连杆上端球铰的摆动阻力',ballRLower:'右连杆下端球铰的摆动阻力'};
+  const targetAxes={J0:'J0 Yaw输出轴',J1:'J1 Roll输出轴',J2:'J2 Pitch输出轴'},defaultLoads={static:1,dynamic:.7};
+  root.querySelector('[data-torso-target-axis]').textContent=targetAxes[joint]+'：';
   let lastSolution=null,playing=false,animationId=0,drag=null;
   const esc=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const project=point=>camera.project(point);
@@ -65,7 +68,7 @@
     html+=node(p.upperBallL,'左上球铰','torso-node torso-left-node')+node(p.lowerBallL,'左下球铰','torso-node torso-left-node')+node(p.upperBallR,'右上球铰','torso-node torso-right-node')+node(p.lowerBallR,'右下球铰','torso-node torso-right-node');
     svg.innerHTML=html;
   }
-  const loadRows=M.rateKeys.map((key,index)=>`<tr><td>${names[key]}</td>${[['static','positive'],['static','negative'],['dynamic','positive'],['dynamic','negative']].map(([mode,direction])=>`<td><input type="number" min="0" step="0.01" value="${mode==='static'?(1+index*.1).toFixed(2):(.7+index*.07).toFixed(2)}" data-load-key="${key}" data-load-mode="${mode}" data-load-direction="${direction}"></td>`).join('')}</tr>`).join('');
+  const loadRows=M.rateKeys.map(key=>`<tr><td><strong>${names[key]}</strong><small class="torso-source">${sources[key]}</small></td>${[['static','positive'],['static','negative'],['dynamic','positive'],['dynamic','negative']].map(([mode,direction])=>`<td><input type="number" min="0" step="0.01" value="${defaultLoads[mode].toFixed(2)}" data-load-key="${key}" data-load-mode="${mode}" data-load-direction="${direction}"></td>`).join('')}</tr>`).join('');
   root.querySelector('[data-torso-loads]').innerHTML=loadRows;
   function loads(){const result={};root.querySelectorAll('[data-load-key]').forEach(input=>{const key=input.dataset.loadKey,mode=input.dataset.loadMode,direction=input.dataset.loadDirection;result[key]??={static:{},dynamic:{}};result[key][mode][direction]=Math.max(0,Number(input.value)||0)});return result}
   function instant(solution,direction){const activeLoads=loads(),staticResult=M.equivalentResistance(joint,solution,activeLoads,direction,'static'),dynamicResult=M.equivalentResistance(joint,solution,activeLoads,direction,'dynamic');const rows=M.rateKeys.map(key=>`<tr><td>${names[key]}</td><td>${staticResult.parts[key].toFixed(4)}</td><td>${dynamicResult.parts[key].toFixed(4)}</td><td>${staticResult.contribution[key].toFixed(1)}%</td></tr>`).join('');root.querySelector('[data-torso-instant]').innerHTML=`<div class="torso-total"><span>静摩擦启动力矩 <strong>${staticResult.total.toFixed(4)} N·m</strong></span><span>运行阻力 <strong>${dynamicResult.total.toFixed(4)} N·m</strong></span></div><div class="table-wrap"><table class="engineering-table"><thead><tr><th>连接副</th><th>静摩擦折算</th><th>运行阻力折算</th><th>启动贡献度</th></tr></thead><tbody>${rows}</tbody></table></div>`}
