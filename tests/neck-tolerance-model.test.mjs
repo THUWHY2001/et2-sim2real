@@ -177,7 +177,9 @@ assert.equal(dynamicCycle.samples[0].time,0);
 assert.equal(dynamicCycle.samples[4].time,1);
 assert.ok(Math.abs(dynamicCycle.samples[0].angleDegrees-dynamicCycle.samples[4].angleDegrees)<1e-9,"cycle angle must close");
 assert.equal(dynamicCycle.samples[0].direction,1);
+assert.equal(dynamicCycle.samples[1].direction,-1,"positive travel limit must switch to the upcoming reverse direction");
 assert.equal(dynamicCycle.samples[2].direction,-1,"half-cycle must use reverse friction inputs");
+assert.equal(dynamicCycle.samples[3].direction,1,"negative travel limit must switch to the upcoming positive direction");
 assert.equal(JSON.stringify(twoCustom),dynamicSnapshot,"dynamic analysis must not mutate target offsets");
 for(const sample of dynamicCycle.samples)for(const mode of ['static','dynamic']){
   assert.ok(Math.abs(sample[mode].items.reduce((sum,item)=>sum+item.signedImpact,0)-sample[mode].delta)<1e-9,"time-sample Shapley allocation must conserve the total increment");

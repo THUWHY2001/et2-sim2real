@@ -320,7 +320,7 @@
     if(!validation.valid)throw new RangeError('硬点偏移超出 1 mm 球形边界');
     const target=cloneOffsets(targetOffsets),active=activeKeys(target),subsetCount=1<<active.length,count=Math.max(2,Math.floor(Number(options.samples)||49)),samples=[];
     for(let index=0;index<count;index++){
-      const time=index/(count-1),radians=10*Math.PI/180*Math.sin(2*Math.PI*time),velocity=10*Math.PI/180*2*Math.PI*Math.cos(2*Math.PI*time),angleDegrees=radians*180/Math.PI,direction=velocity>=0?1:-1;
+      const time=index/(count-1),phase=2*Math.PI*time,sine=Math.sin(phase),cosine=Math.cos(phase),radians=10*Math.PI/180*sine,velocity=10*Math.PI/180*2*Math.PI*cosine,angleDegrees=radians*180/Math.PI,direction=Math.abs(cosine)<1e-12?(sine>=0?-1:1):(cosine>0?1:-1);
       const staticValues=new Map(),dynamicValues=new Map();
       for(let mask=0;mask<subsetCount;mask++){
         const offsets=cloneOffsets();active.forEach((key,bit)=>{if(mask&(1<<bit))offsets[key]={...target[key]}});
