@@ -250,5 +250,59 @@
     return{static:robustMode('static',nominal,samples),dynamic:robustMode('dynamic',nominal,samples),samples:count,seed:options.seed||5913};
   }
 
-  window.NeckToleranceModel={pointKeys,limit,validateOffsets,projectOffset,applyOffset,createState,createDefaultParameters,sideLoad,equivalentResistance,responseMetrics,rankContributions,rankPairContributions,robustRanking};
+  const activeKeys=offsets=>pointKeys.filter(key=>norm(vector(offsets?.[key]))>1e-6);
+  function customPath(joint,targetOffsets,parameters=createDefaultParameters(),loads={},options={}){
+    const validation=validateOffsets(targetOffsets);
+    if(!validation.valid)throw new RangeError('硬点偏移超出 1 mm 球形边界');
+    const target=cloneOffsets(targetOffsets),count=Math.max(2,Math.floor(Number(options.samples)||21)),steps=Math.max(2,Math.floor(Number(options.steps)||48)),samples=[];
+    for(let index=0;index<count;index++){
+      const progress=index/(count-1),offsets=Object.fromEntries(pointKeys.map(key=>[key,scale(target[key],progress)]));
+      samples.push({progress,...responseMetrics(joint,offsets,parameters,loads,steps)});
+    }
+    return{activePoints:activeKeys(target),samples};
+  }
+
+  const factorial=value=>{let result=1;for(let index=2;index<=value;index++)result*=index;return result};
+  function shapleyAllocate(keys,values){
+    const count=keys.length,totalMask=(1<<count)-1,result=new Map(keys.map(key=>[key,0]));
+    if(!count)return result;
+    const divisor=factorial(count);
+    for(let index=0;index<count;index++){
+      let phi=0;
+      for(let mask=0;mask<=totalMask;mask++){
+        if(mask&(1<<index))continue;
+        let size=0;for(let bit=0;bit<count;bit++)if(mask&(1<<bit))size++;
+        const weight=factorial(size)*factorial(count-size-1)/divisor;
+        phi+=weight*((values.get(mask|(1<<index))||0)-(values.get(mask)||0));
+      }
+      result.set(keys[index],phi);
+    }
+    return result;
+  }
+
+  function customModeResult(mode,active,target,valueMap,metricsMap,worst){
+    const allocation=shapleyAllocate(active,valueMap),fullMask=(1<<active.length)-1,totalImpact=valueMap.get(fullMask)||0;
+    const interaction=totalImpact-active.reduce((sum,key,index)=>sum+(valueMap.get(1<<index)||0),0),absoluteTotal=active.reduce((sum,key)=>sum+Math.abs(allocation.get(key)||0),0);
+    const items=active.map(key=>{
+      const signedImpact=allocation.get(key)||0,worstImpact=worst?.[mode]?.items.find(item=>item.point===key)?.impact||0;
+      return{point:key,offset:{...target[key]},magnitude:norm(target[key]),signedImpact,contribution:absoluteTotal?100*Math.abs(signedImpact)/absoluteTotal:0,effect:signedImpact>1e-12?'aggravate':signedImpact<-1e-12?'mitigate':'neutral',worstCaseUtilization:active.length===1&&worstImpact?100*totalImpact/worstImpact:null};
+    }).sort((a,b)=>b.contribution-a.contribution);
+    return{totalImpact,interaction,evaluatedSubsets:valueMap.size,items,metrics:metricsMap.get(fullMask)||null};
+  }
+
+  function customContribution(joint,targetOffsets,parameters=createDefaultParameters(),loads={},options={}){
+    const validation=validateOffsets(targetOffsets);
+    if(!validation.valid)throw new RangeError('硬点偏移超出 1 mm 球形边界');
+    const target=cloneOffsets(targetOffsets),active=activeKeys(target),subsetCount=1<<active.length,steps=Math.max(2,Math.floor(Number(options.steps)||48),),staticValues=new Map(),dynamicValues=new Map(),metricsMap=new Map();
+    for(let mask=0;mask<subsetCount;mask++){
+      const offsets=cloneOffsets();
+      active.forEach((key,index)=>{if(mask&(1<<index))offsets[key]={...target[key]}});
+      const metrics=responseMetrics(joint,offsets,parameters,loads,steps);
+      metricsMap.set(mask,metrics);staticValues.set(mask,metrics.staticPeak);dynamicValues.set(mask,metrics.dynamicPeak);
+    }
+    const worst=active.length===1?rankContributions(joint,parameters,loads,{directions:options.directions,steps,refine:options.refine}):null;
+    return{activePoints:active.map(key=>({point:key,offset:{...target[key]},magnitude:norm(target[key])})),static:customModeResult('static',active,target,staticValues,metricsMap,worst),dynamic:customModeResult('dynamic',active,target,dynamicValues,metricsMap,worst)};
+  }
+
+  window.NeckToleranceModel={pointKeys,limit,validateOffsets,projectOffset,applyOffset,createState,createDefaultParameters,sideLoad,equivalentResistance,responseMetrics,rankContributions,rankPairContributions,robustRanking,customPath,shapleyAllocate,customContribution};
 })();
