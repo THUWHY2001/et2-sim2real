@@ -36,7 +36,7 @@ assert.match(joint,/各连接副自身瞬时速度方向/);
 assert.match(joint,/左电机曲柄轴旋转副/);
 assert.match(joint,/右电机曲柄轴旋转副/);
 assert.match(joint,/不是刚性曲柄杆本体摩擦/);
-assert.match(joint,/目标输出轴等效阻力矩/);
+assert.match(joint,/目标输出轴总等效阻力矩/);
 assert.match(joint,/演示默认值/);
 assert.match(joint,/defaultLoads=\{static:1,dynamic:\.7\}/);
 assert.doesNotMatch(joint,/1\+index\*\.1|\.7\+index\*\.07/,"uniform defaults must not vary by connection-pair index");
@@ -49,6 +49,12 @@ assert.match(joint,/等效阻力矩/);
 assert.match(joint,/N·m/);
 assert.match(joint,/function setHighlight/);
 assert.match(joint,/classList\.toggle\('is-highlighted'/);
+for(const marker of ["data-torso-cycle-mode=\"static\"","data-torso-cycle-mode=\"dynamic\"","data-torso-cycle-bars"]){
+  assert.match(joint,new RegExp(marker),`cycle contribution view requires ${marker}`);
+}
+assert.match(joint,/闭链运动关系/);
+assert.match(joint,/N·m·s/);
+assert.ok(joint.indexOf("闭链运动关系")>joint.indexOf("完整周期贡献度"),"motion chart must be a separate section after cycle contribution");
 assert.match(joint,/pointerdown/);
 assert.match(joint,/wheel/);
 
