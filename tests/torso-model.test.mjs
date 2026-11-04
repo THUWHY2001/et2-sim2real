@@ -121,6 +121,13 @@ const j0Negative=M.equivalentResistance("J0",M.solveJoint("J0",0),loads,-1,"stat
 close(j0Positive.total,1,1e-8,"J0 positive static total");
 close(j0Negative.total,1.5,1e-8,"J0 negative static total");
 close(j0Positive.contribution.yaw,100,1e-8,"J0 yaw contribution");
+
+const directionalLoads=Object.fromEntries(rateKeys.map(key=>[key,load(0,0,0,0)]));
+directionalLoads.crankL=load(10,20,0,0);
+directionalLoads.crankR=load(30,40,0,0);
+const directionalJ1=M.equivalentResistance("J1",M.solveJoint("J1",0),directionalLoads,1,"static");
+close(directionalJ1.parts.crankL,20*Math.abs(ratesJ1.values.crankL),1e-8,"positive J1 output uses negative-direction left crank resistance");
+close(directionalJ1.parts.crankR,30*Math.abs(ratesJ1.values.crankR),1e-8,"positive J1 output uses positive-direction right crank resistance");
 for(const joint of ["J1","J2"]){
   const solution=M.solveJoint(joint,3);
   const result=M.equivalentResistance(joint,solution,loads,1,"dynamic");

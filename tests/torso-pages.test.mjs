@@ -32,6 +32,7 @@ assert.match(joint,/正向/);
 assert.match(joint,/反向/);
 assert.match(joint,/静摩擦/);
 assert.match(joint,/动摩擦/);
+assert.match(joint,/各连接副自身瞬时速度方向/);
 assert.match(joint,/pointerdown/);
 assert.match(joint,/wheel/);
 

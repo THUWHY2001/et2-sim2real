@@ -173,11 +173,14 @@
     if(!solution?.converged)return{complete:false,total:0,parts:{},contribution:{}};
     const rate=rates(joint,outputOf(joint,solution.state),solution.state);
     if(!rate.converged)return{complete:false,total:0,parts:{},contribution:{}};
-    const parts={};
-    for(const key of rateKeys)parts[key]=measured(loads[key],mode,direction)*Math.abs(rate.values[key]);
+    const parts={},directions={};
+    for(const key of rateKeys){
+      directions[key]=Math.sign(rate.values[key])*(direction>=0?1:-1)||direction;
+      parts[key]=measured(loads[key],mode,directions[key])*Math.abs(rate.values[key]);
+    }
     const total=Object.values(parts).reduce((sum,value)=>sum+value,0),contribution={};
     for(const key of rateKeys)contribution[key]=total?100*parts[key]/total:0;
-    return{complete:true,total,parts,contribution,rates:rate.values,mode,direction};
+    return{complete:true,total,parts,contribution,rates:rate.values,directions,mode,direction};
   }
 
   function cycle(joint,loads={},options={}){
