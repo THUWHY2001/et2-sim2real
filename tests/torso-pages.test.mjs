@@ -44,4 +44,27 @@ for(const marker of [
 assert.doesNotMatch(combined,/data-active-roll-input|data-active-pitch-input/,"combined mode must not directly drive outputs");
 assert.match(combined,/真实主动输入/);
 
+for(const file of ["torso-j0.html","torso-j1.html","torso-j2.html","torso-combined.html","torso-model.js","torso-3d-view.js"]){
+  assert.ok(existsSync(new URL(`../dist/${file}`,import.meta.url)),`dist/${file} must be generated`);
+  assert.ok(existsSync(new URL(`../${file}`,import.meta.url)),`${file} must be generated at site root`);
+}
+const index=readFileSync(new URL("../dist/index.html",import.meta.url),"utf8");
+for(const file of ["torso-j0.html","torso-j1.html","torso-j2.html","torso-combined.html"])assert.match(index,new RegExp(`href="${file.replace('.','\\.')}"`),`home page links ${file}`);
+const generated={
+  J0:readFileSync(new URL("../dist/torso-j0.html",import.meta.url),"utf8"),
+  J1:readFileSync(new URL("../dist/torso-j1.html",import.meta.url),"utf8"),
+  J2:readFileSync(new URL("../dist/torso-j2.html",import.meta.url),"utf8"),
+  combined:readFileSync(new URL("../dist/torso-combined.html",import.meta.url),"utf8"),
+};
+for(const [key,page] of Object.entries(generated)){
+  assert.match(page,/src="torso-model\.js\?v=/,`${key} loads torso model`);
+  assert.match(page,/src="torso-3d-view\.js\?v=/,`${key} loads torso camera`);
+  assert.match(page,/aria-label="躯干等效旋转轴"/,`${key} has torso subnavigation`);
+  assert.doesNotMatch(page,/<iframe|data-srcdoc=/,`${key} stays a direct page`);
+}
+assert.match(generated.J0,/躯干 J0 Yaw 阻力分析/);
+assert.match(generated.J1,/躯干 J1 Roll 阻力分析/);
+assert.match(generated.J2,/躯干 J2 Pitch 阻力分析/);
+assert.match(generated.combined,/躯干三主动轴组合运动/);
+
 console.log("torso page source regression test passed");

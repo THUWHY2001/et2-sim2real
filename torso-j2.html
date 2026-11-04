@@ -1,0 +1,81 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>躯干 J2 Pitch 阻力分析｜模块连接副-等效旋转轴的灵敏度分析</title><link rel="stylesheet" href="site.css?v=20261030-1"><script src="directional-friction.js?v=20261030-1"></script><script src="link-tolerance.js?v=20261030-1"></script><script src="link-length-controls.js?v=20261030-1"></script><script src="torso-model.js?v=20261104-1"></script><script src="torso-3d-view.js?v=20261104-1"></script></head><body><header class="site-header"><div class="site-header-inner"><a class="site-brand" href="index.html">模块连接副-等效旋转轴的灵敏度分析</a><nav class="site-nav" aria-label="模块导航"><a href="index.html">总览</a><a href="j2.html">腿足</a><a href="index.html#head-neck">头颈</a><a href="torso-j0.html" aria-current="page">躯干</a><a href="arm-j3.html">手臂</a></nav></div></header><nav class="joint-nav" aria-label="躯干等效旋转轴"><span>躯干</span><a class="joint-tab" href="torso-j0.html">J0</a><a class="joint-tab" href="torso-j1.html">J1</a><a class="joint-tab" href="torso-j2.html" aria-current="page">J2</a><a class="joint-tab" href="torso-combined.html">组合</a></nav><main class="model-shell"><section class="torso-page" data-torso-joint="J2">
+  <header class="model-heading">
+    <div><p class="eyebrow">躯干闭链机构</p><h1>躯干 J2 Pitch 阻力分析</h1><p>左右曲柄同向驱动，伴随Roll由闭链自然求解。输出端执行 1 Hz、±10° 激励，左右曲柄角由定长闭链实时解算。</p></div>
+    <div class="model-badge">真实双曲柄闭链</div>
+  </header>
+
+  <div class="torso-layout">
+    <section class="panel torso-viz-panel">
+      <div class="panel-heading"><div><h2>三维机构</h2><p>拖拽旋转，滚轮缩放。所有点由刚体变换和闭链方程生成。</p></div><button type="button" class="button-secondary" data-torso-reset-view>复位视角</button></div>
+      <svg data-torso-svg class="torso-svg" viewBox="0 0 720 540" role="img" aria-label="胸腰双曲柄闭链三维机构"></svg>
+      <div class="torso-legend text-small"><span class="legend-left">左闭链</span><span class="legend-right">右闭链</span><span>Yaw轴</span><span>Roll轴</span><span>Pitch轴</span></div>
+    </section>
+
+    <section class="panel torso-control-panel">
+      <h2>运动输入</h2>
+      <label class="field-label">J2 输出角 <output data-torso-output-value>0.0°</output><input data-torso-output type="range" min="-10" max="10" step="0.1" value="0"></label>
+      <div class="button-row"><button type="button" class="button-primary" data-torso-play>播放 1 Hz、±10°</button><button type="button" class="button-secondary" data-torso-stop>停止</button></div>
+      <label class="compact-field">阻力方向<select data-torso-direction><option value="1">正向</option><option value="-1">反向</option></select></label>
+      <div class="solve-state" data-torso-status>等待计算</div>
+      <dl class="torso-readout">
+        <div><dt>主输出</dt><dd data-torso-main>0.000°</dd></div>
+        <div><dt>耦合输出</dt><dd data-torso-coupling>0.000°</dd></div>
+        <div><dt>左曲柄</dt><dd data-torso-crank-l>0.000°</dd></div>
+        <div><dt>右曲柄</dt><dd data-torso-crank-r>0.000°</dd></div>
+        <div><dt>最大杆长误差</dt><dd data-torso-rod-error>0.000000 mm</dd></div>
+        <div><dt>闭链残差</dt><dd data-torso-residual>0.000000 mm²</dd></div>
+      </dl>
+    </section>
+  </div>
+
+  <section class="panel">
+    <div class="panel-heading"><div><h2>连接副阻力输入</h2><p>旋转副与球铰摆动阻力均输入 N·m；球铰不计无法由硬点唯一确定的连杆自旋。</p></div></div>
+    <div class="table-wrap"><table class="engineering-table torso-load-table"><thead><tr><th>连接副</th><th>静摩擦 正向</th><th>静摩擦 反向</th><th>动摩擦 正向</th><th>动摩擦 反向</th></tr></thead><tbody data-torso-loads></tbody></table></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-heading"><div><h2>当前姿态阻力</h2><p>由逐姿态相对转角雅可比按虚功折算到 J2 输出轴。</p></div></div>
+    <div data-torso-instant class="torso-instant"></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-heading"><div><h2>完整周期贡献度</h2><p>周期贡献度按各连接副等效阻力矩绝对值的时间积分归一化。</p></div><button type="button" class="button-primary" data-torso-run-cycle>计算 1 Hz 周期</button></div>
+    <div class="torso-cycle-layout"><div data-torso-cycle-ranking></div><svg data-torso-cycle-chart class="torso-cycle-chart" viewBox="0 0 700 260" role="img" aria-label="输出、耦合输出及曲柄角周期曲线"></svg></div>
+  </section>
+</section>
+
+<script>(()=>{
+  'use strict';
+  const root=document.querySelector('[data-torso-joint="J2"]'),joint='J2',M=window.TorsoModel;
+  const svg=root.querySelector('[data-torso-svg]'),camera=window.Torso3DView.createCamera({width:720,height:540,center:{x:-42,y:0,z:52},scale:3.2});
+  const names={yaw:'Yaw轴',roll:'Roll轴',pitch:'Pitch轴',crankL:'左曲柄',crankR:'右曲柄',ballLUpper:'左上球铰',ballLLower:'左下球铰',ballRUpper:'右上球铰',ballRLower:'右下球铰'};
+  let lastSolution=null,playing=false,animationId=0,drag=null;
+  const esc=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  const project=point=>camera.project(point);
+  const line=(a,b,className,label='')=>{const p=project(a),q=project(b);return`<g><line class="${className}" x1="${p.x.toFixed(2)}" y1="${p.y.toFixed(2)}" x2="${q.x.toFixed(2)}" y2="${q.y.toFixed(2)}"></line>${label?`<text class="torso-label" x="${((p.x+q.x)/2+7).toFixed(2)}" y="${((p.y+q.y)/2-7).toFixed(2)}">${esc(label)}</text>`:''}</g>`};
+  const node=(point,label,className)=>{const p=project(point);return`<g><circle class="${className}" cx="${p.x.toFixed(2)}" cy="${p.y.toFixed(2)}" r="6"></circle><text class="torso-label" x="${(p.x+9).toFixed(2)}" y="${(p.y-8).toFixed(2)}">${esc(label)}</text></g>`};
+  const rotateVector=(v,state,kind)=>{const rx=a=>{const c=Math.cos(a),s=Math.sin(a);return{x:v.x,y:v.y*c-v.z*s,z:v.y*s+v.z*c}},rz=(w,a)=>{const c=Math.cos(a),s=Math.sin(a);return{x:w.x*c-w.y*s,y:w.x*s+w.y*c,z:w.z}};let w=v;if(kind==='pitch')w=rx(state.roll*Math.PI/180);return rz(w,state.yaw*Math.PI/180)};
+  const axis=(center,direction,length=38)=>({a:{x:center.x-direction.x*length,y:center.y-direction.y*length,z:center.z-direction.z*length},b:{x:center.x+direction.x*length,y:center.y+direction.y*length,z:center.z+direction.z*length}});
+  function draw(solution){if(!solution?.converged)return;lastSolution=solution;const g=solution.geometry,p=g.points,s=solution.state;let html='';
+    html+=line(p.lowerBallL,p.upperBallL,'torso-rod torso-left')+line(p.lowerBallR,p.upperBallR,'torso-rod torso-right');
+    html+=line(p.crankPivotL,p.upperBallL,'torso-crank torso-left','左曲柄')+line(p.crankPivotR,p.upperBallR,'torso-crank torso-right','右曲柄');
+    html+=line(p.outputPivot,p.crankPivotL,'torso-platform')+line(p.outputPivot,p.crankPivotR,'torso-platform')+line(p.crankPivotL,p.crankPivotR,'torso-platform');
+    const yawAxis=axis(p.yawPivot,{x:0,y:0,z:1},30),rollAxis=axis(p.outputPivot,rotateVector({x:1,y:0,z:0},s,'roll')),pitchAxis=axis(p.outputPivot,rotateVector({x:0,y:1,z:0},s,'pitch'));
+    html+=line(yawAxis.a,yawAxis.b,'torso-axis torso-yaw','Yaw轴')+line(rollAxis.a,rollAxis.b,'torso-axis torso-roll','Roll轴')+line(pitchAxis.a,pitchAxis.b,'torso-axis torso-pitch','Pitch轴');
+    html+=node(p.upperBallL,'左上球铰','torso-node torso-left-node')+node(p.lowerBallL,'左下球铰','torso-node torso-left-node')+node(p.upperBallR,'右上球铰','torso-node torso-right-node')+node(p.lowerBallR,'右下球铰','torso-node torso-right-node');
+    svg.innerHTML=html;
+  }
+  const loadRows=M.rateKeys.map((key,index)=>`<tr><td>${names[key]}</td>${[['static','positive'],['static','negative'],['dynamic','positive'],['dynamic','negative']].map(([mode,direction])=>`<td><input type="number" min="0" step="0.01" value="${mode==='static'?(1+index*.1).toFixed(2):(.7+index*.07).toFixed(2)}" data-load-key="${key}" data-load-mode="${mode}" data-load-direction="${direction}"></td>`).join('')}</tr>`).join('');
+  root.querySelector('[data-torso-loads]').innerHTML=loadRows;
+  function loads(){const result={};root.querySelectorAll('[data-load-key]').forEach(input=>{const key=input.dataset.loadKey,mode=input.dataset.loadMode,direction=input.dataset.loadDirection;result[key]??={static:{},dynamic:{}};result[key][mode][direction]=Math.max(0,Number(input.value)||0)});return result}
+  function instant(solution,direction){const activeLoads=loads(),staticResult=M.equivalentResistance(joint,solution,activeLoads,direction,'static'),dynamicResult=M.equivalentResistance(joint,solution,activeLoads,direction,'dynamic');const rows=M.rateKeys.map(key=>`<tr><td>${names[key]}</td><td>${staticResult.parts[key].toFixed(4)}</td><td>${dynamicResult.parts[key].toFixed(4)}</td><td>${staticResult.contribution[key].toFixed(1)}%</td></tr>`).join('');root.querySelector('[data-torso-instant]').innerHTML=`<div class="torso-total"><span>静摩擦启动力矩 <strong>${staticResult.total.toFixed(4)} N·m</strong></span><span>运行阻力 <strong>${dynamicResult.total.toFixed(4)} N·m</strong></span></div><div class="table-wrap"><table class="engineering-table"><thead><tr><th>连接副</th><th>静摩擦折算</th><th>运行阻力折算</th><th>启动贡献度</th></tr></thead><tbody>${rows}</tbody></table></div>`}
+  function update(output,direction=Number(root.querySelector('[data-torso-direction]').value)){const solution=M.solveJoint(joint,output,lastSolution?.state);const status=root.querySelector('[data-torso-status]');if(!solution.converged){status.textContent=`闭链未收敛｜残差 ${Number(solution.residual).toExponential(3)}`;status.dataset.state='error';return false}status.textContent=`闭链已收敛｜${solution.iterations} 次迭代`;status.dataset.state='ok';draw(solution);const s=solution.state,g=solution.geometry,main=joint==='J0'?s.yaw:joint==='J1'?s.roll:s.pitch,coupled=joint==='J1'?`Pitch ${s.pitch.toFixed(4)}°`:joint==='J2'?`Roll ${s.roll.toFixed(4)}°`:'Roll 0.0000° / Pitch 0.0000°';root.querySelector('[data-torso-output-value]').textContent=main.toFixed(1)+'°';root.querySelector('[data-torso-main]').textContent=main.toFixed(4)+'°';root.querySelector('[data-torso-coupling]').textContent=coupled;root.querySelector('[data-torso-crank-l]').textContent=s.crankL.toFixed(4)+'°';root.querySelector('[data-torso-crank-r]').textContent=s.crankR.toFixed(4)+'°';root.querySelector('[data-torso-rod-error]').textContent=Math.max(Math.abs(g.rodErrors.L),Math.abs(g.rodErrors.R)).toExponential(3)+' mm';root.querySelector('[data-torso-residual]').textContent=Math.max(Math.abs(g.closureResiduals.L),Math.abs(g.closureResiduals.R)).toExponential(3)+' mm²';instant(solution,direction);return true}
+  function ranking(cycle){const rows=M.rateKeys.map(key=>{const s=cycle.rankings.static.find(item=>item.key===key),d=cycle.rankings.dynamic.find(item=>item.key===key);return`<tr><td>${names[key]}</td><td>${s.contribution.toFixed(1)}%</td><td>${d.contribution.toFixed(1)}%</td></tr>`}).join('');root.querySelector('[data-torso-cycle-ranking]').innerHTML=`<table class="engineering-table"><thead><tr><th>连接副</th><th>启动贡献度</th><th>运行贡献度</th></tr></thead><tbody>${rows}</tbody></table>`}
+  function chart(cycle){const chart=root.querySelector('[data-torso-cycle-chart]'),series=[['输出','output','#235ea7'],['耦合',joint==='J1'?'pitch':joint==='J2'?'roll':'pitch','#7a4fa3'],['左曲柄','crankL','#2f7d4a'],['右曲柄','crankR','#d46b2c']],all=[];for(const sample of cycle.samples)all.push(sample.output,sample.solution.state.pitch,sample.solution.state.roll,sample.solution.state.crankL,sample.solution.state.crankR);const limit=Math.max(10,...all.map(Math.abs)),x=i=>45+i/(cycle.samples.length-1)*620,y=v=>125-v/limit*92,path=key=>cycle.samples.map((sample,index)=>`${index?'L':'M'}${x(index).toFixed(1)} ${y(key==='output'?sample.output:sample.solution.state[key]).toFixed(1)}`).join(' ');chart.innerHTML=`<line x1="45" y1="125" x2="665" y2="125" class="chart-axis"></line>${series.map(([label,key,color],index)=>`<path d="${path(key)}" fill="none" stroke="${color}" stroke-width="2"></path><text x="${55+index*145}" y="245" fill="${color}">${label}</text>`).join('')}<text x="45" y="24">角度 / °</text><text x="45" y="224">0 s</text><text x="665" y="224" text-anchor="end">1 s</text>`}
+  const slider=root.querySelector('[data-torso-output]');slider.addEventListener('input',()=>update(Number(slider.value)));root.querySelector('[data-torso-direction]').addEventListener('change',()=>update(Number(slider.value)));root.querySelector('[data-torso-loads]').addEventListener('input',()=>update(Number(slider.value)));
+  root.querySelector('[data-torso-play]').addEventListener('click',()=>{playing=true;const start=performance.now();cancelAnimationFrame(animationId);const frame=now=>{if(!playing)return;const phase=(now-start)/1000*2*Math.PI,value=10*Math.sin(phase),direction=Math.cos(phase)>=0?1:-1;slider.value=value;update(value,direction);animationId=requestAnimationFrame(frame)};animationId=requestAnimationFrame(frame)});root.querySelector('[data-torso-stop]').addEventListener('click',()=>{playing=false;cancelAnimationFrame(animationId)});
+  root.querySelector('[data-torso-run-cycle]').addEventListener('click',event=>{const button=event.currentTarget;button.disabled=true;button.textContent='计算中…';setTimeout(()=>{const result=M.cycle(joint,loads(),{samples:121});if(result.complete){ranking(result);chart(result)}else root.querySelector('[data-torso-cycle-ranking]').textContent=`周期在第 ${result.failingIndex} 帧未收敛`;button.disabled=false;button.textContent='计算 1 Hz 周期'},20)});
+  svg.addEventListener('pointerdown',event=>{drag={x:event.clientX,y:event.clientY};svg.setPointerCapture(event.pointerId)});svg.addEventListener('pointermove',event=>{if(!drag)return;camera.rotate(event.clientX-drag.x,event.clientY-drag.y);drag={x:event.clientX,y:event.clientY};draw(lastSolution)});svg.addEventListener('pointerup',()=>drag=null);svg.addEventListener('pointercancel',()=>drag=null);svg.addEventListener('wheel',event=>{event.preventDefault();camera.zoom(-event.deltaY/80);draw(lastSolution)},{passive:false});root.querySelector('[data-torso-reset-view]').addEventListener('click',()=>{camera.reset();draw(lastSolution)});
+  update(0);
+})();</script>
+</main><script>(()=>{const initialized=new WeakSet();window.initChartResizeControls=(root=document)=>{root.querySelectorAll('[data-chart-panel]').forEach(panel=>{if(initialized.has(panel))return;initialized.add(panel);const stage=panel.querySelector('[data-chart-stage]'),output=panel.querySelector('[data-chart-scale]');let scale=1;const apply=()=>{stage.style.width=(scale*100)+'%';output.textContent=Math.round(scale*100)+'%';panel.querySelector('[data-chart-action="out"]').disabled=scale<=.75;panel.querySelector('[data-chart-action="in"]').disabled=scale>=2};panel.addEventListener('click',event=>{const button=event.target.closest('[data-chart-action]');if(!button)return;const action=button.dataset.chartAction;if(action==='out')scale=Math.max(.75,scale-.25);if(action==='in')scale=Math.min(2,scale+.25);if(action==='reset')scale=1;if(action==='fullscreen'){if(document.fullscreenElement===panel)document.exitFullscreen();else if(panel.requestFullscreen)panel.requestFullscreen();else panel.classList.toggle('chart-expanded')}apply()});document.addEventListener('fullscreenchange',()=>{const button=panel.querySelector('[data-chart-action="fullscreen"]');button.textContent=document.fullscreenElement===panel?'退出全屏':'全屏'});apply()})};window.initChartResizeControls(document)})();</script></body></html>
