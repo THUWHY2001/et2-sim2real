@@ -42,6 +42,12 @@ copyFileSync(path.join(root, "src", "j2-clearance-model.js"), path.join(dist, "j
 copyFileSync(path.join(root, "src", "j2-clearance-model.js"), path.join(root, "j2-clearance-model.js"));
 copyFileSync(path.join(root, "src", "neck-model.js"), path.join(dist, "neck-model.js"));
 copyFileSync(path.join(root, "src", "neck-model.js"), path.join(root, "neck-model.js"));
+for(const file of ["neck-blackbox.mjs","neck-runtime.mjs"]){
+  copyFileSync(path.join(root,"src",file),path.join(dist,file));
+  copyFileSync(path.join(root,"src",file),path.join(root,file));
+}
+mkdirSync(path.join(dist,"data","neck"),{recursive:true});
+copyFileSync(path.join(root,"data","neck","model.json"),path.join(dist,"data","neck","model.json"));
 copyFileSync(path.join(root, "src", "neck-3d-view.js"), path.join(dist, "neck-3d-view.js"));
 copyFileSync(path.join(root, "src", "neck-3d-view.js"), path.join(root, "neck-3d-view.js"));
 copyFileSync(path.join(root, "src", "neck-tolerance-model.js"), path.join(dist, "neck-tolerance-model.js"));
