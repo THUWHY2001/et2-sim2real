@@ -13,7 +13,7 @@ const modules = [
   ["leg", "腿足", "j2.html"],
   ["neck", "头颈", "web2/neck-j0.html"],
   ["torso", "躯干", "torso-j0.html"],
-  ["arm", "手臂", "arm-j3.html"],
+  ["arm", "手臂", "web2/arm-j0.html"],
 ];
 
 const nav = current => `<header class="site-header"><div class="site-header-inner"><a class="site-brand" href="index.html">${siteTitle}</a><nav class="site-nav" aria-label="模块导航">${modules.map(([id,label,href])=>`<a href="${href}"${id===current?' aria-current="page"':''}>${label}</a>`).join("")}</nav></div></header>`;

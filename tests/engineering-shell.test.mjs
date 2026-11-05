@@ -13,7 +13,7 @@ assert.doesNotMatch(index, /href="index\.html#head-neck">头颈</);
 assert.match(index, /躯干/);
 assert.match(index, /手臂/);
 assert.match(index, /class="joint-options"[\s\S]*J2[\s\S]*J3[\s\S]*J4/);
-assert.match(index, /id="arm"[\s\S]*href="arm-j3\.html"/);
+assert.match(index, /href="web2\/arm-j0\.html">手臂</, "legacy navigation should enter the unified arm module at J0");
 assert.match(index, /href="site\.css\?v=[^"]+"/, "published pages must version the stylesheet so structural CSS updates are not served from stale cache");
 assert.match(index, /href="site\.css\?v=20261030-1"/, "arm J5 must publish with the new stylesheet version");
 assert.doesNotMatch(index, /radial-gradient|Sim2Real · 理论计算模型|ChatGPT|人工智能|>AI</i);
