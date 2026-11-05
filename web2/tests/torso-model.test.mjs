@@ -2,8 +2,10 @@ import assert from "node:assert/strict";
 import {readFileSync} from "node:fs";
 import vm from "node:vm";
 
-const source=readFileSync(new URL("../src/torso-model.js",import.meta.url),"utf8");
 const window={};
+const dynamicsDataSource=readFileSync(new URL("../src/torso-dynamics-data.js",import.meta.url),"utf8");
+vm.runInNewContext(dynamicsDataSource,{window});
+const source=readFileSync(new URL("../src/torso-model.js",import.meta.url),"utf8");
 vm.runInNewContext(source,{window,Math});
 const M=window.TorsoModel;
 
@@ -145,6 +147,32 @@ for(const joint of ["J1","J2"]){
   assert.ok(Math.max(...cycle.samples.flatMap(sample=>[Math.abs(sample.solution.geometry.rodErrors.L),Math.abs(sample.solution.geometry.rodErrors.R)]))<1e-6,`${joint} cycle closure`);
   close(cycle.rankings.static.reduce((sum,item)=>sum+item.contribution,0),100,1e-8,`${joint} static cycle contribution`);
   close(cycle.rankings.dynamic.reduce((sum,item)=>sum+item.contribution,0),100,1e-8,`${joint} dynamic cycle contribution`);
+}
+
+assert.equal(M.massProperties.knownMassKg,11.3106595,"known waist mass only");
+assert.equal(M.massProperties.explicitBodies.length,9,"nine explicit waist bodies");
+const zeroDynamics=M.bodyPoses(M.solveJoint("J1",0));
+assert.equal(zeroDynamics.complete,true,"zero body poses solve");
+assert.equal(Object.keys(zeroDynamics.bodies).length,9,"all explicit bodies get a pose");
+for(const body of M.massProperties.explicitBodies){
+  const pose=zeroDynamics.bodies[body.partName];
+  close(pose.comM.x,body.comM[0],1e-9,`${body.partName} zero COM x`);
+  close(pose.comM.y,body.comM[1],1e-9,`${body.partName} zero COM y`);
+  close(pose.comM.z,body.comM[2],1e-9,`${body.partName} zero COM z`);
+}
+for(const output of [-10,0,10])close(M.gravityHoldingTorque("J0",output).torqueNm,0,1e-7,`J0 gravity torque ${output}`);
+for(const joint of ["J1","J2"]){
+  const gravity=M.gravityHoldingTorque(joint,4);
+  assert.equal(gravity.complete,true,`${joint} gravity must solve`);
+  assert.ok(Number.isFinite(gravity.torqueNm),`${joint} gravity torque finite`);
+  const inertia=M.effectiveInertia(joint,4);
+  assert.equal(inertia.complete,true,`${joint} inertia must solve`);
+  assert.ok(inertia.kgM2>0,`${joint} effective inertia positive`);
+  const trajectory=M.trajectoryDynamics(joint,4);
+  assert.equal(trajectory.complete,true,`${joint} trajectory dynamics must solve`);
+  for(const key of ["velocityRadS","accelerationRadS2","gravityTorqueNm","effectiveInertiaKgM2","inertiaTorqueNm"]){
+    assert.ok(Number.isFinite(trajectory[key]),`${joint} ${key} finite`);
+  }
 }
 
 console.log("torso source geometry regression test passed");
