@@ -8,6 +8,8 @@ assert.match(index, /模块连接副-等效旋转轴的灵敏度分析/);
 assert.match(index, /class="site-nav"/);
 assert.match(index, /腿足/);
 assert.match(index, /头颈/);
+assert.match(index, /href="web2\/neck-j0\.html">头颈</, "legacy pages should enter the current neck module directly");
+assert.doesNotMatch(index, /href="index\.html#head-neck">头颈</);
 assert.match(index, /躯干/);
 assert.match(index, /手臂/);
 assert.match(index, /class="joint-options"[\s\S]*J2[\s\S]*J3[\s\S]*J4/);

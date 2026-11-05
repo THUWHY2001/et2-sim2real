@@ -11,7 +11,7 @@ const assetVersion = "20261030-1";
 const modules = [
   ["index", "总览", "index.html"],
   ["leg", "腿足", "j2.html"],
-  ["neck", "头颈", "index.html#head-neck"],
+  ["neck", "头颈", "web2/neck-j0.html"],
   ["torso", "躯干", "torso-j0.html"],
   ["arm", "手臂", "arm-j3.html"],
 ];
