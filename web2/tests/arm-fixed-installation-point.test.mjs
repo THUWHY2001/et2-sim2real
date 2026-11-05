@@ -36,7 +36,11 @@ for (const code of ["E1", "E2", "E3", "E4", "W1", "W2", "W3", "W4", "T1", "T2", 
 assert.match(page, /data-arm-point-key/, "the page must expose a hardpoint-to-joint correspondence list");
 
 const css = readFileSync(new URL("../site.css", import.meta.url), "utf8");
-assert.match(css, /\.arm-unified-geometry text\{[^}]*font-size:11px/, "mechanism labels must use the compact 11 px size");
-assert.match(css, /\.arm-hardpoint text\{[^}]*font-size:9px/, "hardpoint labels must use the compact 9 px size");
+assert.match(css, /\.arm-unified-geometry text\{[^}]*font-size:9px/, "mechanism labels must use the compact 9 px size");
+assert.match(css, /\.arm-hardpoint text\{[^}]*font-size:8px/, "hardpoint labels must use the compact 8 px size");
+assert.match(css, /\.arm-line-label\{[^}]*font-size:8px/, "transmission labels must use the compact 8 px size");
+assert.match(page, /class="arm-world-axis"/, "mechanism view must include a global XYZ coordinate triad");
+assert.match(page, />全局坐标系</, "global coordinate triad must be named in the figure");
+assert.match(page, /point=\(p,code\)=>/, "hardpoints in the mechanism figure must show only their short codes");
 
 console.log("arm fixed J0 installation-point regression test passed");
