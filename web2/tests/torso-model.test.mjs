@@ -175,4 +175,38 @@ for(const joint of ["J1","J2"]){
   }
 }
 
+const loadAssumptions={
+  leftShare:.5,
+  coefficients:Object.fromEntries(M.rateKeys.map(key=>[key,.001])),
+  preloads:Object.fromEntries(M.rateKeys.map(key=>[key,0])),
+};
+for(const joint of ["J0","J1","J2"]){
+  const solution=M.solveJoint(joint,4);
+  const nominal=M.connectionLoads(solution,loadAssumptions);
+  assert.equal(nominal.complete,true,`${joint} connection loads complete`);
+  assert.ok(M.rateKeys.every(key=>Number.isFinite(nominal.loadsN[key])&&nominal.loadsN[key]>=0),`${joint} connection loads finite`);
+  const input=Object.fromEntries(M.rateKeys.map(key=>[key],));
+  for(const key of M.rateKeys)input[key]=load(1,1,.7,.7);
+  const base=M.equivalentResistance(joint,solution,input,1,"static");
+  const zero=M.loadedResistance(joint,solution,input,1,"static",{...loadAssumptions,coefficients:Object.fromEntries(M.rateKeys.map(key=>[key,0]))});
+  close(zero.loadedTotal,base.total,1e-10,`${joint} zero coefficient preserves baseline`);
+  const loaded=M.loadedResistance(joint,solution,input,1,"static",loadAssumptions);
+  assert.ok(loaded.loadedTotal>loaded.baseTotal,`${joint} load raises connection resistance`);
+  close(Object.values(loaded.items).reduce((sum,item)=>sum+item.loadedContribution,0),100,1e-8,`${joint} loaded contribution sum`);
+  for(const item of Object.values(loaded.items))for(const field of ["basePart","loadedPart","deltaNm","baseContribution","loadedContribution","deltaPercentagePoints","sensitivityNmPerN"])
+    assert.ok(Number.isFinite(item[field]),`${joint} ${field} finite`);
+  const loadedPeriod=M.loadedCycle(joint,input,loadAssumptions,{samples:41});
+  assert.equal(loadedPeriod.complete,true,`${joint} loaded cycle complete`);
+  close(loadedPeriod.rankings.static.reduce((sum,item)=>sum+item.loadedContribution,0),100,1e-8,`${joint} loaded cycle contribution sum`);
+  assert.ok(Number.isFinite(loadedPeriod.peaks.static.totalTorqueNm),`${joint} total torque peak finite`);
+}
+const leftHeavy=M.connectionLoads(M.solveJoint("J1",4),{...loadAssumptions,leftShare:.6});
+const rightHeavy=M.connectionLoads(M.solveJoint("J1",4),{...loadAssumptions,leftShare:.4});
+assert.ok(leftHeavy.loadsN.ballLUpper>rightHeavy.loadsN.ballLUpper,"left share changes left branch load");
+const stabilityInput={};
+for(const key of M.rateKeys)stabilityInput[key]=load(1,1,.7,.7);
+const stability=M.rankStability("J1",stabilityInput,loadAssumptions,{samples:21});
+assert.equal(stability.complete,true,"rank stability completes");
+assert.ok(stability.items.every(item=>item.minRank>=1&&item.maxRank>=item.minRank&&item.top3Rate>=0&&item.top3Rate<=1),"rank stability fields valid");
+
 console.log("torso source geometry regression test passed");

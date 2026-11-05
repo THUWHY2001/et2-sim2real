@@ -280,5 +280,63 @@
     return{complete:true,velocityRadS,accelerationRadS2,gravityTorqueNm:gravity.torqueNm,effectiveInertiaKgM2:inertia.kgM2,inertiaTorqueNm,holdingTorqueNm:gravity.torqueNm+inertiaTorqueNm,solution:inertia.solution};
   }
 
-  window.TorsoModel={points,lengths,rateKeys,massProperties,zeroState,worldGeometry,solveJoint,solveActive,rates,equivalentResistance,cycle,bodyPoses,gravityHoldingTorque,effectiveInertia,trajectoryDynamics};
+  const massesByKind=massProperties.explicitBodies.reduce((result,body)=>{const kind=massProperties.partMapping[body.partName];result[kind]=(result[kind]||0)+body.massKg;return result},{});
+  const weightN=mass=>mass*Math.abs(massProperties.gravity[2]);
+  function connectionLoads(solution,assumptions={}){
+    if(!solution?.converged)return{complete:false,loadsN:{}};
+    const leftShare=Math.max(0,Math.min(1,Number(assumptions.leftShare??massProperties.assumptions.defaultLeftShare))),rightShare=1-leftShare;
+    const preload=key=>Math.max(0,Number(assumptions.preloads?.[key]??massProperties.assumptions.defaultPreloadN)||0),p=solution.geometry.points;
+    const upperMass=massesByKind.platform||0,branchMassL=(massesByKind.crankL||0)+(massesByKind.rodL||0),branchMassR=(massesByKind.crankR||0)+(massesByKind.rodR||0);
+    const rodForce=(upper,lower,share)=>share*weightN(upperMass)/Math.max(.15,Math.abs(unit(sub(upper,lower)).z));
+    const rodL=rodForce(p.upperBallL,p.lowerBallL,leftShare),rodR=rodForce(p.upperBallR,p.lowerBallR,rightShare);
+    const totalWeight=weightN(massProperties.knownMassKg),downstreamRoll=weightN(massProperties.knownMassKg-(massesByKind.yaw||0)),downstreamPitch=weightN(upperMass+branchMassL+branchMassR);
+    const loadsN={
+      yaw:totalWeight+preload('yaw'),roll:downstreamRoll+preload('roll'),pitch:downstreamPitch+preload('pitch'),
+      crankL:rodL+weightN(branchMassL)+preload('crankL'),crankR:rodR+weightN(branchMassR)+preload('crankR'),
+      ballLUpper:rodL+preload('ballLUpper'),ballLLower:rodL+preload('ballLLower'),
+      ballRUpper:rodR+preload('ballRUpper'),ballRLower:rodR+preload('ballRLower'),
+    };
+    return{complete:true,loadsN,leftShare,rightShare,knownWeightN:totalWeight,note:'由已知质量、重力和支链方向计算的名义承载指标；不是完整约束反力解'};
+  }
+  function loadedResistance(joint,solution,loads={},direction=1,mode='static',assumptions={}){
+    const base=equivalentResistance(joint,solution,loads,direction,mode),bearing=connectionLoads(solution,assumptions);
+    if(!base.complete||!bearing.complete)return{complete:false,items:{},baseTotal:0,loadedTotal:0};
+    const coefficient=key=>Math.max(0,Number(assumptions.coefficients?.[key]??massProperties.assumptions.defaultLoadFrictionCoefficientNmPerN)||0),items={},loadedParts={};
+    for(const key of rateKeys){
+      const loadedLocal=measured(loads[key],mode,base.directions[key])+coefficient(key)*bearing.loadsN[key];
+      loadedParts[key]=loadedLocal*Math.abs(base.rates[key]);
+    }
+    const loadedTotal=Object.values(loadedParts).reduce((sum,value)=>sum+value,0);
+    for(const key of rateKeys){
+      const basePart=base.parts[key],loadedPart=loadedParts[key],deltaNm=loadedPart-basePart;
+      items[key]={key,basePart,loadedPart,deltaNm,baseContribution:base.total?100*basePart/base.total:0,loadedContribution:loadedTotal?100*loadedPart/loadedTotal:0,deltaPercentagePoints:(loadedTotal?100*loadedPart/loadedTotal:0)-(base.total?100*basePart/base.total:0),sensitivityNmPerN:bearing.knownWeightN?deltaNm/bearing.knownWeightN:0,nominalLoadN:bearing.loadsN[key]};
+    }
+    return{complete:true,items,baseTotal:base.total,loadedTotal,deltaTotalNm:loadedTotal-base.total,bearing,mode,direction,rates:base.rates};
+  }
+  function loadedCycle(joint,loads={},assumptions={},options={}){
+    const sampleCount=Math.max(5,Math.floor(Number(options.samples)||121)),samples=[];let previous=null;
+    for(let index=0;index<sampleCount;index++){
+      const time=index/(sampleCount-1),phase=2*Math.PI*time,output=10*Math.sin(phase),direction=Math.cos(phase)>=0?1:-1,solution=solveJoint(joint,output,previous);
+      if(!solution.converged)return{complete:false,failingIndex:index,samples};previous=solution.state;
+      const staticResult=loadedResistance(joint,solution,loads,direction,'static',assumptions),dynamicResult=loadedResistance(joint,solution,loads,direction,'dynamic',assumptions),dynamics=trajectoryDynamics(joint,output,{direction});
+      if(!staticResult.complete||!dynamicResult.complete||!dynamics.complete)return{complete:false,failingIndex:index,samples};
+      samples.push({index,time,output,direction,solution,static:staticResult,dynamic:dynamicResult,dynamics});
+    }
+    const integrate=mode=>{
+      const baseTotals=Object.fromEntries(rateKeys.map(key=>[key,0])),loadedTotals=Object.fromEntries(rateKeys.map(key=>[key,0])),dt=1/(sampleCount-1);
+      for(let i=1;i<samples.length;i++)for(const key of rateKeys){baseTotals[key]+=.5*(samples[i-1][mode].items[key].basePart+samples[i][mode].items[key].basePart)*dt;loadedTotals[key]+=.5*(samples[i-1][mode].items[key].loadedPart+samples[i][mode].items[key].loadedPart)*dt}
+      const baseDen=Object.values(baseTotals).reduce((a,b)=>a+b,0),loadedDen=Object.values(loadedTotals).reduce((a,b)=>a+b,0);
+      return rateKeys.map(key=>({key,baseIntegral:baseTotals[key],loadedIntegral:loadedTotals[key],deltaIntegral:loadedTotals[key]-baseTotals[key],baseContribution:baseDen?100*baseTotals[key]/baseDen:0,loadedContribution:loadedDen?100*loadedTotals[key]/loadedDen:0,deltaPercentagePoints:(loadedDen?100*loadedTotals[key]/loadedDen:0)-(baseDen?100*baseTotals[key]/baseDen:0),sensitivityNmPerN:massProperties.knownMassKg?((loadedTotals[key]-baseTotals[key])/weightN(massProperties.knownMassKg)):0})).sort((a,b)=>b.loadedContribution-a.loadedContribution);
+    };
+    const peak=mode=>{let best=null;for(const sample of samples){const connectionNm=sample[mode].loadedTotal,gravityNm=sample.dynamics.gravityTorqueNm,inertiaNm=mode==='dynamic'?sample.dynamics.inertiaTorqueNm:0,totalTorqueNm=Math.sign(sample.direction||1)*connectionNm+gravityNm+inertiaNm;const current={time:sample.time,output:sample.output,connectionNm,gravityNm,inertiaNm,totalTorqueNm};if(!best||Math.abs(totalTorqueNm)>Math.abs(best.totalTorqueNm))best=current}return best};
+    return{complete:true,samples,rankings:{static:integrate('static'),dynamic:integrate('dynamic')},peaks:{static:peak('static'),dynamic:peak('dynamic')}};
+  }
+  function rankStability(joint,loads={},assumptions={},options={}){
+    const scenarios=[];for(const leftShare of [.4,.5,.6])for(const multiplier of [.5,1,1.5])scenarios.push({...assumptions,leftShare,coefficients:Object.fromEntries(rateKeys.map(key=>[key,(assumptions.coefficients?.[key]??.001)*multiplier]))});
+    const ranks=Object.fromEntries(rateKeys.map(key=>[key,[]]));
+    for(const scenario of scenarios){const result=loadedCycle(joint,loads,scenario,{samples:options.samples||41});if(!result.complete)return{complete:false,items:[]};result.rankings.dynamic.forEach((item,index)=>ranks[item.key].push(index+1))}
+    return{complete:true,scenarioCount:scenarios.length,items:rateKeys.map(key=>({key,minRank:Math.min(...ranks[key]),maxRank:Math.max(...ranks[key]),top3Rate:ranks[key].filter(rank=>rank<=3).length/scenarios.length}))};
+  }
+
+  window.TorsoModel={points,lengths,rateKeys,massProperties,zeroState,worldGeometry,solveJoint,solveActive,rates,equivalentResistance,cycle,bodyPoses,gravityHoldingTorque,effectiveInertia,trajectoryDynamics,connectionLoads,loadedResistance,loadedCycle,rankStability};
 })();
