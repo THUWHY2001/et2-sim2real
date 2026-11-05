@@ -26,7 +26,7 @@ const torsoJointNav = current => `<nav class="joint-nav" aria-label="躯干等�
 const chartResizeScript = `<script>(()=>{const initialized=new WeakSet();window.initChartResizeControls=(root=document)=>{root.querySelectorAll('[data-chart-panel]').forEach(panel=>{if(initialized.has(panel))return;initialized.add(panel);const stage=panel.querySelector('[data-chart-stage]'),output=panel.querySelector('[data-chart-scale]');let scale=1;const apply=()=>{stage.style.width=(scale*100)+'%';output.textContent=Math.round(scale*100)+'%';panel.querySelector('[data-chart-action="out"]').disabled=scale<=.75;panel.querySelector('[data-chart-action="in"]').disabled=scale>=2};panel.addEventListener('click',event=>{const button=event.target.closest('[data-chart-action]');if(!button)return;const action=button.dataset.chartAction;if(action==='out')scale=Math.max(.75,scale-.25);if(action==='in')scale=Math.min(2,scale+.25);if(action==='reset')scale=1;if(action==='fullscreen'){if(document.fullscreenElement===panel)document.exitFullscreen();else if(panel.requestFullscreen)panel.requestFullscreen();else panel.classList.toggle('chart-expanded')}apply()});document.addEventListener('fullscreenchange',()=>{const button=panel.querySelector('[data-chart-action="fullscreen"]');button.textContent=document.fullscreenElement===panel?'退出全屏':'全屏'});apply()})};window.initChartResizeControls(document)})();</script>`;
 
 function document(title, current, body, joint = null, modelScript = null, modelVersion = assetVersion) {
-  const scripts=joint?`<script src="directional-friction.js?v=${assetVersion}"></script><script src="link-tolerance.js?v=${assetVersion}"></script><script src="link-length-controls.js?v=${assetVersion}"></script>${modelScript?`<script src="${modelScript}?v=${modelVersion}"></script>`:''}${current==='neck'?`<script src="neck-3d-view.js?v=${assetVersion}"></script>`:''}${current==='torso'?`<script src="torso-3d-view.js?v=${modelVersion}"></script>`:''}`:'';
+  const scripts=joint?`<script src="directional-friction.js?v=${assetVersion}"></script><script src="link-tolerance.js?v=${assetVersion}"></script><script src="link-length-controls.js?v=${assetVersion}"></script>${current==='torso'?`<script src="torso-dynamics-data.js?v=${modelVersion}"></script>`:''}${modelScript?`<script src="${modelScript}?v=${modelVersion}"></script>`:''}${current==='neck'?`<script src="neck-3d-view.js?v=${assetVersion}"></script>`:''}${current==='torso'?`<script src="torso-3d-view.js?v=${modelVersion}"></script>`:''}`:'';
   const subnav=joint?(current==='arm'?armJointNav(joint):current==='neck'?neckJointNav(joint):current==='torso'?torsoJointNav(joint):jointNav(joint)):'';
   return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>${title}</title><link rel="stylesheet" href="site.css?v=${assetVersion}">${scripts}</head><body>${nav(current)}${subnav}${body}${joint ? chartResizeScript : ""}</body></html>`;
 }
@@ -53,9 +53,13 @@ copyFileSync(path.join(root, "src", "arm-j6-model.js"), path.join(dist, "arm-j6-
 copyFileSync(path.join(root, "src", "arm-j6-model.js"), path.join(root, "arm-j6-model.js"));
 copyFileSync(path.join(root, "src", "torso-model.js"), path.join(dist, "torso-model.js"));
 copyFileSync(path.join(root, "src", "torso-model.js"), path.join(root, "torso-model.js"));
+copyFileSync(path.join(root, "src", "torso-dynamics-data.js"), path.join(dist, "torso-dynamics-data.js"));
+copyFileSync(path.join(root, "src", "torso-dynamics-data.js"), path.join(root, "torso-dynamics-data.js"));
 copyFileSync(path.join(root, "src", "torso-3d-view.js"), path.join(dist, "torso-3d-view.js"));
 copyFileSync(path.join(root, "src", "torso-3d-view.js"), path.join(root, "torso-3d-view.js"));
 copyFileSync(path.join(root, "site.css"), path.join(dist, "site.css"));
+mkdirSync(path.join(dist,"data"),{recursive:true});
+for(const file of ["ET2_waist_dynamics_addon.json","ET2_waist_dynamics_body_table.csv"])copyFileSync(path.join(root,"data",file),path.join(dist,"data",file));
 
 const models = [
   {id:"j2", title:"J2 二维机构简图", fragment:"j2.fragment.html", section:"leg"},

@@ -1,0 +1,19 @@
+﻿part_name,module_role,mass_status,mass_kg,density_kg_m3,com_x_m,com_y_m,com_z_m,ixx_kgm2,iyy_kgm2,izz_kgm2,ixy_kgm2,izx_kgm2,iyz_kgm2,mass_properties_cmd_line,cm_marker_cmd_line,solid_ids
+base_link,module_boundary_optional,explicit,3.9954175,,-0.0638467,0.0040163,-0.0507134,0.0279242,0.00678,0.028504,0.0003042,0.0004241,0.0009926,1412070,1411962,SOLID146 | SOLID147 | SOLID148 | SOLID149 | SOLID150 | SOLID151 | SOLID152 | SOLID153 | SOLID154 | SOLID155 | SOLID156 | SOLID157 | SOLID158 | SOLID159 | SOLID160 | SOLID161 | SOLID162 | SOLID163 | SOLID164 | SOLID165 | SOLID166
+waist_link1,waist_module,explicit,0.6323082,,-0.0336342,4.85e-05,0.0057914,0.0004819,0.0007647,0.0007087,5e-07,-0.0001696,-3e-07,1412233,1412113,SOLID167 | SOLID168 | SOLID169 | SOLID170
+waist_link2,waist_module,explicit,0.1287166,,-0.0292621,5.4e-06,0.0293479,2.6e-05,1.51e-05,3.47e-05,0.0,2e-07,0.0,1412372,1412264,SOLID171 | SOLID172 | SOLID173 | SOLID174 | SOLID175 | SOLID176
+waist_link3,waist_module,explicit,10.2,,-0.0185177,-0.0004286,0.2350651,0.0929389,0.0741128,0.0675952,0.0002723,0.0050274,-0.000371,1412558,1412403,SOLID752 | SOLID753 | SOLID754 | SOLID755 | SOLID756 | SOLID757 | SOLID758 | SOLID759 | SOLID760 | SOLID761 | SOLID762 | SOLID763 | SOLID764 | SOLID765 | SOLID766
+waist_link4,waist_module,explicit,0.0983414,,-0.0392485,0.0220821,0.1006897,3.28e-05,8.62e-05,5.7e-05,1.7e-06,-7.6e-06,-5e-07,1412649,1412589,SOLID195
+waist_ball_link5,waist_module,explicit,0.0164401,,-0.0684219,0.01335,0.1090301,6e-07,7e-07,6e-07,0.0,0.0,0.0,1412740,1412680,SOLID196
+waist_link6,waist_module,explicit,0.0983414,,-0.0392485,-0.0220821,0.1006897,3.28e-05,8.62e-05,5.7e-05,-1.7e-06,-7.6e-06,5e-07,1412831,1412771,SOLID197
+waist_ball_link7,waist_module,explicit,0.0164402,,-0.0684219,-0.01335,0.1090301,6e-07,7e-07,6e-07,0.0,0.0,0.0,1412922,1412862,SOLID198
+waist_link8,waist_module,explicit,0.060036,,-0.073858,0.0194839,0.0750041,4.7e-05,4.8e-05,5.1e-06,-6e-07,2.8e-06,-8.5e-06,1413025,1412965,SOLID199 | SOLID200 | SOLID201 | SOLID202 | SOLID203
+waist_link9,waist_module,explicit,0.0600356,,-0.0738584,-0.019484,0.0750038,4.7e-05,4.8e-05,5.1e-06,6e-07,2.8e-06,8.5e-06,1413128,1413056,SOLID204 | SOLID205 | SOLID206 | SOLID207 | SOLID208
+waist_link3_1_L_link,waist_module,requires_parasolid_geometry,,2700.0,,,,,,,,,,1418219,1418154,SOLID767
+waist_link3_1_R_link,waist_module,requires_parasolid_geometry,,2700.0,,,,,,,,,,1418307,1418242,SOLID768
+waist_link3_2,waist_module,requires_parasolid_geometry,,1810.0,,,,,,,,,,1418455,1418330,SOLID769 | SOLID770 | SOLID771 | SOLID772
+waist_link3_3_shoulder_L,waist_module,requires_parasolid_geometry,,4183.0,,,,,,,,,,1418531,1418478,SOLID773
+waist_link3_3_shoulder_R,waist_module,requires_parasolid_geometry,,4183.0,,,,,,,,,,1418607,1418554,SOLID774
+waist_link3_4_waist_L,waist_module,requires_parasolid_geometry,,6220.0,,,,,,,,,,1418695,1418630,SOLID775
+waist_link3_4_waist_link,waist_module,requires_parasolid_geometry,,2700.0,,,,,,,,,,1418766,1418754,SOLID776
+waist_link3_4_waist_R,waist_module,requires_parasolid_geometry,,6220.0,,,,,,,,,,1418854,1418789,SOLID777
