@@ -56,6 +56,11 @@ for(const marker of ["data-torso-cycle-mode=\"static\"","data-torso-cycle-mode=\
 assert.match(joint,/闭链运动关系/);
 assert.match(joint,/N·m·s/);
 assert.ok(joint.indexOf("闭链运动关系")>joint.indexOf("完整周期贡献度"),"motion chart must be a separate section after cycle contribution");
+for(const marker of ["data-torso-load-settings","data-torso-loaded-live","data-torso-loaded-cycle","data-torso-torque-composition","data-torso-mass-table"])
+  assert.match(joint,new RegExp(marker),`loaded dynamics view requires ${marker}`);
+for(const label of ["加载后实时贡献度","加载后完整周期贡献度","总力矩组成","连接副阻力","重力矩","惯性力矩","总力矩","加载前","加载后","变化量","负载敏感度","名义承载指标","临时简化，待核实"])
+  assert.match(joint,new RegExp(label),`loaded dynamics view requires ${label}`);
+assert.ok(joint.indexOf("加载后实时贡献度")>joint.indexOf("完整周期贡献度"),"loaded modules append after original contribution views");
 assert.match(joint,/pointerdown/);
 assert.match(joint,/wheel/);
 
