@@ -13,7 +13,7 @@ assert.doesNotMatch(index, /href="index\.html#head-neck">头颈</);
 assert.match(index, /躯干/);
 assert.match(index, /手臂/);
 assert.match(index, /class="joint-options"[\s\S]*J2[\s\S]*J3[\s\S]*J4/);
-assert.match(index, /id="arm"[\s\S]*href="arm-j3\.html"/);
+assert.match(index, /id="arm"[\s\S]*href="arm-j0\.html"[\s\S]*href="arm-j6\.html"/);
 assert.match(index, /href="site\.css\?v=[^"]+"/, "published pages must version the stylesheet so structural CSS updates are not served from stale cache");
 assert.match(index, /href="site\.css\?v=20261030-1"/, "arm J5 must publish with the new stylesheet version");
 assert.doesNotMatch(index, /radial-gradient|Sim2Real · 理论计算模型|ChatGPT|人工智能|>AI</i);
@@ -28,10 +28,11 @@ for (const [file, label] of [["j2.html", "J2"], ["j3.html", "J3"], ["j4.html", "
   assert.ok(Buffer.byteLength(page) < 80_000, `${file} should be a lean direct page`);
 }
 
-const arm = read("arm-j3.html");
+const arm = read("arm-j0.html");
 assert.match(arm, /aria-current="page">手臂</);
-assert.match(arm, /class="joint-tab"[^>]*aria-current="page">J3</);
+assert.match(arm, /class="joint-tab"[^>]*aria-current="page">J0</);
+assert.match(arm, /href="arm-j6\.html">J6</);
 assert.doesNotMatch(arm, /<iframe|data-srcdoc=/);
-assert.ok(Buffer.byteLength(arm) < 80_000, "arm-j3.html should be a lean direct page");
+assert.ok(Buffer.byteLength(arm) < 80_000, "arm-j0.html should be a lean direct page");
 
 console.log("engineering shell regression test passed");

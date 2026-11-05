@@ -13,13 +13,13 @@ const modules = [
   ["leg", "腿足", "j2.html"],
   ["neck", "头颈", "neck-j0.html"],
   ["torso", "躯干", "torso-j0.html"],
-  ["arm", "手臂", "arm-j3.html"],
+  ["arm", "手臂", "arm-j0.html"],
 ];
 
 const nav = current => `<header class="site-header"><div class="site-header-inner"><a class="site-brand" href="index.html">${siteTitle}</a><nav class="site-nav" aria-label="模块导航">${modules.map(([id,label,href])=>`<a href="${href}"${id===current?' aria-current="page"':''}>${label}</a>`).join("")}</nav></div></header>`;
 
 const jointNav = current => `<nav class="joint-nav" aria-label="腿足等效旋转轴"><span>腿足</span>${["j2","j3","j4"].map(id=>`<a class="joint-tab" href="${id}.html"${id===current?' aria-current="page"':''}>${id.toUpperCase()}</a>`).join("")}</nav>`;
-const armJointNav = current => `<nav class="joint-nav" aria-label="手臂等效旋转轴"><span>手臂</span>${[['arm-j3','J3'],['arm-j5','J5'],['arm-j6','J6']].map(([id,label])=>`<a class="joint-tab" href="${id}.html"${current===id?' aria-current="page"':''}>${label}</a>`).join('')}</nav>`;
+const armJointNav = current => `<nav class="joint-nav" aria-label="手臂等效旋转轴"><span>手臂</span>${Array.from({length:7},(_,index)=>[`arm-j${index}`,`J${index}`]).map(([id,label])=>`<a class="joint-tab" href="${id}.html"${current===id?' aria-current="page"':''}>${label}</a>`).join('')}</nav>`;
 const neckJointNav = current => `<nav class="joint-nav" aria-label="头颈等效旋转轴"><span>头颈</span>${[['neck-j0','J0'],['neck-j1','J1'],['neck-j2','J2'],['neck-combined','组合']].map(([id,label])=>`<a class="joint-tab" href="${id}.html"${current===id?' aria-current="page"':''}>${label}</a>`).join('')}</nav>`;
 const torsoJointNav = current => `<nav class="joint-nav" aria-label="躯干等效旋转轴"><span>躯干</span>${[['torso-j0','J0'],['torso-j1','J1'],['torso-j2','J2'],['torso-combined','组合']].map(([id,label])=>`<a class="joint-tab" href="${id}.html"${current===id?' aria-current="page"':''}>${label}</a>`).join('')}</nav>`;
 
@@ -28,7 +28,7 @@ const chartResizeScript = `<script>(()=>{const initialized=new WeakSet();window.
 function document(title, current, body, joint = null, modelScript = null, modelVersion = assetVersion) {
   const scripts=joint?`<script src="directional-friction.js?v=${assetVersion}"></script><script src="link-tolerance.js?v=${assetVersion}"></script><script src="link-length-controls.js?v=${assetVersion}"></script>${current==='torso'?`<script src="torso-dynamics-data.js?v=${modelVersion}"></script>`:''}${modelScript?`<script src="${modelScript}?v=${modelVersion}"></script>`:''}${current==='neck'?`<script src="neck-3d-view.js?v=${assetVersion}"></script>`:''}${current==='torso'?`<script src="torso-3d-view.js?v=${modelVersion}"></script>`:''}`:'';
   const subnav=joint?(current==='arm'?armJointNav(joint):current==='neck'?neckJointNav(joint):current==='torso'?torsoJointNav(joint):jointNav(joint)):'';
-  const styleVersion=current==='torso'||current==='neck'?modelVersion:assetVersion;
+  const styleVersion=current==='torso'||current==='neck'||current==='arm'?modelVersion:assetVersion;
   return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>${title}</title><link rel="stylesheet" href="site.css?v=${styleVersion}">${scripts}</head><body>${nav(current)}${subnav}${body}${joint ? chartResizeScript : ""}</body></html>`;
 }
 
@@ -91,9 +91,15 @@ const models = [
   {id:"torso-j1", title:"躯干 J1 Roll 阻力分析", fragment:"torso-joint.fragment.html", section:"torso", modelScript:"torso-model.js", modelVersion:"20261105-load-1", transform:fragment=>fragment.replaceAll('__JOINT__','J1').replaceAll('__MOTION__','Roll').replaceAll('__DESCRIPTION__','左右曲柄反向驱动，伴随Pitch由闭链自然求解')},
   {id:"torso-j2", title:"躯干 J2 Pitch 阻力分析", fragment:"torso-joint.fragment.html", section:"torso", modelScript:"torso-model.js", modelVersion:"20261105-load-1", transform:fragment=>fragment.replaceAll('__JOINT__','J2').replaceAll('__MOTION__','Pitch').replaceAll('__DESCRIPTION__','左右曲柄同向驱动，伴随Roll由闭链自然求解')},
   {id:"torso-combined", title:"躯干三主动轴组合运动", fragment:"torso-combined.fragment.html", section:"torso", modelScript:"torso-model.js", modelVersion:"20261105-load-1"},
-  {id:"arm-j3", title:"手臂 J3 机构简图", fragment:"arm-j3.fragment.html", section:"arm", modelScript:"arm-j3-model.js"},
-  {id:"arm-j5", title:"手臂 J5 机构简图", fragment:"arm-j5.fragment.html", section:"arm", modelScript:"arm-j5-model.js"},
-  {id:"arm-j6", title:"手臂 J6 机构简图", fragment:"arm-j5.fragment.html", section:"arm", modelScript:"arm-j6-model.js", transform:fragment=>fragment.replaceAll('arm-j5','arm-j6').replaceAll('ArmJ5Model','ArmJ6Model').replaceAll('J5','J6').replace('(25.986,335.600,−92.703)—(17.524,336.576,−95.609)','(25.282,328.524,−106.969)—(25.869,355.606,−96.874)').replaceAll('两根推杆同步伸缩','两根推杆反向伸缩').replace('手臂 J6 并联双推杆机构与阻力贡献','手臂 J6 手腕Pitch双推杆机构与阻力贡献')},
+  ...[
+    ['J0','Shoulder Pitch','肩部 J0 旋转轴直接驱动','真实旋转轴主动'],
+    ['J1','Shoulder Roll','肩部 J1 旋转轴直接驱动','真实旋转轴主动'],
+    ['J2','Shoulder Yaw','肩部 J2 旋转轴直接驱动','真实旋转轴主动'],
+    ['J3','Elbow Pitch','肘部单推杆主动，J3 输出轴被动','肘部单推杆主动｜输出轴被动'],
+    ['J4','Elbow Yaw','肘部 J4 旋转轴直接驱动','真实旋转轴主动'],
+    ['J5','Wrist Roll','腕部双推杆主动，J5 输出轴被动','腕部双推杆主动｜输出轴被动'],
+    ['J6','Wrist Pitch','腕部双推杆主动，J6 输出轴被动','腕部双推杆主动｜输出轴被动'],
+  ].map(([joint,motion,description,badge])=>({id:`arm-${joint.toLowerCase()}`,title:`手臂 ${joint} ${motion} 阻力分析`,fragment:'arm-joint.fragment.html',section:'arm',modelVersion:'20261105-blackbox-1',transform:fragment=>fragment.replaceAll('__JOINT__',joint).replaceAll('__MOTION__',motion).replaceAll('__DRIVER_DESCRIPTION__',description).replaceAll('__DRIVER_BADGE__',badge)})),
 ];
 
 for (const model of models) {
@@ -105,7 +111,8 @@ for (const model of models) {
 }
 
 const home = `<main class="model-shell"><section class="home-head"><h1>${siteTitle}</h1><p>按机器人模块组织机构模型，计算连接副阻力向控制模型等效旋转轴的折算结果，并比较各连接副的影响程度。</p></section><section class="system-modules" aria-label="机器人模块"><article class="system-module system-module-active" id="leg"><div class="module-heading"><div><span class="module-index">01</span><h2>腿足</h2></div><span class="module-status">已建立 J2–J4 模型</span></div><div class="joint-options"><a href="j2.html"><strong>J2</strong><span>髋部等效旋转轴</span><small>推杆、多连杆闭链与旋转副阻力折算</small></a><a href="j3.html"><strong>J3</strong><span>膝部等效旋转轴</span><small>J3–Q 输出、A 点几何闭合与推杆传动</small></a><a href="j4.html"><strong>J4</strong><span>踝部等效旋转轴</span><small>主动曲柄、鱼眼连接副与伸缩推杆组合</small></a></div></article><article class="system-module" id="head-neck"><div class="module-heading"><div><span class="module-index">02</span><h2>头颈</h2></div><span class="module-status module-status-pending">待建立机构模型</span></div></article><article class="system-module" id="torso"><div class="module-heading"><div><span class="module-index">03</span><h2>躯干</h2></div><span class="module-status module-status-pending">待建立机构模型</span></div></article><article class="system-module system-module-active" id="arm"><div class="module-heading"><div><span class="module-index">04</span><h2>手臂</h2></div><span class="module-status">已建立 J3、J5 模型</span></div><div class="joint-options"><a href="arm-j3.html"><strong>J3</strong><span>手臂 J3 等效旋转轴</span><small>平行轴四杆闭环、三维推杆摆转与双向阻力折算</small></a><a href="arm-j5.html"><strong>J5</strong><span>手臂 J5 等效旋转轴</span><small>并联双推杆、四鱼眼连接副与三维刚体旋转</small></a></div></article></section><aside class="scope-note"><strong>计算范围：</strong>1 Hz、±10° 单关节激励；输出传动系数、静摩擦启动力矩、运行阻力和连接副贡献度。</aside></main>`;
-const homeWithArmJ6=home.replace('主动曲柄、鱼眼连接副与伸缩推杆组合','主动曲柄、滑套轴承与伸缩推杆组合').replace('已建立 J3、J5 模型','已建立 J3、J5、J6 模型').replace('</div></article></section><aside class="scope-note">','<a href="arm-j6.html"><strong>J6</strong><span>手臂 J6 等效旋转轴</span><small>手腕 Pitch、双推杆反向伸缩与四鱼眼摆转</small></a></div></article></section><aside class="scope-note">');
+const armHome='<article class="system-module system-module-active" id="arm"><div class="module-heading"><div><span class="module-index">04</span><h2>手臂</h2></div><span class="module-status">已建立 J0–J6 黑盒模型</span></div><div class="joint-options joint-options-four">'+Array.from({length:7},(_,index)=>`<a href="arm-j${index}.html"><strong>J${index}</strong><span>左臂 J${index}</span><small>${index===3?'肘部单推杆闭链':index>=5?'腕部双推杆闭链':'真实主动旋转轴'}</small></a>`).join('')+'</div></article>';
+const homeWithArmJ6=home.replace(/<article class="system-module system-module-active" id="arm">[\s\S]*?<\/article><\/section>/,armHome+'</section>');
 const homeWithNeck=homeWithArmJ6.replace('<article class="system-module" id="head-neck"><div class="module-heading"><div><span class="module-index">02</span><h2>头颈</h2></div><span class="module-status module-status-pending">待建立机构模型</span></div></article>','<article class="system-module system-module-active" id="head-neck"><div class="module-heading"><div><span class="module-index">02</span><h2>头颈</h2></div><span class="module-status">已建立 J0、J1、J2 黑盒闭链模型</span></div><div class="joint-options joint-options-four"><a href="neck-j0.html"><strong>J0</strong><span>Roll 被动输出</span><small>双推杆差动伸缩与闭链阻力折算</small></a><a href="neck-j1.html"><strong>J1</strong><span>Pitch 被动输出</span><small>双推杆同步伸缩与闭链阻力折算</small></a><a href="neck-j2.html"><strong>J2</strong><span>Yaw 主动旋转</span><small>推杆行程与相对 Roll/Pitch 保持不变</small></a><a href="neck-combined.html"><strong>组合</strong><span>三个主动输入</span><small>Yaw、左推杆、右推杆联合运动</small></a></div></article>');
 const homeWithTorso=homeWithNeck.replace('<article class="system-module" id="torso"><div class="module-heading"><div><span class="module-index">03</span><h2>躯干</h2></div><span class="module-status module-status-pending">待建立机构模型</span></div></article>','<article class="system-module system-module-active" id="torso"><div class="module-heading"><div><span class="module-index">03</span><h2>躯干</h2></div><span class="module-status">已建立 J0、J1、J2 闭链模型</span></div><div class="joint-options joint-options-four"><a href="torso-j0.html"><strong>J0</strong><span>Yaw等效旋转轴</span><small>真实Yaw主动轴与内部零相对运动校核</small></a><a href="torso-j1.html"><strong>J1</strong><span>Roll等效旋转轴</span><small>双曲柄反向驱动与有限角度耦合</small></a><a href="torso-j2.html"><strong>J2</strong><span>Pitch等效旋转轴</span><small>双曲柄同向驱动与闭链阻力折算</small></a><a href="torso-combined.html"><strong>组合</strong><span>三个真实主动输入</span><small>Yaw、左曲柄、右曲柄联合运动</small></a></div></article>');
 const homePage = document(siteTitle, "index", homeWithTorso);
