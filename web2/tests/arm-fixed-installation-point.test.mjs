@@ -30,6 +30,13 @@ for (const label of [
 ]) {
   assert.match(page, new RegExp(label), `the 3D mechanism must label ${label}`);
 }
+for (const code of ["E1", "E2", "E3", "E4", "W1", "W2", "W3", "W4", "T1", "T2", "T3"]) {
+  assert.match(page, new RegExp(`${code} [^']+`), `the mechanism and contribution names must share code ${code}`);
+}
 assert.match(page, /data-arm-point-key/, "the page must expose a hardpoint-to-joint correspondence list");
+
+const css = readFileSync(new URL("../site.css", import.meta.url), "utf8");
+assert.match(css, /\.arm-unified-geometry text\{[^}]*font-size:11px/, "mechanism labels must use the compact 11 px size");
+assert.match(css, /\.arm-hardpoint text\{[^}]*font-size:9px/, "hardpoint labels must use the compact 9 px size");
 
 console.log("arm fixed J0 installation-point regression test passed");
