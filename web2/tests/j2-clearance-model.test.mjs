@@ -1,0 +1,90 @@
+import assert from "node:assert/strict";
+import {readFileSync} from "node:fs";
+import vm from "node:vm";
+
+const context={window:{}};vm.createContext(context);
+vm.runInContext(readFileSync("src/j2-clearance-model.js","utf8"),context);
+const M=context.window.J2ClearanceModel;
+const passive=["axis1","axis2","axis3","point2"];
+const empty=()=>Object.fromEntries([...passive.map(k=>[k,{radialPositive:0,radialNegative:0,axialPositive:0,axialNegative:0}]),["rod",{positive:0,negative:0}]]);
+
+const zero=M.analyze(0,empty());
+assert.ok(Math.abs(zero.combined.deadzone)<1e-10);
+assert.ok(Math.abs(zero.combined.bias)<1e-10);
+
+const rodGaps=empty();rodGaps.rod={positive:.2,negative:.1};
+const rod=M.analyze(0,rodGaps);
+assert.ok(rod.individual.rod.deadzone>0,"pushrod backlash creates J2 dead-zone");
+assert.ok(Math.abs(rod.individual.rod.bias)>0,"asymmetric pushrod backlash creates zero bias");
+
+const passiveGaps=empty();passiveGaps.axis2.radialPositive=.1;passiveGaps.axis2.radialNegative=.2;
+const axis2=M.analyze(0,passiveGaps);
+assert.ok(axis2.individual.axis2.deadzone>0,"passive radial clearance creates J2 dead-zone");
+assert.ok(Number.isFinite(axis2.individual.axis2.sensitivity));
+
+const axialOnly=empty();axialOnly.axis2.axialPositive=1;axialOnly.axis2.axialNegative=2;
+assert.ok(Math.abs(M.analyze(0,axialOnly).combined.deadzone)<1e-10,"ideal X-Z model keeps axial interface inactive");
+
+const all=empty();for(const k of passive){all[k].radialPositive=.1;all[k].radialNegative=.15}all.rod={positive:.2,negative:.1};
+const cycle=M.cycle(all);
+assert.equal(cycle.forward.length,81);assert.equal(cycle.reverse.length,81);
+assert.ok(cycle.peakDeadzone>0);assert.ok(Number.isFinite(cycle.peakAngle));
+assert.ok(Math.abs(Object.values(M.analyze(0,all).contribution).reduce((a,b)=>a+b,0)-100)<1e-6);
+
+const zeroPresentation=M.presentation(0,empty(),"axis2");
+assert.equal(zeroPresentation.type,"radial");
+assert.equal(zeroPresentation.positive.gap,0);
+assert.equal(zeroPresentation.negative.gap,0);
+assert.deepEqual(zeroPresentation.positive.geometry.axis2Rod,zeroPresentation.negative.geometry.axis2Rod);
+
+const asymmetric=empty();asymmetric.axis2.radialPositive=.2;asymmetric.axis2.radialNegative=.05;
+const axis2Presentation=M.presentation(0,asymmetric,"axis2");
+assert.equal(axis2Presentation.positive.gap,.2);
+assert.equal(axis2Presentation.negative.gap,.05);
+assert.ok(axis2Presentation.positive.actual>axis2Presentation.negative.actual);
+assert.ok(Number.isFinite(axis2Presentation.direction.x));
+
+const rodPresentation=M.presentation(0,rodGaps,"rod");
+assert.equal(rodPresentation.type,"axial");
+assert.equal(rodPresentation.positive.gap,.2);
+assert.equal(rodPresentation.negative.gap,.1);
+
+const j2Only=empty();j2Only.j2={positive:.3,negative:.1};
+const j2=M.analyze(0,j2Only);
+assert.ok(M.keys.includes("j2"),"J2 equivalent rotation axis participates in ranking");
+assert.ok(Math.abs(j2.individual.j2.deadzone-.4)<1e-9);
+assert.ok(Math.abs(j2.individual.j2.bias-.1)<1e-9);
+assert.ok(Math.abs(j2.contribution.j2-100)<1e-9);
+const j2Presentation=M.presentation(2,j2Only,"j2");
+assert.equal(j2Presentation.type,"angular");
+assert.equal(j2Presentation.positive.actual,2.3);
+assert.equal(j2Presentation.negative.actual,1.9);
+
+const j2Screen=M.screening(j2Only),j2ScreenItem=j2Screen.items.find(item=>item.key==="j2");
+assert.equal(j2ScreenItem.unit,"°");
+assert.ok(Math.abs(j2ScreenItem.impact-.4)<1e-9);
+assert.ok(Math.abs(j2ScreenItem.sensitivity-1)<1e-9);
+assert.ok(Math.abs(j2ScreenItem.curve.at(-1).deadzone-j2ScreenItem.impact)<1e-9);
+assert.equal(j2Screen.items.find(item=>item.key==="axis1").impact,0);
+
+const axis2Only=empty();axis2Only.axis2.radialPositive=.1;axis2Only.axis2.radialNegative=.1;
+const axis2WithJ2=structuredClone(axis2Only);axis2WithJ2.j2={positive:20,negative:20};
+const axis2Impact=M.screening(axis2Only).items.find(item=>item.key==="axis2").impact;
+const isolatedAxis2Impact=M.screening(axis2WithJ2).items.find(item=>item.key==="axis2").impact;
+assert.ok(Math.abs(axis2Impact-isolatedAxis2Impact)<1e-9,"screening isolates unrelated gaps");
+assert.ok(Math.abs(j2Screen.items.reduce((sum,item)=>sum+item.contribution,0)-100)<1e-9);
+
+const motion=M.motionProjection();
+assert.equal(motion.samples.length,81,"motion projection follows the full -10 to +10 degree sweep");
+assert.equal(motion.samples[0].degrees,-10);
+assert.equal(motion.samples.at(-1).degrees,10);
+for(const sample of motion.samples){
+  assert.ok(Number.isFinite(sample.dLdq));
+  assert.ok(Number.isFinite(sample.sensitivity.rod));
+  assert.ok(Math.abs(sample.projection.axis2-1)<1e-6);
+  assert.ok(Math.abs(sample.projection.point2-1)<1e-6);
+  assert.ok(Math.abs(sample.sensitivity.axis2-sample.sensitivity.point2)<1e-8);
+  assert.ok(Math.abs(sample.sensitivity.axis2-sample.sensitivity.rod)<1e-8);
+}
+
+console.log("J2 clearance model regression test passed");

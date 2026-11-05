@@ -1,0 +1,23 @@
+import assert from "node:assert/strict";
+import {readFileSync} from "node:fs";
+import vm from "node:vm";
+
+const fragment=readFileSync("src/j4.fragment.html","utf8");
+const source=fragment.match(/<script data-j4-core>([\s\S]*?)<\/script>/)?.[1];
+assert.ok(source,"J4 core model script must exist");
+const context={window:{}};
+vm.createContext(context);
+vm.runInContext(readFileSync("src/directional-friction.js","utf8"),context);
+vm.runInContext(readFileSync("src/link-tolerance.js","utf8"),context);
+vm.runInContext(source,context);
+const M=context.window.J4Model,T=context.window.LinkTolerance;
+const state=M.solve(0,{JB:M.lengths.JB+1});
+assert.ok(Math.abs(M.distance(state.J,state.B)-(M.lengths.JB+1))<1e-6,"JB override changes the physical link");
+assert.ok(Number.isFinite(state.rodJacobian)&&Object.values(state.rates).every(Number.isFinite),"J4 override keeps finite kinematics");
+const loads=Object.fromEntries(["a","b","rod"].map(key=>[key,{positive:key==="rod"?10:1,negative:key==="rod"?10:1}]));
+const results=T.analyze({model:M,links:[{key:"JB",label:"J4—B"}],loads,direction:1,sampleCount:7});
+assert.equal(results.length,1,"only the non-pushrod JB link is analyzed");
+assert.ok(Number.isFinite(results[0].sensitivity)&&results[0].maxChangePercent>0,"JB yields a usable tolerance curve");
+assert.match(fragment,/id="j4-tolerance-charts"/,"J4 page exposes tolerance charts");
+assert.doesNotMatch(fragment,/key:\s*['"]body['"]/i,"pushrod body is not a tolerance variable");
+console.log("J4 tolerance analysis regression test passed");

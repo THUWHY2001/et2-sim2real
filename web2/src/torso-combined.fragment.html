@@ -1,0 +1,41 @@
+<section class="torso-page" data-torso-combined>
+  <header class="model-heading"><div><p class="eyebrow">躯干闭链机构</p><h1>躯干三主动轴组合运动</h1><p>输入 Yaw、左曲柄和右曲柄三个真实主动量，Roll/Pitch由双侧定长闭链求解。</p></div><div class="model-badge">真实主动输入</div></header>
+  <div class="torso-layout">
+    <section class="panel torso-viz-panel">
+      <div class="panel-heading"><div><h2>三维机构</h2><p>拖拽旋转，滚轮缩放。</p></div><button type="button" class="button-secondary" data-torso-reset-view>复位视角</button></div>
+      <svg data-torso-svg class="torso-svg" viewBox="0 0 720 540" role="img" aria-label="胸腰三主动轴组合闭链"></svg>
+      <div class="torso-legend text-small"><span class="legend-left">左闭链</span><span class="legend-right">右闭链</span><span>Yaw轴</span><span>Roll轴</span><span>Pitch轴</span></div>
+    </section>
+    <section class="panel torso-control-panel">
+      <h2>真实主动输入</h2>
+      <label class="field-label">Yaw <output data-value="yaw">0.0°</output><input data-active-yaw type="range" min="-10" max="10" step="0.1" value="0"></label>
+      <label class="field-label">左曲柄 <output data-value="crankL">0.0°</output><input data-active-crank-l type="range" min="-16" max="16" step="0.1" value="0"></label>
+      <label class="field-label">右曲柄 <output data-value="crankR">0.0°</output><input data-active-crank-r type="range" min="-16" max="16" step="0.1" value="0"></label>
+      <div class="button-row torso-presets"><button type="button" data-active-preset="yaw">仅Yaw</button><button type="button" data-active-preset="equal">曲柄同向</button><button type="button" data-active-preset="opposite">曲柄反向</button></div>
+      <div class="solve-state" data-active-status>等待计算</div>
+      <dl class="torso-readout">
+        <div><dt>Roll输出</dt><dd data-active-roll>0.000°</dd></div>
+        <div><dt>Pitch输出</dt><dd data-active-pitch>0.000°</dd></div>
+        <div><dt>最大杆长误差</dt><dd data-active-rod-error>0.000000 mm</dd></div>
+        <div><dt>闭链残差</dt><dd data-active-residual>0.000000 mm²</dd></div>
+      </dl>
+      <p class="text-small text-muted">同向/反向只描述真实曲柄输入关系，有限角度输出由闭链计算，不标作强制纯Pitch或纯Roll。</p>
+    </section>
+  </div>
+</section>
+
+<script>(()=>{
+  'use strict';
+  const root=document.querySelector('[data-torso-combined]'),M=window.TorsoModel,svg=root.querySelector('[data-torso-svg]'),camera=window.Torso3DView.createCamera({width:720,height:540,center:{x:-42,y:0,z:52},scale:3.2});
+  let lastSolution=null,drag=null;
+  const project=point=>camera.project(point),esc=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  const line=(a,b,className,label='')=>{const p=project(a),q=project(b);return`<g><line class="${className}" x1="${p.x.toFixed(2)}" y1="${p.y.toFixed(2)}" x2="${q.x.toFixed(2)}" y2="${q.y.toFixed(2)}"></line>${label?`<text class="torso-label" x="${((p.x+q.x)/2+7).toFixed(2)}" y="${((p.y+q.y)/2-7).toFixed(2)}">${esc(label)}</text>`:''}</g>`};
+  const node=(point,label,className)=>{const p=project(point);return`<g><circle class="${className}" cx="${p.x.toFixed(2)}" cy="${p.y.toFixed(2)}" r="6"></circle><text class="torso-label" x="${(p.x+9).toFixed(2)}" y="${(p.y-8).toFixed(2)}">${esc(label)}</text></g>`};
+  const rotate=(v,state,pitchAxis=false)=>{let w=v;if(pitchAxis){const a=state.roll*Math.PI/180,c=Math.cos(a),s=Math.sin(a);w={x:v.x,y:v.y*c-v.z*s,z:v.y*s+v.z*c}}const z=state.yaw*Math.PI/180,c=Math.cos(z),s=Math.sin(z);return{x:w.x*c-w.y*s,y:w.x*s+w.y*c,z:w.z}};
+  const axis=(center,direction,length)=>({a:{x:center.x-direction.x*length,y:center.y-direction.y*length,z:center.z-direction.z*length},b:{x:center.x+direction.x*length,y:center.y+direction.y*length,z:center.z+direction.z*length}});
+  function draw(solution){if(!solution?.converged)return;lastSolution=solution;const p=solution.geometry.points,s=solution.state;let html=line(p.lowerBallL,p.upperBallL,'torso-rod torso-left')+line(p.lowerBallR,p.upperBallR,'torso-rod torso-right')+line(p.crankPivotL,p.upperBallL,'torso-crank torso-left','左曲柄')+line(p.crankPivotR,p.upperBallR,'torso-crank torso-right','右曲柄')+line(p.outputPivot,p.crankPivotL,'torso-platform')+line(p.outputPivot,p.crankPivotR,'torso-platform')+line(p.crankPivotL,p.crankPivotR,'torso-platform');const yaw=axis(p.yawPivot,{x:0,y:0,z:1},30),roll=axis(p.outputPivot,rotate({x:1,y:0,z:0},s),38),pitch=axis(p.outputPivot,rotate({x:0,y:1,z:0},s,true),38);html+=line(yaw.a,yaw.b,'torso-axis torso-yaw','Yaw轴')+line(roll.a,roll.b,'torso-axis torso-roll','Roll轴')+line(pitch.a,pitch.b,'torso-axis torso-pitch','Pitch轴');html+=node(p.upperBallL,'左上球铰','torso-node torso-left-node')+node(p.lowerBallL,'左下球铰','torso-node torso-left-node')+node(p.upperBallR,'右上球铰','torso-node torso-right-node')+node(p.lowerBallR,'右下球铰','torso-node torso-right-node');svg.innerHTML=html}
+  const controls={yaw:root.querySelector('[data-active-yaw]'),crankL:root.querySelector('[data-active-crank-l]'),crankR:root.querySelector('[data-active-crank-r]')};
+  function update(){const inputs=Object.fromEntries(Object.entries(controls).map(([key,input])=>[key,Number(input.value)])),solution=M.solveActive(inputs,lastSolution?.state),status=root.querySelector('[data-active-status]');for(const [key,value] of Object.entries(inputs))root.querySelector(`[data-value="${key}"]`).textContent=value.toFixed(1)+'°';if(!solution.converged){status.textContent=`闭链未收敛｜残差 ${Number(solution.residual).toExponential(3)}`;status.dataset.state='error';return}status.textContent=`闭链已收敛｜${solution.iterations} 次迭代`;status.dataset.state='ok';draw(solution);root.querySelector('[data-active-roll]').textContent=solution.state.roll.toFixed(4)+'°';root.querySelector('[data-active-pitch]').textContent=solution.state.pitch.toFixed(4)+'°';root.querySelector('[data-active-rod-error]').textContent=Math.max(Math.abs(solution.geometry.rodErrors.L),Math.abs(solution.geometry.rodErrors.R)).toExponential(3)+' mm';root.querySelector('[data-active-residual]').textContent=Math.max(Math.abs(solution.geometry.closureResiduals.L),Math.abs(solution.geometry.closureResiduals.R)).toExponential(3)+' mm²'}
+  Object.values(controls).forEach(input=>input.addEventListener('input',update));root.querySelectorAll('[data-active-preset]').forEach(button=>button.addEventListener('click',()=>{const kind=button.dataset.activePreset;if(kind==='yaw'){controls.yaw.value=8;controls.crankL.value=0;controls.crankR.value=0}if(kind==='equal'){controls.yaw.value=0;controls.crankL.value=8;controls.crankR.value=8}if(kind==='opposite'){controls.yaw.value=0;controls.crankL.value=8;controls.crankR.value=-8}update()}));
+  svg.addEventListener('pointerdown',event=>{drag={x:event.clientX,y:event.clientY};svg.setPointerCapture(event.pointerId)});svg.addEventListener('pointermove',event=>{if(!drag)return;camera.rotate(event.clientX-drag.x,event.clientY-drag.y);drag={x:event.clientX,y:event.clientY};draw(lastSolution)});svg.addEventListener('pointerup',()=>drag=null);svg.addEventListener('pointercancel',()=>drag=null);svg.addEventListener('wheel',event=>{event.preventDefault();camera.zoom(-event.deltaY/80);draw(lastSolution)},{passive:false});root.querySelector('[data-torso-reset-view]').addEventListener('click',()=>{camera.reset();draw(lastSolution)});update();
+})();</script>
