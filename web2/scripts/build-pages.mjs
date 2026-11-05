@@ -99,7 +99,7 @@ const models = [
     ['J4','Elbow Yaw','肘部 J4 旋转轴直接驱动','真实旋转轴主动'],
     ['J5','Wrist Roll','腕部双推杆主动，J5 输出轴被动','腕部双推杆主动｜输出轴被动'],
     ['J6','Wrist Pitch','腕部双推杆主动，J6 输出轴被动','腕部双推杆主动｜输出轴被动'],
-  ].map(([joint,motion,description,badge])=>({id:`arm-${joint.toLowerCase()}`,title:`手臂 ${joint} ${motion} 阻力分析`,fragment:'arm-joint.fragment.html',section:'arm',modelVersion:'20261105-blackbox-1',transform:fragment=>fragment.replaceAll('__JOINT__',joint).replaceAll('__MOTION__',motion).replaceAll('__DRIVER_DESCRIPTION__',description).replaceAll('__DRIVER_BADGE__',badge)})),
+  ].map(([joint,motion,description,badge])=>({id:`arm-${joint.toLowerCase()}`,title:`手臂 ${joint} ${motion} 阻力分析`,fragment:'arm-joint.fragment.html',section:'arm',modelVersion:'20261105-arm-axis-1',transform:fragment=>fragment.replaceAll('__JOINT__',joint).replaceAll('__MOTION__',motion).replaceAll('__DRIVER_DESCRIPTION__',description).replaceAll('__DRIVER_BADGE__',badge)})),
 ];
 
 for (const model of models) {
