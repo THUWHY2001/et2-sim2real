@@ -48,6 +48,14 @@ for(const file of ["neck-blackbox.mjs","neck-runtime.mjs"]){
 }
 mkdirSync(path.join(dist,"data","neck"),{recursive:true});
 copyFileSync(path.join(root,"data","neck","model.json"),path.join(dist,"data","neck","model.json"));
+for(const file of ["left-arm-blackbox.mjs","arm-runtime.mjs"]){
+  copyFileSync(path.join(root,"src",file),path.join(dist,file));
+  copyFileSync(path.join(root,"src",file),path.join(root,file));
+}
+mkdirSync(path.join(dist,"data","arm"),{recursive:true});
+for(const file of ["model.json","pose_reference.json"]){
+  copyFileSync(path.join(root,"data","arm",file),path.join(dist,"data","arm",file));
+}
 copyFileSync(path.join(root, "src", "neck-3d-view.js"), path.join(dist, "neck-3d-view.js"));
 copyFileSync(path.join(root, "src", "neck-3d-view.js"), path.join(root, "neck-3d-view.js"));
 copyFileSync(path.join(root, "src", "neck-tolerance-model.js"), path.join(dist, "neck-tolerance-model.js"));
