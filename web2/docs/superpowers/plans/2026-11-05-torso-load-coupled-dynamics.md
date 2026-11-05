@@ -1,4 +1,4 @@
-# ET2 躯干负载耦合阻力贡献度实施计划
+# ET2 躯干加载前后阻力贡献度实施计划
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -29,7 +29,7 @@
 
 ---
 
-### Task 1: 质量属性数据与 PART 映射
+### Task 1: 把质量数据对应到现有零件
 
 **Files:**
 - Create: `web2/data/ET2_waist_dynamics_addon.json`
@@ -62,7 +62,7 @@ Run: `node web2/scripts/build-pages.mjs && node web2/tests/torso-dynamics-data.t
 
 提交数据、数据模块、构建和测试。
 
-### Task 2: 刚体重力与等效惯量
+### Task 2: 计算重力和运动惯性
 
 **Files:**
 - Modify: `web2/src/torso-model.js`
@@ -88,7 +88,7 @@ Yaw、Roll、Pitch、左右曲柄按现有刚体变换；左右连杆采用最�
 
 - [ ] **Step 5: 运行测试并提交**
 
-### Task 3: 加载后贡献度与敏感度
+### Task 3: 计算加载后贡献度和负载敏感度
 
 **Files:**
 - Modify: `web2/src/torso-model.js`
@@ -114,7 +114,7 @@ Yaw、Roll、Pitch、左右曲柄按现有刚体变换；左右连杆采用最�
 
 - [ ] **Step 5: 运行测试并提交**
 
-### Task 4: 网页呈现与发布验证
+### Task 4: 显示加载前后结果并发布
 
 **Files:**
 - Modify: `web2/src/torso-joint.fragment.html`
