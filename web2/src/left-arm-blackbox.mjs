@@ -22,15 +22,15 @@ export function createLeftArmBlackbox(model) {
     'arm_l_link6','arm_l_link7','arm_l_link13','arm_l_link16',
     'arm_l_ball_link15','arm_l_ball_link18'
   ].map(point);
-  const [E0,EA,ED,EC,EB] = [
+  const elbowWorld0 = [
     'arm_l_link4','arm_l_link11','arm_l_link12','arm_l_ball_link10','arm_l_link8'
-  ].map(point).map(p=>[p[0],p[2]]);
+  ].map(point);
+  const elbowY=elbowWorld0[0][1];
+  const [E0,EA,ED,EC,EB] = elbowWorld0.map(p=>[p[0],p[2]]);
 
   // Wrist: J_ARM_L_06_RE (+X) -> J_ARM_L_07_RE (+Y), both axes in initial pose.
-  const wristLengthsRad = (roll,pitch) => {
-    const lower = (p) => add(O6,rotateX(add(sub(O7,O6),rotateY(sub(p,O7),pitch)),roll));
-    return [norm(sub(UA,lower(LA))),norm(sub(UB,lower(LB)))];
-  };
+  const wristLowerRad = (p,roll,pitch) => add(O6,rotateX(add(sub(O7,O6),rotateY(sub(p,O7),pitch)),roll));
+  const wristLengthsRad = (roll,pitch) => [norm(sub(UA,wristLowerRad(LA,roll,pitch))),norm(sub(UB,wristLowerRad(LB,roll,pitch)))];
   const wristL0 = wristLengthsRad(0,0);
   function wristPoseToRods({rollDeg=0,pitchDeg=0}={}) {
     const length = wristLengthsRad(rollDeg*D2R,pitchDeg*D2R);
@@ -65,6 +65,11 @@ export function createLeftArmBlackbox(model) {
     return [[(rplus[0]-rminus[0])/(2*h),(pplus[0]-pminus[0])/(2*h)],
             [(rplus[1]-rminus[1])/(2*h),(pplus[1]-pminus[1])/(2*h)]];
   }
+  function wristGeometry({rollDeg=0,pitchDeg=0}={}){
+    const r=rollDeg*D2R,p=pitchDeg*D2R,lowerLeft=wristLowerRad(LA,r,p),lowerRight=wristLowerRad(LB,r,p);
+    return{axisRoll:[...O6],axisPitch:[...O7],upperLeft:[...UA],upperRight:[...UB],lowerLeft,lowerRight,
+      lengthMm:{left:norm(sub(UA,lowerLeft)),right:norm(sub(UB,lowerRight))}};
+  }
 
   // Elbow: ideal planar four-bar closure in global X-Z plane at CMD initial geometry.
   // J04 output axis +Y, J11 and J12 pivot about the same planar normal.
@@ -72,7 +77,7 @@ export function createLeftArmBlackbox(model) {
   const eL0=norm(sub(EB,EC));
   const orient=(A,B,C)=>(B[0]-A[0])*(C[1]-A[1])-(B[1]-A[1])*(C[0]-A[0]);
   const branchSign=Math.sign(orient(EA,ED,EC))||1;
-  function elbowFourbarPoint(deltaRad){
+  function elbowGeometryRad(deltaRad){
     const d0=sub(ED,E0),t=deltaRad;
     const D=add(E0,[Math.cos(t)*d0[0]+Math.sin(t)*d0[1],-Math.sin(t)*d0[0]+Math.cos(t)*d0[1]]);
     const v=sub(D,EA),sep=norm(v);
@@ -81,8 +86,10 @@ export function createLeftArmBlackbox(model) {
     const h2=eR1*eR1-x*x;
     if(h2<-1e-7) throw new Error('No elbow four-bar closure at requested angle');
     const u=v.map(z=>z/sep),perp=[-u[1],u[0]];
-    return add(add(EA,u.map(z=>z*x)),perp.map(z=>z*branchSign*Math.sqrt(Math.max(0,h2))));
+    const C=add(add(EA,u.map(z=>z*x)),perp.map(z=>z*branchSign*Math.sqrt(Math.max(0,h2))));
+    return{D,C};
   }
+  const elbowFourbarPoint = deltaRad=>elbowGeometryRad(deltaRad).C;
   const elbowLengthRad = (q)=>norm(sub(EB,elbowFourbarPoint(q)));
   function elbowPitchToRod({deltaPitchDeg=0}={}){
     const current=elbowLengthRad(deltaPitchDeg*D2R);
@@ -104,6 +111,10 @@ export function createLeftArmBlackbox(model) {
   function elbowJacobianMmPerRad({deltaPitchDeg=0}={}){
     const t=deltaPitchDeg*D2R,h=1e-5;
     return (elbowLengthRad(t+h)-elbowLengthRad(t-h))/(2*h);
+  }
+  function elbowGeometry({deltaPitchDeg=0}={}){
+    const {D,C}=elbowGeometryRad(deltaPitchDeg*D2R),p=point2=>[point2[0],elbowY,point2[1]];
+    return{outputPivot:p(E0),fixedPivot:p(EA),movingPivot:p(D),coupler:p(C),rodUpper:p(EB),rodLengthMm:norm(sub(EB,C))};
   }
   function rigidBodyMassProperties(partName){
     const p=model.parts[partName];
@@ -161,7 +172,7 @@ export function createLeftArmBlackbox(model) {
     modes:()=>({cmdActive:Object.entries(model.motions).filter(([,v])=>v.active_cmd).map(([k])=>k),
       realActuatorRecommended:Object.entries(model.motions).filter(([,v])=>v.recommended_active_for_real_actuator_model).map(([k])=>k)}),
     versionConflicts:()=>model.version_conflicts,
-    wristPoseToRods,wristRodsToPose,wristJacobianMmPerRad,
-    elbowPitchToRod,elbowRodToPitch,elbowJacobianMmPerRad
+    wristPoseToRods,wristRodsToPose,wristJacobianMmPerRad,wristGeometry,
+    elbowPitchToRod,elbowRodToPitch,elbowJacobianMmPerRad,elbowGeometry
   });
 }
