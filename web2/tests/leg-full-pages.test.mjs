@@ -18,4 +18,10 @@ for(const [file,joint] of [["../j2.html","J2"],["../j3.html","J3"],["../j4.html"
   assert.match(page,/加载后实时贡献度/);
 }
 
+for(const [file,joint] of [["../../j2.html","J2"],["../../j3.html","J3"],["../../j4.html","J4"]]){
+  const page=readFileSync(new URL(file,import.meta.url),"utf8");
+  assert.match(page,new RegExp(`data-leg-full-joint="${joint}"`),`public root ${joint} entry must use the full closed-chain page`);
+  assert.match(page,/<base href="web2\/">/,`public root ${joint} entry must resolve assets from web2`);
+}
+
 console.log("leg full page structure regression test passed");
