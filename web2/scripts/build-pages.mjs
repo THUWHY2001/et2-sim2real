@@ -77,6 +77,7 @@ mkdirSync(path.join(dist,"data"),{recursive:true});
 for(const file of ["ET2_waist_dynamics_addon.json","ET2_waist_dynamics_body_table.csv"])copyFileSync(path.join(root,"data",file),path.join(dist,"data",file));
 mkdirSync(path.join(dist,"src"),{recursive:true});
 copyFileSync(path.join(root,"src","leg-full-runtime.mjs"),path.join(dist,"src","leg-full-runtime.mjs"));
+copyFileSync(path.join(root,"src","leg-joint-labels.mjs"),path.join(dist,"src","leg-joint-labels.mjs"));
 mkdirSync(path.join(dist,"data","leg-full-package"),{recursive:true});
 for(const file of ["leg_full.mjs","model.json"]){
   copyFileSync(path.join(root,"data","leg-full-package",file),path.join(dist,"data","leg-full-package",file));
