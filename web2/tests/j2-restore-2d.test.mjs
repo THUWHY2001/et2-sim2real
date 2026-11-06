@@ -2,8 +2,9 @@ import assert from "node:assert/strict";
 import {readFileSync} from "node:fs";
 
 const page=readFileSync(new URL("../j2.html",import.meta.url),"utf8");
-assert.match(page,/J2 二维机构简图（X–Z 投影）/);
-assert.match(page,/aria-labelledby="leg-viz-title leg-viz-desc"/);
-assert.doesNotMatch(page,/j2-3d-canvas|j2-3d-view\.js/);
+assert.match(page,/ET2 左腿完整三推杆闭链/);
+assert.match(page,/data-leg-full-svg/);
+assert.match(page,/拖拽旋转，滚轮缩放/);
+assert.doesNotMatch(page,/J2 二维机构简图（X–Z 投影）/);
 
-console.log("J2 2D restoration test passed");
+console.log("J2 full 3D replacement test passed");
