@@ -1,0 +1,300 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ET2 Left Leg | All 20 hardpoints | Rod-driven closed chains</title><style>
+:root{font-family:Inter,Segoe UI,Arial,sans-serif;color:#243648;background:#f5f8fc}*{box-sizing:border-box}
+body{margin:0 auto;max-width:1500px;padding:16px 28px 40px}h1{font-size:25px;margin:8px 0}p{line-height:1.5}
+.muted{color:#627286;font-size:13px}.grid{display:grid;grid-template-columns:repeat(6,minmax(110px,1fr));gap:11px}
+.control{background:white;border:1px solid #d6e0e9;border-radius:10px;padding:12px;box-shadow:0 1px 3px #152b3c08}
+label{font-size:12px;font-weight:700;display:block;height:30px}.control b{font-size:16px;color:#0d6f85}
+input[type=range]{width:100%;accent-color:#087e92;cursor:pointer;margin-top:12px}
+.controls{display:flex;gap:10px;margin:16px 0}.btn{border:1px solid #b9cad6;background:#fff;color:#244b60;font-size:13px;font-weight:700;padding:9px 15px;border-radius:8px;cursor:pointer}.btn:hover{background:#eaf5fa}
+.main{background:#fff;border:1px solid #d3dee6;border-radius:12px;padding:14px;box-shadow:0 5px 20px #264b650a}
+canvas{width:100%;height:auto;display:block;cursor:crosshair}.res{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:15px 0}
+.stat{background:#fff;border:1px solid #d9e3eb;padding:11px 14px;border-radius:9px}.stat small{display:block;color:#687a88;margin-bottom:5px}
+.stat b{font-size:22px;font-variant-numeric:tabular-nums}.status{font-size:12px;line-height:1.5;background:#eff5f8;padding:10px 13px;border-radius:8px;margin:10px 0}
+.tablewrap{overflow:auto;max-height:430px}.table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:12px}
+.table th{position:sticky;top:0;background:#eaf0f5;color:#28475d;padding:8px;text-align:left}.table td{border-bottom:1px solid #edf0f3;padding:6px 8px}
+.table tr:hover td{background:#f6faff}details{background:#fff;border:1px solid #d3dee6;padding:12px 15px;border-radius:10px;margin-top:12px}
+summary{cursor:pointer;font-weight:700}#tip{position:fixed;display:none;background:#1a2f3bea;border-radius:7px;color:white;padding:8px 10px;pointer-events:none;font-size:12px;z-index:10;max-width:260px}
+@media(max-width:980px){.grid{grid-template-columns:repeat(3,1fr)}.res{grid-template-columns:repeat(2,1fr)}body{padding:10px}}
+</style></head><body>
+<h1>ET2 LEFT LEG  /  actuator-driven complete closed chains</h1>
+<p class="muted">Source: ET2_base_2026_7_28_camp.cmd &nbsp;|&nbsp; 20 rigid bodies &nbsp;|&nbsp; 20 original Points &nbsp;|&nbsp; 25 Joints with 50 I/J Markers &nbsp;|&nbsp; 3 active linear actuators. X-Z engineering projection; click/h​over points for exact XYZ.</p>
+<div class="grid" id="controls"></div>
+<div class="controls"><button class="btn" id="reset">Reset to user nominal pose</button><button class="btn" id="test1">Extend all rods +1 mm</button><button class="btn" id="animate">Play stroke animation</button></div>
+<div class="res" id="stats"></div>
+<div class="main"><canvas id="view" width="1420" height="800"></canvas><div class="status" id="status"></div></div>
+<details open><summary>20 original Points (23 records because each translational marker P12/P15/P20 has two sides)</summary><p class="muted">These values are actual globally transformed hardpoints of individual bodies. The 3 linear-joint Marker sides are NOT incorrectly merged after slider motion.</p><div class="tablewrap"><table class="table" id="pointTable"></table></div></details>
+<details><summary>25 joints / 50 Marker sides (position and axis vectors)</summary><div class="tablewrap"><table class="table" id="markerTable"></table></div></details>
+<details><summary>20 body COM positions and mass / 25 joint constraint errors</summary><div class="tablewrap"><table class="table" id="massTable"></table></div><div class="tablewrap"><table class="table" id="checksTable"></table></div></details>
+<div id="tip"></div><script id="data" type="application/json">{"meta":{"module":"ET2 LEFT LEG ONLY","source_cmd":"ET2_base_2026_7_28_camp.cmd","source_pdf":"\u6574\u673a\u4eff\u771f \u5173\u8282\u540d\u79f0-\u6a21\u578b\u90e8\u4f4d\u5bf9\u5e94\u56fe\u8868.pdf (pp.13-19)","coordinate":{"initial":"ADAMS world reference","length":"mm","angle":"rad internally; UI/helper degrees","mass":"kg","inertia":"kg*m^2","gravity":"m/s^2"},"scope":"20 leg_l_* PARTs including toe link7 and 3 spherical-link bodies, base_link as kinematic parent ONLY, no right leg, no base mass","physical_input_mode":"6 axes inferred from actuator mapping: hip roll, hip yaw, hip pitch rod, knee pitch rod, ankle pitch rod, ankle roll; toe physical drive unknown","angle_sign_note":"kinematics helper defines child right-hand positive relative about the CMD I-marker axis, NOT verified equal to ADAMS motion-generator signed displacement or controller zero","part_mass_properties":"20/20 explicit CMD mass COM and full 6 inertia components; all CM inertia markers initial orientation [0,0,0] and part initial origins zero","sldprt_warning":"No native SolidWorks SLDPRT filename or complete Parasolid geometry in this package; SOLID ids are geometry references only","kinematics_scope":"poseToRods models rigid closed-loop rocker geometry for three actuator center-to-center lengths; does not solve full multibody dynamics or collision","gravity_global":[0,0,-9.80665]},"mass_audit":{"rigid_parts":20,"known_mass_total_kg":13.02480932,"initial_mass_weighted_com_global_mm":[-6.55161881,93.20850967,-428.40290062],"gravity_xyz_m_s2":[0,0,-9.80665],"initial_weight_n":127.729746318,"excluded_mass":["base_link","leg_r_*","waist_*","arm_*","neck_*"],"all_20_mass_com_inertia_complete":true},"output_joints":{"J0":{"feature":"\u9acb Roll","joint_name":"J_LEG_L_HIP_roll_RE","motion_name":"MOTION_HIP_L_roll","physical_actuator_type_proposed":"direct_motor","initial_center_global_mm":[-34.75489,92.99991,-56.96023],"initial_i_axis_global":[1.0,0.0,-0.0]},"J1":{"feature":"\u9acb Yaw","joint_name":"J_LEG_L_HIP_yaw_RE","motion_name":"MOTION_HIP_L_yaw","physical_actuator_type_proposed":"direct_motor","initial_center_global_mm":[17.74323,93.00025,-23.95975],"initial_i_axis_global":[0.0,0.0,1.0]},"J2":{"feature":"\u9acb Pitch","joint_name":"J_LEG_L_HIP_pitch_RE","motion_name":"MOTION_HIP_L_pitch_RE","physical_actuator_type_proposed":"linear_rod","initial_center_global_mm":[24.74317,93.00025,-87.45972],"initial_i_axis_global":[-0.0,1.0,-0.0]},"J3":{"feature":"\u819d Pitch","joint_name":"J_LEG_L_KNEE_pitch_RE","motion_name":"MOTION_KNEE_L_pitch_RE","physical_actuator_type_proposed":"linear_rod","initial_center_global_mm":[-4.2868,93.00025,-527.91575],"initial_i_axis_global":[-0.0,1.0,-0.0]},"J4":{"feature":"\u8e1d Pitch","joint_name":"J_LEG_L_ANKLE_pitch_RE","motion_name":"MOTION_ANKLE_L_pitch_RE","physical_actuator_type_proposed":"linear_rod","initial_center_global_mm":[-29.54807,93.00025,-911.16349],"initial_i_axis_global":[-0.0,1.0,-0.0]},"J5":{"feature":"\u8e1d Roll","joint_name":"J_LEG_L_ANKLE_roll_RE","motion_name":"MOTION_ANKLE_L_roll","physical_actuator_type_proposed":"direct_motor","initial_center_global_mm":[-29.54805,92.99995,-949.66471],"initial_i_axis_global":[1.0,0.0,-0.0]},"toe_extra":{"feature":"\u811a\u8dbe Pitch\uff08J0\u2013J5\u4e4b\u5916\uff09","joint_name":"J_LEG_L_TOE_pitch_RE","motion_name":"MOTION_TOE_L_pitch","physical_actuator_type_proposed":"UNVERIFIED","initial_center_global_mm":[85.34754,93.00025,-979.01003],"initial_i_axis_global":[0.0,-1.0,-0.0]}},"hardpoints":{"P_2":{"xyz_mm":[-34.75489,92.99991,-56.96023],"source_cmd_line":1407766},"P_3":{"xyz_mm":[17.74323,93.00025,-23.95975],"source_cmd_line":1407770},"P_4":{"xyz_mm":[24.74317,93.00025,-87.45972],"source_cmd_line":1407774},"P_5":{"xyz_mm":[-4.2868,93.00025,-527.91575],"source_cmd_line":1407778},"P_6":{"xyz_mm":[-29.54807,93.00025,-911.16349],"source_cmd_line":1407782},"P_7":{"xyz_mm":[-29.54805,92.99995,-949.66471],"source_cmd_line":1407786},"P_8":{"xyz_mm":[85.34754,93.00025,-979.01003],"source_cmd_line":1407790},"P_9":{"xyz_mm":[50.37212,93.00025,-54.61439],"source_cmd_line":1407794},"P_10":{"xyz_mm":[1.01403,93.00025,-161.15632],"source_cmd_line":1407798},"P_11":{"xyz_mm":[29.00819,93.00025,-447.47156],"source_cmd_line":1407802},"P_12":{"xyz_mm":[51.14514,92.99957,-222.55883],"source_cmd_line":1407806},"P_13":{"xyz_mm":[60.46555,93.00025,-127.88178],"source_cmd_line":1407810},"P_14":{"xyz_mm":[-44.06208,93.00025,-162.45976],"source_cmd_line":1407814},"P_15":{"xyz_mm":[-58.82506,92.99911,-387.97644],"source_cmd_line":1407818},"P_16":{"xyz_mm":[-65.78142,93.00025,-494.28589],"source_cmd_line":1407822},"P_17":{"xyz_mm":[19.06027,93.00025,-469.90277],"source_cmd_line":1407826},"P_18":{"xyz_mm":[-3.99704,93.00025,-562.9158],"source_cmd_line":1407830},"P_19":{"xyz_mm":[-25.21746,93.00025,-651.42495],"source_cmd_line":1407834},"P_20":{"xyz_mm":[-63.94746,92.9995,-849.67721],"source_cmd_line":1407838},"P_21":{"xyz_mm":[-75.63747,93.00025,-909.52291],"source_cmd_line":1407842}},"joints":{"J_LEG_L_HIP_roll_RE":{"type":"revolute","i_part":"base_link","j_part":"leg_l_link1","i_marker":"base_link.JM_P002_R_ground_leg_l_link1","j_marker":"leg_l_link1.JM_P002_R_ground_leg_l_link1","initial_center_global_mm":[-34.75489,92.99991,-56.96023],"i_marker_axis_global":[1.0,0.0,-0.0],"j_marker_axis_global":[1.0,0.0,-0.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1421893},"J_LEG_L_HIP_yaw_RE":{"type":"revolute","i_part":"leg_l_link1","j_part":"leg_l_link2","i_marker":"leg_l_link1.JM_P003_R_leg_l_link1_leg_l_link2","j_marker":"leg_l_link2.JM_P003_R_leg_l_link1_leg_l_link2","initial_center_global_mm":[17.74323,93.00025,-23.95975],"i_marker_axis_global":[0.0,0.0,1.0],"j_marker_axis_global":[0.0,0.0,1.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1421907},"J_LEG_L_HIP_pitch_RE":{"type":"revolute","i_part":"leg_l_link2","j_part":"leg_l_link3","i_marker":"leg_l_link2.JM_P004_R_leg_l_link2_leg_l_link3","j_marker":"leg_l_link3.JM_P004_R_leg_l_link2_leg_l_link3","initial_center_global_mm":[24.74317,93.00025,-87.45972],"i_marker_axis_global":[-0.0,1.0,-0.0],"j_marker_axis_global":[-0.0,1.0,-0.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1421921},"J_LEG_L_KNEE_pitch_RE":{"type":"revolute","i_part":"leg_l_link3","j_part":"leg_l_link4","i_marker":"leg_l_link3.JM_P005_R_leg_l_link3_leg_l_link4","j_marker":"leg_l_link4.JM_P005_R_leg_l_link3_leg_l_link4","initial_center_global_mm":[-4.2868,93.00025,-527.91575],"i_marker_axis_global":[-0.0,1.0,-0.0],"j_marker_axis_global":[-0.0,1.0,-0.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1421935},"J_LEG_L_ANKLE_pitch_RE":{"type":"revolute","i_part":"leg_l_link4","j_part":"leg_l_link5","i_marker":"leg_l_link4.JM_P006_R_leg_l_link4_leg_l_link5","j_marker":"leg_l_link5.JM_P006_R_leg_l_link4_leg_l_link5","initial_center_global_mm":[-29.54807,93.00025,-911.16349],"i_marker_axis_global":[-0.0,1.0,-0.0],"j_marker_axis_global":[-0.0,1.0,-0.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1421949},"J_LEG_L_TOE_pitch_RE":{"type":"revolute","i_part":"leg_l_link6","j_part":"leg_l_link7","i_marker":"leg_l_link6.JM_P008_R_leg_l_link6_leg_l_link7","j_marker":"leg_l_link7.JM_P008_R_leg_l_link6_leg_l_link7","initial_center_global_mm":[85.34754,93.00025,-979.01003],"i_marker_axis_global":[0.0,-1.0,-0.0],"j_marker_axis_global":[0.0,-1.0,-0.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1421975},"J_LEG_L_P009_RE_L02_L08":{"type":"revolute","i_part":"leg_l_link2","j_part":"leg_l_link8","i_marker":"leg_l_link2.JM_P009_R_leg_l_link2_leg_l_link8","j_marker":"leg_l_link8.JM_P009_R_leg_l_link2_leg_l_link8","initial_center_global_mm":[50.37212,93.00025,-54.61439],"i_marker_axis_global":[0.0,-1.0,-0.0],"j_marker_axis_global":[0.0,-1.0,-0.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1421989},"J_LEG_L_P010_S_L09_L03":{"type":"spherical","i_part":"leg_l_link9","j_part":"leg_l_link3","i_marker":"leg_l_link9.JM_P010_S_leg_l_link9_leg_l_link3","j_marker":"leg_l_link3.JM_P010_S_leg_l_link9_leg_l_link3","initial_center_global_mm":[1.01403,93.00025,-161.15632],"i_marker_axis_global":[0.0,0.0,1.0],"j_marker_axis_global":[0.0,0.0,1.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1422003},"J_LEG_L_P011_S_L10_L03":{"type":"spherical","i_part":"leg_l_link10","j_part":"leg_l_link3","i_marker":"leg_l_link10.JM_P011_S_leg_l_link10_leg_l_link3","j_marker":"leg_l_link3.JM_P011_S_leg_l_link10_leg_l_link3","initial_center_global_mm":[29.00819,93.00025,-447.47156],"i_marker_axis_global":[0.0,0.0,1.0],"j_marker_axis_global":[0.0,0.0,1.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1422017},"J_LEG_L_HIP_pitch_T":{"type":"translational","i_part":"leg_l_link10","j_part":"leg_l_link11","i_marker":"leg_l_link10.JM_P012_T_leg_l_link10_leg_l_link11","j_marker":"leg_l_link11.JM_P012_T_leg_l_link10_leg_l_link11","initial_center_global_mm":[51.14514,92.99957,-222.55883],"i_marker_axis_global":[0.097970652,7.148e-06,0.995189304],"j_marker_axis_global":[0.097970652,7.148e-06,0.995189304],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1422031},"J_LEG_L_P013_F_L8_L12":{"type":"fixed","i_part":"leg_l_link8","j_part":"leg_l_ball_link12","i_marker":"leg_l_link8.JM_P013_F_leg_l_link8_leg_l_ball_link12","j_marker":"leg_l_ball_link12.JM_P013_F_leg_l_link8_leg_l_ball_link12","initial_center_global_mm":[60.46555,93.00025,-127.88178],"i_marker_axis_global":[0.0,0.0,1.0],"j_marker_axis_global":[0.0,0.0,1.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1422045},"J_LEG_L_P013_S_L12_L11":{"type":"spherical","i_part":"leg_l_ball_link12","j_part":"leg_l_link11","i_marker":"leg_l_ball_link12.JM_P013_S_leg_l_ball_link12_leg_l_link11","j_marker":"leg_l_link11.JM_P013_S_leg_l_ball_link12_leg_l_link11","initial_center_global_mm":[60.46555,93.00025,-127.88178],"i_marker_axis_global":[0.0,0.0,1.0],"j_marker_axis_global":[0.0,0.0,1.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1422059},"J_LEG_L_P013_RE_L08_L09":{"type":"revolute","i_part":"leg_l_link8","j_part":"leg_l_link9","i_marker":"leg_l_link8.JM_P013_R_leg_l_link8_leg_l_link9","j_marker":"leg_l_link9.JM_P013_R_leg_l_link8_leg_l_link9","initial_center_global_mm":[60.46555,93.00025,-127.88178],"i_marker_axis_global":[0.0,-1.0,-0.0],"j_marker_axis_global":[0.0,-1.0,-0.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1422073},"J_LEG_L_P014_S_L03_L13":{"type":"spherical","i_part":"leg_l_link3","j_part":"leg_l_link13","i_marker":"leg_l_link3.JM_P014_S_leg_l_link3_leg_l_link13","j_marker":"leg_l_link13.JM_P014_S_leg_l_link3_leg_l_link13","initial_center_global_mm":[-44.06208,93.00025,-162.45976],"i_marker_axis_global":[0.0,0.0,1.0],"j_marker_axis_global":[0.0,0.0,1.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1422087},"J_LEG_L_KNEE_pitch_T":{"type":"translational","i_part":"leg_l_link13","j_part":"leg_l_link14","i_marker":"leg_l_link13.JM_P015_T_leg_l_link13_leg_l_link14","j_marker":"leg_l_link14.JM_P015_T_leg_l_link13_leg_l_link14","initial_center_global_mm":[-58.82506,92.99911,-387.97644],"i_marker_axis_global":[-0.065295371,1.0701e-05,-0.99786598],"j_marker_axis_global":[-0.065295371,1.0701e-05,-0.99786598],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1422101},"J_LEG_L_P016_F_L16_B15":{"type":"fixed","i_part":"leg_l_link16","j_part":"leg_l_ball_link15","i_marker":"leg_l_link16.JM_P016_F_leg_l_link16_leg_l_ball_link15","j_marker":"leg_l_ball_link15.JM_P016_F_leg_l_link16_leg_l_ball_link15","initial_center_global_mm":[-65.78142,93.00025,-494.28589],"i_marker_axis_global":[0.0,0.0,1.0],"j_marker_axis_global":[0.0,0.0,1.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1422115},"J_LEG_L_P016_S_B15_L14":{"type":"spherical","i_part":"leg_l_ball_link15","j_part":"leg_l_link14","i_marker":"leg_l_ball_link15.JM_P016_S_leg_l_ball_link15_leg_l_link14","j_marker":"leg_l_link14.JM_P016_S_leg_l_ball_link15_leg_l_link14","initial_center_global_mm":[-65.78142,93.00025,-494.28589],"i_marker_axis_global":[0.0,0.0,1.0],"j_marker_axis_global":[0.0,0.0,1.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1422129},"J_LEG_L_P016_RE_L16_L17":{"type":"revolute","i_part":"leg_l_link16","j_part":"leg_l_link17","i_marker":"leg_l_link16.JM_P016_R_leg_l_link16_leg_l_link17","j_marker":"leg_l_link17.JM_P016_R_leg_l_link16_leg_l_link17","initial_center_global_mm":[-65.78142,93.00025,-494.28589],"i_marker_axis_global":[0.0,-1.0,-0.0],"j_marker_axis_global":[0.0,-1.0,-0.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1422143},"J_LEG_L_P017_RE_L03_L16":{"type":"revolute","i_part":"leg_l_link3","j_part":"leg_l_link16","i_marker":"leg_l_link3.JM_P017_R_leg_l_link3_leg_l_link16","j_marker":"leg_l_link16.JM_P017_R_leg_l_link3_leg_l_link16","initial_center_global_mm":[19.06027,93.00025,-469.90277],"i_marker_axis_global":[0.0,-1.0,-0.0],"j_marker_axis_global":[0.0,-1.0,-0.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1422157},"J_LEG_L_P018_S_L17_L04":{"type":"spherical","i_part":"leg_l_link17","j_part":"leg_l_link4","i_marker":"leg_l_link17.JM_P018_S_leg_l_link17_leg_l_link4","j_marker":"leg_l_link4.JM_P018_S_leg_l_link17_leg_l_link4","initial_center_global_mm":[-3.99704,93.00025,-562.9158],"i_marker_axis_global":[0.0,0.0,1.0],"j_marker_axis_global":[0.0,0.0,1.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1422171},"J_LEG_L_P019_S_L18_L04":{"type":"spherical","i_part":"leg_l_link18","j_part":"leg_l_link4","i_marker":"leg_l_link18.JM_P019_S_leg_l_link18_leg_l_link4","j_marker":"leg_l_link4.JM_P019_S_leg_l_link18_leg_l_link4","initial_center_global_mm":[-25.21746,93.00025,-651.42495],"i_marker_axis_global":[0.0,0.0,1.0],"j_marker_axis_global":[0.0,0.0,1.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1422185},"J_LEG_L_ANKLE_pitch_T":{"type":"translational","i_part":"leg_l_link18","j_part":"leg_l_link19","i_marker":"leg_l_link18.JM_P020_T_leg_l_link18_leg_l_link19","j_marker":"leg_l_link19.JM_P020_T_leg_l_link18_leg_l_link19","initial_center_global_mm":[-63.94746,92.9995,-849.67721],"i_marker_axis_global":[-0.191712576,1.23e-05,-0.981451113],"j_marker_axis_global":[-0.191712576,1.23e-05,-0.981451113],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1422199},"J_LEG_L_P021_F_L06_B20":{"type":"fixed","i_part":"leg_l_link6","j_part":"leg_l_ball_link20","i_marker":"leg_l_link6.JM_P021_F_leg_l_link6_leg_l_ball_link20","j_marker":"leg_l_ball_link20.JM_P021_F_leg_l_link6_leg_l_ball_link20","initial_center_global_mm":[-75.63747,93.00025,-909.52291],"i_marker_axis_global":[0.0,0.0,1.0],"j_marker_axis_global":[0.0,0.0,1.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1422213},"J_LEG_L_P021_S_B20_L19":{"type":"spherical","i_part":"leg_l_ball_link20","j_part":"leg_l_link19","i_marker":"leg_l_ball_link20.JM_P021_S_leg_l_ball_link20_leg_l_link19","j_marker":"leg_l_link19.JM_P021_S_leg_l_ball_link20_leg_l_link19","initial_center_global_mm":[-75.63747,93.00025,-909.52291],"i_marker_axis_global":[0.0,0.0,1.0],"j_marker_axis_global":[0.0,0.0,1.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1422227},"J_LEG_L_ANKLE_roll_RE":{"type":"revolute","i_part":"leg_l_link5","j_part":"leg_l_link6","i_marker":"leg_l_link5.MARKER_577","j_marker":"leg_l_link6.MARKER_578","initial_center_global_mm":[-29.54805,92.99995,-949.66471],"i_marker_axis_global":[1.0,0.0,-0.0],"j_marker_axis_global":[1.0,0.0,-0.0],"initial_pair_position_residual_mm":0.0,"active_explicit":null,"source_cmd_line":1423500}},"motions":{"MOTION_ANKLE_L_pitch_RE":{"joint_name":"J_LEG_L_ANKLE_pitch_RE","type_of_freedom":"rotational","cmd_active_explicit":null,"function_after_last_modify":"\"0d * time\"","source_cmd_lines":{"create":1424300,"last_modify":1425185}},"MOTION_HIP_L_roll":{"joint_name":"J_LEG_L_HIP_roll_RE","type_of_freedom":"rotational","cmd_active_explicit":"on","function_after_last_modify":"\"0d * time\"","source_cmd_lines":{"create":1424677,"last_modify":1425301}},"MOTION_HIP_L_yaw":{"joint_name":"J_LEG_L_HIP_yaw_RE","type_of_freedom":"rotational","cmd_active_explicit":"on","function_after_last_modify":"\"0d * time\"","source_cmd_lines":{"create":1424690,"last_modify":1425305}},"MOTION_HIP_L_pitch_RE":{"joint_name":"J_LEG_L_HIP_pitch_RE","type_of_freedom":"rotational","cmd_active_explicit":"on","function_after_last_modify":"\"0d * time\"","source_cmd_lines":{"create":1424703,"last_modify":1425309}},"MOTION_KNEE_L_pitch_RE":{"joint_name":"J_LEG_L_KNEE_pitch_RE","type_of_freedom":"rotational","cmd_active_explicit":"on","function_after_last_modify":"\"0d * time\"","source_cmd_lines":{"create":1424716,"last_modify":1425313}},"MOTION_TOE_L_pitch":{"joint_name":"J_LEG_L_TOE_pitch_RE","type_of_freedom":"rotational","cmd_active_explicit":"on","function_after_last_modify":"\"0d * time\"","source_cmd_lines":{"create":1424729,"last_modify":1425317}},"MOTION_ANKLE_L_roll":{"joint_name":"J_LEG_L_ANKLE_roll_RE","type_of_freedom":"rotational","cmd_active_explicit":"on","function_after_last_modify":"\"0d * time\"","source_cmd_lines":{"create":1424742,"last_modify":1425321}},"MOTION_HIP_L_pitch_T":{"joint_name":"J_LEG_L_HIP_pitch_T","type_of_freedom":"translational","cmd_active_explicit":"off","function_after_last_modify":"\"0d * time\"","source_cmd_lines":{"create":1424755,"last_modify":1425325}},"MOTION_KNEE_L_pitch_T":{"joint_name":"J_LEG_L_KNEE_pitch_T","type_of_freedom":"translational","cmd_active_explicit":"off","function_after_last_modify":"\"0d * time\"","source_cmd_lines":{"create":1424781,"last_modify":1425333}},"MOTION_ANKLE_L_pitch_T":{"joint_name":"J_LEG_L_ANKLE_pitch_T","type_of_freedom":"translational","cmd_active_explicit":"off","function_after_last_modify":"\"0d * time\"","source_cmd_lines":{"create":1424794,"last_modify":1425337}}},"physical_active_inputs_proposed":[{"joint":"J0","motion":"MOTION_HIP_L_roll"},{"joint":"J1","motion":"MOTION_HIP_L_yaw"},{"joint":"J2","motion":"MOTION_HIP_L_pitch_T"},{"joint":"J3","motion":"MOTION_KNEE_L_pitch_T"},{"joint":"J4","motion":"MOTION_ANKLE_L_pitch_T"},{"joint":"J5","motion":"MOTION_ANKLE_L_roll"}],"actuators":{"hip_pitch":{"joint":"J_LEG_L_HIP_pitch_T","motion":"MOTION_HIP_L_pitch_T","output":"J_LEG_L_HIP_pitch_RE","ball1_point":"P_11","ball2_point":"P_13","slider_point":"P_12","structure":"P9 rocker center; P10 link9-to-thigh spherical; P11 thigh-to-rod spherical; P13 rocker-to-rod spherical; link8/9 revolute P13","anchor_interpretation":"P11 belongs to thigh leg_l_link3, P13 to link8 via ball12; length is ball-to-ball installation distance, not motor stroke reading","initial_ball_center_distance_mm":321.134228912,"initial_slider_axis_global":[0.097970652,7.148e-06,0.995189304],"slider_alignment_deviation_mm":0.004955,"axis_to_ball_vector_cos":1.0},"knee_pitch":{"joint":"J_LEG_L_KNEE_pitch_T","motion":"MOTION_KNEE_L_pitch_T","output":"J_LEG_L_KNEE_pitch_RE","ball1_point":"P_14","ball2_point":"P_16","slider_point":"P_15","structure":"P17 rocker center (leg3/link16), P16 actuator/rocker spherical, P18 link17-to-shank spherical; knee output P5","anchor_interpretation":"P14 belongs to leg_l_link3; P16 to leg_l_link16 via ball15","initial_ball_center_distance_mm":332.536178905,"initial_slider_axis_global":[-0.065295371,1.0701e-05,-0.99786598],"slider_alignment_deviation_mm":0.007218,"axis_to_ball_vector_cos":1.0},"ankle_pitch":{"joint":"J_LEG_L_ANKLE_pitch_T","motion":"MOTION_ANKLE_L_pitch_T","output":"J_LEG_L_ANKLE_pitch_RE","ball1_point":"P_19","ball2_point":"P_21","slider_point":"P_20","structure":"P19 leg_l_link4-to-rod sphere, P20 prismatic, P21 rod-to-leg_l_link6 sphere; ankle output Pitch P6 and Roll P7","anchor_interpretation":"P21 is attached to leg_l_link6 AFTER ankle-roll joint; ankle Roll can affect rod length (coupling).","initial_ball_center_distance_mm":262.976680268,"initial_slider_axis_global":[-0.191712576,1.23e-05,-0.981451113],"slider_alignment_deviation_mm":0.005262,"axis_to_ball_vector_cos":0.999999999}},"parts":{"leg_l_ball_link12":{"mass_kg":0.01766694,"com_initial_global_mm":[60.46555,93.00025,-127.88178],"com_initial_part_local_mm":[60.46555,93.00025,-127.88178],"cm_marker_name":"leg_l_ball_link12.cm","inertia_marker_name":"leg_l_ball_link12.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":6.1e-07,"iyy":7.7e-07,"izz":6.1e-07,"ixy":0.0,"izx":0.0,"iyz":0.0},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":[],"source_cmd_lines":{"part":1411470,"mass_inertia":1411517,"cm_marker":1411481}},"leg_l_ball_link15":{"mass_kg":0.01766727,"com_initial_global_mm":[-65.78142,93.00025,-494.28589],"com_initial_part_local_mm":[-65.78142,93.00025,-494.28589],"cm_marker_name":"leg_l_ball_link15.cm","inertia_marker_name":"leg_l_ball_link15.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":6.1e-07,"iyy":7.7e-07,"izz":6.1e-07,"ixy":0.0,"izx":0.0,"iyz":0.0},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":[],"source_cmd_lines":{"part":1411600,"mass_inertia":1411647,"cm_marker":1411611}},"leg_l_ball_link20":{"mass_kg":0.01766694,"com_initial_global_mm":[-75.63747,93.00025,-909.52291],"com_initial_part_local_mm":[-75.63747,93.00025,-909.52291],"cm_marker_name":"leg_l_ball_link20.cm","inertia_marker_name":"leg_l_ball_link20.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":6.1e-07,"iyy":7.7e-07,"izz":6.1e-07,"ixy":0.0,"izx":0.0,"iyz":0.0},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":[],"source_cmd_lines":{"part":1411730,"mass_inertia":1411777,"cm_marker":1411741}},"leg_l_link1":{"mass_kg":0.64357249,"com_initial_global_mm":[-11.37714,93.00034,-31.67802],"com_initial_part_local_mm":[-11.37714,93.00034,-31.67802],"cm_marker_name":"leg_l_link1.cm","inertia_marker_name":"leg_l_link1.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":0.00069933,"iyy":0.00054288,"izz":0.00085663,"ixy":-2e-08,"izx":-0.00012694,"iyz":-4e-08},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":[],"source_cmd_lines":{"part":1411300,"mass_inertia":1411359,"cm_marker":1411311}},"leg_l_link10":{"mass_kg":2.03200257,"com_initial_global_mm":[38.46365,92.90206,-340.36179],"com_initial_part_local_mm":[38.46365,92.90206,-340.36179],"cm_marker_name":"leg_l_link10.cm","inertia_marker_name":"leg_l_link10.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":0.00762011,"iyy":0.00777388,"izz":0.00155681,"ixy":7.94e-06,"izx":-0.0007061,"iyz":-9.06e-06},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":["SOLID41","SOLID42","SOLID43","SOLID44","SOLID45"],"source_cmd_lines":{"part":1409452,"mass_inertia":1409511,"cm_marker":1409475}},"leg_l_link11":{"mass_kg":0.12010901,"com_initial_global_mm":[53.00758,92.99959,-203.63796],"com_initial_part_local_mm":[53.00758,92.99959,-203.63796],"cm_marker_name":"leg_l_link11.cm","inertia_marker_name":"leg_l_link11.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":0.00035322,"iyy":0.00035807,"izz":6.63e-06,"ixy":0.0,"izx":-3.445e-05,"iyz":0.0},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":["SOLID37","SOLID38"],"source_cmd_lines":{"part":1409270,"mass_inertia":1409341,"cm_marker":1409293}},"leg_l_link13":{"mass_kg":2.03208222,"com_initial_global_mm":[-52.04093,93.09711,-268.93562],"com_initial_part_local_mm":[-52.04093,93.09711,-268.93562],"cm_marker_name":"leg_l_link13.cm","inertia_marker_name":"leg_l_link13.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":0.00754085,"iyy":0.00762469,"izz":0.00149938,"ixy":-8.87e-06,"izx":-0.00030411,"iyz":-7.66e-06},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":["SOLID27","SOLID28","SOLID29","SOLID30","SOLID31"],"source_cmd_lines":{"part":1409088,"mass_inertia":1409159,"cm_marker":1409111}},"leg_l_link14":{"mass_kg":0.12010992,"com_initial_global_mm":[-60.81165,92.99915,-418.32359],"com_initial_part_local_mm":[-60.81165,92.99915,-418.32359],"cm_marker_name":"leg_l_link14.cm","inertia_marker_name":"leg_l_link14.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":0.00035512,"iyy":0.00035809,"izz":4.74e-06,"ixy":0.0,"izx":-2.304e-05,"iyz":0.0},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":["SOLID23","SOLID24"],"source_cmd_lines":{"part":1408930,"mass_inertia":1408989,"cm_marker":1408953}},"leg_l_link16":{"mass_kg":0.20300002,"com_initial_global_mm":[-24.36202,93.67556,-482.38212],"com_initial_part_local_mm":[-24.36202,93.67556,-482.38212],"cm_marker_name":"leg_l_link16.cm","inertia_marker_name":"leg_l_link16.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":7.698e-05,"iyy":0.00029371,"izz":0.00032133,"ixy":-6.34e-06,"izx":-7.655e-05,"iyz":-1.82e-06},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":["SOLID21"],"source_cmd_lines":{"part":1408748,"mass_inertia":1408819,"cm_marker":1408771}},"leg_l_link17":{"mass_kg":0.20117077,"com_initial_global_mm":[-44.47367,92.73296,-517.95461],"com_initial_part_local_mm":[-44.47367,92.73296,-517.95461],"cm_marker_name":"leg_l_link17.cm","inertia_marker_name":"leg_l_link17.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":0.00017761,"iyy":0.00027703,"izz":0.00015046,"ixy":-1.13e-06,"izx":0.00012892,"iyz":1.26e-06},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":["SOLID19"],"source_cmd_lines":{"part":1408590,"mass_inertia":1408649,"cm_marker":1408613}},"leg_l_link18":{"mass_kg":1.34902838,"com_initial_global_mm":[-43.94162,94.0574,-732.66331],"com_initial_part_local_mm":[-43.94162,94.0574,-732.66331],"cm_marker_name":"leg_l_link18.cm","inertia_marker_name":"leg_l_link18.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":0.00386964,"iyy":0.00404619,"izz":0.00091012,"ixy":1.029e-05,"izx":-0.00059989,"iyz":-4.09e-05},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":["SOLID7","SOLID8","SOLID9","SOLID10","SOLID11","SOLID12"],"source_cmd_lines":{"part":1408408,"mass_inertia":1408479,"cm_marker":1408431}},"leg_l_link19":{"mass_kg":0.09008832,"com_initial_global_mm":[-63.24849,92.99972,-846.09934],"com_initial_part_local_mm":[-63.24849,92.99972,-846.09934],"cm_marker_name":"leg_l_link19.cm","inertia_marker_name":"leg_l_link19.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":0.00025673,"iyy":0.00026754,"izz":1.184e-05,"ixy":0.0,"izx":-4.974e-05,"iyz":0.0},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":["SOLID3","SOLID4"],"source_cmd_lines":{"part":1408250,"mass_inertia":1408309,"cm_marker":1408273}},"leg_l_link2":{"mass_kg":1.53224464,"com_initial_global_mm":[21.32988,93.36541,-54.52228],"com_initial_part_local_mm":[21.32988,93.36541,-54.52228],"cm_marker_name":"leg_l_link2.cm","inertia_marker_name":"leg_l_link2.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":0.00176188,"iyy":0.00147978,"izz":0.00199863,"ixy":1.28e-05,"izx":-3.406e-05,"iyz":1.995e-05},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":["SOLID82","SOLID83","SOLID84"],"source_cmd_lines":{"part":1411118,"mass_inertia":1411189,"cm_marker":1411129}},"leg_l_link3":{"mass_kg":1.45294392,"com_initial_global_mm":[5.02774,92.34138,-289.44564],"com_initial_part_local_mm":[5.02774,92.34138,-289.44564],"cm_marker_name":"leg_l_link3.cm","inertia_marker_name":"leg_l_link3.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":0.0246576,"iyy":0.02412596,"izz":0.00251352,"ixy":-5.54e-06,"izx":0.00055077,"iyz":-2.082e-05},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":[],"source_cmd_lines":{"part":1410828,"mass_inertia":1410947,"cm_marker":1410839}},"leg_l_link4":{"mass_kg":1.03705677,"com_initial_global_mm":[-16.05142,92.89873,-661.95594],"com_initial_part_local_mm":[-16.05142,92.89873,-661.95594],"cm_marker_name":"leg_l_link4.cm","inertia_marker_name":"leg_l_link4.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":0.01790023,"iyy":0.01772033,"izz":0.00073329,"ixy":2.27e-06,"izx":-0.00140629,"iyz":4.62e-06},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":["SOLID64"],"source_cmd_lines":{"part":1410598,"mass_inertia":1410693,"cm_marker":1410621}},"leg_l_link5":{"mass_kg":1.07705495,"com_initial_global_mm":[-28.98301,92.60484,-938.80825],"com_initial_part_local_mm":[-28.98301,92.60484,-938.80825],"cm_marker_name":"leg_l_link5.cm","inertia_marker_name":"leg_l_link5.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":0.00073491,"iyy":0.00155155,"izz":0.0013274,"ixy":-5.12e-06,"izx":0.00012324,"iyz":5.37e-06},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":["SOLID56","SOLID57","SOLID58","SOLID59"],"source_cmd_lines":{"part":1410440,"mass_inertia":1410499,"cm_marker":1410463}},"leg_l_link6":{"mass_kg":0.56843648,"com_initial_global_mm":[3.66068,95.42385,-970.02805],"com_initial_part_local_mm":[3.66068,95.42385,-970.02805],"cm_marker_name":"leg_l_link6.cm","inertia_marker_name":"leg_l_link6.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":0.00074968,"iyy":0.00246773,"izz":0.00247256,"ixy":-8.643e-05,"izx":8.048e-05,"iyz":1.497e-05},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":["SOLID740","SOLID741"],"source_cmd_lines":{"part":1410144,"mass_inertia":1410263,"cm_marker":1410155}},"leg_l_link7":{"mass_kg":0.16178187,"com_initial_global_mm":[115.43667,98.04566,-980.01804],"com_initial_part_local_mm":[115.43667,98.04566,-980.01804],"cm_marker_name":"leg_l_link7.cm","inertia_marker_name":"leg_l_link7.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":8.713e-05,"iyy":7.144e-05,"izz":0.0001295,"ixy":-2.8e-07,"izx":6.81e-06,"iyz":2.37e-06},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":["SOLID742"],"source_cmd_lines":{"part":1409974,"mass_inertia":1410033,"cm_marker":1409985}},"leg_l_link8":{"mass_kg":0.18579976,"com_initial_global_mm":[56.64684,93.13437,-100.16198],"com_initial_part_local_mm":[56.64684,93.13437,-100.16198],"cm_marker_name":"leg_l_link8.cm","inertia_marker_name":"leg_l_link8.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":0.0004109,"iyy":0.00016889,"izz":0.00025615,"ixy":-1e-07,"izx":2.173e-05,"iyz":7e-07},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":["SOLID54"],"source_cmd_lines":{"part":1409792,"mass_inertia":1409863,"cm_marker":1409815}},"leg_l_link9":{"mass_kg":0.16532608,"com_initial_global_mm":[44.82963,92.4928,-136.63427],"com_initial_part_local_mm":[44.82963,92.4928,-136.63427],"cm_marker_name":"leg_l_link9.cm","inertia_marker_name":"leg_l_link9.cm","inertia_marker_euler313_rad":[0.0,0.0,0.0],"inertia_raw_kg_m2":{"ixx":8.01e-05,"iyy":0.00011341,"izz":0.00013176,"ixy":1.29e-06,"izx":-4.21e-05,"iyz":7.2e-07},"initial_part_origin_global_mm":[0.0,0.0,0.0],"initial_part_euler313_rad":[0.0,0.0,0.0],"solids_referenced_by_geometry_attributes":["SOLID52"],"source_cmd_lines":{"part":1409610,"mass_inertia":1409681,"cm_marker":1409633}}},"cautions":[{"source":"PDF p.15 (9-7 revision)","issue":"Replaces J_LEG_L_ANKLE_roll_RE with front/rear support revolutes J_ANKLE_L_roll_front_RE and J_ANKLE_L_roll_rear_RE in newer CAD; original 2026-07-28 CMD contains only central J_LEG_L_ANKLE_roll_RE. Do not mix."},{"source":"CMD, motion section","issue":"MOTION_ANKLE_L_pitch_RE has no explicit active field in constraint attributes. Keep raw null; do not assert ON/OFF without Adams default or resolved instance."},{"source":"CMD, motion section","issue":"MOTION_TOE_L_pitch active=on but physical toe actuator unknown. Keep separate from six commanded leg joints."},{"source":"CMD, all 10 leg motion functions","issue":"All final motion functions are 0d * time. This file defines static inputs, not nonzero actuation trajectories."},{"source":"CMD joint coordinates","issue":"I and J markers coincide initially for all 25 joints; this alone does not validate finite-pose constraint forces, motor travel, or interference."},{"source":"CMD mass fields","issue":"Inertia ixx/iyy/izz/ixy/izx/iyz are raw ADAMS products about each CM marker; check sign conventions when converting to other physics engines."},{"source":"Model scope","issue":"Gravity is one global field and not duplicated per part. Do not import base_link mass; body mass is applied to each moving COM."}]}</script><script>
+/** ET2 left leg full closed-chain forward + inverse actuator stroke solver.
+ * No network or engine dependencies; supports browsers and Node.
+ * The three linear inputs refer to PHYSICAL end-ball spans relative to the
+ * user-provided nominal CMD geometry (J2=-27.5 J3=51.57 J4=-24.06 degrees).
+ */
+function createCompleteLeftLeg(data) {
+  const D = data;
+  const P = n => D.hardpoints[`P_${n}`].xyz_mm;
+  const parts = D.parts, joints = D.joints;
+  const NOM = Object.freeze({J0:0,J1:0,J2:-27.5,J3:51.57,J4:-24.06,J5:0,toe:0});
+  const AX = [1,0,0], AY=[0,1,0], AZ=[0,0,1];
+  const v = a=>[...a], add=(a,b)=>a.map((x,i)=>x+b[i]), sub=(a,b)=>a.map((x,i)=>x-b[i]);
+  const times=(a,t)=>a.map(x=>x*t),dot=(a,b)=>a.reduce((s,x,i)=>s+x*b[i],0);
+  const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+  const norm=a=>Math.hypot(...a),unit=a=>{const n=norm(a);if(n<1e-14)throw Error('zero vector');return times(a,1/n);};
+  const mm=(A,B)=>A.map((r,i)=>B[0].map((_,j)=>r.reduce((s,x,k)=>s+x*B[k][j],0)));
+  const mv=(A,a)=>A.map(r=>dot(r,a));
+  const mt=A=>A[0].map((_,i)=>A.map(r=>r[i]));
+  const matI=()=>[[1,0,0],[0,1,0],[0,0,1]];
+  const rot=(axis,deg)=>{
+    const a=unit(axis),phi=deg*Math.PI/180,c=Math.cos(phi),s=Math.sin(phi),t=1-c;
+    return [[c+a[0]*a[0]*t,a[0]*a[1]*t-a[2]*s,a[0]*a[2]*t+a[1]*s],
+            [a[1]*a[0]*t+a[2]*s,c+a[1]*a[1]*t,a[1]*a[2]*t-a[0]*s],
+            [a[2]*a[0]*t-a[1]*s,a[2]*a[1]*t+a[0]*s,c+a[2]*a[2]*t]];
+  };
+  const rotPt=(point,center,axis,deg)=>add(center,mv(rot(axis,deg),sub(point,center)));
+  const align=(a0,b0)=>{
+    const a=unit(a0),b=unit(b0),c=Math.max(-1,Math.min(1,dot(a,b))),vec=cross(a,b);
+    if(c>1-1e-13)return matI();
+    if(c< -1+1e-13)return rot(unit(cross(a,Math.abs(a[1])<0.9?AY:AX)),180);
+    return rot(unit(vec),Math.acos(c)*180/Math.PI);
+  };
+  const signed2=(a,b)=>a[0]*b[1]-a[1]*b[0];
+  const angleY=(a,b)=>Math.atan2(cross(a,b)[1],dot(a,b))*180/Math.PI;
+  const T=(R,t)=>({R,t}), identity=()=>T(matI(),[0,0,0]);
+  const at=(t,a)=>add(mv(t.R,a),t.t), ax=(t,a)=>mv(t.R,a);
+  const compose=(a,b)=>T(mm(a.R,b.R),add(mv(a.R,b.t),a.t));
+  const around=(p0,axis,deg)=>{let R=rot(axis,deg);return T(R,sub(p0,mv(R,p0)));};
+  const fromPoints=(a0,b0,a1,b1,planar=true)=>{
+    const r=planar?rot(AY,angleY(sub(b0,a0),sub(b1,a1))):align(sub(b0,a0),sub(b1,a1));
+    return T(r,sub(a1,mv(r,a0)));
+  };
+  const rocker=(pi,pr,pt,newTip)=>{
+    const a=[P(pi)[0],P(pi)[2]],b0=[P(pt)[0],P(pt)[2]],b=[newTip[0],newTip[2]];
+    const r0=norm(sub([P(pr)[0],P(pr)[2]],a)),r1=norm(sub([P(pr)[0],P(pr)[2]],b0));
+    const delta=sub(b,a),dist=norm(delta);
+    if(dist<1e-10||dist>r0+r1+1e-7||dist<Math.abs(r0-r1)-1e-7) throw Error('four bar closure infeasible');
+    const foot=(r0*r0-r1*r1+dist*dist)/(2*dist),h=Math.sqrt(Math.max(0,r0*r0-foot*foot));
+    const u=times(delta,1/dist),n=[-u[1],u[0]],sols=[add(add(a,times(u,foot)),times(n,h)),sub(add(a,times(u,foot)),times(n,h))];
+    const sgn0=signed2(sub(b0,a),sub([P(pr)[0],P(pr)[2]],a));
+    const val=s=>signed2(sub(b,a),sub(s,a))*sgn0;
+    const sol=val(sols[0])>=val(sols[1])?sols[0]:sols[1];
+    return [sol[0],P(pi)[1],sol[1]];
+  };
+  function local(q2,q3,q4,q5){
+    const hip10=rotPt(P(10),P(4),AY,q2),hip11=rotPt(P(11),P(4),AY,q2);
+    const hip13=rocker(9,13,10,hip10);
+    const knee18=rotPt(P(18),P(5),AY,q3),knee16=rocker(17,16,18,knee18);
+    const ankle21=rotPt(rotPt(P(21),P(7),AX,q5),P(6),AY,q4);
+    return {hip10,hip11,hip13,knee18,knee16,ankle21,
+      lengths:{hip:norm(sub(hip13,hip11)),knee:norm(sub(knee16,P(14))),ankle:norm(sub(ankle21,P(19)))}};
+  }
+  const length=(k,q,roll=0)=>k==='hip'?local(q,0,0,0).lengths.hip:k==='knee'?local(0,q,0,0).lengths.knee:local(0,0,q,roll).lengths.ankle;
+  const baseLen={hip:length('hip',NOM.J2),knee:length('knee',NOM.J3),ankle:length('ankle',NOM.J4)};
+  function inverse(which,stroke,nominal,roll=0,seed){
+    const target=baseLen[which]+Number(stroke);
+    if(target<=0) throw Error(which+' rod target length nonpositive');
+    let q=seed??nominal;
+    if(Math.abs(stroke)<1e-12&&seed==null&&roll===0)return q;
+    for(let i=0;i<60;i++){
+      const error=length(which,q,roll)-target;
+      if(Math.abs(error)<1e-8)return q;
+      const h=1e-3,deriv=(length(which,q+h,roll)-length(which,q-h,roll))/(2*h);
+      if(Math.abs(deriv)<1e-4)throw Error(which+' near singularity');
+      const step=Math.max(-7,Math.min(7,-error/deriv));let good=false;
+      for(let j=0;j<20;j++){
+        const next=q+step*Math.pow(.5,j);
+        if(Math.abs(next-nominal)>75)continue;
+        try{
+          if(Math.abs(length(which,next,roll)-target)<Math.abs(error)){q=next;good=true;break;}
+        } catch{}
+      }
+      if(!good)throw Error(which+' stroke unreachable on nominal branch');
+    }
+    throw Error(which+' inverse did not converge');
+  }
+  const owners={2:'leg_l_link1',3:'leg_l_link2',4:'leg_l_link2',5:'leg_l_link3',6:'leg_l_link4',7:'leg_l_link5',8:'leg_l_link6',9:'leg_l_link2',10:'leg_l_link3',11:'leg_l_link3',13:'leg_l_link8',14:'leg_l_link3',16:'leg_l_link16',17:'leg_l_link3',18:'leg_l_link4',19:'leg_l_link4',21:'leg_l_link6'};
+  const prism={12:['leg_l_link10','leg_l_link11'],15:['leg_l_link13','leg_l_link14'],20:['leg_l_link18','leg_l_link19']};
+  const actuatorPairs={hip:[11,13,'leg_l_link3','leg_l_link8','J2'],knee:[14,16,'leg_l_link3','leg_l_link16','J3'],ankle:[19,21,'leg_l_link4','leg_l_link6','J4']};
+  function direct(input={}){
+    const q={...NOM,...input};
+    const L=local(q.J2,q.J3,q.J4,q.J5);
+    const t={base_link:identity()};
+    const chain=[['leg_l_link1','base_link',2,'J_LEG_L_HIP_roll_RE','J0'],['leg_l_link2','leg_l_link1',3,'J_LEG_L_HIP_yaw_RE','J1'],
+       ['leg_l_link3','leg_l_link2',4,'J_LEG_L_HIP_pitch_RE','J2'],['leg_l_link4','leg_l_link3',5,'J_LEG_L_KNEE_pitch_RE','J3'],
+       ['leg_l_link5','leg_l_link4',6,'J_LEG_L_ANKLE_pitch_RE','J4'],['leg_l_link6','leg_l_link5',7,'J_LEG_L_ANKLE_roll_RE','J5'],
+       ['leg_l_link7','leg_l_link6',8,'J_LEG_L_TOE_pitch_RE','toe']];
+    for(const [body,parent,index,j,control] of chain)t[body]=compose(t[parent],around(P(index),joints[j].i_marker_axis_global,q[control]));
+    t.leg_l_ball_link20=t.leg_l_link6;
+    const hip8=fromPoints(P(9),P(13),P(9),L.hip13),hip9=fromPoints(P(13),P(10),L.hip13,L.hip10);
+    const hip10=fromPoints(P(11),P(13),L.hip11,L.hip13),hip11=T(hip10.R,sub(L.hip13,mv(hip10.R,P(13))));
+    for(const [name,val] of Object.entries({leg_l_link8:hip8,leg_l_ball_link12:hip8,leg_l_link9:hip9,leg_l_link10:hip10,leg_l_link11:hip11}))t[name]=compose(t.leg_l_link2,val);
+    const knee16=fromPoints(P(17),P(16),P(17),L.knee16),knee17=fromPoints(P(16),P(18),L.knee16,L.knee18);
+    const knee13=fromPoints(P(14),P(16),P(14),L.knee16),knee14=T(knee13.R,sub(L.knee16,mv(knee13.R,P(16))));
+    for(const [name,val] of Object.entries({leg_l_link16:knee16,leg_l_ball_link15:knee16,leg_l_link17:knee17,leg_l_link13:knee13,leg_l_link14:knee14}))t[name]=compose(t.leg_l_link3,val);
+    const a19=at(t.leg_l_link4,P(19)),a21=at(t.leg_l_link6,P(21));
+    const a18=fromPoints(P(19),P(21),a19,a21,false),a19T=T(a18.R,sub(a21,mv(a18.R,P(21))));
+    t.leg_l_link18=a18;t.leg_l_link19=a19T;
+    for(const name of Object.keys(parts))if(!t[name])throw Error('missing transform '+name);
+    let maxp=0,maxslide=0,maxax=0;
+    const markers=[],checks=[];
+    for(const [name,j] of Object.entries(joints)){
+      const pold=j.initial_center_global_mm,pi=at(t[j.i_part],pold),pj=at(t[j.j_part],pold),gap=sub(pj,pi);
+      const a=unit(ax(t[j.i_part],j.i_marker_axis_global)),b=unit(ax(t[j.j_part],j.j_marker_axis_global));
+      const dist=norm(gap),lateral=norm(cross(gap,a)),axisCross=norm(cross(a,b));
+      const err=j.type==='translational'?lateral:dist;
+      if(j.type==='translational') maxslide=Math.max(maxslide,err);else maxp=Math.max(maxp,err);
+      if(j.type==='revolute'||j.type==='translational')maxax=Math.max(maxax,axisCross);
+      markers.push({joint:name,marker_side:'I',marker:j.i_marker,part:j.i_part,type:j.type,initial_xyz_mm:pold,xyz_mm:pi,axis_xyz:a,cmd_line:j.source_cmd_line});
+      markers.push({joint:name,marker_side:'J',marker:j.j_marker,part:j.j_part,type:j.type,initial_xyz_mm:pold,xyz_mm:pj,axis_xyz:b,cmd_line:j.source_cmd_line});
+      checks.push({joint:name,type:j.type,i_part:j.i_part,j_part:j.j_part,marker_pair_gap_mm:dist,
+        lateral_gap_mm:j.type==='translational'?lateral:null,
+        axial_sliding_signed_mm:j.type==='translational'?dot(gap,a):null,
+        axis_cross_error:j.type==='revolute'||j.type==='translational'?axisCross:null,
+        constraint_residual_mm:err,cmd_line:j.source_cmd_line});
+    }
+    const hps=[];
+    for(let n=2;n<=21;n++){
+      const initial=P(n);
+      if(prism[n])for(let i=0;i<2;i++)hps.push({point:`P${n}-${i===0?'I':'J'}`,initial_xyz_mm:initial,xyz_mm:at(t[prism[n][i]],initial),body:prism[n][i],category:'prismatic_marker_side'});
+      else hps.push({point:`P${n}`,initial_xyz_mm:initial,xyz_mm:at(t[owners[n]],initial),body:owners[n],category:'structural_hardpoint'});
+    }
+    const centers={};
+    for(const [name,o] of Object.entries(D.output_joints)){
+      const j=joints[o.joint_name],parent=t[j.i_part];
+      centers[name]={xyz_mm:at(parent,j.initial_center_global_mm),initial_xyz_mm:j.initial_center_global_mm,
+        axis_i_xyz:unit(ax(parent,j.i_marker_axis_global)),joint:o.joint_name,
+        angle_cmd_initial_relative_deg:q[name==='toe_extra'?'toe':name]};
+    }
+    let mass=0,csum=[0,0,0];const coms={},inertias={};
+    for(const [name,b] of Object.entries(parts)){
+      const c=at(t[name],b.com_initial_global_mm),m=b.mass_kg;
+      coms[name]=c;mass+=m;csum=add(csum,times(c,m));
+      const I=b.inertia_raw_kg_m2;
+      const mat=[[I.ixx,I.ixy,I.izx],[I.ixy,I.iyy,I.iyz],[I.izx,I.iyz,I.izz]];
+      inertias[name]=mm(mm(t[name].R,mat),mt(t[name].R));
+    }
+    const measured={};
+    for(const [name,[a,b,ba,bb,angle]] of Object.entries(actuatorPairs)){
+      const aa=at(t[ba],P(a)),bbpos=at(t[bb],P(b)),len=norm(sub(bbpos,aa));
+      measured[name]={anchor1_xyz_mm:aa,anchor2_xyz_mm:bbpos,ball_center_length_mm:len,
+        delta_vs_cmd_mm:len-length(name,0),delta_vs_nominal_mm:len-baseLen[name],
+        slide_joint:{hip:'J_LEG_L_HIP_pitch_T',knee:'J_LEG_L_KNEE_pitch_T',ankle:'J_LEG_L_ANKLE_pitch_T'}[name],
+        passive_output:angle,original_cmd_motion_name:D.actuators[{hip:'hip_pitch',knee:'knee_pitch',ankle:'ankle_pitch'}[name]].motion};
+    }
+    const check={max_nonsliding_pair_gap_mm:maxp,max_prismatic_lateral_error_mm:maxslide,
+      max_revolute_prismatic_axis_cross:maxax,max_allowed_prismatic_lateral_error_mm:.002,
+      ok:maxp<2e-5&&maxslide<.002&&maxax<2e-6};
+    return {controls:{angles_cmd_relative_deg:q},
+     passive_outputs:{J2_hip_pitch_deg:q.J2,J3_knee_pitch_deg:q.J3,J4_ankle_pitch_deg:q.J4,
+       delta_from_nominal_deg:{J2:q.J2-NOM.J2,J3:q.J3-NOM.J3,J4:q.J4-NOM.J4}},
+     active_rod_inputs:measured,joint_centers:centers,all_hardpoints:hps,all_joint_marker_sides:markers,
+     joint_constraint_checks:checks,world_transforms:Object.fromEntries(Object.entries(t).map(([k,r])=>[k,{R:r.R,t_mm:r.t}])),
+     mass:{total_kg:mass,COM_world_mm:coms,aggregate_COM_world_mm:times(csum,1/mass),
+       raw_inertia_kg_m2_by_body:Object.fromEntries(Object.entries(parts).map(([k,b])=>[k,b.inertia_raw_kg_m2])),
+       rotated_inertia_tensor_assuming_raw_offdiagonals_kg_m2:inertias},validation:check};
+  }
+  function solve(input={}){
+    const h=Number(input.hip_mm??0),k=Number(input.knee_mm??0),a=Number(input.ankle_mm??0);
+    const j5=Number(input.J5_deg??0);
+    const q={J0:Number(input.J0_deg??0),J1:Number(input.J1_deg??0),
+      J2:inverse('hip',h,NOM.J2,0,input.seed_J2_deg),
+      J3:inverse('knee',k,NOM.J3,0,input.seed_J3_deg),
+      J4:inverse('ankle',a,NOM.J4,j5,input.seed_J4_deg),
+      J5:j5,toe:Number(input.toe_deg??0)};
+    const result=direct(q);
+    result.controls.motor_inputs={hip_rod_mm:h,knee_rod_mm:k,ankle_rod_mm:a,
+        J0_deg:q.J0,J1_deg:q.J1,J5_deg:q.J5,toe_deg:q.toe};
+    result.controls.actuator_input_definition='end-to-end physical extension relative to fixed user nominal pose at J5=0; J5 coupling included; not signed CMD Motion';
+    result.validation.inverse_length_error_mm={hip:result.active_rod_inputs.hip.ball_center_length_mm-baseLen.hip-h,
+      knee:result.active_rod_inputs.knee.ball_center_length_mm-baseLen.knee-k,
+      ankle:result.active_rod_inputs.ankle.ball_center_length_mm-baseLen.ankle-a};
+    return result;
+  }
+  function validate(){
+    const cs=[{}, {hip_mm:1,knee_mm:1,ankle_mm:1},{hip_mm:-1,knee_mm:1,ankle_mm:-1},
+      {hip_mm:2,knee_mm:-2,ankle_mm:2},
+      {hip_mm:.5,knee_mm:.5,ankle_mm:.5,J0_deg:5,J1_deg:-4,J5_deg:3}];
+    const arr=cs.map(c=>{
+      const r=solve(c);
+      return {input:c,angles:r.controls.angles_cmd_relative_deg,residual:r.validation};
+    });
+    const ok=arr.every(x=>x.residual.ok&&Object.values(x.residual.inverse_length_error_mm).every(z=>Math.abs(z)<1e-7));
+    return {ok,parts:Object.keys(parts).length,original_points:20,joints:Object.keys(joints).length,
+      all_joint_marker_sides:50,motions:Object.keys(D.motions).length,nominal_deg:NOM,
+      nominal_ball_lengths_mm:baseLen,cases:arr};
+  }
+  return {solve,directAngles:direct,validate,nominal:NOM,nominalBallLengths:baseLen,
+    part:name=>parts[name],joint:name=>joints[name],motion:name=>D.motions[name],point:n=>D.hardpoints[`P_${n}`],
+    lists:()=>({parts:Object.keys(parts),joints:Object.keys(joints),motions:Object.keys(D.motions)})};
+}
+
+const leg=createCompleteLeftLeg(JSON.parse(document.getElementById('data').textContent));
+const inputs=[{k:'hip_mm',n:'HIP pitch rod',unit:'mm',min:-4,max:4,step:.1},
+{k:'knee_mm',n:'KNEE pitch rod',unit:'mm',min:-4,max:4,step:.1},
+{k:'ankle_mm',n:'ANKLE pitch rod',unit:'mm',min:-4,max:4,step:.1},
+{k:'J0_deg',n:'HIP roll motor J0',unit:'deg',min:-8,max:8,step:.25},
+{k:'J1_deg',n:'HIP yaw motor J1',unit:'deg',min:-8,max:8,step:.25},
+{k:'J5_deg',n:'ANKLE roll motor J5',unit:'deg',min:-8,max:8,step:.25}];
+let state={},current=leg.solve(),original=leg.directAngles({J0:0,J1:0,J2:0,J3:0,J4:0,J5:0,toe:0}),nominal=leg.solve();
+let lastScreenPoints=[],play=false,anim=null,phase=0;
+function num(x,n=3){return Number(x).toFixed(n);}function posePoint(r,n){return r.all_hardpoints.find(a=>a.point==='P'+n)?.xyz_mm}
+for(const c of inputs){let d=document.createElement('div');d.className='control';d.innerHTML=`<label>${c.n}<br/><b id="val-${c.k}">0.00 ${c.unit}</b></label><input id="${c.k}" type="range" min="${c.min}" max="${c.max}" step="${c.step}" value="0"/>`;document.getElementById('controls').appendChild(d);
+ d.querySelector('input').addEventListener('input',refresh)}
+const canvas=document.getElementById('view'),cx=canvas.getContext('2d');
+const paths=[{ids:[2,3,4,5,6,7,8],color:'#8897a6',width:4},
+ {ids:[9,13,10,4],color:'#29928a',width:2.8},
+ {ids:[17,16,18,5],color:'#29928a',width:2.8},
+ {ids:[11,13],color:'#d06f36',width:6},{ids:[14,16],color:'#d06f36',width:6},
+ {ids:[19,21],color:'#d06f36',width:6}];
+function panelPoint(v,j){let left=30+j*466;let scaleX=0.78,scaleZ=0.612;return [left+(v[0]+155)*scaleX,745-(v[2]+1045)*scaleZ]}
+function renderPanel(d,j,title,annotate){let left=15+j*466;
+ cx.fillStyle='#f8fafc';cx.fillRect(left,50,453,680);
+ cx.strokeStyle='#e1e9ed';cx.lineWidth=1;
+ for(let z=-1000;z<=0;z+=200){const [x,y]=panelPoint([0,0,z],j);cx.beginPath();cx.moveTo(left+25,y);cx.lineTo(left+445,y);cx.stroke();cx.fillStyle='#8192a2';cx.font='12px Arial';cx.fillText(String(z),left+10,y-4)}
+ for(const x of [-100,0,100,200,300]){const [px]=panelPoint([x,0,0],j);cx.beginPath();cx.moveTo(px,60);cx.lineTo(px,725);cx.stroke();}
+ cx.font='bold 15px Arial';cx.fillStyle='#1d3850';cx.fillText(title,left+16,28);
+ for(const l of paths){cx.beginPath();l.ids.forEach((n,i)=>{const xy=panelPoint(posePoint(d,n),j);i===0?cx.moveTo(...xy):cx.lineTo(...xy)});cx.strokeStyle=l.color;cx.lineWidth=l.width;cx.stroke()}
+ for(let n=2;n<=21;n++){
+  const point=d.all_hardpoints.find(a=>a.point===`P${n}`)||d.all_hardpoints.find(a=>a.point===`P${n}-I`);
+  const loc=panelPoint(point.xyz_mm,j);cx.beginPath();cx.arc(...loc,3.4,0,2*Math.PI);cx.fillStyle=n>=11&&[12,15,20].includes(n)?'#c44c36':'#2b607a';cx.fill();
+  lastScreenPoints.push({x:loc[0],y:loc[1],name:point.point,world:point.xyz_mm,part:point.body});
+  if(annotate||[2,3,4,5,6,7,8,9,13,16,19,21].includes(n)){
+   cx.font='11px Arial';cx.fillStyle='#19364c';const delta=n%2?-8:8;cx.fillText('P'+n,loc[0]+delta,loc[1]+(n%3===0?13:-7));
+  }
+ }
+ for(const [name,v] of Object.entries(d.joint_centers)){
+  const loc=panelPoint(v.xyz_mm,j);cx.beginPath();cx.arc(...loc,9,0,2*Math.PI);cx.strokeStyle='#174f7c';cx.lineWidth=1.7;cx.stroke();
+ }
+ cx.fillStyle='#60778b';cx.font='12px Arial';cx.fillText('X / Z (mm)    orange: actuator   teal: rocker',left+50,762);
+}
+function draw(){cx.clearRect(0,0,canvas.width,canvas.height);lastScreenPoints=[];
+ renderPanel(original,0,'ORIGINAL CMD | q = 0',false);
+ renderPanel(nominal,1,'USER NOMINAL | J2 -27.5 J3 +51.57 J4 -24.06',false);
+ renderPanel(current,2,'ACTIVE ACTUATOR CONTROL',true);
+}
+function tab(id,cols,rows){let ele=document.getElementById(id);ele.innerHTML='<thead><tr>'+cols.map(c=>'<th>'+c+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(v=>'<td>'+v+'</td>').join('')+'</tr>').join('')+'</tbody>'}
+function updateTables(){
+ tab('pointTable',['Point','Body','Initial X','Initial Y','Initial Z','Current X','Current Y','Current Z'],current.all_hardpoints.map(p=>[p.point,p.body,...p.initial_xyz_mm.map(v=>num(v,4)),...p.xyz_mm.map(v=>num(v,4))]));
+ tab('markerTable',['Joint','Side','Marker','Body','X (mm)','Y (mm)','Z (mm)','Axis X','Axis Y','Axis Z'],current.all_joint_marker_sides.map(m=>[m.joint,m.marker_side,m.marker,m.part,...m.xyz_mm.map(v=>num(v,5)),...m.axis_xyz.map(v=>num(v,5))]));
+ tab('massTable',['Body','Mass (kg)','COM X','COM Y','COM Z'],Object.entries(current.mass.COM_world_mm).map(([key,v])=>[key,num(leg.part(key).mass_kg,7),...v.map(w=>num(w,3))]));
+ tab('checksTable',['Joint','Type','Max lateral or joint-pair residual (mm)','Axial slider stroke (mm)'],current.joint_constraint_checks.map(v=>[v.joint,v.type,num(v.constraint_residual_mm,8),v.axial_sliding_signed_mm==null?'—':num(v.axial_sliding_signed_mm,5)]));
+}
+function refresh(){for(const c of inputs){const x=Number(document.getElementById(c.k).value);state[c.k]=x;document.getElementById('val-'+c.k).textContent=num(x,2)+' '+c.unit}
+ try{current=leg.solve(state);let r=current;
+  document.getElementById('stats').innerHTML=[['Passive J2 HIP Pitch',r.passive_outputs.J2_hip_pitch_deg,'deg'],['Passive J3 KNEE Pitch',r.passive_outputs.J3_knee_pitch_deg,'deg'],['Passive J4 ANKLE Pitch',r.passive_outputs.J4_ankle_pitch_deg,'deg'],['Leg mass',r.mass.total_kg,'kg']].map(([a,b,u])=>`<div class="stat"><small>${a}</small><b>${num(b,3)} ${u}</b></div>`).join('');
+  document.getElementById('status').textContent='VALIDATION: '+(r.validation.ok?'PASS':'FAIL')+' | max non-slide residual '+num(r.validation.max_nonsliding_pair_gap_mm,9)+' mm | max prismatic lateral '+num(r.validation.max_prismatic_lateral_error_mm,7)+' mm | '+Object.entries(r.active_rod_inputs).map(([k,v])=>k+' length '+num(v.ball_center_length_mm,4)+' mm').join(' | ')+' | total COM '+r.mass.aggregate_COM_world_mm.map(v=>num(v,2)).join(', ')+' mm';
+  draw();updateTables();
+ }catch(e){document.getElementById('status').textContent='INVALID INPUT: '+String(e)}
+}
+function setVals(vals){for(const c of inputs){document.getElementById(c.k).value=vals[c.k]??0;}refresh()}
+document.getElementById('reset').onclick=()=>{play=false;document.getElementById('animate').textContent='Play stroke animation';setVals({})};
+document.getElementById('test1').onclick=()=>{play=false;document.getElementById('animate').textContent='Play stroke animation';setVals({hip_mm:1,knee_mm:1,ankle_mm:1})};
+document.getElementById('animate').onclick=()=>{play=!play;document.getElementById('animate').textContent=play?'Stop animation':'Play stroke animation';if(play)requestAnimationFrame(tick)};
+function tick(t){if(!play)return;const a=Math.sin(t/840)*2;setVals({hip_mm:a,knee_mm:a,ankle_mm:a});requestAnimationFrame(tick)}
+canvas.addEventListener('mousemove',ev=>{const rect=canvas.getBoundingClientRect();const x=(ev.clientX-rect.left)*canvas.width/rect.width,y=(ev.clientY-rect.top)*canvas.height/rect.height;
+ let best=null,dist=18;for(const p of lastScreenPoints){let d=Math.hypot(p.x-x,p.y-y);if(d<dist){best=p;dist=d}}
+ const tip=document.getElementById('tip');if(best){tip.textContent=`${best.name} | ${best.part} | XYZ ${best.world.map(x=>num(x,4)).join(', ')} mm`;tip.style.display='block';tip.style.top=ev.clientY+14+'px';tip.style.left=ev.clientX+14+'px'}else tip.style.display='none'});
+canvas.addEventListener('mouseleave',()=>document.getElementById('tip').style.display='none');
+refresh();
+</script></body></html>

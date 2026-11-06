@@ -1,0 +1,11 @@
+﻿name,joint_name,type_of_freedom,cmd_active_explicit,function_after_last_modify,source_cmd_lines
+MOTION_ANKLE_L_pitch_RE,J_LEG_L_ANKLE_pitch_RE,rotational,,"""0d * time""","{""create"": 1424300, ""last_modify"": 1425185}"
+MOTION_HIP_L_roll,J_LEG_L_HIP_roll_RE,rotational,on,"""0d * time""","{""create"": 1424677, ""last_modify"": 1425301}"
+MOTION_HIP_L_yaw,J_LEG_L_HIP_yaw_RE,rotational,on,"""0d * time""","{""create"": 1424690, ""last_modify"": 1425305}"
+MOTION_HIP_L_pitch_RE,J_LEG_L_HIP_pitch_RE,rotational,on,"""0d * time""","{""create"": 1424703, ""last_modify"": 1425309}"
+MOTION_KNEE_L_pitch_RE,J_LEG_L_KNEE_pitch_RE,rotational,on,"""0d * time""","{""create"": 1424716, ""last_modify"": 1425313}"
+MOTION_TOE_L_pitch,J_LEG_L_TOE_pitch_RE,rotational,on,"""0d * time""","{""create"": 1424729, ""last_modify"": 1425317}"
+MOTION_ANKLE_L_roll,J_LEG_L_ANKLE_roll_RE,rotational,on,"""0d * time""","{""create"": 1424742, ""last_modify"": 1425321}"
+MOTION_HIP_L_pitch_T,J_LEG_L_HIP_pitch_T,translational,off,"""0d * time""","{""create"": 1424755, ""last_modify"": 1425325}"
+MOTION_KNEE_L_pitch_T,J_LEG_L_KNEE_pitch_T,translational,off,"""0d * time""","{""create"": 1424781, ""last_modify"": 1425333}"
+MOTION_ANKLE_L_pitch_T,J_LEG_L_ANKLE_pitch_T,translational,off,"""0d * time""","{""create"": 1424794, ""last_modify"": 1425337}"

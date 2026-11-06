@@ -1,0 +1,136 @@
+{
+  "source_cmd_name": "ET2_base_2026_7_28_camp.cmd",
+  "source_cmd_sha256": "68587b9fea3cf130d9e28171449be780e03b41d2ee31eb2213133ceadd1a0724",
+  "package_model": "source-extracted joints and mass inertias + rod-actuated geometric closure",
+  "nominal_angles_deg": {
+    "J0": 0,
+    "J1": 0,
+    "J2": -27.5,
+    "J3": 51.57,
+    "J4": -24.06,
+    "J5": 0,
+    "toe": 0
+  },
+  "src_20_rigid_bodies": 20,
+  "original_hardpoints": 20,
+  "prismatic_marker_side_expansion": 23,
+  "joint_count": 25,
+  "marker_side_count": 50,
+  "motion_count": 10,
+  "total_leg_mass_kg": 13.02480932,
+  "user_nominal_rod_lengths_mm": {
+    "hip": 305.8400587427754,
+    "knee": 304.1210898550815,
+    "ankle": 281.0036204191704
+  },
+  "user_nominal_max_prismatic_lateral_residual_mm": 0.0006168016656319633,
+  "python_js_allout_max_numerical_difference": 5.9685589803848416e-12,
+  "assumptions": [
+    "Child RH joint angle about upstream CMD I marker axis",
+    "Leg base_link fixed",
+    "Physical rod stroke vs nominal ball-to-ball length",
+    "No dynamic force/stroke limit/contact solve"
+  ],
+  "files": [
+    {
+      "path": "model.json",
+      "size": 34136
+    },
+    {
+      "path": "ET2_left_leg_3pose_all_hardpoints.png",
+      "size": 244819
+    },
+    {
+      "path": "leg_full.py",
+      "size": 24679
+    },
+    {
+      "path": "leg_full.mjs",
+      "size": 13533
+    },
+    {
+      "path": "ET2_left_leg_full_closedchain_audit.xlsx",
+      "size": 41109
+    },
+    {
+      "path": "pose_nominal.json",
+      "size": 67622
+    },
+    {
+      "path": "ET2_left_leg_actuated_closedchain_viewer.html",
+      "size": 59169
+    },
+    {
+      "path": "pose_cmd_zero.json",
+      "size": 63049
+    },
+    {
+      "path": "ET2_left_leg_three_rod_loops_detail.png",
+      "size": 174789
+    },
+    {
+      "path": "00_CODEX_START.md",
+      "size": 7639
+    },
+    {
+      "path": "pose_stroke_1mm.json",
+      "size": 67618
+    },
+    {
+      "path": "stroke_1mm_csv/20_mass_COM_inertia.csv",
+      "size": 3602
+    },
+    {
+      "path": "stroke_1mm_csv/50_joint_marker_sides.csv",
+      "size": 10640
+    },
+    {
+      "path": "stroke_1mm_csv/23_hardpoint_positions.csv",
+      "size": 2661
+    },
+    {
+      "path": "stroke_1mm_csv/3_rod_endpoints.csv",
+      "size": 782
+    },
+    {
+      "path": "stroke_1mm_csv/25_joint_constraint_checks.csv",
+      "size": 2678
+    },
+    {
+      "path": "stroke_1mm_csv/7_output_joint_centers.csv",
+      "size": 984
+    },
+    {
+      "path": "stroke_1mm_csv/10_motions.csv",
+      "size": 1340
+    },
+    {
+      "path": "nominal_csv/20_mass_COM_inertia.csv",
+      "size": 3598
+    },
+    {
+      "path": "nominal_csv/50_joint_marker_sides.csv",
+      "size": 10658
+    },
+    {
+      "path": "nominal_csv/23_hardpoint_positions.csv",
+      "size": 2665
+    },
+    {
+      "path": "nominal_csv/3_rod_endpoints.csv",
+      "size": 792
+    },
+    {
+      "path": "nominal_csv/25_joint_constraint_checks.csv",
+      "size": 2787
+    },
+    {
+      "path": "nominal_csv/7_output_joint_centers.csv",
+      "size": 948
+    },
+    {
+      "path": "nominal_csv/10_motions.csv",
+      "size": 1340
+    }
+  ]
+}

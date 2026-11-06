@@ -1,0 +1,3142 @@
+{
+  "controls": {
+    "angles_cmd_relative_deg": {
+      "J0": 0.0,
+      "J1": 0.0,
+      "J2": 0.0,
+      "J3": 0.0,
+      "J4": 0.0,
+      "J5": 0.0,
+      "toe": 0.0
+    }
+  },
+  "passive_outputs": {
+    "J2_hip_pitch_deg": 0.0,
+    "J3_knee_pitch_deg": 0.0,
+    "J4_ankle_pitch_deg": 0.0,
+    "delta_from_nominal_deg": {
+      "J2": 27.5,
+      "J3": -51.57,
+      "J4": 24.06
+    }
+  },
+  "active_rod_inputs": {
+    "hip": {
+      "anchor1_xyz_mm": [
+        29.00819,
+        93.00025,
+        -447.47156
+      ],
+      "anchor2_xyz_mm": [
+        60.465550000000015,
+        93.00025,
+        -127.88178
+      ],
+      "ball_center_length_mm": 321.13422891155346,
+      "delta_vs_cmd_mm": 0.0,
+      "delta_vs_nominal_mm": 15.294170168778066,
+      "slide_joint": "J_LEG_L_HIP_pitch_T",
+      "passive_output": "J2",
+      "original_cmd_motion_name": "MOTION_HIP_L_pitch_T"
+    },
+    "knee": {
+      "anchor1_xyz_mm": [
+        -44.06208,
+        93.00025,
+        -162.45976
+      ],
+      "anchor2_xyz_mm": [
+        -65.78142000000001,
+        93.00025,
+        -494.28588999999994
+      ],
+      "ball_center_length_mm": 332.5361789051117,
+      "delta_vs_cmd_mm": 0.0,
+      "delta_vs_nominal_mm": 28.41508905003019,
+      "slide_joint": "J_LEG_L_KNEE_pitch_T",
+      "passive_output": "J3",
+      "original_cmd_motion_name": "MOTION_KNEE_L_pitch_T"
+    },
+    "ankle": {
+      "anchor1_xyz_mm": [
+        -25.21746,
+        93.00025,
+        -651.42495
+      ],
+      "anchor2_xyz_mm": [
+        -75.63747,
+        93.00025,
+        -909.52291
+      ],
+      "ball_center_length_mm": 262.97668026758896,
+      "delta_vs_cmd_mm": 0.0,
+      "delta_vs_nominal_mm": -18.026940151581414,
+      "slide_joint": "J_LEG_L_ANKLE_pitch_T",
+      "passive_output": "J4",
+      "original_cmd_motion_name": "MOTION_ANKLE_L_pitch_T"
+    }
+  },
+  "joint_centers": {
+    "J0": {
+      "xyz_mm": [
+        -34.75489,
+        92.99991,
+        -56.96023
+      ],
+      "initial_xyz_mm": [
+        -34.75489,
+        92.99991,
+        -56.96023
+      ],
+      "axis_i_xyz": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "joint": "J_LEG_L_HIP_roll_RE",
+      "angle_cmd_initial_relative_deg": 0.0
+    },
+    "J1": {
+      "xyz_mm": [
+        17.74323,
+        93.00025,
+        -23.95975
+      ],
+      "initial_xyz_mm": [
+        17.74323,
+        93.00025,
+        -23.95975
+      ],
+      "axis_i_xyz": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "joint": "J_LEG_L_HIP_yaw_RE",
+      "angle_cmd_initial_relative_deg": 0.0
+    },
+    "J2": {
+      "xyz_mm": [
+        24.74317,
+        93.00025,
+        -87.45972
+      ],
+      "initial_xyz_mm": [
+        24.74317,
+        93.00025,
+        -87.45972
+      ],
+      "axis_i_xyz": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "joint": "J_LEG_L_HIP_pitch_RE",
+      "angle_cmd_initial_relative_deg": 0.0
+    },
+    "J3": {
+      "xyz_mm": [
+        -4.2868,
+        93.00025,
+        -527.91575
+      ],
+      "initial_xyz_mm": [
+        -4.2868,
+        93.00025,
+        -527.91575
+      ],
+      "axis_i_xyz": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "joint": "J_LEG_L_KNEE_pitch_RE",
+      "angle_cmd_initial_relative_deg": 0.0
+    },
+    "J4": {
+      "xyz_mm": [
+        -29.54807,
+        93.00025,
+        -911.16349
+      ],
+      "initial_xyz_mm": [
+        -29.54807,
+        93.00025,
+        -911.16349
+      ],
+      "axis_i_xyz": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "joint": "J_LEG_L_ANKLE_pitch_RE",
+      "angle_cmd_initial_relative_deg": 0.0
+    },
+    "J5": {
+      "xyz_mm": [
+        -29.54805,
+        92.99995,
+        -949.66471
+      ],
+      "initial_xyz_mm": [
+        -29.54805,
+        92.99995,
+        -949.66471
+      ],
+      "axis_i_xyz": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "joint": "J_LEG_L_ANKLE_roll_RE",
+      "angle_cmd_initial_relative_deg": 0.0
+    },
+    "toe_extra": {
+      "xyz_mm": [
+        85.34754,
+        93.00025,
+        -979.01003
+      ],
+      "initial_xyz_mm": [
+        85.34754,
+        93.00025,
+        -979.01003
+      ],
+      "axis_i_xyz": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "joint": "J_LEG_L_TOE_pitch_RE",
+      "angle_cmd_initial_relative_deg": 0.0
+    }
+  },
+  "all_hardpoints": [
+    {
+      "point": "P2",
+      "initial_xyz_mm": [
+        -34.75489,
+        92.99991,
+        -56.96023
+      ],
+      "xyz_mm": [
+        -34.75489,
+        92.99991,
+        -56.96023
+      ],
+      "body": "leg_l_link1",
+      "category": "structural_hardpoint"
+    },
+    {
+      "point": "P3",
+      "initial_xyz_mm": [
+        17.74323,
+        93.00025,
+        -23.95975
+      ],
+      "xyz_mm": [
+        17.74323,
+        93.00025,
+        -23.95975
+      ],
+      "body": "leg_l_link2",
+      "category": "structural_hardpoint"
+    },
+    {
+      "point": "P4",
+      "initial_xyz_mm": [
+        24.74317,
+        93.00025,
+        -87.45972
+      ],
+      "xyz_mm": [
+        24.74317,
+        93.00025,
+        -87.45972
+      ],
+      "body": "leg_l_link2",
+      "category": "structural_hardpoint"
+    },
+    {
+      "point": "P5",
+      "initial_xyz_mm": [
+        -4.2868,
+        93.00025,
+        -527.91575
+      ],
+      "xyz_mm": [
+        -4.2868,
+        93.00025,
+        -527.91575
+      ],
+      "body": "leg_l_link3",
+      "category": "structural_hardpoint"
+    },
+    {
+      "point": "P6",
+      "initial_xyz_mm": [
+        -29.54807,
+        93.00025,
+        -911.16349
+      ],
+      "xyz_mm": [
+        -29.54807,
+        93.00025,
+        -911.16349
+      ],
+      "body": "leg_l_link4",
+      "category": "structural_hardpoint"
+    },
+    {
+      "point": "P7",
+      "initial_xyz_mm": [
+        -29.54805,
+        92.99995,
+        -949.66471
+      ],
+      "xyz_mm": [
+        -29.54805,
+        92.99995,
+        -949.66471
+      ],
+      "body": "leg_l_link5",
+      "category": "structural_hardpoint"
+    },
+    {
+      "point": "P8",
+      "initial_xyz_mm": [
+        85.34754,
+        93.00025,
+        -979.01003
+      ],
+      "xyz_mm": [
+        85.34754,
+        93.00025,
+        -979.01003
+      ],
+      "body": "leg_l_link6",
+      "category": "structural_hardpoint"
+    },
+    {
+      "point": "P9",
+      "initial_xyz_mm": [
+        50.37212,
+        93.00025,
+        -54.61439
+      ],
+      "xyz_mm": [
+        50.37212,
+        93.00025,
+        -54.61439
+      ],
+      "body": "leg_l_link2",
+      "category": "structural_hardpoint"
+    },
+    {
+      "point": "P10",
+      "initial_xyz_mm": [
+        1.01403,
+        93.00025,
+        -161.15632
+      ],
+      "xyz_mm": [
+        1.01403,
+        93.00025,
+        -161.15632
+      ],
+      "body": "leg_l_link3",
+      "category": "structural_hardpoint"
+    },
+    {
+      "point": "P11",
+      "initial_xyz_mm": [
+        29.00819,
+        93.00025,
+        -447.47156
+      ],
+      "xyz_mm": [
+        29.00819,
+        93.00025,
+        -447.47156
+      ],
+      "body": "leg_l_link3",
+      "category": "structural_hardpoint"
+    },
+    {
+      "point": "P12-I",
+      "initial_xyz_mm": [
+        51.14514,
+        92.99957,
+        -222.55883
+      ],
+      "xyz_mm": [
+        51.14514000000001,
+        92.99957,
+        -222.55883
+      ],
+      "body": "leg_l_link10",
+      "category": "prismatic_marker_side"
+    },
+    {
+      "point": "P12-J",
+      "initial_xyz_mm": [
+        51.14514,
+        92.99957,
+        -222.55883
+      ],
+      "xyz_mm": [
+        51.14514000000001,
+        92.99957,
+        -222.55883
+      ],
+      "body": "leg_l_link11",
+      "category": "prismatic_marker_side"
+    },
+    {
+      "point": "P13",
+      "initial_xyz_mm": [
+        60.46555,
+        93.00025,
+        -127.88178
+      ],
+      "xyz_mm": [
+        60.465550000000015,
+        93.00025,
+        -127.88178
+      ],
+      "body": "leg_l_link8",
+      "category": "structural_hardpoint"
+    },
+    {
+      "point": "P14",
+      "initial_xyz_mm": [
+        -44.06208,
+        93.00025,
+        -162.45976
+      ],
+      "xyz_mm": [
+        -44.06208,
+        93.00025,
+        -162.45976
+      ],
+      "body": "leg_l_link3",
+      "category": "structural_hardpoint"
+    },
+    {
+      "point": "P15-I",
+      "initial_xyz_mm": [
+        -58.82506,
+        92.99911,
+        -387.97644
+      ],
+      "xyz_mm": [
+        -58.82506,
+        92.99911,
+        -387.97644
+      ],
+      "body": "leg_l_link13",
+      "category": "prismatic_marker_side"
+    },
+    {
+      "point": "P15-J",
+      "initial_xyz_mm": [
+        -58.82506,
+        92.99911,
+        -387.97644
+      ],
+      "xyz_mm": [
+        -58.82505999999999,
+        92.99911,
+        -387.97643999999997
+      ],
+      "body": "leg_l_link14",
+      "category": "prismatic_marker_side"
+    },
+    {
+      "point": "P16",
+      "initial_xyz_mm": [
+        -65.78142,
+        93.00025,
+        -494.28589
+      ],
+      "xyz_mm": [
+        -65.78142000000001,
+        93.00025,
+        -494.28588999999994
+      ],
+      "body": "leg_l_link16",
+      "category": "structural_hardpoint"
+    },
+    {
+      "point": "P17",
+      "initial_xyz_mm": [
+        19.06027,
+        93.00025,
+        -469.90277
+      ],
+      "xyz_mm": [
+        19.06027,
+        93.00025,
+        -469.90277
+      ],
+      "body": "leg_l_link3",
+      "category": "structural_hardpoint"
+    },
+    {
+      "point": "P18",
+      "initial_xyz_mm": [
+        -3.99704,
+        93.00025,
+        -562.9158
+      ],
+      "xyz_mm": [
+        -3.99704,
+        93.00025,
+        -562.9158
+      ],
+      "body": "leg_l_link4",
+      "category": "structural_hardpoint"
+    },
+    {
+      "point": "P19",
+      "initial_xyz_mm": [
+        -25.21746,
+        93.00025,
+        -651.42495
+      ],
+      "xyz_mm": [
+        -25.21746,
+        93.00025,
+        -651.42495
+      ],
+      "body": "leg_l_link4",
+      "category": "structural_hardpoint"
+    },
+    {
+      "point": "P20-I",
+      "initial_xyz_mm": [
+        -63.94746,
+        92.9995,
+        -849.67721
+      ],
+      "xyz_mm": [
+        -63.94746,
+        92.9995,
+        -849.67721
+      ],
+      "body": "leg_l_link18",
+      "category": "prismatic_marker_side"
+    },
+    {
+      "point": "P20-J",
+      "initial_xyz_mm": [
+        -63.94746,
+        92.9995,
+        -849.67721
+      ],
+      "xyz_mm": [
+        -63.94746,
+        92.9995,
+        -849.67721
+      ],
+      "body": "leg_l_link19",
+      "category": "prismatic_marker_side"
+    },
+    {
+      "point": "P21",
+      "initial_xyz_mm": [
+        -75.63747,
+        93.00025,
+        -909.52291
+      ],
+      "xyz_mm": [
+        -75.63747,
+        93.00025,
+        -909.52291
+      ],
+      "body": "leg_l_link6",
+      "category": "structural_hardpoint"
+    }
+  ],
+  "all_joint_marker_sides": [
+    {
+      "joint": "J_LEG_L_HIP_roll_RE",
+      "marker_side": "I",
+      "marker": "base_link.JM_P002_R_ground_leg_l_link1",
+      "part": "base_link",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        -34.75489,
+        92.99991,
+        -56.96023
+      ],
+      "xyz_mm": [
+        -34.75489,
+        92.99991,
+        -56.96023
+      ],
+      "axis_xyz": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "cmd_line": 1421893
+    },
+    {
+      "joint": "J_LEG_L_HIP_roll_RE",
+      "marker_side": "J",
+      "marker": "leg_l_link1.JM_P002_R_ground_leg_l_link1",
+      "part": "leg_l_link1",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        -34.75489,
+        92.99991,
+        -56.96023
+      ],
+      "xyz_mm": [
+        -34.75489,
+        92.99991,
+        -56.96023
+      ],
+      "axis_xyz": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "cmd_line": 1421893
+    },
+    {
+      "joint": "J_LEG_L_HIP_yaw_RE",
+      "marker_side": "I",
+      "marker": "leg_l_link1.JM_P003_R_leg_l_link1_leg_l_link2",
+      "part": "leg_l_link1",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        17.74323,
+        93.00025,
+        -23.95975
+      ],
+      "xyz_mm": [
+        17.74323,
+        93.00025,
+        -23.95975
+      ],
+      "axis_xyz": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1421907
+    },
+    {
+      "joint": "J_LEG_L_HIP_yaw_RE",
+      "marker_side": "J",
+      "marker": "leg_l_link2.JM_P003_R_leg_l_link1_leg_l_link2",
+      "part": "leg_l_link2",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        17.74323,
+        93.00025,
+        -23.95975
+      ],
+      "xyz_mm": [
+        17.74323,
+        93.00025,
+        -23.95975
+      ],
+      "axis_xyz": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1421907
+    },
+    {
+      "joint": "J_LEG_L_HIP_pitch_RE",
+      "marker_side": "I",
+      "marker": "leg_l_link2.JM_P004_R_leg_l_link2_leg_l_link3",
+      "part": "leg_l_link2",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        24.74317,
+        93.00025,
+        -87.45972
+      ],
+      "xyz_mm": [
+        24.74317,
+        93.00025,
+        -87.45972
+      ],
+      "axis_xyz": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "cmd_line": 1421921
+    },
+    {
+      "joint": "J_LEG_L_HIP_pitch_RE",
+      "marker_side": "J",
+      "marker": "leg_l_link3.JM_P004_R_leg_l_link2_leg_l_link3",
+      "part": "leg_l_link3",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        24.74317,
+        93.00025,
+        -87.45972
+      ],
+      "xyz_mm": [
+        24.74317,
+        93.00025,
+        -87.45972
+      ],
+      "axis_xyz": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "cmd_line": 1421921
+    },
+    {
+      "joint": "J_LEG_L_KNEE_pitch_RE",
+      "marker_side": "I",
+      "marker": "leg_l_link3.JM_P005_R_leg_l_link3_leg_l_link4",
+      "part": "leg_l_link3",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        -4.2868,
+        93.00025,
+        -527.91575
+      ],
+      "xyz_mm": [
+        -4.2868,
+        93.00025,
+        -527.91575
+      ],
+      "axis_xyz": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "cmd_line": 1421935
+    },
+    {
+      "joint": "J_LEG_L_KNEE_pitch_RE",
+      "marker_side": "J",
+      "marker": "leg_l_link4.JM_P005_R_leg_l_link3_leg_l_link4",
+      "part": "leg_l_link4",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        -4.2868,
+        93.00025,
+        -527.91575
+      ],
+      "xyz_mm": [
+        -4.2868,
+        93.00025,
+        -527.91575
+      ],
+      "axis_xyz": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "cmd_line": 1421935
+    },
+    {
+      "joint": "J_LEG_L_ANKLE_pitch_RE",
+      "marker_side": "I",
+      "marker": "leg_l_link4.JM_P006_R_leg_l_link4_leg_l_link5",
+      "part": "leg_l_link4",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        -29.54807,
+        93.00025,
+        -911.16349
+      ],
+      "xyz_mm": [
+        -29.54807,
+        93.00025,
+        -911.16349
+      ],
+      "axis_xyz": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "cmd_line": 1421949
+    },
+    {
+      "joint": "J_LEG_L_ANKLE_pitch_RE",
+      "marker_side": "J",
+      "marker": "leg_l_link5.JM_P006_R_leg_l_link4_leg_l_link5",
+      "part": "leg_l_link5",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        -29.54807,
+        93.00025,
+        -911.16349
+      ],
+      "xyz_mm": [
+        -29.54807,
+        93.00025,
+        -911.16349
+      ],
+      "axis_xyz": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "cmd_line": 1421949
+    },
+    {
+      "joint": "J_LEG_L_TOE_pitch_RE",
+      "marker_side": "I",
+      "marker": "leg_l_link6.JM_P008_R_leg_l_link6_leg_l_link7",
+      "part": "leg_l_link6",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        85.34754,
+        93.00025,
+        -979.01003
+      ],
+      "xyz_mm": [
+        85.34754,
+        93.00025,
+        -979.01003
+      ],
+      "axis_xyz": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "cmd_line": 1421975
+    },
+    {
+      "joint": "J_LEG_L_TOE_pitch_RE",
+      "marker_side": "J",
+      "marker": "leg_l_link7.JM_P008_R_leg_l_link6_leg_l_link7",
+      "part": "leg_l_link7",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        85.34754,
+        93.00025,
+        -979.01003
+      ],
+      "xyz_mm": [
+        85.34754,
+        93.00025,
+        -979.01003
+      ],
+      "axis_xyz": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "cmd_line": 1421975
+    },
+    {
+      "joint": "J_LEG_L_P009_RE_L02_L08",
+      "marker_side": "I",
+      "marker": "leg_l_link2.JM_P009_R_leg_l_link2_leg_l_link8",
+      "part": "leg_l_link2",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        50.37212,
+        93.00025,
+        -54.61439
+      ],
+      "xyz_mm": [
+        50.37212,
+        93.00025,
+        -54.61439
+      ],
+      "axis_xyz": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "cmd_line": 1421989
+    },
+    {
+      "joint": "J_LEG_L_P009_RE_L02_L08",
+      "marker_side": "J",
+      "marker": "leg_l_link8.JM_P009_R_leg_l_link2_leg_l_link8",
+      "part": "leg_l_link8",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        50.37212,
+        93.00025,
+        -54.61439
+      ],
+      "xyz_mm": [
+        50.37212,
+        93.00025,
+        -54.61439
+      ],
+      "axis_xyz": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "cmd_line": 1421989
+    },
+    {
+      "joint": "J_LEG_L_P010_S_L09_L03",
+      "marker_side": "I",
+      "marker": "leg_l_link9.JM_P010_S_leg_l_link9_leg_l_link3",
+      "part": "leg_l_link9",
+      "type": "spherical",
+      "initial_xyz_mm": [
+        1.01403,
+        93.00025,
+        -161.15632
+      ],
+      "xyz_mm": [
+        1.0140300000000095,
+        93.00025,
+        -161.15632
+      ],
+      "axis_xyz": [
+        2.9391137889776427e-16,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422003
+    },
+    {
+      "joint": "J_LEG_L_P010_S_L09_L03",
+      "marker_side": "J",
+      "marker": "leg_l_link3.JM_P010_S_leg_l_link9_leg_l_link3",
+      "part": "leg_l_link3",
+      "type": "spherical",
+      "initial_xyz_mm": [
+        1.01403,
+        93.00025,
+        -161.15632
+      ],
+      "xyz_mm": [
+        1.01403,
+        93.00025,
+        -161.15632
+      ],
+      "axis_xyz": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422003
+    },
+    {
+      "joint": "J_LEG_L_P011_S_L10_L03",
+      "marker_side": "I",
+      "marker": "leg_l_link10.JM_P011_S_leg_l_link10_leg_l_link3",
+      "part": "leg_l_link10",
+      "type": "spherical",
+      "initial_xyz_mm": [
+        29.00819,
+        93.00025,
+        -447.47156
+      ],
+      "xyz_mm": [
+        29.00819,
+        93.00025,
+        -447.47156
+      ],
+      "axis_xyz": [
+        7.055324016907931e-17,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422017
+    },
+    {
+      "joint": "J_LEG_L_P011_S_L10_L03",
+      "marker_side": "J",
+      "marker": "leg_l_link3.JM_P011_S_leg_l_link10_leg_l_link3",
+      "part": "leg_l_link3",
+      "type": "spherical",
+      "initial_xyz_mm": [
+        29.00819,
+        93.00025,
+        -447.47156
+      ],
+      "xyz_mm": [
+        29.00819,
+        93.00025,
+        -447.47156
+      ],
+      "axis_xyz": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422017
+    },
+    {
+      "joint": "J_LEG_L_HIP_pitch_T",
+      "marker_side": "I",
+      "marker": "leg_l_link10.JM_P012_T_leg_l_link10_leg_l_link11",
+      "part": "leg_l_link10",
+      "type": "translational",
+      "initial_xyz_mm": [
+        51.14514,
+        92.99957,
+        -222.55883
+      ],
+      "xyz_mm": [
+        51.14514000000001,
+        92.99957,
+        -222.55883
+      ],
+      "axis_xyz": [
+        0.09797065202447297,
+        7.148000001785557e-06,
+        0.9951893042485965
+      ],
+      "cmd_line": 1422031
+    },
+    {
+      "joint": "J_LEG_L_HIP_pitch_T",
+      "marker_side": "J",
+      "marker": "leg_l_link11.JM_P012_T_leg_l_link10_leg_l_link11",
+      "part": "leg_l_link11",
+      "type": "translational",
+      "initial_xyz_mm": [
+        51.14514,
+        92.99957,
+        -222.55883
+      ],
+      "xyz_mm": [
+        51.14514000000001,
+        92.99957,
+        -222.55883
+      ],
+      "axis_xyz": [
+        0.09797065202447297,
+        7.148000001785557e-06,
+        0.9951893042485965
+      ],
+      "cmd_line": 1422031
+    },
+    {
+      "joint": "J_LEG_L_P013_F_L8_L12",
+      "marker_side": "I",
+      "marker": "leg_l_link8.JM_P013_F_leg_l_link8_leg_l_ball_link12",
+      "part": "leg_l_link8",
+      "type": "fixed",
+      "initial_xyz_mm": [
+        60.46555,
+        93.00025,
+        -127.88178
+      ],
+      "xyz_mm": [
+        60.465550000000015,
+        93.00025,
+        -127.88178
+      ],
+      "axis_xyz": [
+        -2.4940495497910496e-16,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422045
+    },
+    {
+      "joint": "J_LEG_L_P013_F_L8_L12",
+      "marker_side": "J",
+      "marker": "leg_l_ball_link12.JM_P013_F_leg_l_link8_leg_l_ball_link12",
+      "part": "leg_l_ball_link12",
+      "type": "fixed",
+      "initial_xyz_mm": [
+        60.46555,
+        93.00025,
+        -127.88178
+      ],
+      "xyz_mm": [
+        60.465550000000015,
+        93.00025,
+        -127.88178
+      ],
+      "axis_xyz": [
+        -2.4940495497910496e-16,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422045
+    },
+    {
+      "joint": "J_LEG_L_P013_S_L12_L11",
+      "marker_side": "I",
+      "marker": "leg_l_ball_link12.JM_P013_S_leg_l_ball_link12_leg_l_link11",
+      "part": "leg_l_ball_link12",
+      "type": "spherical",
+      "initial_xyz_mm": [
+        60.46555,
+        93.00025,
+        -127.88178
+      ],
+      "xyz_mm": [
+        60.465550000000015,
+        93.00025,
+        -127.88178
+      ],
+      "axis_xyz": [
+        -2.4940495497910496e-16,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422059
+    },
+    {
+      "joint": "J_LEG_L_P013_S_L12_L11",
+      "marker_side": "J",
+      "marker": "leg_l_link11.JM_P013_S_leg_l_ball_link12_leg_l_link11",
+      "part": "leg_l_link11",
+      "type": "spherical",
+      "initial_xyz_mm": [
+        60.46555,
+        93.00025,
+        -127.88178
+      ],
+      "xyz_mm": [
+        60.46555000000002,
+        93.00025,
+        -127.88178000000002
+      ],
+      "axis_xyz": [
+        7.055324016907931e-17,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422059
+    },
+    {
+      "joint": "J_LEG_L_P013_RE_L08_L09",
+      "marker_side": "I",
+      "marker": "leg_l_link8.JM_P013_R_leg_l_link8_leg_l_link9",
+      "part": "leg_l_link8",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        60.46555,
+        93.00025,
+        -127.88178
+      ],
+      "xyz_mm": [
+        60.465550000000015,
+        93.00025,
+        -127.88178
+      ],
+      "axis_xyz": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "cmd_line": 1422073
+    },
+    {
+      "joint": "J_LEG_L_P013_RE_L08_L09",
+      "marker_side": "J",
+      "marker": "leg_l_link9.JM_P013_R_leg_l_link8_leg_l_link9",
+      "part": "leg_l_link9",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        60.46555,
+        93.00025,
+        -127.88178
+      ],
+      "xyz_mm": [
+        60.46555000000002,
+        93.00025,
+        -127.88178000000002
+      ],
+      "axis_xyz": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "cmd_line": 1422073
+    },
+    {
+      "joint": "J_LEG_L_P014_S_L03_L13",
+      "marker_side": "I",
+      "marker": "leg_l_link3.JM_P014_S_leg_l_link3_leg_l_link13",
+      "part": "leg_l_link3",
+      "type": "spherical",
+      "initial_xyz_mm": [
+        -44.06208,
+        93.00025,
+        -162.45976
+      ],
+      "xyz_mm": [
+        -44.06208,
+        93.00025,
+        -162.45976
+      ],
+      "axis_xyz": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422087
+    },
+    {
+      "joint": "J_LEG_L_P014_S_L03_L13",
+      "marker_side": "J",
+      "marker": "leg_l_link13.JM_P014_S_leg_l_link3_leg_l_link13",
+      "part": "leg_l_link13",
+      "type": "spherical",
+      "initial_xyz_mm": [
+        -44.06208,
+        93.00025,
+        -162.45976
+      ],
+      "xyz_mm": [
+        -44.06208,
+        93.00025,
+        -162.45976
+      ],
+      "axis_xyz": [
+        2.4674230867954277e-17,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422087
+    },
+    {
+      "joint": "J_LEG_L_KNEE_pitch_T",
+      "marker_side": "I",
+      "marker": "leg_l_link13.JM_P015_T_leg_l_link13_leg_l_link14",
+      "part": "leg_l_link13",
+      "type": "translational",
+      "initial_xyz_mm": [
+        -58.82506,
+        92.99911,
+        -387.97644
+      ],
+      "xyz_mm": [
+        -58.82506,
+        92.99911,
+        -387.97644
+      ],
+      "axis_xyz": [
+        -0.06529537101208296,
+        1.0701000001980224e-05,
+        -0.9978659801846554
+      ],
+      "cmd_line": 1422101
+    },
+    {
+      "joint": "J_LEG_L_KNEE_pitch_T",
+      "marker_side": "J",
+      "marker": "leg_l_link14.JM_P015_T_leg_l_link13_leg_l_link14",
+      "part": "leg_l_link14",
+      "type": "translational",
+      "initial_xyz_mm": [
+        -58.82506,
+        92.99911,
+        -387.97644
+      ],
+      "xyz_mm": [
+        -58.82505999999999,
+        92.99911,
+        -387.97643999999997
+      ],
+      "axis_xyz": [
+        -0.06529537101208296,
+        1.0701000001980224e-05,
+        -0.9978659801846554
+      ],
+      "cmd_line": 1422101
+    },
+    {
+      "joint": "J_LEG_L_P016_F_L16_B15",
+      "marker_side": "I",
+      "marker": "leg_l_link16.JM_P016_F_leg_l_link16_leg_l_ball_link15",
+      "part": "leg_l_link16",
+      "type": "fixed",
+      "initial_xyz_mm": [
+        -65.78142,
+        93.00025,
+        -494.28589
+      ],
+      "xyz_mm": [
+        -65.78142000000001,
+        93.00025,
+        -494.28588999999994
+      ],
+      "axis_xyz": [
+        6.419153386766159e-16,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422115
+    },
+    {
+      "joint": "J_LEG_L_P016_F_L16_B15",
+      "marker_side": "J",
+      "marker": "leg_l_ball_link15.JM_P016_F_leg_l_link16_leg_l_ball_link15",
+      "part": "leg_l_ball_link15",
+      "type": "fixed",
+      "initial_xyz_mm": [
+        -65.78142,
+        93.00025,
+        -494.28589
+      ],
+      "xyz_mm": [
+        -65.78142000000001,
+        93.00025,
+        -494.28588999999994
+      ],
+      "axis_xyz": [
+        6.419153386766159e-16,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422115
+    },
+    {
+      "joint": "J_LEG_L_P016_S_B15_L14",
+      "marker_side": "I",
+      "marker": "leg_l_ball_link15.JM_P016_S_leg_l_ball_link15_leg_l_link14",
+      "part": "leg_l_ball_link15",
+      "type": "spherical",
+      "initial_xyz_mm": [
+        -65.78142,
+        93.00025,
+        -494.28589
+      ],
+      "xyz_mm": [
+        -65.78142000000001,
+        93.00025,
+        -494.28588999999994
+      ],
+      "axis_xyz": [
+        6.419153386766159e-16,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422129
+    },
+    {
+      "joint": "J_LEG_L_P016_S_B15_L14",
+      "marker_side": "J",
+      "marker": "leg_l_link14.JM_P016_S_leg_l_ball_link15_leg_l_link14",
+      "part": "leg_l_link14",
+      "type": "spherical",
+      "initial_xyz_mm": [
+        -65.78142,
+        93.00025,
+        -494.28589
+      ],
+      "xyz_mm": [
+        -65.78142,
+        93.00025,
+        -494.28588999999994
+      ],
+      "axis_xyz": [
+        2.4674230867954277e-17,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422129
+    },
+    {
+      "joint": "J_LEG_L_P016_RE_L16_L17",
+      "marker_side": "I",
+      "marker": "leg_l_link16.JM_P016_R_leg_l_link16_leg_l_link17",
+      "part": "leg_l_link16",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        -65.78142,
+        93.00025,
+        -494.28589
+      ],
+      "xyz_mm": [
+        -65.78142000000001,
+        93.00025,
+        -494.28588999999994
+      ],
+      "axis_xyz": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "cmd_line": 1422143
+    },
+    {
+      "joint": "J_LEG_L_P016_RE_L16_L17",
+      "marker_side": "J",
+      "marker": "leg_l_link17.JM_P016_R_leg_l_link16_leg_l_link17",
+      "part": "leg_l_link17",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        -65.78142,
+        93.00025,
+        -494.28589
+      ],
+      "xyz_mm": [
+        -65.78142,
+        93.00025,
+        -494.28588999999994
+      ],
+      "axis_xyz": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "cmd_line": 1422143
+    },
+    {
+      "joint": "J_LEG_L_P017_RE_L03_L16",
+      "marker_side": "I",
+      "marker": "leg_l_link3.JM_P017_R_leg_l_link3_leg_l_link16",
+      "part": "leg_l_link3",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        19.06027,
+        93.00025,
+        -469.90277
+      ],
+      "xyz_mm": [
+        19.06027,
+        93.00025,
+        -469.90277
+      ],
+      "axis_xyz": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "cmd_line": 1422157
+    },
+    {
+      "joint": "J_LEG_L_P017_RE_L03_L16",
+      "marker_side": "J",
+      "marker": "leg_l_link16.JM_P017_R_leg_l_link3_leg_l_link16",
+      "part": "leg_l_link16",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        19.06027,
+        93.00025,
+        -469.90277
+      ],
+      "xyz_mm": [
+        19.06027,
+        93.00025,
+        -469.90277
+      ],
+      "axis_xyz": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "cmd_line": 1422157
+    },
+    {
+      "joint": "J_LEG_L_P018_S_L17_L04",
+      "marker_side": "I",
+      "marker": "leg_l_link17.JM_P018_S_leg_l_link17_leg_l_link4",
+      "part": "leg_l_link17",
+      "type": "spherical",
+      "initial_xyz_mm": [
+        -3.99704,
+        93.00025,
+        -562.9158
+      ],
+      "xyz_mm": [
+        -3.9970400000000272,
+        93.00025,
+        -562.9158
+      ],
+      "axis_xyz": [
+        4.266235700970091e-16,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422171
+    },
+    {
+      "joint": "J_LEG_L_P018_S_L17_L04",
+      "marker_side": "J",
+      "marker": "leg_l_link4.JM_P018_S_leg_l_link17_leg_l_link4",
+      "part": "leg_l_link4",
+      "type": "spherical",
+      "initial_xyz_mm": [
+        -3.99704,
+        93.00025,
+        -562.9158
+      ],
+      "xyz_mm": [
+        -3.99704,
+        93.00025,
+        -562.9158
+      ],
+      "axis_xyz": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422171
+    },
+    {
+      "joint": "J_LEG_L_P019_S_L18_L04",
+      "marker_side": "I",
+      "marker": "leg_l_link18.JM_P019_S_leg_l_link18_leg_l_link4",
+      "part": "leg_l_link18",
+      "type": "spherical",
+      "initial_xyz_mm": [
+        -25.21746,
+        93.00025,
+        -651.42495
+      ],
+      "xyz_mm": [
+        -25.21746,
+        93.00025,
+        -651.42495
+      ],
+      "axis_xyz": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422185
+    },
+    {
+      "joint": "J_LEG_L_P019_S_L18_L04",
+      "marker_side": "J",
+      "marker": "leg_l_link4.JM_P019_S_leg_l_link18_leg_l_link4",
+      "part": "leg_l_link4",
+      "type": "spherical",
+      "initial_xyz_mm": [
+        -25.21746,
+        93.00025,
+        -651.42495
+      ],
+      "xyz_mm": [
+        -25.21746,
+        93.00025,
+        -651.42495
+      ],
+      "axis_xyz": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422185
+    },
+    {
+      "joint": "J_LEG_L_ANKLE_pitch_T",
+      "marker_side": "I",
+      "marker": "leg_l_link18.JM_P020_T_leg_l_link18_leg_l_link19",
+      "part": "leg_l_link18",
+      "type": "translational",
+      "initial_xyz_mm": [
+        -63.94746,
+        92.9995,
+        -849.67721
+      ],
+      "xyz_mm": [
+        -63.94746,
+        92.9995,
+        -849.67721
+      ],
+      "axis_xyz": [
+        -0.1917125760808275,
+        1.2300000005185775e-05,
+        -0.9814511134137874
+      ],
+      "cmd_line": 1422199
+    },
+    {
+      "joint": "J_LEG_L_ANKLE_pitch_T",
+      "marker_side": "J",
+      "marker": "leg_l_link19.JM_P020_T_leg_l_link18_leg_l_link19",
+      "part": "leg_l_link19",
+      "type": "translational",
+      "initial_xyz_mm": [
+        -63.94746,
+        92.9995,
+        -849.67721
+      ],
+      "xyz_mm": [
+        -63.94746,
+        92.9995,
+        -849.67721
+      ],
+      "axis_xyz": [
+        -0.1917125760808275,
+        1.2300000005185775e-05,
+        -0.9814511134137874
+      ],
+      "cmd_line": 1422199
+    },
+    {
+      "joint": "J_LEG_L_P021_F_L06_B20",
+      "marker_side": "I",
+      "marker": "leg_l_link6.JM_P021_F_leg_l_link6_leg_l_ball_link20",
+      "part": "leg_l_link6",
+      "type": "fixed",
+      "initial_xyz_mm": [
+        -75.63747,
+        93.00025,
+        -909.52291
+      ],
+      "xyz_mm": [
+        -75.63747,
+        93.00025,
+        -909.52291
+      ],
+      "axis_xyz": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422213
+    },
+    {
+      "joint": "J_LEG_L_P021_F_L06_B20",
+      "marker_side": "J",
+      "marker": "leg_l_ball_link20.JM_P021_F_leg_l_link6_leg_l_ball_link20",
+      "part": "leg_l_ball_link20",
+      "type": "fixed",
+      "initial_xyz_mm": [
+        -75.63747,
+        93.00025,
+        -909.52291
+      ],
+      "xyz_mm": [
+        -75.63747,
+        93.00025,
+        -909.52291
+      ],
+      "axis_xyz": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422213
+    },
+    {
+      "joint": "J_LEG_L_P021_S_B20_L19",
+      "marker_side": "I",
+      "marker": "leg_l_ball_link20.JM_P021_S_leg_l_ball_link20_leg_l_link19",
+      "part": "leg_l_ball_link20",
+      "type": "spherical",
+      "initial_xyz_mm": [
+        -75.63747,
+        93.00025,
+        -909.52291
+      ],
+      "xyz_mm": [
+        -75.63747,
+        93.00025,
+        -909.52291
+      ],
+      "axis_xyz": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422227
+    },
+    {
+      "joint": "J_LEG_L_P021_S_B20_L19",
+      "marker_side": "J",
+      "marker": "leg_l_link19.JM_P021_S_leg_l_ball_link20_leg_l_link19",
+      "part": "leg_l_link19",
+      "type": "spherical",
+      "initial_xyz_mm": [
+        -75.63747,
+        93.00025,
+        -909.52291
+      ],
+      "xyz_mm": [
+        -75.63747,
+        93.00025,
+        -909.52291
+      ],
+      "axis_xyz": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "cmd_line": 1422227
+    },
+    {
+      "joint": "J_LEG_L_ANKLE_roll_RE",
+      "marker_side": "I",
+      "marker": "leg_l_link5.MARKER_577",
+      "part": "leg_l_link5",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        -29.54805,
+        92.99995,
+        -949.66471
+      ],
+      "xyz_mm": [
+        -29.54805,
+        92.99995,
+        -949.66471
+      ],
+      "axis_xyz": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "cmd_line": 1423500
+    },
+    {
+      "joint": "J_LEG_L_ANKLE_roll_RE",
+      "marker_side": "J",
+      "marker": "leg_l_link6.MARKER_578",
+      "part": "leg_l_link6",
+      "type": "revolute",
+      "initial_xyz_mm": [
+        -29.54805,
+        92.99995,
+        -949.66471
+      ],
+      "xyz_mm": [
+        -29.54805,
+        92.99995,
+        -949.66471
+      ],
+      "axis_xyz": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "cmd_line": 1423500
+    }
+  ],
+  "joint_constraint_checks": [
+    {
+      "joint": "J_LEG_L_HIP_roll_RE",
+      "type": "revolute",
+      "i_part": "base_link",
+      "j_part": "leg_l_link1",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": 0.0,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1421893
+    },
+    {
+      "joint": "J_LEG_L_HIP_yaw_RE",
+      "type": "revolute",
+      "i_part": "leg_l_link1",
+      "j_part": "leg_l_link2",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": 0.0,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1421907
+    },
+    {
+      "joint": "J_LEG_L_HIP_pitch_RE",
+      "type": "revolute",
+      "i_part": "leg_l_link2",
+      "j_part": "leg_l_link3",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": 0.0,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1421921
+    },
+    {
+      "joint": "J_LEG_L_KNEE_pitch_RE",
+      "type": "revolute",
+      "i_part": "leg_l_link3",
+      "j_part": "leg_l_link4",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": 0.0,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1421935
+    },
+    {
+      "joint": "J_LEG_L_ANKLE_pitch_RE",
+      "type": "revolute",
+      "i_part": "leg_l_link4",
+      "j_part": "leg_l_link5",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": 0.0,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1421949
+    },
+    {
+      "joint": "J_LEG_L_TOE_pitch_RE",
+      "type": "revolute",
+      "i_part": "leg_l_link6",
+      "j_part": "leg_l_link7",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": 0.0,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1421975
+    },
+    {
+      "joint": "J_LEG_L_P009_RE_L02_L08",
+      "type": "revolute",
+      "i_part": "leg_l_link2",
+      "j_part": "leg_l_link8",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": 0.0,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1421989
+    },
+    {
+      "joint": "J_LEG_L_P010_S_L09_L03",
+      "type": "spherical",
+      "i_part": "leg_l_link9",
+      "j_part": "leg_l_link3",
+      "marker_pair_gap_mm": 9.547918011776346e-15,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": null,
+      "constraint_residual_mm": 9.547918011776346e-15,
+      "cmd_line": 1422003
+    },
+    {
+      "joint": "J_LEG_L_P011_S_L10_L03",
+      "type": "spherical",
+      "i_part": "leg_l_link10",
+      "j_part": "leg_l_link3",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": null,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1422017
+    },
+    {
+      "joint": "J_LEG_L_HIP_pitch_T",
+      "type": "translational",
+      "i_part": "leg_l_link10",
+      "j_part": "leg_l_link11",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": 0.0,
+      "axial_sliding_signed_mm": 0.0,
+      "axis_cross_error": 0.0,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1422031
+    },
+    {
+      "joint": "J_LEG_L_P013_F_L8_L12",
+      "type": "fixed",
+      "i_part": "leg_l_link8",
+      "j_part": "leg_l_ball_link12",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": null,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1422045
+    },
+    {
+      "joint": "J_LEG_L_P013_S_L12_L11",
+      "type": "spherical",
+      "i_part": "leg_l_ball_link12",
+      "j_part": "leg_l_link11",
+      "marker_pair_gap_mm": 1.5888218580782548e-14,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": null,
+      "constraint_residual_mm": 1.5888218580782548e-14,
+      "cmd_line": 1422059
+    },
+    {
+      "joint": "J_LEG_L_P013_RE_L08_L09",
+      "type": "revolute",
+      "i_part": "leg_l_link8",
+      "j_part": "leg_l_link9",
+      "marker_pair_gap_mm": 1.5888218580782548e-14,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": 0.0,
+      "constraint_residual_mm": 1.5888218580782548e-14,
+      "cmd_line": 1422073
+    },
+    {
+      "joint": "J_LEG_L_P014_S_L03_L13",
+      "type": "spherical",
+      "i_part": "leg_l_link3",
+      "j_part": "leg_l_link13",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": null,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1422087
+    },
+    {
+      "joint": "J_LEG_L_KNEE_pitch_T",
+      "type": "translational",
+      "i_part": "leg_l_link13",
+      "j_part": "leg_l_link14",
+      "marker_pair_gap_mm": 5.728578676879116e-14,
+      "lateral_gap_mm": 3.378652166323761e-15,
+      "axial_sliding_signed_mm": -5.718606539410108e-14,
+      "axis_cross_error": 0.0,
+      "constraint_residual_mm": 3.378652166323761e-15,
+      "cmd_line": 1422101
+    },
+    {
+      "joint": "J_LEG_L_P016_F_L16_B15",
+      "type": "fixed",
+      "i_part": "leg_l_link16",
+      "j_part": "leg_l_ball_link15",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": null,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1422115
+    },
+    {
+      "joint": "J_LEG_L_P016_S_B15_L14",
+      "type": "spherical",
+      "i_part": "leg_l_ball_link15",
+      "j_part": "leg_l_link14",
+      "marker_pair_gap_mm": 1.4210854715202004e-14,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": null,
+      "constraint_residual_mm": 1.4210854715202004e-14,
+      "cmd_line": 1422129
+    },
+    {
+      "joint": "J_LEG_L_P016_RE_L16_L17",
+      "type": "revolute",
+      "i_part": "leg_l_link16",
+      "j_part": "leg_l_link17",
+      "marker_pair_gap_mm": 1.4210854715202004e-14,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": 0.0,
+      "constraint_residual_mm": 1.4210854715202004e-14,
+      "cmd_line": 1422143
+    },
+    {
+      "joint": "J_LEG_L_P017_RE_L03_L16",
+      "type": "revolute",
+      "i_part": "leg_l_link3",
+      "j_part": "leg_l_link16",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": 0.0,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1422157
+    },
+    {
+      "joint": "J_LEG_L_P018_S_L17_L04",
+      "type": "spherical",
+      "i_part": "leg_l_link17",
+      "j_part": "leg_l_link4",
+      "marker_pair_gap_mm": 2.708944180085382e-14,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": null,
+      "constraint_residual_mm": 2.708944180085382e-14,
+      "cmd_line": 1422171
+    },
+    {
+      "joint": "J_LEG_L_P019_S_L18_L04",
+      "type": "spherical",
+      "i_part": "leg_l_link18",
+      "j_part": "leg_l_link4",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": null,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1422185
+    },
+    {
+      "joint": "J_LEG_L_ANKLE_pitch_T",
+      "type": "translational",
+      "i_part": "leg_l_link18",
+      "j_part": "leg_l_link19",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": 0.0,
+      "axial_sliding_signed_mm": 0.0,
+      "axis_cross_error": 0.0,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1422199
+    },
+    {
+      "joint": "J_LEG_L_P021_F_L06_B20",
+      "type": "fixed",
+      "i_part": "leg_l_link6",
+      "j_part": "leg_l_ball_link20",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": null,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1422213
+    },
+    {
+      "joint": "J_LEG_L_P021_S_B20_L19",
+      "type": "spherical",
+      "i_part": "leg_l_ball_link20",
+      "j_part": "leg_l_link19",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": null,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1422227
+    },
+    {
+      "joint": "J_LEG_L_ANKLE_roll_RE",
+      "type": "revolute",
+      "i_part": "leg_l_link5",
+      "j_part": "leg_l_link6",
+      "marker_pair_gap_mm": 0.0,
+      "lateral_gap_mm": null,
+      "axial_sliding_signed_mm": null,
+      "axis_cross_error": 0.0,
+      "constraint_residual_mm": 0.0,
+      "cmd_line": 1423500
+    }
+  ],
+  "world_transforms": {
+    "base_link": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "leg_l_link1": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "leg_l_link2": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "leg_l_link3": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "leg_l_link4": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "leg_l_link5": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "leg_l_link6": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "leg_l_link7": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "leg_l_ball_link20": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "leg_l_link8": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          -2.4940495497910496e-16
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          2.4940495497910496e-16,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        -1.4210854715202004e-14,
+        0.0,
+        -1.4210854715202004e-14
+      ]
+    },
+    "leg_l_ball_link12": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          -2.4940495497910496e-16
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          2.4940495497910496e-16,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        -1.4210854715202004e-14,
+        0.0,
+        -1.4210854715202004e-14
+      ]
+    },
+    "leg_l_link9": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          2.9391137889776427e-16
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -2.9391137889776427e-16,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        5.684341886080802e-14,
+        0.0,
+        0.0
+      ]
+    },
+    "leg_l_link10": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          7.055324016907931e-17
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -7.055324016907931e-17,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        3.197442310920451e-14,
+        0.0,
+        0.0
+      ]
+    },
+    "leg_l_link11": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          7.055324016907931e-17
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -7.055324016907931e-17,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        2.842170943040401e-14,
+        0.0,
+        -1.4210854715202004e-14
+      ]
+    },
+    "leg_l_link16": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          6.419153386766159e-16
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -6.419153386766159e-16,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        3.019806626980426e-13,
+        0.0,
+        0.0
+      ]
+    },
+    "leg_l_ball_link15": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          6.419153386766159e-16
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -6.419153386766159e-16,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        3.019806626980426e-13,
+        0.0,
+        0.0
+      ]
+    },
+    "leg_l_link17": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          4.266235700970091e-16
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -4.266235700970091e-16,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        2.1316282072803006e-13,
+        0.0,
+        5.684341886080802e-14
+      ]
+    },
+    "leg_l_link13": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          2.4674230867954277e-17
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -2.4674230867954277e-17,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        7.105427357601002e-15,
+        0.0,
+        0.0
+      ]
+    },
+    "leg_l_link14": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          2.4674230867954277e-17
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -2.4674230867954277e-17,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        1.4210854715202004e-14,
+        0.0,
+        5.684341886080802e-14
+      ]
+    },
+    "leg_l_link18": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "leg_l_link19": {
+      "R": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "t_mm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "mass": {
+    "total_kg": 13.024809320000001,
+    "COM_world_mm": {
+      "leg_l_ball_link12": [
+        60.465550000000015,
+        93.00025,
+        -127.88178
+      ],
+      "leg_l_ball_link15": [
+        -65.78142000000001,
+        93.00025,
+        -494.28588999999994
+      ],
+      "leg_l_ball_link20": [
+        -75.63747,
+        93.00025,
+        -909.52291
+      ],
+      "leg_l_link1": [
+        -11.37714,
+        93.00034,
+        -31.67802
+      ],
+      "leg_l_link10": [
+        38.463650000000015,
+        92.90206,
+        -340.36179
+      ],
+      "leg_l_link11": [
+        53.00758000000001,
+        92.99959,
+        -203.63796000000002
+      ],
+      "leg_l_link13": [
+        -52.04093,
+        93.09711,
+        -268.93562
+      ],
+      "leg_l_link14": [
+        -60.81164999999999,
+        92.99915,
+        -418.32358999999997
+      ],
+      "leg_l_link16": [
+        -24.36202000000001,
+        93.67556,
+        -482.38212
+      ],
+      "leg_l_link17": [
+        -44.473670000000006,
+        92.73296,
+        -517.95461
+      ],
+      "leg_l_link18": [
+        -43.94162,
+        94.0574,
+        -732.66331
+      ],
+      "leg_l_link19": [
+        -63.24849,
+        92.99972,
+        -846.09934
+      ],
+      "leg_l_link2": [
+        21.32988,
+        93.36541,
+        -54.52228
+      ],
+      "leg_l_link3": [
+        5.02774,
+        92.34138,
+        -289.44564
+      ],
+      "leg_l_link4": [
+        -16.05142,
+        92.89873,
+        -661.95594
+      ],
+      "leg_l_link5": [
+        -28.98301,
+        92.60484,
+        -938.80825
+      ],
+      "leg_l_link6": [
+        3.66068,
+        95.42385,
+        -970.02805
+      ],
+      "leg_l_link7": [
+        115.43667,
+        98.04566,
+        -980.01804
+      ],
+      "leg_l_link8": [
+        56.64684000000001,
+        93.13437,
+        -100.16198
+      ],
+      "leg_l_link9": [
+        44.829630000000016,
+        92.4928,
+        -136.63427
+      ]
+    },
+    "aggregate_COM_world_mm": [
+      -6.55161881256643,
+      93.20850967430812,
+      -428.4029006192782
+    ],
+    "raw_inertia_kg_m2_by_body": {
+      "leg_l_ball_link12": {
+        "ixx": 6.1e-07,
+        "iyy": 7.7e-07,
+        "izz": 6.1e-07,
+        "ixy": 0.0,
+        "izx": 0.0,
+        "iyz": 0.0
+      },
+      "leg_l_ball_link15": {
+        "ixx": 6.1e-07,
+        "iyy": 7.7e-07,
+        "izz": 6.1e-07,
+        "ixy": 0.0,
+        "izx": 0.0,
+        "iyz": 0.0
+      },
+      "leg_l_ball_link20": {
+        "ixx": 6.1e-07,
+        "iyy": 7.7e-07,
+        "izz": 6.1e-07,
+        "ixy": 0.0,
+        "izx": 0.0,
+        "iyz": 0.0
+      },
+      "leg_l_link1": {
+        "ixx": 0.00069933,
+        "iyy": 0.00054288,
+        "izz": 0.00085663,
+        "ixy": -2e-08,
+        "izx": -0.00012694,
+        "iyz": -4e-08
+      },
+      "leg_l_link10": {
+        "ixx": 0.00762011,
+        "iyy": 0.00777388,
+        "izz": 0.00155681,
+        "ixy": 7.94e-06,
+        "izx": -0.0007061,
+        "iyz": -9.06e-06
+      },
+      "leg_l_link11": {
+        "ixx": 0.00035322,
+        "iyy": 0.00035807,
+        "izz": 6.63e-06,
+        "ixy": 0.0,
+        "izx": -3.445e-05,
+        "iyz": 0.0
+      },
+      "leg_l_link13": {
+        "ixx": 0.00754085,
+        "iyy": 0.00762469,
+        "izz": 0.00149938,
+        "ixy": -8.87e-06,
+        "izx": -0.00030411,
+        "iyz": -7.66e-06
+      },
+      "leg_l_link14": {
+        "ixx": 0.00035512,
+        "iyy": 0.00035809,
+        "izz": 4.74e-06,
+        "ixy": 0.0,
+        "izx": -2.304e-05,
+        "iyz": 0.0
+      },
+      "leg_l_link16": {
+        "ixx": 7.698e-05,
+        "iyy": 0.00029371,
+        "izz": 0.00032133,
+        "ixy": -6.34e-06,
+        "izx": -7.655e-05,
+        "iyz": -1.82e-06
+      },
+      "leg_l_link17": {
+        "ixx": 0.00017761,
+        "iyy": 0.00027703,
+        "izz": 0.00015046,
+        "ixy": -1.13e-06,
+        "izx": 0.00012892,
+        "iyz": 1.26e-06
+      },
+      "leg_l_link18": {
+        "ixx": 0.00386964,
+        "iyy": 0.00404619,
+        "izz": 0.00091012,
+        "ixy": 1.029e-05,
+        "izx": -0.00059989,
+        "iyz": -4.09e-05
+      },
+      "leg_l_link19": {
+        "ixx": 0.00025673,
+        "iyy": 0.00026754,
+        "izz": 1.184e-05,
+        "ixy": 0.0,
+        "izx": -4.974e-05,
+        "iyz": 0.0
+      },
+      "leg_l_link2": {
+        "ixx": 0.00176188,
+        "iyy": 0.00147978,
+        "izz": 0.00199863,
+        "ixy": 1.28e-05,
+        "izx": -3.406e-05,
+        "iyz": 1.995e-05
+      },
+      "leg_l_link3": {
+        "ixx": 0.0246576,
+        "iyy": 0.02412596,
+        "izz": 0.00251352,
+        "ixy": -5.54e-06,
+        "izx": 0.00055077,
+        "iyz": -2.082e-05
+      },
+      "leg_l_link4": {
+        "ixx": 0.01790023,
+        "iyy": 0.01772033,
+        "izz": 0.00073329,
+        "ixy": 2.27e-06,
+        "izx": -0.00140629,
+        "iyz": 4.62e-06
+      },
+      "leg_l_link5": {
+        "ixx": 0.00073491,
+        "iyy": 0.00155155,
+        "izz": 0.0013274,
+        "ixy": -5.12e-06,
+        "izx": 0.00012324,
+        "iyz": 5.37e-06
+      },
+      "leg_l_link6": {
+        "ixx": 0.00074968,
+        "iyy": 0.00246773,
+        "izz": 0.00247256,
+        "ixy": -8.643e-05,
+        "izx": 8.048e-05,
+        "iyz": 1.497e-05
+      },
+      "leg_l_link7": {
+        "ixx": 8.713e-05,
+        "iyy": 7.144e-05,
+        "izz": 0.0001295,
+        "ixy": -2.8e-07,
+        "izx": 6.81e-06,
+        "iyz": 2.37e-06
+      },
+      "leg_l_link8": {
+        "ixx": 0.0004109,
+        "iyy": 0.00016889,
+        "izz": 0.00025615,
+        "ixy": -1e-07,
+        "izx": 2.173e-05,
+        "iyz": 7e-07
+      },
+      "leg_l_link9": {
+        "ixx": 8.01e-05,
+        "iyy": 0.00011341,
+        "izz": 0.00013176,
+        "ixy": 1.29e-06,
+        "izx": -4.21e-05,
+        "iyz": 7.2e-07
+      }
+    },
+    "rotated_inertia_tensor_assuming_raw_offdiagonals_kg_m2": {
+      "leg_l_ball_link12": [
+        [
+          6.1e-07,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          7.7e-07,
+          0.0
+        ],
+        [
+          6.059480310122291e-39,
+          0.0,
+          6.1e-07
+        ]
+      ],
+      "leg_l_ball_link15": [
+        [
+          6.1e-07,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          7.7e-07,
+          0.0
+        ],
+        [
+          1.7574839434643318e-38,
+          0.0,
+          6.1e-07
+        ]
+      ],
+      "leg_l_ball_link20": [
+        [
+          6.1e-07,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          7.7e-07,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          6.1e-07
+        ]
+      ],
+      "leg_l_link1": [
+        [
+          0.00069933,
+          -2e-08,
+          -0.00012694
+        ],
+        [
+          -2e-08,
+          0.00054288,
+          -4e-08
+        ],
+        [
+          -0.00012694,
+          -4e-08,
+          0.00085663
+        ]
+      ],
+      "leg_l_link10": [
+        [
+          0.00762011,
+          7.94e-06,
+          -0.0007061000000000004
+        ],
+        [
+          7.94e-06,
+          0.00777388,
+          -9.06e-06
+        ],
+        [
+          -0.0007061000000000004,
+          -9.06e-06,
+          0.00155681
+        ]
+      ],
+      "leg_l_link11": [
+        [
+          0.00035322,
+          0.0,
+          -3.4450000000000024e-05
+        ],
+        [
+          0.0,
+          0.00035807,
+          0.0
+        ],
+        [
+          -3.4450000000000024e-05,
+          0.0,
+          6.630000000000005e-06
+        ]
+      ],
+      "leg_l_link13": [
+        [
+          0.00754085,
+          -8.87e-06,
+          -0.0003041100000000001
+        ],
+        [
+          -8.87e-06,
+          0.00762469,
+          -7.66e-06
+        ],
+        [
+          -0.0003041100000000001,
+          -7.66e-06,
+          0.00149938
+        ]
+      ],
+      "leg_l_link14": [
+        [
+          0.00035512,
+          0.0,
+          -2.304000000000001e-05
+        ],
+        [
+          0.0,
+          0.00035809,
+          0.0
+        ],
+        [
+          -2.304000000000001e-05,
+          0.0,
+          4.740000000000002e-06
+        ]
+      ],
+      "leg_l_link16": [
+        [
+          7.697999999999989e-05,
+          -6.340000000000001e-06,
+          -7.654999999999985e-05
+        ],
+        [
+          -6.340000000000001e-06,
+          0.00029371,
+          -1.819999999999996e-06
+        ],
+        [
+          -7.654999999999985e-05,
+          -1.819999999999996e-06,
+          0.0003213300000000001
+        ]
+      ],
+      "leg_l_link17": [
+        [
+          0.0001776100000000001,
+          -1.1299999999999993e-06,
+          0.00012891999999999998
+        ],
+        [
+          -1.1299999999999993e-06,
+          0.00027703,
+          1.2600000000000004e-06
+        ],
+        [
+          0.00012891999999999998,
+          1.2600000000000004e-06,
+          0.00015045999999999988
+        ]
+      ],
+      "leg_l_link18": [
+        [
+          0.00386964,
+          1.029e-05,
+          -0.00059989
+        ],
+        [
+          1.029e-05,
+          0.00404619,
+          -4.09e-05
+        ],
+        [
+          -0.00059989,
+          -4.09e-05,
+          0.00091012
+        ]
+      ],
+      "leg_l_link19": [
+        [
+          0.00025673,
+          0.0,
+          -4.974e-05
+        ],
+        [
+          0.0,
+          0.00026754,
+          0.0
+        ],
+        [
+          -4.974e-05,
+          0.0,
+          1.184e-05
+        ]
+      ],
+      "leg_l_link2": [
+        [
+          0.00176188,
+          1.28e-05,
+          -3.406e-05
+        ],
+        [
+          1.28e-05,
+          0.00147978,
+          1.995e-05
+        ],
+        [
+          -3.406e-05,
+          1.995e-05,
+          0.00199863
+        ]
+      ],
+      "leg_l_link3": [
+        [
+          0.0246576,
+          -5.54e-06,
+          0.00055077
+        ],
+        [
+          -5.54e-06,
+          0.02412596,
+          -2.082e-05
+        ],
+        [
+          0.00055077,
+          -2.082e-05,
+          0.00251352
+        ]
+      ],
+      "leg_l_link4": [
+        [
+          0.01790023,
+          2.27e-06,
+          -0.00140629
+        ],
+        [
+          2.27e-06,
+          0.01772033,
+          4.62e-06
+        ],
+        [
+          -0.00140629,
+          4.62e-06,
+          0.00073329
+        ]
+      ],
+      "leg_l_link5": [
+        [
+          0.00073491,
+          -5.12e-06,
+          0.00012324
+        ],
+        [
+          -5.12e-06,
+          0.00155155,
+          5.37e-06
+        ],
+        [
+          0.00012324,
+          5.37e-06,
+          0.0013274
+        ]
+      ],
+      "leg_l_link6": [
+        [
+          0.00074968,
+          -8.643e-05,
+          8.048e-05
+        ],
+        [
+          -8.643e-05,
+          0.00246773,
+          1.497e-05
+        ],
+        [
+          8.048e-05,
+          1.497e-05,
+          0.00247256
+        ]
+      ],
+      "leg_l_link7": [
+        [
+          8.713e-05,
+          -2.8e-07,
+          6.81e-06
+        ],
+        [
+          -2.8e-07,
+          7.144e-05,
+          2.37e-06
+        ],
+        [
+          6.81e-06,
+          2.37e-06,
+          0.0001295
+        ]
+      ],
+      "leg_l_link8": [
+        [
+          0.0004109,
+          -1.0000000000000017e-07,
+          2.1730000000000038e-05
+        ],
+        [
+          -1.0000000000000017e-07,
+          0.00016889,
+          7e-07
+        ],
+        [
+          2.1730000000000038e-05,
+          7e-07,
+          0.00025615
+        ]
+      ],
+      "leg_l_link9": [
+        [
+          8.009999999999997e-05,
+          1.2900000000000001e-06,
+          -4.209999999999998e-05
+        ],
+        [
+          1.2900000000000001e-06,
+          0.00011341,
+          7.199999999999996e-07
+        ],
+        [
+          -4.209999999999998e-05,
+          7.199999999999996e-07,
+          0.00013176
+        ]
+      ]
+    }
+  },
+  "validation": {
+    "max_nonsliding_pair_gap_mm": 2.708944180085382e-14,
+    "max_prismatic_lateral_error_mm": 3.378652166323761e-15,
+    "max_revolute_prismatic_axis_cross": 0.0,
+    "max_allowed_prismatic_lateral_error_mm": 0.002,
+    "ok": true
+  }
+}
