@@ -30,3 +30,39 @@ export function createLegJointCatalog(model){
   const byKey=Object.fromEntries(entries.map(item=>[item.key,item]));
   return{entries,meta(key){const item=byKey[key];if(!item)throw new Error(`Unknown leg joint: ${key}`);return item}};
 }
+
+export function layoutLegJointLabels(items,minDistance=12){
+  const offsets=[[7,-7]];
+  for(let radius=14;radius<=70;radius+=14)for(let index=0;index<8;index++){const angle=index*Math.PI/4;offsets.push([7+Math.cos(angle)*radius,-7+Math.sin(angle)*radius])}
+  const placed=[];
+  for(const item of items){
+    const offset=offsets.find(([dx,dy])=>placed.every(other=>Math.hypot(item.x+dx-other.labelX,item.y+dy-other.labelY)>=minDistance))||offsets[offsets.length-1];
+    placed.push({...item,labelX:item.x+offset[0],labelY:item.y+offset[1]});
+  }
+  return placed;
+}
+
+export function buildLegBodySegments(markers){
+  const groups={};
+  for(const marker of markers){
+    const key=marker.xyz_mm.map(value=>Number(value).toFixed(6)).join(",");
+    const group=groups[marker.part]??=(new Map());
+    if(!group.has(key))group.set(key,marker.xyz_mm.map(Number));
+  }
+  const segments=[];
+  for(const [part,pointMap] of Object.entries(groups)){
+    const points=[...pointMap.values()];
+    if(points.length<2)continue;
+    const connected=new Set([0]),remaining=new Set(points.slice(1).map((_,index)=>index+1));
+    while(remaining.size){
+      let best=null;
+      for(const from of connected)for(const to of remaining){
+        const distance=Math.hypot(...points[from].map((value,axis)=>value-points[to][axis]));
+        if(!best||distance<best.distance)best={from,to,distance};
+      }
+      segments.push({part,a:points[best.from],b:points[best.to]});
+      connected.add(best.to);remaining.delete(best.to);
+    }
+  }
+  return segments;
+}

@@ -8,6 +8,8 @@ assert.match(fragment,/createLegFullRuntime/);
 assert.match(fragment,/createLegJointCatalog/);
 assert.match(fragment,/catalog\.meta\(key\)\.display/);
 assert.match(fragment,/data-leg-full-joint-key/);
+assert.match(fragment,/class="leg-point-legend"/);
+assert.match(fragment,/item\.display/);
 assert.match(fragment,/连接副编号对照/);
 assert.match(fragment,/all_joint_marker_sides/);
 assert.match(fragment,/catalog\.entries/);
