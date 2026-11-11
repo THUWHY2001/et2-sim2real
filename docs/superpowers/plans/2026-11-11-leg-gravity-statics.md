@@ -23,11 +23,11 @@
 
 ## Review Focus
 
-- 近秩亏矩阵经尺度化后出现虚假唯一性：Task 1 用跨度 1e9 的已知秩矩阵验证秩、零空间与条件数。
+- 近秩亏矩阵经尺度化后出现虚假唯一性：Task 1 用跨度 1e9 及真实左腿方程规模的已知秩矩阵验证秩、零空间、正交性、条件数和微扰稳定性；Task 3 再验证真实装配矩阵。
 - I/J Marker 不重合导致内部力矩不成对：Task 2 用人为偏置 Marker 验证统一参考点扳手平移与整体零合扳手。
 - 位置保持轴错误地当作自由旋转副：Task 2 分别验证 J0/J1/J5/脚趾六维扳手和 J2/J3/J4 五维扳手。
 - 非唯一分量泄漏数值特解：Task 3 验证所有有零空间投影的分量值为 `null`。
-- 推杆符号与重力势能导数相反：Task 4 对三个输出轴分别验证有符号虚功残差并输出符号诊断。
+- 推杆符号与重力势能导数相反或总广义力仍不唯一：Task 4 对三个输出轴强制要求总推杆广义力唯一且与势能导数一致，否则验收失败并输出自由度、约束、雅可比和符号诊断。
 
 ---
 
@@ -43,7 +43,7 @@
 
 - [ ] **Step 1: 写失败测试**
 
-覆盖满秩唯一解、秩亏一致系统、秩亏不一致系统、跨度 1e9 的尺度矩阵，以及非唯一线性量必须返回 `null`。
+覆盖满秩唯一解、秩亏一致系统、秩亏不一致系统、跨度 1e9 的尺度矩阵，以及非唯一线性量必须返回 `null`。另构造与真实左腿相同方程规模的稀疏秩亏矩阵，验证 `A*Z≈0`、`Z^T*Z≈I`、缩放前后唯一性一致、微小系数扰动不改变预期秩。
 
 - [ ] **Step 2: 运行测试确认 RED**
 
@@ -78,7 +78,7 @@ git commit -m "Add scaled rank-revealing SVD solver"
 
 - [ ] **Step 1: 写失败测试**
 
-断言边界字段缺失时拒绝装配；20 个刚体各有 6 条方程；25 个运动副全部进入元数据；三根推杆各有独立轴向未知量；J0/J1/J5/脚趾为位置保持旋转副；J2/J3/J4 为自由旋转副；固定副保留六维扳手但标记不可摩擦。
+断言边界字段缺失时拒绝装配；20 个刚体各有 6 条方程；25 个运动副全部进入元数据；三根推杆各有独立轴向未知量；J0/J1/J5/脚趾为位置保持旋转副；J2/J3/J4 为自由旋转副；固定副保留六维扳手但标记不可摩擦。移动副 I/J Marker 允许沿共同轴方向分离，但横向错位超过公差或两侧轴向不平行时必须返回几何约束异常并拒绝求解。
 
 - [ ] **Step 2: 运行测试确认 RED**
 
@@ -87,11 +87,11 @@ Expected: FAIL，因为静力模块不存在。
 
 - [ ] **Step 3: 实现运动副扳手基和 `assemble`**
 
-球副 3 维、自由旋转副 5 维、位置保持旋转副 6 维、移动副 5 维被动扳手加 1 个轴向执行器力、固定副 6 维。统一参考点采用 I/J Marker 中点，并为两侧 Marker 输出平移后的局部力矩表达。
+球副 3 维、自由旋转副 5 维、位置保持旋转副 6 维、移动副 5 维被动扳手加 1 个轴向执行器力、固定副 6 维。统一参考点采用 I/J Marker 中点，并为两侧 Marker 输出平移后的局部力矩表达。移动副几何检查输出轴向间距、横向错位和轴线夹角。
 
 - [ ] **Step 4: 增加偏置 Marker 作用反作用测试并确认 RED**
 
-人为平移某移动副 J Marker，断言旧式局部力矩直接取反会失败，统一参考点换算后的世界合扳手为零。
+分别沿轴向和横向平移某移动副 J Marker：轴向分离允许装配；横向错位必须报错。再旋转 J Marker 轴向验证不平行报错。对允许的轴向分离，断言旧式局部力矩直接取反会失败，统一参考点换算后的世界合扳手为零。
 
 - [ ] **Step 5: 完成扳手平移实现并确认 GREEN**
 
@@ -105,40 +105,59 @@ git add web2/src/leg-gravity-statics.mjs web2/tests/leg-gravity-statics-assembly
 git commit -m "Assemble leg gravity statics wrench system"
 ```
 
-### Task 3: 基准姿态静力求解与 25 运动副唯一性报告
+### Task 3: 解析算例、基准姿态静力求解与 25 运动副唯一性报告
 
 **Files:**
 - Modify: `web2/src/leg-gravity-statics.mjs`
+- Create: `web2/tests/gravity-statics-analytic.test.mjs`
 - Create: `web2/tests/leg-gravity-statics-nominal.test.mjs`
 
 **Interfaces:**
 - Consumes: Task 1 的 `solveRankRevealing`、Task 2 的装配结果。
-- Produces: `solve(solution,boundary)` 和 `solveNominal(boundary)`；结果含 `matrix`、`residuals`、`jointReactions`、`actuatorForces`、`holdingTorques`、`globalBalance`、`loadInterpretation`。
+- Produces: 通用 `solveAssembledSystem(assembly)`；腿足接口 `solve(solution,boundary)` 和 `solveNominal(boundary)`；结果含 `matrix`、`residuals`、`jointReactions`、`actuatorForces`、`holdingTorques`、`globalBalance`、`loadInterpretation`。
 
-- [ ] **Step 1: 写失败测试**
+- [ ] **Step 1: 写独立解析连杆失败测试**
 
-断言基准姿态角度不变、系统一致、报告秩/零空间/条件数、20 个刚体六维残差、25 个运动副反力记录、三根推杆保持力、整体重力平衡及内部扳手成对平衡。
+建立一个已知长度、质量、重心和重力的单刚性连杆：一端理想位置保持旋转副。解析值明确为支座反力 `-m*g` 的反向平衡力和保持力矩 `m*g*leverArm`。断言六维刚体平衡、反力、保持力矩和整体平衡均与手算值一致。
 
-- [ ] **Step 2: 运行测试确认 RED**
+- [ ] **Step 2: 运行解析测试确认 RED**
+
+Run: `node web2/tests/gravity-statics-analytic.test.mjs`
+Expected: FAIL，因为通用装配求解接口尚未实现。
+
+- [ ] **Step 3: 实现通用求解入口并确认解析测试 GREEN**
+
+Run: `node web2/tests/gravity-statics-analytic.test.mjs`
+Expected: PASS，且不是仅验证程序内部残差。
+
+- [ ] **Step 4: 写基准姿态失败测试**
+
+断言基准姿态角度不变、系统一致、报告秩/零空间/条件数、20 个刚体六维残差、25 个运动副反力记录、三根推杆保持力、整体重力平衡及内部扳手成对平衡。每个运动副结果必须分开提供 `passive_constraint_wrench`、`actuator_axial_force` 和 `total_joint_wrench`，禁止混用。
+
+- [ ] **Step 5: 运行基准姿态测试确认 RED**
 
 Run: `node web2/tests/leg-gravity-statics-nominal.test.mjs`
 Expected: FAIL，因为 `solveNominal` 尚未实现。
 
-- [ ] **Step 3: 实现 `solve`、唯一性投影和残差报告**
+- [ ] **Step 6: 实现 `solve`、唯一性投影和残差报告**
 
-每个 Fx/Fy/Fz、轴向线性分量、两个径向线性分量、约束力矩分量和推杆力分别调用 `evaluateLinearQuantity`；只有所有组成分量唯一时才计算合反力或径向合力，否则其值为 `null`。
+每个 Fx/Fy/Fz、轴向线性分量、两个径向线性分量、约束力矩分量和推杆力分别调用 `evaluateLinearQuantity`；只有所有组成分量唯一时才计算合反力或径向合力，否则其值为 `null`。`passive_constraint_wrench` 只含理想被动约束基，`actuator_axial_force` 只用于三根移动副，`total_joint_wrench` 是两者在统一参考点的线性组合。
 
-- [ ] **Step 4: 增加非唯一结果屏蔽测试并确认 GREEN**
+- [ ] **Step 7: 增加真实矩阵稳定性和原点平移不变性测试**
 
-断言所有 `status: "indeterminate"` 项均为 `value: null`，报告不包含用于残差的数值特解；约束反力统一标记为“重力准静态理论约束反力”，接触法向载荷资格单独为 `not_mapped` 或 `candidate_only`。
+对真实基准姿态矩阵验证零空间残差、正交性、缩放后唯一性和微小姿态扰动稳定性。将全部 Marker 与质心统一平移一个已知世界向量后重新装配，断言反力、推杆力、保持力矩、矩阵秩和物理唯一性不变，只有关于世界原点的中间力矩表达按扳手平移变化。
+
+- [ ] **Step 8: 增加非唯一结果屏蔽测试并确认 GREEN**
+
+断言所有 `status: "indeterminate"` 项均为 `value: null`，报告不包含用于残差的数值特解；`passive_constraint_wrench` 和 `total_joint_wrench` 统一标记为“重力准静态理论约束扳手”，接触法向载荷资格单独为 `not_mapped` 或 `candidate_only`，不得出现名为 `normal_load_N` 的自动结果字段。
 
 Run: `node web2/tests/leg-gravity-statics-nominal.test.mjs`
 Expected: PASS。
 
-- [ ] **Step 5: 提交**
+- [ ] **Step 9: 提交**
 
 ```bash
-git add web2/src/leg-gravity-statics.mjs web2/tests/leg-gravity-statics-nominal.test.mjs
+git add web2/src/leg-gravity-statics.mjs web2/tests/gravity-statics-analytic.test.mjs web2/tests/leg-gravity-statics-nominal.test.mjs
 git commit -m "Solve nominal leg gravity statics"
 ```
 
@@ -155,7 +174,7 @@ git commit -m "Solve nominal leg gravity statics"
 
 - [ ] **Step 1: 写失败测试**
 
-对 J2/J3/J4 基准姿态分别断言三根推杆全部出现在虚功明细中、保持角的虚位移为零。即使单根推杆力非唯一，也必须直接对 `sum(F_i*dL_i/dq)` 这个组合线性量做零空间唯一性判定；只有组合量也非唯一时，虚功状态才为 `indeterminate`。
+对 J2/J3/J4 基准姿态分别断言三根推杆全部出现在虚功明细中、保持角的虚位移为零。即使单根推杆力非唯一，也必须直接对 `sum(F_i*dL_i/dq)` 这个组合线性量做零空间唯一性判定；在目标输出虚位移可行的前提下，组合量必须唯一。
 
 - [ ] **Step 2: 运行测试确认 RED**
 
@@ -164,12 +183,12 @@ Expected: FAIL，因为 `signedRates` 和虚功接口不存在。
 
 - [ ] **Step 3: 实现有符号速度雅可比和虚功校验**
 
-移动副使用现有轴向位移的中心差分；旋转副使用相对旋转向量投影到当前关节轴，避免 `rotationDistance` 丢失符号。虚功符号按执行器对 J 刚体正轴做功定义统一。总推杆广义力作为未知量向量的一个线性泛函交给 Task 1 的唯一性判定，不能因某一单根推杆力非唯一就提前放弃可能唯一的总虚功。
+移动副使用现有轴向位移的中心差分；旋转副使用相对旋转向量投影到当前关节轴，避免 `rotationDistance` 丢失符号。虚功符号按执行器对 J 刚体正轴做功定义统一。总推杆广义力作为未知量向量的一个线性泛函交给 Task 1 的唯一性判定，不能因某一单根推杆力非唯一就提前放弃唯一的总虚功。若总量仍为 `indeterminate`，测试必须失败并输出运动学自由度、约束基、雅可比零空间投影和符号定义诊断，不能作为可接受结论。
 
 - [ ] **Step 4: 运行测试确认 GREEN**
 
 Run: `node web2/tests/leg-gravity-virtual-work.test.mjs`
-Expected: PASS，或在数学超静定导致推杆力非唯一时按设计稳定返回 `indeterminate`，测试验证该诚实结论。
+Expected: PASS；J2/J3/J4 的总推杆广义驱动力矩均为 `unique`，并在设定容差内与势能微分一致。任何 `indeterminate` 均为验收失败。
 
 - [ ] **Step 5: 提交**
 
@@ -192,7 +211,7 @@ git commit -m "Verify leg gravity statics by virtual work"
 
 - [ ] **Step 1: 写失败测试**
 
-断言报告含理论边界、适用限制、矩阵秩/零空间/条件数、残差、三根推杆、虚功校验、25 个运动副及每个分量唯一性；CSV 单位列明确且没有把约束合反力写成接触法向载荷。
+断言报告含理论边界、适用限制、矩阵秩/零空间/条件数、残差、三根推杆、虚功校验、25 个运动副及每个分量唯一性；CSV 单位列明确且没有把约束合反力写成接触法向载荷。三个输出轴的虚功状态必须全部为 `passed`，不得以 `indeterminate` 完成报告。
 
 - [ ] **Step 2: 运行测试确认 RED**
 
@@ -214,7 +233,7 @@ Expected: 全部 PASS；若 Windows 通配符不可用，按文件批次执行�
 
 - [ ] **Step 5: 检查验收门**
 
-只有当运动学未变化、线性系统一致、刚体/整体残差合格、内部扳手成对平衡且虚功状态为通过或诚实的 `indeterminate` 时，才把单姿态阶段标记完成；不实现 `solveCycle()`。
+只有当解析算例通过、运动学未变化、线性系统一致、真实矩阵稳定性通过、刚体/整体残差合格、内部扳手成对平衡，且 J2/J3/J4 三个虚功校验全部通过时，才把单姿态阶段标记完成；任何虚功 `indeterminate` 都必须停止并诊断；不实现 `solveCycle()`。
 
 - [ ] **Step 6: 提交**
 
