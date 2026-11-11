@@ -23,7 +23,6 @@ export function solveAssembledSystem(assembly,options={}){
     residuals:{vector:solved.residualVector,byBody,max_body_norm:Math.max(0,...Object.values(byBody).map(value=>norm(value)))},
   };
 }
-
 function perpendicularBasis(axis){
   const seed=Math.abs(axis[0])<.8?[1,0,0]:[0,1,0],first=unit(cross(axis,seed)),second=unit(cross(axis,first));
   return[first,second];

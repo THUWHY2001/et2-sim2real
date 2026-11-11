@@ -67,4 +67,3 @@ export function writeNominalGravityStaticsReport(){
 }
 
 if(process.argv[1]&&fileURLToPath(import.meta.url)===fileURLToPath(new URL(`file:///${process.argv[1].replaceAll("\\","/")}`)))writeNominalGravityStaticsReport();
-
