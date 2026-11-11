@@ -402,3 +402,7 @@ J_LEG_L_ANKLE_roll_RE,revolute,leg_l_link5,leg_l_link6,total_axial_N,N,unique,2.
 J_LEG_L_ANKLE_roll_RE,revolute,leg_l_link5,leg_l_link6,total_radial_1_N,N,unique,16.198643120326153,total_joint_wrench,not_mapped
 J_LEG_L_ANKLE_roll_RE,revolute,leg_l_link5,leg_l_link6,total_radial_2_N,N,unique,-0.04133539117478826,total_joint_wrench,not_mapped
 J_LEG_L_ANKLE_roll_RE,revolute,leg_l_link5,leg_l_link6,total_radial_magnitude_N,N,unique,16.198695859675045,total_joint_wrench,not_mapped
+__AUDIT__,audit,,,max_force_residual,N,observed,0.000023106354014885,physical_residual,not_applicable
+__AUDIT__,audit,,,max_moment_residual,N.m,observed,0.0038969773945852727,physical_residual,not_applicable
+__AUDIT__,audit,,,J1_gravity_potential_derivative,N.m,failed,-0.007320498295976874,yaw_gravity_audit,not_applicable
+__AUDIT__,audit,,,physical_acceptance,,blocked,,acceptance_gate,not_applicable

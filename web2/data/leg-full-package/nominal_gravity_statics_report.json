@@ -1,6 +1,6 @@
 {
   "schema": "et2-leg-nominal-gravity-statics-v1",
-  "generated_at": "2026-11-11T16:41:54.357Z",
+  "generated_at": "2026-11-11T17:00:57.726Z",
   "scope": {
     "stage": "nominal-pose-only",
     "pose_degrees": {
@@ -43,13 +43,27 @@
     "rank": 117,
     "augmented_rank": 117,
     "nullity": 2,
+    "left_nullity": 3,
     "condition_number": 621.5926229159043,
     "consistent": true,
+    "numerical_consistency_tolerance": 0.000001,
+    "exact_equilibrium_passed": false,
+    "solution_class": "tolerance-qualified least-squares; physical acceptance blocked",
     "svd_converged": true
   },
   "residuals": {
     "matrix_norm": 0.005535517099407045,
     "max_body_norm": 0.0038970458962532734,
+    "max_force_norm_N": 0.000023106354014885,
+    "max_moment_norm_Nm": 0.0038969773945852727,
+    "normalized": {
+      "force": 1.8090033591206444e-7,
+      "moment": 0.0000351841294399758,
+      "force_scale_N": 127.72974631797801,
+      "moment_scale_Nm": 110.7595230182837,
+      "characteristic_length_m": 0.8671396147812928,
+      "formula": "max body force residual / total weight; max body moment residual / (total weight * max COM distance from world interface)"
+    },
     "by_body": {
       "leg_l_ball_link12": [
         -1.6342482922482304e-12,
@@ -212,6 +226,288 @@
         -4.949222726525343e-13
       ]
     },
+    "by_body_physical": {
+      "leg_l_ball_link12": {
+        "force_vector_N": [
+          -1.6342482922482304e-12,
+          6.795059306896611e-13,
+          3.9285241726361164e-13
+        ],
+        "moment_vector_Nm": [
+          3.916478448508032e-13,
+          7.681709568999126e-13,
+          1.0221021913740631e-12
+        ],
+        "force_norm_N": 1.8129613377864799e-12,
+        "moment_norm_Nm": 1.3372238193408269e-12
+      },
+      "leg_l_ball_link15": {
+        "force_vector_N": [
+          -1.1368683772161603e-13,
+          -1.3651874769537997e-12,
+          2.506328478091291e-14
+        ],
+        "moment_vector_Nm": [
+          6.166393173829614e-14,
+          6.919963879232647e-13,
+          -3.1769254633671185e-13
+        ],
+        "force_norm_N": 1.3701422234741298e-12,
+        "moment_norm_Nm": 7.639306220948173e-13
+      },
+      "leg_l_ball_link20": {
+        "force_vector_N": [
+          2.9309887850104133e-13,
+          -7.71965824597487e-13,
+          -5.628275623337231e-13
+        ],
+        "moment_vector_Nm": [
+          4.634982933538442e-13,
+          -1.3400109806632311e-14,
+          7.037104951280815e-13
+        ],
+        "force_norm_N": 9.993062853037438e-13,
+        "moment_norm_Nm": 8.427447370575302e-13
+      },
+      "leg_l_link1": {
+        "force_vector_N": [
+          -5.181266690917983e-13,
+          3.332822604321887e-13,
+          2.566835632933362e-13
+        ],
+        "moment_vector_Nm": [
+          -7.112366251504909e-16,
+          -5.364597654988756e-13,
+          5.867988386865086e-13
+        ],
+        "force_norm_N": 6.673970047939346e-13,
+        "moment_norm_Nm": 7.950612950838953e-13
+      },
+      "leg_l_link10": {
+        "force_vector_N": [
+          -6.252885498270189e-8,
+          7.351441006927216e-7,
+          -2.3223286405027466e-8
+        ],
+        "moment_vector_Nm": [
+          0.00012073197255226681,
+          -3.1105673592435323e-13,
+          -0.00031933252316509574
+        ],
+        "force_norm_N": 7.381639570720099e-7,
+        "moment_norm_Nm": 0.0003413934234096312
+      },
+      "leg_l_link11": {
+        "force_vector_N": [
+          -4.2005865452665603e-10,
+          8.492700692003252e-10,
+          -1.5609047387954433e-10
+        ],
+        "moment_vector_Nm": [
+          0.00011886936558371032,
+          1.0036416142611415e-13,
+          -0.0003186409207922139
+        ],
+        "force_norm_N": 9.602464057304303e-10,
+        "moment_norm_Nm": 0.0003400911090834097
+      },
+      "leg_l_link13": {
+        "force_vector_N": [
+          -6.644875583106113e-8,
+          -7.495672186305473e-7,
+          -2.7899901056116505e-8
+        ],
+        "moment_vector_Nm": [
+          -0.00014676663159528258,
+          1.7200130209005238e-13,
+          0.0003441656755719877
+        ],
+        "force_norm_N": 7.53023808970189e-7,
+        "moment_norm_Nm": 0.00037415298527707633
+      },
+      "leg_l_link14": {
+        "force_vector_N": [
+          7.540990054621943e-10,
+          -1.6808836952528217e-9,
+          3.1630653651859575e-10
+        ],
+        "moment_vector_Nm": [
+          -0.00014476186085530442,
+          1.0436096431476471e-13,
+          0.00034332397312158427
+        ],
+        "force_norm_N": 1.86924720998862e-9,
+        "moment_norm_Nm": 0.0003725954198299824
+      },
+      "leg_l_link16": {
+        "force_vector_N": [
+          1.5631940186722204e-12,
+          7.25293956838069e-13,
+          -8.781864124784988e-13
+        ],
+        "moment_vector_Nm": [
+          4.0240087737647423e-13,
+          -7.867040352493859e-13,
+          -3.4276926999879387e-13
+        ],
+        "force_norm_N": 1.934124669947696e-12,
+        "moment_norm_Nm": 9.477976986923579e-13
+      },
+      "leg_l_link17": {
+        "force_vector_N": [
+          -1.6768808563938364e-12,
+          6.29700284970891e-14,
+          2.6134649999676185e-13
+        ],
+        "moment_vector_Nm": [
+          -7.700888537964801e-13,
+          4.707345624410664e-14,
+          3.7324549511221286e-13
+        ],
+        "force_norm_N": 1.6982922669816312e-12,
+        "moment_norm_Nm": 8.57067647648599e-13
+      },
+      "leg_l_link18": {
+        "force_vector_N": [
+          0.000006786415106319055,
+          0.000021618026483603446,
+          -0.000004528697033379103
+        ],
+        "moment_vector_Nm": [
+          -0.002176650272933534,
+          5.426908922245843e-14,
+          -0.003232433511032669
+        ],
+        "force_norm_N": 0.000023106354014885,
+        "moment_norm_Nm": 0.0038969773945852727
+      },
+      "leg_l_link19": {
+        "force_vector_N": [
+          -3.4026386153129806e-9,
+          7.2363704681222e-9,
+          2.2698447565971946e-9
+        ],
+        "moment_vector_Nm": [
+          -0.002148168362888686,
+          -8.248957072964913e-14,
+          -0.0032139267536314665
+        ],
+        "force_norm_N": 8.312352393719959e-9,
+        "moment_norm_Nm": 0.003865740872462089
+      },
+      "leg_l_link2": {
+        "force_vector_N": [
+          2.984279490192421e-13,
+          -3.2645062868208452e-12,
+          -1.0267342531733448e-12
+        ],
+        "moment_vector_Nm": [
+          -3.8345737175815575e-13,
+          -4.334310688136611e-13,
+          2.0383532101792e-13
+        ],
+        "force_norm_N": 3.4351482885150796e-12,
+        "moment_norm_Nm": 6.135559350728373e-13
+      },
+      "leg_l_link3": {
+        "force_vector_N": [
+          2.3945290195115376e-12,
+          -9.140275342156556e-13,
+          5.524469770534779e-13
+        ],
+        "moment_vector_Nm": [
+          4.956411800080551e-13,
+          -3.312905505481467e-13,
+          2.808029416628832e-13
+        ],
+        "force_norm_N": 2.6219102236809646e-12,
+        "moment_norm_Nm": 6.589870258577175e-13
+      },
+      "leg_l_link4": {
+        "force_vector_N": [
+          -2.8199664825478976e-13,
+          1.7346402092499602e-12,
+          -8.171241461241152e-13
+        ],
+        "moment_vector_Nm": [
+          -3.1682078835415517e-13,
+          1.7052331768852014e-14,
+          -3.3512534652717363e-13
+        ],
+        "force_norm_N": 1.938089429142202e-12,
+        "moment_norm_Nm": 4.614923529562127e-13
+      },
+      "leg_l_link5": {
+        "force_vector_N": [
+          -8.304468224196171e-14,
+          3.9353936776009846e-13,
+          -1.815436689867056e-12
+        ],
+        "moment_vector_Nm": [
+          -1.9753990110338293e-13,
+          1.2391754289353685e-12,
+          -8.217883838701479e-14
+        ],
+        "force_norm_N": 1.859456917527572e-12,
+        "moment_norm_Nm": 1.2575098877081356e-12
+      },
+      "leg_l_link6": {
+        "force_vector_N": [
+          -8.477663016037695e-13,
+          2.40797659589731e-12,
+          -2.9753977059954195e-13
+        ],
+        "moment_vector_Nm": [
+          -5.472705622011631e-14,
+          1.6378565170782622e-13,
+          -5.220231798913622e-13
+        ],
+        "force_norm_N": 2.5701340244455264e-12,
+        "moment_norm_Nm": 5.498445150510883e-13
+      },
+      "leg_l_link7": {
+        "force_vector_N": [
+          1.264345821387434e-12,
+          -1.876508270199432e-14,
+          1.0662581928500003e-12
+        ],
+        "moment_vector_Nm": [
+          -1.1100148578080393e-13,
+          -5.548964066015571e-13,
+          5.0356799358436e-13
+        ],
+        "force_norm_N": 1.6540341647645692e-12,
+        "moment_norm_Nm": 7.575038455793111e-13
+      },
+      "leg_l_link8": {
+        "force_vector_N": [
+          -3.019806626980426e-13,
+          1.2996652365426797e-12,
+          4.0878411766698264e-13
+        ],
+        "moment_vector_Nm": [
+          4.997142023094314e-13,
+          3.893552147360424e-13,
+          -1.1390015449905255e-13
+        ],
+        "force_norm_N": 1.3955022402625738e-12,
+        "moment_norm_Nm": 6.436497591289917e-13
+      },
+      "leg_l_link9": {
+        "force_vector_N": [
+          7.105427357601002e-13,
+          5.914253461969388e-13,
+          -4.658495811327157e-13
+        ],
+        "moment_vector_Nm": [
+          -5.171820003507799e-13,
+          -5.750955267558311e-14,
+          -4.949222726525343e-13
+        ],
+        "force_norm_N": 1.035215316592226e-12,
+        "moment_norm_Nm": 7.181452681062024e-13
+      }
+    },
     "internal_action_reaction": {
       "max_force_N": 0,
       "max_moment_Nm": 0
@@ -229,7 +525,8 @@
         -0.006395561572011503
       ]
     },
-    "relative_equilibrium_tolerance": 0.000001
+    "relative_equilibrium_tolerance": 0.000001,
+    "note": "matrix_norm and max_body_norm combine force and moment components and are retained only for numerical traceability; physical acceptance uses separated force and moment residuals."
   },
   "actuator_forces": [
     {
@@ -292,6 +589,11 @@
       },
       "absolute_residual_Nm": 0.0000048128249483525565,
       "relative_residual": 6.820295140114759e-7,
+      "acceptance": {
+        "absolute_threshold_Nm": 0.002,
+        "relative_threshold": 0.00001,
+        "formula": "unique && abs_residual <= abs_threshold && relative_residual <= relative_threshold"
+      },
       "actuators": [
         {
           "joint_id": "J_LEG_L_HIP_pitch_T",
@@ -351,6 +653,11 @@
       },
       "absolute_residual_Nm": 1.1262080246154937e-7,
       "relative_residual": 2.115209550518497e-8,
+      "acceptance": {
+        "absolute_threshold_Nm": 0.002,
+        "relative_threshold": 0.00001,
+        "formula": "unique && abs_residual <= abs_threshold && relative_residual <= relative_threshold"
+      },
       "actuators": [
         {
           "joint_id": "J_LEG_L_HIP_pitch_T",
@@ -410,6 +717,11 @@
       },
       "absolute_residual_Nm": 0.0000013855654722449984,
       "relative_residual": 0.0000013855654722449984,
+      "acceptance": {
+        "absolute_threshold_Nm": 0.002,
+        "relative_threshold": 0.00001,
+        "formula": "unique && abs_residual <= abs_threshold && relative_residual <= relative_threshold"
+      },
       "actuators": [
         {
           "joint_id": "J_LEG_L_HIP_pitch_T",
@@ -456,6 +768,412 @@
       ]
     }
   ],
+  "unbalanced_modes": [
+    {
+      "mode": 0,
+      "gravity_generalized_residual": -0.005498666669391946,
+      "dominant_rod_spin_candidates": [
+        {
+          "joint_id": "J_LEG_L_ANKLE_pitch_T",
+          "body_i": "leg_l_link18",
+          "body_j": "leg_l_link19",
+          "common_axial_spin_magnitude": 0.6983528929103225,
+          "relative_angular_mismatch": 1.0984890057114918e-15,
+          "axis_alignment_i": 0.9999999997998275,
+          "axis_alignment_j": 0.9999999997998276
+        },
+        {
+          "joint_id": "J_LEG_L_HIP_pitch_T",
+          "body_i": "leg_l_link10",
+          "body_j": "leg_l_link11",
+          "common_axial_spin_magnitude": 0.11087886931642185,
+          "relative_angular_mismatch": 4.0079070011598037e-16,
+          "axis_alignment_i": 0.999999999880975,
+          "axis_alignment_j": 0.9999999998809752
+        },
+        {
+          "joint_id": "J_LEG_L_KNEE_pitch_T",
+          "body_i": "leg_l_link13",
+          "body_j": "leg_l_link14",
+          "common_axial_spin_magnitude": 0.002630594713506502,
+          "relative_angular_mismatch": 2.881327353161576e-16,
+          "axis_alignment_i": 0.9999999997643653,
+          "axis_alignment_j": 0.9999999997643655
+        }
+      ],
+      "dominant_bodies": [
+        {
+          "body": "leg_l_link19",
+          "angular_magnitude": 0.698352893050114,
+          "linear_magnitude": 7.521531235193748e-7
+        },
+        {
+          "body": "leg_l_link18",
+          "angular_magnitude": 0.698352893050113,
+          "linear_magnitude": 0.002090843981163337
+        },
+        {
+          "body": "leg_l_link10",
+          "angular_magnitude": 0.11087886932961921,
+          "linear_magnitude": 0.00012048282750617464
+        },
+        {
+          "body": "leg_l_link11",
+          "angular_magnitude": 0.1108788693296192,
+          "linear_magnitude": 1.5677754028239382e-7
+        },
+        {
+          "body": "leg_l_link14",
+          "angular_magnitude": 0.0026305947141263843,
+          "linear_magnitude": 6.61016818632323e-9
+        },
+        {
+          "body": "leg_l_link13",
+          "angular_magnitude": 0.002630594714126338,
+          "linear_magnitude": 0.000002662349859683525
+        }
+      ]
+    },
+    {
+      "mode": 1,
+      "gravity_generalized_residual": -0.0005139164478974325,
+      "dominant_rod_spin_candidates": [
+        {
+          "joint_id": "J_LEG_L_KNEE_pitch_T",
+          "body_i": "leg_l_link13",
+          "body_j": "leg_l_link14",
+          "common_axial_spin_magnitude": 0.7070035128121561,
+          "relative_angular_mismatch": 3.140310392969431e-16,
+          "axis_alignment_i": 0.9999999997644066,
+          "axis_alignment_j": 0.9999999997644067
+        },
+        {
+          "joint_id": "J_LEG_L_HIP_pitch_T",
+          "body_i": "leg_l_link10",
+          "body_j": "leg_l_link11",
+          "common_axial_spin_magnitude": 0.012050485542504132,
+          "relative_angular_mismatch": 7.008775979289849e-17,
+          "axis_alignment_i": 0.9999999998809758,
+          "axis_alignment_j": 0.9999999998809759
+        },
+        {
+          "joint_id": "J_LEG_L_ANKLE_pitch_T",
+          "body_i": "leg_l_link18",
+          "body_j": "leg_l_link19",
+          "common_axial_spin_magnitude": 0.0007498978149570152,
+          "relative_angular_mismatch": 2.4465348438728505e-17,
+          "axis_alignment_i": 0.999999999799828,
+          "axis_alignment_j": 0.9999999997998279
+        }
+      ],
+      "dominant_bodies": [
+        {
+          "body": "leg_l_link14",
+          "angular_magnitude": 0.7070035129787217,
+          "linear_magnitude": 0.0000017769328486898004
+        },
+        {
+          "body": "leg_l_link13",
+          "angular_magnitude": 0.7070035129787214,
+          "linear_magnitude": 0.0007155380350177449
+        },
+        {
+          "body": "leg_l_link10",
+          "angular_magnitude": 0.012050485543938465,
+          "linear_magnitude": 0.000013094258418742448
+        },
+        {
+          "body": "leg_l_link11",
+          "angular_magnitude": 0.012050485543938396,
+          "linear_magnitude": 1.703875003370711e-8
+        },
+        {
+          "body": "leg_l_link19",
+          "angular_magnitude": 0.0007498978151071259,
+          "linear_magnitude": 8.076684354960658e-10
+        },
+        {
+          "body": "leg_l_link18",
+          "angular_magnitude": 0.0007498978151071217,
+          "linear_magnitude": 0.000002245167662754593
+        }
+      ]
+    },
+    {
+      "mode": 2,
+      "gravity_generalized_residual": -0.0003763002816596673,
+      "dominant_rod_spin_candidates": [
+        {
+          "joint_id": "J_LEG_L_HIP_pitch_T",
+          "body_i": "leg_l_link10",
+          "body_j": "leg_l_link11",
+          "common_axial_spin_magnitude": 0.6982552304379878,
+          "relative_angular_mismatch": 6.017313079783261e-16,
+          "axis_alignment_i": 0.9999999998809759,
+          "axis_alignment_j": 0.9999999998809758
+        },
+        {
+          "joint_id": "J_LEG_L_ANKLE_pitch_T",
+          "body_i": "leg_l_link18",
+          "body_j": "leg_l_link19",
+          "common_axial_spin_magnitude": 0.11090731928201993,
+          "relative_angular_mismatch": 1.7884653549354633e-16,
+          "axis_alignment_i": 0.9999999997998276,
+          "axis_alignment_j": 0.9999999997998278
+        },
+        {
+          "joint_id": "J_LEG_L_KNEE_pitch_T",
+          "body_i": "leg_l_link13",
+          "body_j": "leg_l_link14",
+          "common_axial_spin_magnitude": 0.011783740219200374,
+          "relative_angular_mismatch": 1.4391438222665955e-16,
+          "axis_alignment_i": 0.9999999997644066,
+          "axis_alignment_j": 0.9999999997644066
+        }
+      ],
+      "dominant_bodies": [
+        {
+          "body": "leg_l_link10",
+          "angular_magnitude": 0.6982552305210973,
+          "linear_magnitude": 0.0007587357702761861
+        },
+        {
+          "body": "leg_l_link11",
+          "angular_magnitude": 0.6982552305210968,
+          "linear_magnitude": 9.872960410205543e-7
+        },
+        {
+          "body": "leg_l_link19",
+          "angular_magnitude": 0.11090731930422053,
+          "linear_magnitude": 1.194513317058249e-7
+        },
+        {
+          "body": "leg_l_link18",
+          "angular_magnitude": 0.1109073193042205,
+          "linear_magnitude": 0.00033205261040344697
+        },
+        {
+          "body": "leg_l_link14",
+          "angular_magnitude": 0.011783740221976582,
+          "linear_magnitude": 2.9616423216553368e-8
+        },
+        {
+          "body": "leg_l_link13",
+          "angular_magnitude": 0.011783740221976508,
+          "linear_magnitude": 0.000011925986460805064
+        }
+      ]
+    }
+  ],
+  "yaw_gravity_audit": {
+    "joint": "J1",
+    "joint_id": "J_LEG_L_HIP_yaw_RE",
+    "axis_world_xyz": [
+      0,
+      0,
+      1
+    ],
+    "axis_vertical_alignment": 1,
+    "gravity_world_m_s2": [
+      0,
+      0,
+      -9.80665
+    ],
+    "expected_gravity_torque_Nm": 0,
+    "potential_derivative_Nm": -0.007320498295976874,
+    "static_holding_torque": {
+      "joint_id": "J_LEG_L_HIP_yaw_RE",
+      "status": "unique",
+      "value": -0.006395326145896043,
+      "nullProjection": 3.30814971413487e-16,
+      "projections": [
+        3.013148047709626e-16,
+        -1.3655743750211093e-16
+      ]
+    },
+    "dominant_part": "leg_l_link18",
+    "per_part": [
+      {
+        "body": "leg_l_link18",
+        "dz_dyaw_m_per_rad": -0.0005533672118042014,
+        "potential_derivative_Nm": -0.007320743396883666
+      },
+      {
+        "body": "leg_l_link19",
+        "dz_dyaw_m_per_rad": 2.7743148997745333e-7,
+        "potential_derivative_Nm": 2.451009067922566e-7
+      },
+      {
+        "body": "leg_l_ball_link12",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      },
+      {
+        "body": "leg_l_ball_link15",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      },
+      {
+        "body": "leg_l_ball_link20",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      },
+      {
+        "body": "leg_l_link1",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      },
+      {
+        "body": "leg_l_link10",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      },
+      {
+        "body": "leg_l_link11",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      },
+      {
+        "body": "leg_l_link13",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      },
+      {
+        "body": "leg_l_link14",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      },
+      {
+        "body": "leg_l_link16",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      },
+      {
+        "body": "leg_l_link17",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      },
+      {
+        "body": "leg_l_link2",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      },
+      {
+        "body": "leg_l_link3",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      },
+      {
+        "body": "leg_l_link4",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      },
+      {
+        "body": "leg_l_link5",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      },
+      {
+        "body": "leg_l_link6",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      },
+      {
+        "body": "leg_l_link7",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      },
+      {
+        "body": "leg_l_link8",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      },
+      {
+        "body": "leg_l_link9",
+        "dz_dyaw_m_per_rad": 0,
+        "potential_derivative_Nm": 0
+      }
+    ],
+    "absolute_threshold_Nm": 0.000001,
+    "passed": false,
+    "interpretation": "Vertical-axis yaw should not change gravitational potential; a nonzero derivative indicates an unconstrained orientation/gauge or kinematic inconsistency."
+  },
+  "perturbation_tests": {
+    "zero_gravity": {
+      "passed": true,
+      "matrix_residual_norm": 0,
+      "max_unique_reaction_abs": 0
+    },
+    "double_gravity": {
+      "passed": true,
+      "max_actuator_linearity_error_N": 0,
+      "residual_ratio": 2
+    },
+    "pose_rank_stability": {
+      "passed": true,
+      "samples": [
+        {
+          "output_joint": "J2",
+          "delta_degrees": -0.1,
+          "rank": 117,
+          "nullity": 2,
+          "residual_norm": 0.005521671668226655,
+          "residual_ratio": 0.9974988007566857
+        },
+        {
+          "output_joint": "J2",
+          "delta_degrees": 0.1,
+          "rank": 117,
+          "nullity": 2,
+          "residual_norm": 0.005549350039873641,
+          "residual_ratio": 1.0024989427759292
+        },
+        {
+          "output_joint": "J3",
+          "delta_degrees": -0.1,
+          "rank": 117,
+          "nullity": 2,
+          "residual_norm": 0.005521273729117614,
+          "residual_ratio": 0.9974269124214327
+        },
+        {
+          "output_joint": "J3",
+          "delta_degrees": 0.1,
+          "rank": 117,
+          "nullity": 2,
+          "residual_norm": 0.005549744531483381,
+          "residual_ratio": 1.0025702083149306
+        },
+        {
+          "output_joint": "J4",
+          "delta_degrees": -0.1,
+          "rank": 117,
+          "nullity": 2,
+          "residual_norm": 0.005534289047246159,
+          "residual_ratio": 0.9997781504168747
+        },
+        {
+          "output_joint": "J4",
+          "delta_degrees": 0.1,
+          "rank": 117,
+          "nullity": 2,
+          "residual_norm": 0.005536742160371224,
+          "residual_ratio": 1.0002213092186654
+        }
+      ]
+    }
+  },
+  "physical_acceptance": {
+    "passed": false,
+    "suitable_for_friction_torque_estimation": false,
+    "status": "blocked",
+    "blockers": [
+      "Three unrestrained rod-body axial-spin modes have nonzero gravity generalized residuals.",
+      "J1 vertical-axis yaw changes potential energy through the unresolved leg_l_link18 orientation gauge.",
+      "Static equilibrium has nonzero moment residuals concentrated in rod bodies leg_l_link18 and leg_l_link19."
+    ],
+    "required_resolution": "Confirm the physical anti-rotation/orientation constraint of each pushrod assembly or provide the intended rod-body rotational gauge before using reaction loads for friction torque estimation."
+  },
   "joints": [
     {
       "joint_id": "J_LEG_L_HIP_roll_RE",
