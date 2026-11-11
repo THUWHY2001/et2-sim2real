@@ -68,6 +68,21 @@ export function createLegFullRuntime(model){
     return{complete:Object.values(values).every(Number.isFinite),values,solution:center};
   }
 
+  function signedRates(joint,deltaDegrees){
+    const h=.001,center=solveOutput(joint,deltaDegrees),lo=solveOutput(joint,deltaDegrees-h),hi=solveOutput(joint,deltaDegrees+h),denominator=2*rad(h),values={};
+    if(!center.complete||!lo.complete||!hi.complete)return{complete:false,values,solution:center};
+    const angularRate=part=>{const Rc=center.frame.world_transforms[part].R,Rl=lo.frame.world_transforms[part].R,Rh=hi.frame.world_transforms[part].R,Rdot=Rh.map((row,i)=>row.map((value,j)=>(value-Rl[i][j])/denominator)),W=multiply(Rdot,transpose(Rc));return[(W[2][1]-W[1][2])/2,(W[0][2]-W[2][0])/2,(W[1][0]-W[0][1])/2]};
+    for(const key of rateKeys){
+      const definition=model.joints[key];
+      if(definition.type==="translational")values[key]=(jointCheck(hi,key).axial_sliding_signed_mm-jointCheck(lo,key).axial_sliding_signed_mm)/1000/denominator;
+      else{
+        const wi=angularRate(definition.i_part),wj=angularRate(definition.j_part),relative=sub(wj,wi),marker=center.frame.all_joint_marker_sides.find(item=>item.joint===key&&item.marker_side==="I"),axis=unit(marker.axis_xyz);
+        values[key]=definition.type==="revolute"?dot(relative,axis):norm(relative);
+      }
+    }
+    return{complete:Object.values(values).every(Number.isFinite),values,solution:center,definition:"positive actuator force on J body dotted with signed relative velocity"};
+  }
+
   function equivalentResistance(joint,solution,loads={},direction=1,mode="static"){
     const delta=solution.outputDelta[joint],rate=rates(joint,delta);
     if(!solution?.complete||!rate.complete)return{complete:false,total:0,parts:{},contribution:{},rates:{},directions:{}};
@@ -128,6 +143,7 @@ export function createLegFullRuntime(model){
     kinematics:solution=>solution?.frame??solution,
     rateKeys:[...rateKeys],
     rates,
+    signedRates,
     equivalentResistance,
     nominalLoads,
     loadedResistance,

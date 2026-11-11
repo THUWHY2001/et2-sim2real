@@ -211,7 +211,24 @@ export function createLegGravityStatics(model,runtime,options={}){
     };
   }
   const solveNominal=boundary=>solve(runtime.solveOutput("J2",0),boundary);
-  return Object.freeze({assemble,solve,solveNominal});
+  function verifyGravityVirtualWork(staticResult,outputJoint){
+    if(!["J2","J3","J4"].includes(outputJoint))throw new Error("virtual work output must be J2, J3 or J4");
+    const delta=staticResult.pose.output_degrees[outputJoint]-runtime.nominal[outputJoint],rates=runtime.signedRates(outputJoint,delta),assembly=staticResult.assembly;
+    const actuatorIndices=assembly.unknowns.map((item,index)=>item.category==="actuator_axial_force"?index:-1).filter(index=>index>=0),actuators=[];
+    for(const index of actuatorIndices){
+      const unknown=assembly.unknowns[index],coefficients=Array(assembly.unknowns.length).fill(0),rate=rates.values[unknown.joint_id];coefficients[index]=rate;
+      actuators.push({joint_id:unknown.joint_id,rate_m_per_rad:rate,force:staticResult.unknownValues[index],generalized_torque:evaluateLinearQuantity(staticResult.solution,coefficients,solverOptions)});
+    }
+    const totalCoefficients=assembly.unknowns.map(unknown=>unknown.category==="actuator_axial_force"?rates.values[unknown.joint_id]:0),total=evaluateLinearQuantity(staticResult.solution,totalCoefficients,solverOptions),gravity=runtime.gravityHoldingTorque(outputJoint,delta),gravityQuantity={status:gravity.complete?"unique":"indeterminate",value:gravity.complete?gravity.torqueNm:null};
+    const residual=total.status==="unique"&&gravityQuantity.status==="unique"?total.value-gravityQuantity.value:null,absoluteResidual=residual===null?null:Math.abs(residual),relativeResidual=residual===null?null:absoluteResidual/Math.max(1,Math.abs(gravityQuantity.value));
+    const passed=total.status==="unique"&&gravityQuantity.status==="unique"&&absoluteResidual<2e-3;
+    return{
+      output_joint:outputJoint,actuators,total_generalized_actuator_torque:total,gravity_potential_derivative:gravityQuantity,
+      absolute_residual_Nm:absoluteResidual,relative_residual:relativeResidual,passed,
+      diagnostics:{kinematic_rates_complete:rates.complete,matrix_rank:staticResult.matrix.rank,matrix_nullity:staticResult.matrix.nullity,nullspace_projection:total.nullProjection,sign_definition:rates.definition},
+    };
+  }
+  return Object.freeze({assemble,solve,solveNominal,verifyGravityVirtualWork});
 }
 
 import {evaluateLinearQuantity,solveRankRevealing} from "./rank-revealing-svd.mjs";
