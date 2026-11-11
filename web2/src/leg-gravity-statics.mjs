@@ -231,4 +231,3 @@ export function createLegGravityStatics(model,runtime,options={}){
   }
   return Object.freeze({assemble,solve,solveNominal,verifyGravityVirtualWork});
 }
-
