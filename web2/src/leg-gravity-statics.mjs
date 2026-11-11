@@ -1,3 +1,5 @@
+import {evaluateLinearQuantity,solveRankRevealing} from "./rank-revealing-svd.mjs";
+
 const GRAVITY_M_S2=9.80665;
 const WORLD_AXES=[[1,0,0],[0,1,0],[0,0,1]];
 const dot=(a,b)=>a.reduce((sum,value,index)=>sum+value*b[index],0);
@@ -229,6 +231,4 @@ export function createLegGravityStatics(model,runtime,options={}){
   }
   return Object.freeze({assemble,solve,solveNominal,verifyGravityVirtualWork});
 }
-
-import {evaluateLinearQuantity,solveRankRevealing} from "./rank-revealing-svd.mjs";
 
