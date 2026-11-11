@@ -203,7 +203,7 @@ export function createLegGravityStatics(model,runtime,options={}){
     }
     return{
       ...base,
-      pose:{output_degrees:{J2:runtime.nominal.J2,J3:runtime.nominal.J3,J4:runtime.nominal.J4}},
+      pose:{output_degrees:{J2:runtime.nominal.J2,J3:runtime.nominal.J3,J4:runtime.nominal.J4},all_output_degrees:{...solution.outputs}},
       jointReactions,actuatorForces,holdingTorques,globalBalance,
       internalWrenchBalance:{max_force_N:maxForce,max_moment_Nm:maxMoment},
       loadInterpretation:{label:"重力准静态理论约束扳手",contact_normal_load:"not_mapped",limitations:["gravity-only","no-inertia","no-preload","no-friction-feedback","airborne-foot"]},

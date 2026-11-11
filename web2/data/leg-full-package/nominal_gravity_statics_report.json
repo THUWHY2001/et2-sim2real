@@ -1,0 +1,3735 @@
+{
+  "schema": "et2-leg-nominal-gravity-statics-v1",
+  "generated_at": "2026-11-11T16:41:54.357Z",
+  "scope": {
+    "stage": "nominal-pose-only",
+    "pose_degrees": {
+      "J2": -27.5,
+      "J3": 51.57,
+      "J4": -24.06
+    },
+    "all_output_degrees": {
+      "J0": 0,
+      "J1": 0,
+      "J2": -27.5,
+      "J3": 51.57,
+      "J4": -24.06,
+      "J5": 0
+    },
+    "boundary": {
+      "world_interface": "J_LEG_L_HIP_roll_RE",
+      "foot_contact": "none",
+      "held_revolutes": [
+        "J_LEG_L_HIP_roll_RE",
+        "J_LEG_L_HIP_yaw_RE",
+        "J_LEG_L_ANKLE_roll_RE",
+        "J_LEG_L_TOE_pitch_RE"
+      ],
+      "toe_constraint": "position-held-unverified",
+      "test_rig_correspondence": "unverified"
+    },
+    "load_definition": "重力准静态理论载荷",
+    "excluded": [
+      "inertia",
+      "assembly_preload",
+      "friction_feedback",
+      "foot_contact",
+      "full_1_hz_cycle"
+    ]
+  },
+  "matrix": {
+    "rows": 120,
+    "columns": 119,
+    "rank": 117,
+    "augmented_rank": 117,
+    "nullity": 2,
+    "condition_number": 621.5926229159043,
+    "consistent": true,
+    "svd_converged": true
+  },
+  "residuals": {
+    "matrix_norm": 0.005535517099407045,
+    "max_body_norm": 0.0038970458962532734,
+    "by_body": {
+      "leg_l_ball_link12": [
+        -1.6342482922482304e-12,
+        6.795059306896611e-13,
+        3.9285241726361164e-13,
+        3.916478448508032e-13,
+        7.681709568999126e-13,
+        1.0221021913740631e-12
+      ],
+      "leg_l_ball_link15": [
+        -1.1368683772161603e-13,
+        -1.3651874769537997e-12,
+        2.506328478091291e-14,
+        6.166393173829614e-14,
+        6.919963879232647e-13,
+        -3.1769254633671185e-13
+      ],
+      "leg_l_ball_link20": [
+        2.9309887850104133e-13,
+        -7.71965824597487e-13,
+        -5.628275623337231e-13,
+        4.634982933538442e-13,
+        -1.3400109806632311e-14,
+        7.037104951280815e-13
+      ],
+      "leg_l_link1": [
+        -5.181266690917983e-13,
+        3.332822604321887e-13,
+        2.566835632933362e-13,
+        -7.112366251504909e-16,
+        -5.364597654988756e-13,
+        5.867988386865086e-13
+      ],
+      "leg_l_link10": [
+        -6.252885498270189e-8,
+        7.351441006927216e-7,
+        -2.3223286405027466e-8,
+        0.00012073197255226681,
+        -3.1105673592435323e-13,
+        -0.00031933252316509574
+      ],
+      "leg_l_link11": [
+        -4.2005865452665603e-10,
+        8.492700692003252e-10,
+        -1.5609047387954433e-10,
+        0.00011886936558371032,
+        1.0036416142611415e-13,
+        -0.0003186409207922139
+      ],
+      "leg_l_link13": [
+        -6.644875583106113e-8,
+        -7.495672186305473e-7,
+        -2.7899901056116505e-8,
+        -0.00014676663159528258,
+        1.7200130209005238e-13,
+        0.0003441656755719877
+      ],
+      "leg_l_link14": [
+        7.540990054621943e-10,
+        -1.6808836952528217e-9,
+        3.1630653651859575e-10,
+        -0.00014476186085530442,
+        1.0436096431476471e-13,
+        0.00034332397312158427
+      ],
+      "leg_l_link16": [
+        1.5631940186722204e-12,
+        7.25293956838069e-13,
+        -8.781864124784988e-13,
+        4.0240087737647423e-13,
+        -7.867040352493859e-13,
+        -3.4276926999879387e-13
+      ],
+      "leg_l_link17": [
+        -1.6768808563938364e-12,
+        6.29700284970891e-14,
+        2.6134649999676185e-13,
+        -7.700888537964801e-13,
+        4.707345624410664e-14,
+        3.7324549511221286e-13
+      ],
+      "leg_l_link18": [
+        0.000006786415106319055,
+        0.000021618026483603446,
+        -0.000004528697033379103,
+        -0.002176650272933534,
+        5.426908922245843e-14,
+        -0.003232433511032669
+      ],
+      "leg_l_link19": [
+        -3.4026386153129806e-9,
+        7.2363704681222e-9,
+        2.2698447565971946e-9,
+        -0.002148168362888686,
+        -8.248957072964913e-14,
+        -0.0032139267536314665
+      ],
+      "leg_l_link2": [
+        2.984279490192421e-13,
+        -3.2645062868208452e-12,
+        -1.0267342531733448e-12,
+        -3.8345737175815575e-13,
+        -4.334310688136611e-13,
+        2.0383532101792e-13
+      ],
+      "leg_l_link3": [
+        2.3945290195115376e-12,
+        -9.140275342156556e-13,
+        5.524469770534779e-13,
+        4.956411800080551e-13,
+        -3.312905505481467e-13,
+        2.808029416628832e-13
+      ],
+      "leg_l_link4": [
+        -2.8199664825478976e-13,
+        1.7346402092499602e-12,
+        -8.171241461241152e-13,
+        -3.1682078835415517e-13,
+        1.7052331768852014e-14,
+        -3.3512534652717363e-13
+      ],
+      "leg_l_link5": [
+        -8.304468224196171e-14,
+        3.9353936776009846e-13,
+        -1.815436689867056e-12,
+        -1.9753990110338293e-13,
+        1.2391754289353685e-12,
+        -8.217883838701479e-14
+      ],
+      "leg_l_link6": [
+        -8.477663016037695e-13,
+        2.40797659589731e-12,
+        -2.9753977059954195e-13,
+        -5.472705622011631e-14,
+        1.6378565170782622e-13,
+        -5.220231798913622e-13
+      ],
+      "leg_l_link7": [
+        1.264345821387434e-12,
+        -1.876508270199432e-14,
+        1.0662581928500003e-12,
+        -1.1100148578080393e-13,
+        -5.548964066015571e-13,
+        5.0356799358436e-13
+      ],
+      "leg_l_link8": [
+        -3.019806626980426e-13,
+        1.2996652365426797e-12,
+        4.0878411766698264e-13,
+        4.997142023094314e-13,
+        3.893552147360424e-13,
+        -1.1390015449905255e-13
+      ],
+      "leg_l_link9": [
+        7.105427357601002e-13,
+        5.914253461969388e-13,
+        -4.658495811327157e-13,
+        -5.171820003507799e-13,
+        -5.750955267558311e-14,
+        -4.949222726525343e-13
+      ]
+    },
+    "internal_action_reaction": {
+      "max_force_N": 0,
+      "max_moment_Nm": 0
+    },
+    "global_balance": {
+      "status": "unique",
+      "force_residual_N": [
+        0.0000066543699675716365,
+        0.000021610010016355954,
+        -0.000004577393056592882
+      ],
+      "moment_residual_Nm": [
+        -0.004362816309710027,
+        -0.000004076197024360795,
+        -0.006395561572011503
+      ]
+    },
+    "relative_equilibrium_tolerance": 0.000001
+  },
+  "actuator_forces": [
+    {
+      "joint_id": "J_LEG_L_HIP_pitch_T",
+      "status": "unique",
+      "value": -191.79380054591735,
+      "null_projection": 3.870532716069402e-11
+    },
+    {
+      "joint_id": "J_LEG_L_KNEE_pitch_T",
+      "status": "unique",
+      "value": -140.51745346438304,
+      "null_projection": 2.3043362968161435e-11
+    },
+    {
+      "joint_id": "J_LEG_L_ANKLE_pitch_T",
+      "status": "unique",
+      "value": 8.143274575206659,
+      "null_projection": 1.3573640414779368e-11
+    }
+  ],
+  "holding_torques": [
+    {
+      "joint_id": "J_LEG_L_HIP_roll_RE",
+      "status": "unique",
+      "value": 0.02228076195767946,
+      "null_projection": 9.022586268625634e-16
+    },
+    {
+      "joint_id": "J_LEG_L_HIP_yaw_RE",
+      "status": "unique",
+      "value": -0.006395326145896043,
+      "null_projection": 3.30814971413487e-16
+    },
+    {
+      "joint_id": "J_LEG_L_TOE_pitch_RE",
+      "status": "unique",
+      "value": 0.04773727356300382,
+      "null_projection": 8.429170145669753e-14
+    },
+    {
+      "joint_id": "J_LEG_L_ANKLE_roll_RE",
+      "status": "unique",
+      "value": 0.01986057329129101,
+      "null_projection": 2.5235474087471957e-16
+    }
+  ],
+  "virtual_work": [
+    {
+      "output_joint": "J2",
+      "passed": true,
+      "total_generalized_actuator_torque": {
+        "status": "unique",
+        "value": -7.056627509466161,
+        "null_projection": 1.4240766679007578e-12
+      },
+      "gravity_potential_derivative": {
+        "status": "unique",
+        "value": -7.056622696641212
+      },
+      "absolute_residual_Nm": 0.0000048128249483525565,
+      "relative_residual": 6.820295140114759e-7,
+      "actuators": [
+        {
+          "joint_id": "J_LEG_L_HIP_pitch_T",
+          "rate_m_per_rad": 0.03679278208840635,
+          "force": {
+            "status": "unique",
+            "value": -191.79380054591735,
+            "null_projection": 3.870532716069402e-11
+          },
+          "generalized_torque": {
+            "status": "unique",
+            "value": -7.056627509393207,
+            "null_projection": 1.4240766678838904e-12
+          }
+        },
+        {
+          "joint_id": "J_LEG_L_KNEE_pitch_T",
+          "rate_m_per_rad": 4.0711099922733015e-13,
+          "force": {
+            "status": "unique",
+            "value": -140.51745346438304,
+            "null_projection": 2.3043362968161435e-11
+          },
+          "generalized_torque": {
+            "status": "unique",
+            "value": -5.720620088876484e-11,
+            "null_projection": 9.381206523526259e-24
+          }
+        },
+        {
+          "joint_id": "J_LEG_L_ANKLE_pitch_T",
+          "rate_m_per_rad": -1.933777246329818e-12,
+          "force": {
+            "status": "unique",
+            "value": 8.143274575206659,
+            "null_projection": 1.3573640414779368e-11
+          },
+          "generalized_torque": {
+            "status": "unique",
+            "value": -1.574727908415075e-11,
+            "null_projection": 2.6248396983963176e-23
+          }
+        }
+      ]
+    },
+    {
+      "output_joint": "J3",
+      "passed": true,
+      "total_generalized_actuator_torque": {
+        "status": "unique",
+        "value": 5.32433322344393,
+        "null_projection": 8.731338349973715e-13
+      },
+      "gravity_potential_derivative": {
+        "status": "unique",
+        "value": 5.324333110823128
+      },
+      "absolute_residual_Nm": 1.1262080246154937e-7,
+      "relative_residual": 2.115209550518497e-8,
+      "actuators": [
+        {
+          "joint_id": "J_LEG_L_HIP_pitch_T",
+          "rate_m_per_rad": 0,
+          "force": {
+            "status": "unique",
+            "value": -191.79380054591735,
+            "null_projection": 3.870532716069402e-11
+          },
+          "generalized_torque": {
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          }
+        },
+        {
+          "joint_id": "J_LEG_L_KNEE_pitch_T",
+          "rate_m_per_rad": -0.03789090317366568,
+          "force": {
+            "status": "unique",
+            "value": -140.51745346438304,
+            "null_projection": 2.3043362968161435e-11
+          },
+          "generalized_torque": {
+            "status": "unique",
+            "value": 5.3243332234290115,
+            "null_projection": 8.731338350222385e-13
+          }
+        },
+        {
+          "joint_id": "J_LEG_L_ANKLE_pitch_T",
+          "rate_m_per_rad": 1.8319994965229855e-12,
+          "force": {
+            "status": "unique",
+            "value": 8.143274575206659,
+            "null_projection": 1.3573640414779368e-11
+          },
+          "generalized_torque": {
+            "status": "unique",
+            "value": 1.491847492182703e-11,
+            "null_projection": 2.486690240585985e-23
+          }
+        }
+      ]
+    },
+    {
+      "output_joint": "J4",
+      "passed": true,
+      "total_generalized_actuator_torque": {
+        "status": "unique",
+        "value": -0.3196401370891444,
+        "null_projection": 5.327930727263635e-13
+      },
+      "gravity_potential_derivative": {
+        "status": "unique",
+        "value": -0.31963875152367216
+      },
+      "absolute_residual_Nm": 0.0000013855654722449984,
+      "relative_residual": 0.0000013855654722449984,
+      "actuators": [
+        {
+          "joint_id": "J_LEG_L_HIP_pitch_T",
+          "rate_m_per_rad": 0,
+          "force": {
+            "status": "unique",
+            "value": -191.79380054591735,
+            "null_projection": 3.870532716069402e-11
+          },
+          "generalized_torque": {
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          }
+        },
+        {
+          "joint_id": "J_LEG_L_KNEE_pitch_T",
+          "rate_m_per_rad": 0,
+          "force": {
+            "status": "unique",
+            "value": -140.51745346438304,
+            "null_projection": 2.3043362968161435e-11
+          },
+          "generalized_torque": {
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          }
+        },
+        {
+          "joint_id": "J_LEG_L_ANKLE_pitch_T",
+          "rate_m_per_rad": -0.039252039721506336,
+          "force": {
+            "status": "unique",
+            "value": 8.143274575206659,
+            "null_projection": 1.3573640414779368e-11
+          },
+          "generalized_torque": {
+            "status": "unique",
+            "value": -0.3196401370891444,
+            "null_projection": 5.327930727263635e-13
+          }
+        }
+      ]
+    }
+  ],
+  "joints": [
+    {
+      "joint_id": "J_LEG_L_HIP_roll_RE",
+      "joint_type": "revolute",
+      "body_i": "base_link",
+      "body_j": "leg_l_link1",
+      "motion_state": "position-held",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 0,
+        "axis_misalignment_deg": 0
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.0000066543699675716365,
+            "null_projection": 7.863165070807605e-13
+          },
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.000021610010016355954,
+            "null_projection": 2.5635378267547878e-15
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 127.72974174058496,
+            "null_projection": 3.5897268739830426e-14
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.02228076195767946,
+            "null_projection": 9.022586268625634e-16
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -14.467613120018838,
+            "null_projection": 1.4587904386022147e-12
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.0063941916626823955,
+            "null_projection": 3.8035525103431e-16
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.0000066543699675716365,
+            "null_projection": 7.863165070807605e-13
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.000021610010016355954,
+            "null_projection": 2.5635378267547878e-15
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 127.72974174058496,
+            "null_projection": 3.5897268739830426e-14
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.02228076195767946,
+            "null_projection": 9.022586268625634e-16
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -14.467613120018838,
+            "null_projection": 1.4587904386022147e-12
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.0063941916626823955,
+            "null_projection": 3.8035525103431e-16
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.0000066543699675716365,
+            "null_projection": 7.863165070807605e-13
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 127.72974174058496,
+            "null_projection": 3.5897268739830426e-14
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -0.000021610010016355954,
+            "null_projection": 2.5635378267547878e-15
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 127.72974174058677,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": []
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_HIP_yaw_RE",
+      "joint_type": "revolute",
+      "body_i": "leg_l_link1",
+      "body_j": "leg_l_link2",
+      "motion_state": "position-held",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 0,
+        "axis_misalignment_deg": 0
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.0000066543704856983056,
+            "null_projection": 7.864286503025328e-13
+          },
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.000021610009683073694,
+            "null_projection": 3.0272022324929077e-15
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 121.4184515815262,
+            "null_projection": 3.55654152324098e-14
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.022237478970076364,
+            "null_projection": 9.568680302012716e-16
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -7.94582913475862,
+            "null_projection": 1.4828255836522397e-12
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.006395326145896043,
+            "null_projection": 3.30814971413487e-16
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.0000066543704856983056,
+            "null_projection": 7.864286503025328e-13
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.000021610009683073694,
+            "null_projection": 3.0272022324929077e-15
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 121.4184515815262,
+            "null_projection": 3.55654152324098e-14
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.022237478970076364,
+            "null_projection": 9.568680302012716e-16
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -7.94582913475862,
+            "null_projection": 1.4828255836522397e-12
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.006395326145896043,
+            "null_projection": 3.30814971413487e-16
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 121.4184515815262,
+            "null_projection": 3.55654152324098e-14
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.000021610009683073694,
+            "null_projection": 3.0272022324929077e-15
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -0.0000066543704856983056,
+            "null_projection": 7.864286503025328e-13
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.000022611350359133166,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": []
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_HIP_pitch_RE",
+      "joint_type": "revolute",
+      "body_i": "leg_l_link2",
+      "body_j": "leg_l_link3",
+      "motion_state": "free-output",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 0,
+        "axis_misalignment_deg": 0
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 94.0862894389486,
+            "null_projection": 2.012158930228279e-11
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -51.90140568577838,
+            "null_projection": 3.1082171591084735e-11
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 94.0862894389486,
+            "null_projection": 2.012158930228279e-11
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -51.90140568577838,
+            "null_projection": 3.1082171591084735e-11
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 51.90140568577838,
+            "null_projection": 3.1082171591084735e-11
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -94.0862894389486,
+            "null_projection": 2.012158930228279e-11
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 107.4522488017322,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": [
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.49858636723928973
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.03805539227425012
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.006472298515077552
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.49858636723928973
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.03805539227425012
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.006472298515077552
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.49858636723928973
+          }
+        ]
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_KNEE_pitch_RE",
+      "joint_type": "revolute",
+      "body_i": "leg_l_link3",
+      "body_j": "leg_l_link4",
+      "motion_state": "free-output",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 8.038873388460929e-14,
+        "axis_misalignment_deg": 0
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 120.36595521529476,
+            "null_projection": 1.8670756472923214e-11
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -52.82761701732548,
+            "null_projection": 1.5266210160738834e-11
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 120.36595521529476,
+            "null_projection": 1.8670756472923214e-11
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -52.82761701732548,
+            "null_projection": 1.5266210160738834e-11
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 52.82761701732548,
+            "null_projection": 1.5266210160738834e-11
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -120.36595521529476,
+            "null_projection": 1.8670756472923214e-11
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 131.44854618678582,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": [
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.49883468545905707
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.016000072576223025
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.006988819224721637
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.49883468545905707
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.016000072576223025
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.006988819224721637
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.49883468545905707
+          }
+        ]
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_ANKLE_pitch_RE",
+      "joint_type": "revolute",
+      "body_i": "leg_l_link4",
+      "body_j": "leg_l_link5",
+      "motion_state": "free-output",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 1.359812473041063e-13,
+        "axis_misalignment_deg": 0
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.7115175928736384,
+            "null_projection": 8.361648966752484e-12
+          },
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.0413353911751818,
+            "null_projection": 2.7722034797169487e-16
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 26.760471043359267,
+            "null_projection": 1.0969402869002524e-11
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.017270405100627037,
+            "null_projection": 3.107435174936904e-16
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.001905111512429787,
+            "null_projection": 6.001633684650155e-16
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.7115175928736384,
+            "null_projection": 8.361648966752484e-12
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.0413353911751818,
+            "null_projection": 2.7722034797169487e-16
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 26.760471043359267,
+            "null_projection": 1.0969402869002524e-11
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.017270405100627037,
+            "null_projection": 3.107435174936904e-16
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.001905111512429787,
+            "null_projection": 6.001633684650155e-16
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.0413353911751818,
+            "null_projection": 2.7722034797169487e-16
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -26.760471043359267,
+            "null_projection": 1.0969402869002524e-11
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -2.7115175928736384,
+            "null_projection": 8.361648966752484e-12
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 26.897493156778257,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": []
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_TOE_pitch_RE",
+      "joint_type": "revolute",
+      "body_i": "leg_l_link6",
+      "body_j": "leg_l_link7",
+      "motion_state": "position-held",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 0,
+        "axis_misalignment_deg": 0
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 1.264345821387434e-12,
+            "null_projection": 4.500750243260713e-14
+          },
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -1.876508270199432e-14,
+            "null_projection": 1.3472386755649318e-16
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 1.5865381754365662,
+            "null_projection": 6.864221456712548e-15
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.008004735575618408,
+            "null_projection": 5.111568997757664e-17
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.04773727356300382,
+            "null_projection": 8.429170145669753e-14
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 4.966242288307508e-13,
+            "null_projection": 2.1969681346223457e-16
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 1.264345821387434e-12,
+            "null_projection": 4.500750243260713e-14
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -1.876508270199432e-14,
+            "null_projection": 1.3472386755649318e-16
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 1.5865381754365662,
+            "null_projection": 6.864221456712548e-15
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.008004735575618408,
+            "null_projection": 5.111568997757664e-17
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.04773727356300382,
+            "null_projection": 8.429170145669753e-14
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 4.966242288307508e-13,
+            "null_projection": 2.1969681346223457e-16
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 1.876508270199432e-14,
+            "null_projection": 1.3472386755649318e-16
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 1.5865381754365662,
+            "null_projection": 6.864221456712548e-15
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -1.264345821387434e-12,
+            "null_projection": 4.500750243260713e-14
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 1.5865381754365662,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": []
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_P009_RE_L02_L08",
+      "joint_type": "revolute",
+      "body_i": "leg_l_link2",
+      "body_j": "leg_l_link8",
+      "motion_state": "free-output",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 0,
+        "axis_misalignment_deg": 0
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -94.08628278457842,
+            "null_projection": 1.933564922599189e-11
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 158.2936703684496,
+            "null_projection": 3.111765739060627e-11
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -94.08628278457842,
+            "null_projection": 1.933564922599189e-11
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 158.2936703684496,
+            "null_projection": 3.111765739060627e-11
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 158.2936703684496,
+            "null_projection": 3.111765739060627e-11
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 94.08628278457842,
+            "null_projection": 1.933564922599189e-11
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 184.14427682373145,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": [
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.49858636723928823
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.05443162603972553
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.006305946561579168
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.49858636723928823
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.05443162603972553
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.006305946561579168
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.49858636723928823
+          }
+        ]
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_P010_S_L09_L03",
+      "joint_type": "spherical",
+      "body_i": "leg_l_link9",
+      "body_j": "leg_l_link3",
+      "motion_state": "passive",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 5.684341886080802e-14,
+        "axis_misalignment_deg": 14.644808247263345
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -29.56575706103909,
+            "null_projection": 5.636495897700244e-12
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -27.132281974238182,
+            "null_projection": 5.089516550094125e-12
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -29.56575706103909,
+            "null_projection": 5.636495897700244e-12
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -27.132281974238182,
+            "null_projection": 5.089516550094125e-12
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -19.8742062939237,
+            "null_projection": 3.707899109704831e-12
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 34.86130576883943,
+            "null_projection": 6.627574889107163e-12
+          }
+        ],
+        "indeterminate_components": [
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.4985863672392889
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.4985863672392889
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.49858636723928884
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": null
+          }
+        ]
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_P011_S_L10_L03",
+      "joint_type": "spherical",
+      "body_i": "leg_l_link10",
+      "body_j": "leg_l_link3",
+      "motion_state": "passive",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 6.355287432313019e-14,
+        "axis_misalignment_deg": 1.5041869999953763
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -64.52052566058919,
+            "null_projection": 1.3733940278188122e-11
+          },
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.005991096840967436,
+            "null_projection": 2.929275025726707e-15
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 160.70432562407282,
+            "null_projection": 3.618414137952348e-11
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -64.52052566058919,
+            "null_projection": 1.3733940278188122e-11
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.005991096840967436,
+            "null_projection": 2.929275025726707e-15
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 160.70432562407282,
+            "null_projection": 3.618414137952348e-11
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 172.72493780362473,
+            "null_projection": 3.854291097996541e-11
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.005991096840967436,
+            "null_projection": 2.929275025726707e-15
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -12.444853014027387,
+            "null_projection": 3.5152832216826004e-12
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 12.44485445611912,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": []
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_HIP_pitch_T",
+      "joint_type": "translational",
+      "body_i": "leg_l_link10",
+      "body_j": "leg_l_link11",
+      "motion_state": "actuated-translation",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "axial_separation_mm": -15.294170166957711,
+        "lateral_offset_mm": 0.0002359711607565411,
+        "axis_misalignment_deg": 0,
+        "common_axis_xyz": [
+          -0.3481383332792657,
+          0.000007148000001785559,
+          0.9374431720645477
+        ]
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -2.250248332233533,
+            "null_projection": 2.424838981749105e-13
+          },
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -0.004620889898423452,
+            "null_projection": 3.2736434603082007e-15
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -0.8356748378601104,
+            "null_projection": 9.005126545056742e-14
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.00048668104287368744,
+            "null_projection": 1.8248015383001473e-16
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.24120072581804716,
+            "null_projection": 1.7887659966537368e-14
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.00018001743873053328,
+            "null_projection": 6.200011816110545e-17
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 64.52052572311804,
+            "null_projection": 1.3717291938862405e-11
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -0.005991831985068129,
+            "null_projection": 3.329654865767579e-15
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -180.63146360394003,
+            "null_projection": 3.6193993421309586e-11
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.00048668104287368744,
+            "null_projection": 1.8248015383001473e-16
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.24120072581804716,
+            "null_projection": 1.7887659966537368e-14
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.00018001743873053328,
+            "null_projection": 6.200011816110545e-17
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -191.79380054591738,
+            "null_projection": 3.8705327160694024e-11
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -0.004614517881381486,
+            "null_projection": 3.273754294750212e-15
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.400410392037275,
+            "null_projection": 2.5866517074718547e-13
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.400414827477914,
+            "null_projection": null
+          },
+          {
+            "name": "actuator_axial_force",
+            "unit": "N",
+            "status": "unique",
+            "value": -191.79380054591735,
+            "null_projection": 3.870532716069402e-11
+          }
+        ],
+        "indeterminate_components": []
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_P013_F_L8_L12",
+      "joint_type": "fixed",
+      "body_i": "leg_l_link8",
+      "body_j": "leg_l_ball_link12",
+      "motion_state": "passive",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 0,
+        "axis_misalignment_deg": 0
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -64.52052572353973,
+            "null_projection": 1.3705607356003626e-11
+          },
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.005991832835017704,
+            "null_projection": 3.6077964504796675e-15
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 181.98258412385184,
+            "null_projection": 3.620231045245584e-11
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 3.9164776169741854e-13,
+            "null_projection": 1.3470797159759464e-16
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 7.647524434227546e-13,
+            "null_projection": 2.408295934162137e-14
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 1.0221022745274478e-12,
+            "null_projection": 1.3863042737421075e-16
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -64.52052572353973,
+            "null_projection": 1.3705607356003626e-11
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.005991832835017704,
+            "null_projection": 3.6077964504796675e-15
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 181.98258412385184,
+            "null_projection": 3.620231045245584e-11
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 3.9164776169741854e-13,
+            "null_projection": 1.3470797159759464e-16
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 7.647524434227546e-13,
+            "null_projection": 2.408295934162137e-14
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 1.0221022745274478e-12,
+            "null_projection": 1.3863042737421075e-16
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 192.72756536324943,
+            "null_projection": 3.867981025284049e-11
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.005991832835017704,
+            "null_projection": 3.6077964504796675e-15
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -11.689512957825954,
+            "null_projection": 1.52421583025144e-12
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 11.689514493478404,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": []
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_P013_S_L12_L11",
+      "joint_type": "spherical",
+      "body_i": "leg_l_ball_link12",
+      "body_j": "leg_l_link11",
+      "motion_state": "passive",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 3.1776437161565096e-14,
+        "axis_misalignment_deg": 3.003331594795502
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -64.5205257235381,
+            "null_projection": 1.370855689499563e-11
+          },
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.005991832834338198,
+            "null_projection": 3.422813716608382e-15
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 181.80933062670044,
+            "null_projection": 3.6199246806806055e-11
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -64.5205257235381,
+            "null_projection": 1.370855689499563e-11
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.005991832834338198,
+            "null_projection": 3.422813716608382e-15
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 181.80933062670044,
+            "null_projection": 3.6199246806806055e-11
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 192.5680757963218,
+            "null_projection": 3.8678142115111775e-11
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.005991832834338198,
+            "null_projection": 3.422813716608382e-15
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -11.621838351684339,
+            "null_projection": 1.5203039323135668e-12
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 11.621839896278972,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": []
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_P013_RE_L08_L09",
+      "joint_type": "revolute",
+      "body_i": "leg_l_link8",
+      "body_j": "leg_l_link9",
+      "motion_state": "free-output",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 3.1776437161565096e-14,
+        "axis_misalignment_deg": 0
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -29.56575706103838,
+            "null_projection": 5.632575875751213e-12
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -25.51098697180665,
+            "null_projection": 5.087424881300726e-12
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -29.56575706103838,
+            "null_projection": 5.632575875751213e-12
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -25.51098697180665,
+            "null_projection": 5.087424881300726e-12
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -25.51098697180665,
+            "null_projection": 5.087424881300726e-12
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 29.56575706103838,
+            "null_projection": 5.632575875751213e-12
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 39.05053708808663,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": [
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.498586367239288
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.022769324514833503
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.025207639101536353
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.498586367239288
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.022769324514833503
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.025207639101536353
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.498586367239288
+          }
+        ]
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_P014_S_L03_L13",
+      "joint_type": "spherical",
+      "body_i": "leg_l_link3",
+      "body_j": "leg_l_link13",
+      "motion_state": "passive",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 5.728578676879116e-14,
+        "axis_misalignment_deg": 0.9790962318206585
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -56.73432550769974,
+            "null_projection": 8.694405727960556e-12
+          },
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -0.005839826636183425,
+            "null_projection": 2.6612022750511564e-15
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 148.50776140089928,
+            "null_projection": 2.1347728368091285e-11
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -56.73432550769974,
+            "null_projection": 8.694405727960556e-12
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -0.005839826636183425,
+            "null_projection": 2.6612022750511564e-15
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 148.50776140089928,
+            "null_projection": 2.1347728368091285e-11
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 157.92498929964958,
+            "null_projection": 2.2950296113894397e-11
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -0.005839826636183425,
+            "null_projection": 2.6612022750511564e-15
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -18.24929154311537,
+            "null_projection": 2.1452519024036853e-12
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 18.249292477496144,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": []
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_KNEE_pitch_T",
+      "joint_type": "translational",
+      "body_i": "leg_l_link13",
+      "body_j": "leg_l_link14",
+      "motion_state": "actuated-translation",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "axial_separation_mm": -28.41508904333582,
+        "lateral_offset_mm": 0.000616801665640521,
+        "axis_misalignment_deg": 0,
+        "common_axis_xyz": [
+          0.3871469613896073,
+          0.000010701000001980222,
+          -0.9220180205246981
+        ]
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -2.3334203103095446,
+            "null_projection": 2.4233301883472787e-13
+          },
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -0.004335399799164175,
+            "null_projection": 2.7436151700587337e-15
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -0.9797819663656446,
+            "null_projection": 1.0175340424417441e-13
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.000496551966326927,
+            "null_projection": 1.7740080169281069e-16
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.26834149018714676,
+            "null_projection": 1.358179687623876e-14
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.00019928194986732116,
+            "null_projection": 6.92478916855742e-17
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -56.73432544125098,
+            "null_projection": 8.678834938700234e-12
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -0.005839077068964794,
+            "null_projection": 2.91344875430388e-15
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 128.5798423260362,
+            "null_projection": 2.1348149312663224e-11
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.000496551966326927,
+            "null_projection": 1.7740080169281069e-16
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.26834149018714676,
+            "null_projection": 1.358179687623876e-14
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.00019928194986732116,
+            "null_projection": 6.92478916855742e-17
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -140.51745346438304,
+            "null_projection": 2.3043362968161435e-11
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.004346771210916112,
+            "null_projection": 2.742830001700419e-15
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.530775167305828,
+            "null_projection": 2.628289398080333e-13
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.530778900234432,
+            "null_projection": null
+          },
+          {
+            "name": "actuator_axial_force",
+            "unit": "N",
+            "status": "unique",
+            "value": -140.51745346438304,
+            "null_projection": 2.3043362968161435e-11
+          }
+        ],
+        "indeterminate_components": []
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_P016_F_L16_B15",
+      "joint_type": "fixed",
+      "body_i": "leg_l_link16",
+      "body_j": "leg_l_ball_link15",
+      "motion_state": "passive",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 0,
+        "axis_misalignment_deg": 8.537736462515939e-7
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 56.734325442004966,
+            "null_projection": 8.624005726892969e-12
+          },
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.005839075386715911,
+            "null_projection": 2.7767855369969378e-15
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -127.22870964540635,
+            "null_projection": 2.1358142759385928e-11
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 6.166425587209306e-14,
+            "null_projection": 1.4233751753606013e-16
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 6.853108852922449e-13,
+            "null_projection": 4.6930485878187724e-14
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -3.176927084036103e-13,
+            "null_projection": 8.174978775710516e-17
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 56.734325442004966,
+            "null_projection": 8.624005726892969e-12
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.005839075386715911,
+            "null_projection": 2.7767855369969378e-15
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -127.22870964540635,
+            "null_projection": 2.1358142759385928e-11
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 6.166425587209306e-14,
+            "null_projection": 1.4233751753606013e-16
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 6.853108852922449e-13,
+            "null_projection": 4.6930485878187724e-14
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -3.176927084036103e-13,
+            "null_projection": 8.174978775710516e-17
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -134.3064128744084,
+            "null_projection": 2.2411107184979017e-11
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.00583907538671591,
+            "null_projection": 2.7767855369969374e-15
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -36.98264055206691,
+            "null_projection": 5.318459518617582e-12
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 36.98264101302374,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": []
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_P016_S_B15_L14",
+      "joint_type": "spherical",
+      "body_i": "leg_l_ball_link15",
+      "body_j": "leg_l_link14",
+      "motion_state": "passive",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 7.105427357601002e-14,
+        "axis_misalignment_deg": 17.88310443092417
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 56.73432544200508,
+            "null_projection": 8.654235699285954e-12
+          },
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.0058390753880810985,
+            "null_projection": 2.8121235863186975e-15
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -127.40196637875188,
+            "null_projection": 2.1352221487497965e-11
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 56.73432544200508,
+            "null_projection": 8.654235699285954e-12
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.0058390753880810985,
+            "null_projection": 2.8121235863186975e-15
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -127.40196637875188,
+            "null_projection": 2.1352221487497965e-11
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -134.4777044456807,
+            "null_projection": 2.240979324223496e-11
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.005839075388081098,
+            "null_projection": 2.812123586318697e-15
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -36.95661953631738,
+            "null_projection": 5.349235910879748e-12
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 36.95661999759877,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": []
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_P016_RE_L16_L17",
+      "joint_type": "revolute",
+      "body_i": "leg_l_link16",
+      "body_j": "leg_l_link17",
+      "motion_state": "free-output",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 5.684341886080802e-14,
+        "axis_misalignment_deg": 0
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -120.36594843228363,
+            "null_projection": 1.926330486319719e-11
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 96.97994058668813,
+            "null_projection": 1.5294683488143967e-11
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -120.36594843228363,
+            "null_projection": 1.926330486319719e-11
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 96.97994058668813,
+            "null_projection": 1.5294683488143967e-11
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 96.97994058668813,
+            "null_projection": 1.5294683488143967e-11
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 120.36594843228363,
+            "null_projection": 1.926330486319719e-11
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 154.5738348434195,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": [
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.49883468545905835
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.028665431841405357
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.036058439562834416
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.49883468545905835
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.028665431841405357
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.036058439562834416
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.49883468545905835
+          }
+        ]
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_P017_RE_L03_L16",
+      "joint_type": "revolute",
+      "body_i": "leg_l_link3",
+      "body_j": "leg_l_link16",
+      "motion_state": "free-output",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 6.355287432313019e-14,
+        "axis_misalignment_deg": 0
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -63.6316229902771,
+            "null_projection": 1.0682404594440662e-11
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -28.258018912586103,
+            "null_projection": 6.077469307432031e-12
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -63.6316229902771,
+            "null_projection": 1.0682404594440662e-11
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -28.258018912586103,
+            "null_projection": 6.077469307432031e-12
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -28.258018912586103,
+            "null_projection": 6.077469307432031e-12
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 63.6316229902771,
+            "null_projection": 1.0682404594440662e-11
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 69.62398349161613,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": [
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.4988346854590587
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.04704685446886374
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.003956747840813293
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.4988346854590587
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.04704685446886374
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.003956747840813293
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.4988346854590587
+          }
+        ]
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_P018_S_L17_L04",
+      "joint_type": "spherical",
+      "body_i": "leg_l_link17",
+      "body_j": "leg_l_link4",
+      "motion_state": "passive",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 5.684341886080802e-14,
+        "axis_misalignment_deg": 33.59103580987389
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -120.36594843228195,
+            "null_projection": 1.9230967629372658e-11
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 95.00712925506737,
+            "null_projection": 1.530236563712189e-11
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -120.36594843228195,
+            "null_projection": 1.9230967629372658e-11
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 95.00712925506737,
+            "null_projection": 1.530236563712189e-11
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 113.60809610254576,
+            "null_projection": 1.8272563271662406e-11
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 102.9927990261774,
+            "null_projection": 1.64349001073095e-11
+          }
+        ],
+        "indeterminate_components": [
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.4988346854590578
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.4988346854590578
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": 0.4988346854590578
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "indeterminate",
+            "value": null,
+            "null_projection": null
+          }
+        ]
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_P019_S_L18_L04",
+      "joint_type": "spherical",
+      "body_i": "leg_l_link18",
+      "body_j": "leg_l_link4",
+      "motion_state": "passive",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 0,
+        "axis_misalignment_deg": 1.407748617099536
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.711510809860544,
+            "null_projection": 7.896754111415327e-12
+          },
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.04131376591031694,
+            "null_projection": 7.786605909663835e-16
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -5.248988420862933,
+            "null_projection": 1.101464256741621e-11
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.711510809860544,
+            "null_projection": 7.896754111415327e-12
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.04131376591031694,
+            "null_projection": 7.786605909663835e-16
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -5.248988420862933,
+            "null_projection": 1.101464256741621e-11
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -3.798985136211136,
+            "null_projection": 1.3206830367020292e-11
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.04131376591031694,
+            "null_projection": 7.786605909663835e-16
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -4.524586417474042,
+            "null_projection": 3.043141147045713e-12
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 4.524775030478784,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": []
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_ANKLE_pitch_T",
+      "joint_type": "translational",
+      "body_i": "leg_l_link18",
+      "body_j": "leg_l_link19",
+      "motion_state": "actuated-translation",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "axial_separation_mm": 18.026940147972763,
+        "lateral_offset_mm": 0.00036069423742894624,
+        "axis_misalignment_deg": 0,
+        "common_axis_xyz": [
+          -0.5550621620749172,
+          0.000012300000005185777,
+          -0.8318088699223088
+        ]
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 1.8085059958082605,
+            "null_projection": 4.17907277252353e-13
+          },
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -0.04143554621411782,
+            "null_projection": 4.397446785507079e-16
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -1.2068081912973125,
+            "null_projection": 2.7886757454120316e-13
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.004561102560615479,
+            "null_projection": 7.901000000631105e-17
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.18386221912192247,
+            "null_projection": 3.065284350744058e-14
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.0016060528024797248,
+            "null_projection": 6.212800040585203e-17
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -2.7115175962756504,
+            "null_projection": 7.95212146670327e-12
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -0.04133538393680054,
+            "null_projection": 6.015195949657421e-16
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -7.980456213167034,
+            "null_projection": 1.1011806924233163e-11
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.004561102560615479,
+            "null_projection": 7.901000000631105e-17
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.18386221912192247,
+            "null_projection": 3.065284350744058e-14
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.0016060528024797248,
+            "null_projection": 6.212800040585203e-17
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 8.14327457520666,
+            "null_projection": 1.3573640414779371e-11
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.04145339134360149,
+            "null_projection": 4.436943281756755e-16
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -2.1741845524915537,
+            "null_projection": 5.024078154464691e-13
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.174579695469169,
+            "null_projection": null
+          },
+          {
+            "name": "actuator_axial_force",
+            "unit": "N",
+            "status": "unique",
+            "value": 8.143274575206659,
+            "null_projection": 1.3573640414779368e-11
+          }
+        ],
+        "indeterminate_components": []
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_P021_F_L06_B20",
+      "joint_type": "fixed",
+      "body_i": "leg_l_link6",
+      "body_j": "leg_l_ball_link20",
+      "motion_state": "passive",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 0,
+        "axis_misalignment_deg": 8.537736462515939e-7
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.711517592873305,
+            "null_projection": 8.101262131259237e-12
+          },
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.041335391172399046,
+            "null_projection": 2.539105405810215e-16
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 9.037174335915315,
+            "null_projection": 1.0980818889987525e-11
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 4.634982933538442e-13,
+            "null_projection": 5.796185983191241e-17
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -1.3338604000359489e-14,
+            "null_projection": 8.399019337634156e-14
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 7.037102083061877e-13,
+            "null_projection": 5.85127923051007e-17
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.711517592873305,
+            "null_projection": 8.101262131259237e-12
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.041335391172399046,
+            "null_projection": 2.539105405810215e-16
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 9.037174335915315,
+            "null_projection": 1.0980818889987525e-11
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 4.634982933538442e-13,
+            "null_projection": 5.796185983191241e-17
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -1.3338604000359489e-14,
+            "null_projection": 8.399019337634156e-14
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 7.037102083061877e-13,
+            "null_projection": 5.85127923051007e-17
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 9.03764744736609,
+            "null_projection": 1.0982232659709981e-11
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.041335391172399046,
+            "null_projection": 2.539105405810215e-16
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -2.709940267110154,
+            "null_projection": 8.09934549343842e-12
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.710255498263665,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": []
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_P021_S_B20_L19",
+      "joint_type": "spherical",
+      "body_i": "leg_l_ball_link20",
+      "body_j": "leg_l_link19",
+      "motion_state": "passive",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 1.4210854715202004e-14,
+        "axis_misalignment_deg": 22.652251382900886
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.7115175928730118,
+            "null_projection": 8.022954890000698e-12
+          },
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.04133539117317101,
+            "null_projection": 3.972331779467678e-16
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 8.863920838764878,
+            "null_projection": 1.0998855523846322e-11
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.7115175928730118,
+            "null_projection": 8.022954890000698e-12
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.04133539117317101,
+            "null_projection": 3.972331779467678e-16
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 8.863920838764878,
+            "null_projection": 1.0998855523846322e-11
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0,
+            "null_projection": 0
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 8.864393952854455,
+            "null_projection": 1.1000255626102645e-11
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.04133539117317101,
+            "null_projection": 3.972331779467678e-16
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -2.709970505549366,
+            "null_projection": 8.021035105385584e-12
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.7102857331858803,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": []
+      }
+    },
+    {
+      "joint_id": "J_LEG_L_ANKLE_roll_RE",
+      "joint_type": "revolute",
+      "body_i": "leg_l_link5",
+      "body_j": "leg_l_link6",
+      "motion_state": "position-held",
+      "contact_load_mapping": "not_mapped",
+      "geometry": {
+        "marker_separation_mm": 0,
+        "axis_misalignment_deg": 8.537736462515939e-7
+      },
+      "uniqueness": {
+        "unique_components": [
+          {
+            "name": "passive_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.7115175928737214,
+            "null_projection": 8.278680265906409e-12
+          },
+          {
+            "name": "passive_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.04133539117478826,
+            "null_projection": 7.191574718032216e-17
+          },
+          {
+            "name": "passive_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 16.198170117943583,
+            "null_projection": 1.098010695875331e-11
+          },
+          {
+            "name": "passive_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.019860240995456108,
+            "null_projection": 2.522972755068338e-16
+          },
+          {
+            "name": "passive_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.11020558182515242,
+            "null_projection": 4.050039258559397e-13
+          },
+          {
+            "name": "passive_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.0019056480316439785,
+            "null_projection": 6.558825350632877e-16
+          },
+          {
+            "name": "total_Fx_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.7115175928737214,
+            "null_projection": 8.278680265906409e-12
+          },
+          {
+            "name": "total_Fy_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 0.04133539117478826,
+            "null_projection": 7.191574718032216e-17
+          },
+          {
+            "name": "total_Fz_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 16.198170117943583,
+            "null_projection": 1.098010695875331e-11
+          },
+          {
+            "name": "total_Mx_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.019860240995456108,
+            "null_projection": 2.522972755068338e-16
+          },
+          {
+            "name": "total_My_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": 0.11020558182515242,
+            "null_projection": 4.050039258559397e-13
+          },
+          {
+            "name": "total_Mz_Nm",
+            "unit": "N.m",
+            "status": "unique",
+            "value": -0.0019056480316439785,
+            "null_projection": 6.558825350632877e-16
+          },
+          {
+            "name": "total_axial_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 2.7086904375757377,
+            "null_projection": 8.276763749638114e-12
+          },
+          {
+            "name": "total_radial_1_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 16.198643120326153,
+            "null_projection": 1.098155169379298e-11
+          },
+          {
+            "name": "total_radial_2_N",
+            "unit": "N",
+            "status": "unique",
+            "value": -0.04133539117478826,
+            "null_projection": 7.191574718032216e-17
+          },
+          {
+            "name": "total_radial_magnitude_N",
+            "unit": "N",
+            "status": "unique",
+            "value": 16.198695859675045,
+            "null_projection": null
+          }
+        ],
+        "indeterminate_components": []
+      }
+    }
+  ],
+  "contact_load_qualification": "not_mapped",
+  "interpretation": "运动副合约束反力尚未映射为销轴、球铰、轴承或移动副的摩擦接触法向载荷。"
+}
