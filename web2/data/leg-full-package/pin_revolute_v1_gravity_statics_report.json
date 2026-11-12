@@ -1,6 +1,6 @@
 {
   "schema": "et2-leg-pin-revolute-v1-gravity-statics-v1",
-  "generated_at": "2026-11-12T03:02:25.396Z",
+  "generated_at": "2026-11-12T03:04:04.406Z",
   "model": {
     "id": "pin-revolute-v1",
     "parent": "legacy-ball",
