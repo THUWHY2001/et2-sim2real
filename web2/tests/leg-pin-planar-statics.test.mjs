@@ -23,4 +23,8 @@ for(const joint of result.joint_reactions)for(const item of Object.values(joint.
 const j2Reaction=result.joint_reactions.find(item=>item.joint_id==="J_LEG_L_HIP_pitch_RE");assert.deepEqual(j2Reaction.components.My_Nm,{status:"not_transmitted",value:null});assert.ok(Number.isFinite(j2Reaction.force_direction_deg));
 assert.equal(result.boundary.load,"gravity-quasi-static-planar");
 assert.deepEqual(result.boundary.excluded,["inertia","assembly_preload","friction","3d_support_load_distribution","J5_roll"]);
+const zero=createLegPinPlanarStatics(model,kinematics,{gravityScale:0}).solve(solution),doubled=createLegPinPlanarStatics(model,kinematics,{gravityScale:2}).solve(solution);
+assert.ok(zero.actuator_forces.every(item=>item.status==="unique"&&Math.abs(item.value)<1e-9));
+for(let index=0;index<result.actuator_forces.length;index++)assert.ok(Math.abs(doubled.actuator_forces[index].value-2*result.actuator_forces[index].value)<1e-7);
+for(const output of ["J2","J3","J4"]){assert.ok(Math.abs(zero.gravity_torque_Nm[output])<1e-10);assert.ok(Math.abs(doubled.gravity_torque_Nm[output]-2*result.gravity_torque_Nm[output])<1e-9)}
 console.log("leg pin planar ideal statics regression test passed");
