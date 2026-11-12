@@ -1,5 +1,5 @@
 import {createLegPinRuntime} from "./leg-pin-runtime.mjs";
-import {solveRankRevealing} from "./rank-revealing-svd.mjs";
+import {__test as svdTest,solveRankRevealing} from "./rank-revealing-svd.mjs";
 
 const OUTPUTS=["J2","J3","J4"],RODS=["hip","knee","ankle"];
 const dot=(a,b)=>a.reduce((sum,value,index)=>sum+value*b[index],0);
@@ -36,6 +36,6 @@ export function createLegPinPlanarKinematics(model){
     return{complete:solution.complete&&rank.rank===57,model_id:model.meta.model_id,outputs:target,poses,com_world_xz_mm:com,rod_lengths_m:rodLengths,constraint_jacobian:{matrix:rows,row_metadata:rowMetadata,rows:rows.length,columns:rows[0].length,rank:rank.rank,mobility:rows[0].length-rank.rank,condition_number:rank.conditionNumber,singular_values:rank.singularValues},constraint_residuals:residuals,max_constraint_residual_mm:Math.max(0,...positionResiduals.map(item=>Math.abs(item.value_mm))),max_angular_residual_rad:Math.max(0,...angleResiduals.map(item=>Math.abs(item.value_rad))),source_solution:solution};
   }
   const solveOutput=(output,delta)=>{if(!OUTPUTS.includes(output))throw new Error(`unsupported planar output ${output}`);return solveAngles({...nominal,[output]:nominal[output]+Number(delta)})};
-  function lengthJacobian(outputs={}){const h=.001,J=RODS.map(()=>Array(3).fill(0));for(let column=0;column<OUTPUTS.length;column++){const output=OUTPUTS[column],lo=solveAngles({...outputs,[output]:Number(outputs[output]??nominal[output])-h}),hi=solveAngles({...outputs,[output]:Number(outputs[output]??nominal[output])+h}),denominator=2*h*Math.PI/180;for(let row=0;row<RODS.length;row++)J[row][column]=(hi.rod_lengths_m[RODS[row]]-lo.rod_lengths_m[RODS[row]])/denominator}const solved=solveRankRevealing(J,[0,0,0],{relativeTolerance:1e-10});return{rows:RODS,columns:OUTPUTS,matrix:J,rank:solved.rank,determinant_m3_per_rad3:determinant3(J),condition_number:solved.conditionNumber,singular_values:solved.singularValues}}
+  function lengthJacobian(outputs={}){const h=.001,J=RODS.map(()=>Array(3).fill(0));for(let column=0;column<OUTPUTS.length;column++){const output=OUTPUTS[column],lo=solveAngles({...outputs,[output]:Number(outputs[output]??nominal[output])-h}),hi=solveAngles({...outputs,[output]:Number(outputs[output]??nominal[output])+h}),denominator=2*h*Math.PI/180;for(let row=0;row<RODS.length;row++)J[row][column]=(hi.rod_lengths_m[RODS[row]]-lo.rod_lengths_m[RODS[row]])/denominator}const solved=solveRankRevealing(J,[0,0,0],{relativeTolerance:1e-10}),physical=svdTest.jacobiSvd(J),singular=physical.singularValues,condition=singular[0]/singular[2];return{rows:RODS,columns:OUTPUTS,matrix:J,rank:solved.rank,determinant_m3_per_rad3:determinant3(J),condition_number:condition,singular_values:singular}}
   return Object.freeze({model,nominal,solveAngles,solveOutput,lengthJacobian,runtime});
 }

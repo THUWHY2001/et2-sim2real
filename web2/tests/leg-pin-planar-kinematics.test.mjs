@@ -24,6 +24,7 @@ assert.ok(nominal.max_constraint_residual_mm<1e-8);
 const length=kinematics.lengthJacobian(nominal.outputs);
 assert.equal(length.rank,3);
 assert.ok(Math.abs(length.determinant_m3_per_rad3)>1e-8);
+assert.ok(length.condition_number>1.05&&length.condition_number<1.1,"condition number must use the physical unscaled length Jacobian");
 
 for(const output of ["J2","J3","J4"])for(const delta of [-10,10]){
   const solution=kinematics.solveOutput(output,delta);assert.equal(solution.complete,true,`${output} ${delta}`);assert.equal(solution.constraint_jacobian.mobility,3);assert.ok(solution.max_constraint_residual_mm<1e-6,`${output} ${delta}: ${solution.max_constraint_residual_mm}`);const J=kinematics.lengthJacobian(solution.outputs);assert.equal(J.rank,3);assert.ok(Number.isFinite(J.condition_number));
