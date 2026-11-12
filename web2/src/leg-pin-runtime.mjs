@@ -101,5 +101,11 @@ export function createLegPinRuntime(legacyModel){
   };
   const solveRods=inputs=>correct(legacy.solveRods(inputs));
   const solveOutput=(joint,delta)=>correct(legacy.solveOutput(joint,delta));
-  return Object.freeze({model,nominal:{...legacy.nominal},solveRods,solveOutput,validatePinConstraints:(frame,override=model)=>validatePinConstraints(frame,override),legacy});
+  const signedRates=(joint,delta)=>{
+    const result=legacy.signedRates(joint,delta);
+    return{...result,solution:solveOutput(joint,delta),definition:"positive actuator force on J body dotted with signed relative velocity; pin-revolute-v1 geometry"};
+  };
+  const potentialEnergy=solution=>Object.entries(solution.frame.mass.COM_world_mm).reduce((sum,[name,com])=>sum+(Number(model.parts[name].mass_kg)||0)*9.80665*com[2]/1000,0);
+  const gravityHoldingTorque=(joint,delta)=>{const h=.001,lo=solveOutput(joint,delta-h),hi=solveOutput(joint,delta+h);return lo.complete&&hi.complete?{complete:true,torqueNm:(potentialEnergy(hi)-potentialEnergy(lo))/(2*h*Math.PI/180)}:{complete:false,torqueNm:NaN}};
+  return Object.freeze({model,nominal:{...legacy.nominal},solveRods,solveOutput,signedRates,gravityHoldingTorque,validatePinConstraints:(frame,override=model)=>validatePinConstraints(frame,override),legacy});
 }
