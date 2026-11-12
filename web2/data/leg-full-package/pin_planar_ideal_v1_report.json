@@ -1203,6 +1203,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -1831,6 +1833,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -2459,6 +2463,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -3087,6 +3093,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -3715,6 +3723,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -4343,6 +4353,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -4971,6 +4983,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -5599,6 +5613,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -6227,6 +6243,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -6855,6 +6873,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 7.105427357601002e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -7483,6 +7503,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -8111,6 +8133,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -8739,6 +8763,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -9367,6 +9393,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -9995,6 +10023,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -10623,6 +10653,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -11251,6 +11283,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -11879,6 +11913,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -12507,6 +12543,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -13135,6 +13173,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1191048088221578e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -13763,6 +13803,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -14391,6 +14433,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.4210854715202004e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -15019,6 +15063,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -15647,6 +15693,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -16275,6 +16323,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.7053025658242404e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -16903,6 +16953,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -17531,6 +17583,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -18159,6 +18213,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -18787,6 +18843,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -19415,6 +19473,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -20043,6 +20103,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -20671,6 +20733,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -21299,6 +21363,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -21927,6 +21993,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -22555,6 +22623,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -23183,6 +23253,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -23811,6 +23883,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.7053025658242404e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -24439,6 +24513,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -25067,6 +25143,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -25695,6 +25773,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.4210854715202004e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -26323,6 +26403,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -26951,6 +27033,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1191048088221578e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -27579,6 +27663,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -28207,6 +28293,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -28835,6 +28923,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -29463,6 +29553,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -30091,6 +30183,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -30719,6 +30813,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -31347,6 +31443,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -31975,6 +32073,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -32603,6 +32703,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -33231,6 +33333,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 7.105427357601002e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -33859,6 +33963,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -34487,6 +34593,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -35115,6 +35223,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -35743,6 +35853,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -36371,6 +36483,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -36999,6 +37113,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -37627,6 +37743,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -38255,6 +38373,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -38883,6 +39003,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -39511,6 +39633,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -40139,6 +40263,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -40767,6 +40893,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -41395,6 +41523,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -42023,6 +42153,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -42651,6 +42783,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -43279,6 +43413,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -43907,6 +44043,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -44535,6 +44673,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -45163,6 +45303,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -45791,6 +45933,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -46419,6 +46563,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -47047,6 +47193,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -47675,6 +47823,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 6.394884621840902e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -48303,6 +48453,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -48931,6 +49083,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -49559,6 +49713,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -50187,6 +50343,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -50815,6 +50973,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -51443,6 +51603,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -52071,6 +52233,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -52699,6 +52863,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 6.661338147750939e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -53327,6 +53493,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -53955,6 +54123,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.7053025658242404e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -54583,6 +54753,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -55211,6 +55383,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -55839,6 +56013,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.7053025658242404e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -56467,6 +56643,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -57095,6 +57273,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -57723,6 +57903,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -58351,6 +58533,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -58979,6 +59163,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -59607,6 +59793,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.7053025658242404e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -60235,6 +60423,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -60863,6 +61053,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -61491,6 +61683,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.7053025658242404e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -62119,6 +62313,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -62747,6 +62943,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 6.661338147750939e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -63375,6 +63573,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -64003,6 +64203,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -64631,6 +64833,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -65259,6 +65463,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -65887,6 +66093,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.7053025658242404e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -66515,6 +66723,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -67143,6 +67353,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -67771,6 +67983,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 6.394884621840902e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -68399,6 +68613,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -69027,6 +69243,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -69655,6 +69873,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -70283,6 +70503,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -70911,6 +71133,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -71539,6 +71763,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -72167,6 +72393,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -72795,6 +73023,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -73423,6 +73653,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -74051,6 +74283,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -74679,6 +74913,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -75307,6 +75543,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -75935,6 +76173,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -76563,6 +76803,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -77204,6 +77446,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -77832,6 +78076,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -78460,6 +78706,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -79088,6 +79336,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.4210854715202004e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -79716,6 +79966,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -80344,6 +80596,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -80972,6 +81226,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -81600,6 +81856,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.4210854715202004e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -82228,6 +82486,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -82856,6 +83116,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 3.410605131648481e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -83484,6 +83746,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -84112,6 +84376,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -84740,6 +85006,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -85368,6 +85636,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -85996,6 +86266,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -86624,6 +86896,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -87252,6 +87526,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 9.414691248821327e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -87880,6 +88156,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.7053025658242404e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -88508,6 +88786,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.4210854715202004e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -89136,6 +89416,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -89764,6 +90046,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -90392,6 +90676,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -91020,6 +91306,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -91648,6 +91936,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -92276,6 +92566,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -92904,6 +93196,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -93532,6 +93826,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -94160,6 +94456,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -94788,6 +95086,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.4210854715202004e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -95416,6 +95716,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -96044,6 +96346,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -96672,6 +96976,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -97300,6 +97606,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.4210854715202004e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -97928,6 +98236,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -98556,6 +98866,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -99184,6 +99496,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -99812,6 +100126,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -100440,6 +100756,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -101068,6 +101386,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -101696,6 +102016,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -102324,6 +102646,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -102952,6 +103276,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -103580,6 +103906,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.4210854715202004e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -104208,6 +104536,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.7053025658242404e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -104836,6 +105166,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 9.414691248821327e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -105464,6 +105796,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -106092,6 +106426,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -106720,6 +107056,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -107348,6 +107686,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -107976,6 +108316,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -108604,6 +108946,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -109232,6 +109576,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 3.410605131648481e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -109860,6 +110206,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -110488,6 +110836,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.4210854715202004e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -111116,6 +111466,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -111744,6 +112096,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -112372,6 +112726,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -113000,6 +113356,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.4210854715202004e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -113628,6 +113986,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -114256,6 +114616,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -114884,6 +115246,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -115512,6 +115876,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -116140,6 +116506,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 6.039613253960852e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -116768,6 +117136,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -117396,6 +117766,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.7053025658242404e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -118024,6 +118396,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -118652,6 +119026,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -119280,6 +119656,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -119908,6 +120286,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -120536,6 +120916,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.7053025658242404e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -121164,6 +121546,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -121792,6 +122176,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.4210854715202004e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -122420,6 +122806,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -123048,6 +123436,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -123676,6 +124066,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -124304,6 +124696,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -124932,6 +125326,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -125560,6 +125956,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -126188,6 +126586,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -126816,6 +127216,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -127444,6 +127846,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -128072,6 +128476,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -128700,6 +129106,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -129328,6 +129736,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.4210854715202004e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -129956,6 +130366,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -130584,6 +130996,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -131212,6 +131626,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -131840,6 +132256,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.4210854715202004e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -132468,6 +132886,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -133096,6 +133516,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -133724,6 +134146,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -134352,6 +134776,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -134980,6 +135406,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -135608,6 +136036,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -136236,6 +136666,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -136864,6 +137296,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -137492,6 +137926,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -138120,6 +138556,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.4210854715202004e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -138748,6 +139186,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -139376,6 +139816,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -140004,6 +140446,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -140632,6 +141076,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -141260,6 +141706,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -141888,6 +142336,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -142516,6 +142966,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -143144,6 +143596,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -143772,6 +144226,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -144400,6 +144856,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -145028,6 +145486,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -145656,6 +146116,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.4210854715202004e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -146284,6 +146746,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -146912,6 +147376,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -147540,6 +148006,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -148168,6 +148636,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -148796,6 +149266,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -149424,6 +149896,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -150052,6 +150526,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.7053025658242404e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -150680,6 +151156,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -151308,6 +151786,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 6.039613253960852e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -151936,6 +152416,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -152564,6 +153046,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -153205,6 +153689,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -153833,6 +154319,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -154461,6 +154949,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -155089,6 +155579,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -155717,6 +156209,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -156345,6 +156839,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -156973,6 +157469,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 6.750155989720952e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -157601,6 +158099,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.950795411990839e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -158229,6 +158729,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.950795411990839e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -158857,6 +159359,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -159485,6 +159989,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 9.947598300641403e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -160113,6 +160619,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 6.217248937900877e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -160741,6 +161249,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -161369,6 +161879,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -161997,6 +162509,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -162625,6 +163139,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -163253,6 +163769,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -163881,6 +164399,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -164509,6 +165029,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -165137,6 +165659,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -165765,6 +166289,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -166393,6 +166919,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -167021,6 +167549,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -167649,6 +168179,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -168277,6 +168809,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -168905,6 +169439,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -169533,6 +170069,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 7.283063041541027e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -170161,6 +170699,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -170789,6 +171329,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 6.927791673660977e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -171417,6 +171959,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -172045,6 +172589,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -172673,6 +173219,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -173301,6 +173849,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 6.927791673660977e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -173929,6 +174479,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -174557,6 +175109,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 7.283063041541027e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -175185,6 +175739,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -175813,6 +176369,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -176441,6 +176999,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -177069,6 +177629,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -177697,6 +178259,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -178325,6 +178889,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -178953,6 +179519,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -179581,6 +180149,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -180209,6 +180779,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -180837,6 +181409,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -181465,6 +182039,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 8.526512829121202e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -182093,6 +182669,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -182721,6 +183299,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -183349,6 +183929,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -183977,6 +184559,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 6.217248937900877e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -184605,6 +185189,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 9.947598300641403e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -185233,6 +185819,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -185861,6 +186449,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -186489,6 +187079,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -187117,6 +187709,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -187745,6 +188339,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -188373,6 +188969,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -189001,6 +189599,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -189629,6 +190229,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -190257,6 +190859,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -190885,6 +191489,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -191513,6 +192119,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -192141,6 +192749,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.861977570020827e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -192769,6 +193379,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -193397,6 +194009,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -194025,6 +194639,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -194653,6 +195269,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -195281,6 +195899,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -195909,6 +196529,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -196537,6 +197159,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -197165,6 +197789,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1546319456101628e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -197793,6 +198419,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -198421,6 +199049,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -199049,6 +199679,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -199677,6 +200309,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.2079226507921703e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -200305,6 +200939,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -200933,6 +201569,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -201561,6 +202199,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -202189,6 +202829,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -202817,6 +203459,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -203445,6 +204089,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -204073,6 +204719,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -204701,6 +205349,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -205329,6 +205979,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -205957,6 +206609,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -206585,6 +207239,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -207213,6 +207869,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -207841,6 +208499,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -208469,6 +209129,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -209097,6 +209759,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -209725,6 +210389,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -210353,6 +211019,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -210981,6 +211649,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -211609,6 +212279,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -212237,6 +212909,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -212865,6 +213539,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -213493,6 +214169,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -214121,6 +214799,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -214749,6 +215429,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -215377,6 +216059,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -216005,6 +216689,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -216633,6 +217319,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -217261,6 +217949,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -217889,6 +218579,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -218517,6 +219209,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -219145,6 +219839,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 6.572520305780927e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -219773,6 +220469,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.2079226507921703e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -220401,6 +221099,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -221029,6 +221729,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -221657,6 +222359,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -222285,6 +222989,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -222913,6 +223619,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -223541,6 +224249,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -224169,6 +224879,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -224797,6 +225509,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 5.684341886080802e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -225425,6 +226139,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -226053,6 +226769,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 7.815970093361102e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -226681,6 +227399,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 2.2737367544323206e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -227309,6 +228029,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 7.815970093361102e-14,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -227937,6 +228659,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
@@ -228565,6 +229289,8 @@
             "toe": 0
           },
           "complete": true,
+          "static_rank": 60,
+          "static_right_nullity": 0,
           "constraint_residual_mm": 1.1368683772161603e-13,
           "constraint_mobility": 3,
           "gravity_torque_Nm": {
