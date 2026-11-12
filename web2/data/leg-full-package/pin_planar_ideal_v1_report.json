@@ -579,6 +579,23 @@
           "null_projection": 0
         }
       ],
+      "cross_validation": {
+        "force_differences": [
+          {
+            "joint_id": "J_LEG_L_HIP_pitch_T",
+            "difference_N": 7.338769592024619e-8
+          },
+          {
+            "joint_id": "J_LEG_L_KNEE_pitch_T",
+            "difference_N": -1.1491181339806644e-8
+          },
+          {
+            "joint_id": "J_LEG_L_ANKLE_pitch_T",
+            "difference_N": 5.970958838474871e-9
+          }
+        ],
+        "max_abs_force_difference_N": 7.338769592024619e-8
+      },
       "joint_reactions": [
         {
           "joint_id": "J_LEG_L_HIP_roll_RE",
@@ -1156,6 +1173,11 @@
           }
         }
       ],
+      "reaction_uniqueness": {
+        "unique_components": 60,
+        "indeterminate_components": 0,
+        "not_transmitted_components": 15
+      },
       "potential_energy_J": -50.97226948114537
     }
   },
