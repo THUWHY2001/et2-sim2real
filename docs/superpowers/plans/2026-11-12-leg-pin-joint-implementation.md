@@ -43,7 +43,7 @@
 
 - [ ] **Step 1: 写失败测试**
 
-断言旧模型不变；六个旧 Spherical 被一一映射为新 ID 的 Revolute；新模型总运动副仍为 25；每个新副的 I/J 刚体、硬点和 +Y 基准轴正确；`axis_source="geometry_assumption_pending_cad"`；三个 Translational 未变化。
+断言旧模型不变；六个旧 Spherical 被一一映射为新 ID 的 Revolute；新模型总运动副仍为 25；每个新副的 I/J 刚体、硬点和世界 +Y 基准轴正确；I/J 局部轴分别满足 `R_i·axis_i_local≈+Y`、`R_j·axis_j_local≈+Y`；`axis_source="geometry_assumption_pending_cad"`；三个 Translational 未变化。
 
 - [ ] **Step 2: 运行测试确认 RED**
 
@@ -52,7 +52,7 @@ Expected: FAIL，模块不存在。
 
 - [ ] **Step 3: 实现模型克隆与映射**
 
-不修改输入对象；新 Revolute Marker 名称独立，基准 I/J 轴均为 `[0,1,0]`，同时保存 `legacy_joint_id`。
+不修改输入对象；新 Revolute Marker 名称独立。用基准姿态 I/J 刚体旋转矩阵分别将世界 `[0,1,0]` 转换到各自局部坐标，保存两侧独立局部轴、世界轴假设和 `legacy_joint_id`。
 
 - [ ] **Step 4: 运行测试确认 GREEN 并提交**
 
