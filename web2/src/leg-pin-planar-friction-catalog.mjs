@@ -4,6 +4,7 @@ const PIN_IDS=new Set([
   "J_LEG_L_P011_RE_L10_L03","J_LEG_L_P013_RE_L12_L11","J_LEG_L_P014_RE_L03_L13","J_LEG_L_P016_RE_B15_L14","J_LEG_L_P019_RE_L18_L04","J_LEG_L_P021_RE_B20_L19"
 ]);
 const UNVERIFIED=new Set(["J_LEG_L_P010_S_L09_L03","J_LEG_L_P018_S_L17_L04"]);
+const ORIGINAL_FRICTION_INTERFACE_UNVERIFIED=new Set(["J_LEG_L_HIP_pitch_RE","J_LEG_L_KNEE_pitch_RE","J_LEG_L_ANKLE_pitch_RE","J_LEG_L_P009_RE_L02_L08","J_LEG_L_P013_RE_L08_L09","J_LEG_L_P016_RE_L16_L17","J_LEG_L_P017_RE_L03_L16"]);
 const NEW_PIN_AXIS_ASSUMPTION=new Set(["J_LEG_L_P011_RE_L10_L03","J_LEG_L_P013_RE_L12_L11","J_LEG_L_P014_RE_L03_L13","J_LEG_L_P016_RE_B15_L14","J_LEG_L_P019_RE_L18_L04","J_LEG_L_P021_RE_B20_L19"]);
 const HELD=new Set(["J_LEG_L_HIP_roll_RE","J_LEG_L_HIP_yaw_RE","J_LEG_L_ANKLE_roll_RE","J_LEG_L_TOE_pitch_RE"]);
 const PHYSICAL_IDS={
@@ -21,6 +22,7 @@ const parameterTemplate=()=>({mu_static:null,mu_kinetic:null,effective_radius_m:
 const surface=(physical_contact_id)=>({physical_contact_id,load_fraction:1,parameters:parameterTemplate()});
 
 function classify(jointId,joint){
+  if(ORIGINAL_FRICTION_INTERFACE_UNVERIFIED.has(jointId))return{classification:"real_friction_interface_unverified",contact_model:"unverified_rotational_interface",verification_status:"real_friction_interface_unverified",enabled:false,include_in_official_total:false,load_status:"planar_reaction_available_contact_normal_mapping_unverified"};
   if(PIN_IDS.has(jointId))return{classification:"pin_bushing_candidate",contact_model:"pin_bushing_coulomb",verification_status:NEW_PIN_AXIS_ASSUMPTION.has(jointId)?"geometry_axis_assumption_pending_cad":joint.axis_source||"source_joint_verified",enabled:true,include_in_official_total:true,load_status:"planar_reaction_available"};
   if(UNVERIFIED.has(jointId))return{classification:"real_joint_type_unverified",contact_model:"unverified",verification_status:"real_joint_type_unverified",enabled:false,include_in_official_total:false,load_status:"planar_reaction_available"};
   if(joint.planar_type==="prismatic")return{classification:"prismatic_interface",contact_model:"prismatic_guide_coulomb",verification_status:"guide_geometry_required",enabled:false,include_in_official_total:false,load_status:"guide_contact_distribution_unresolved",required_geometry:["support_spacing_m","guide_direction","preload_N"]};
@@ -43,6 +45,6 @@ export function createLegPinPlanarFrictionCatalog(model){
   if(model?.meta?.model_id!=="pin-planar-ideal-v1")throw new Error("pin-planar-ideal-v1 required");
   const groups=Object.entries(model.joints).map(([jointId,joint])=>{const meta=classify(jointId,joint),physicalId=PHYSICAL_IDS[jointId];if(!physicalId)throw new Error(`physical contact id missing: ${jointId}`);return Object.freeze({joint_id:jointId,display_name:DISPLAY[jointId]||jointId,body_i:joint.i_part,body_j:joint.j_part,source_joint_type:joint.source_type,planar_joint_type:joint.planar_type,...meta,contacts:[surface(`${physicalId}.surface_unspecified`)],load:{mode:"automatic",source:"planar_gravity_estimate",manual_override_N:null}})});
   const contacts=groups.flatMap(group=>group.contacts.map(contact=>({...contact,joint_id:group.joint_id,contact_model:group.contact_model,verification_status:group.verification_status,enabled:group.enabled,include_in_official_total:group.include_in_official_total}))),byJointId=new Map(groups.map(group=>[group.joint_id,[group]])),byContactId=new Map(contacts.map(contact=>[contact.physical_contact_id,contact]));
-  const audit={joint_count:groups.length,physical_contact_count:contacts.length,pin_candidate_count:groups.filter(item=>item.classification==="pin_bushing_candidate").length,unverified_joint_ids:groups.filter(item=>item.classification==="real_joint_type_unverified").map(item=>item.joint_id),official_contact_ids:contacts.filter(item=>item.include_in_official_total).map(item=>item.physical_contact_id)};
+  const audit={joint_count:groups.length,physical_contact_count:contacts.length,pin_candidate_count:groups.filter(item=>item.classification==="pin_bushing_candidate").length,unverified_joint_ids:groups.filter(item=>["real_joint_type_unverified","real_friction_interface_unverified"].includes(item.classification)).map(item=>item.joint_id),official_contact_ids:contacts.filter(item=>item.include_in_official_total).map(item=>item.physical_contact_id)};
   return Object.freeze({groups,contacts,byJointId,byContactId,audit});
 }
