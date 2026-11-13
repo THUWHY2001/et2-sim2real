@@ -13,11 +13,14 @@ export function createLegPinPlanarFrictionKinematics(model,kinematics,catalog){
   const relativeAngle=(solution,group)=>wrap(theta(solution,group.body_j)-theta(solution,group.body_i));
   const solvePerturbed=(solution,output,deltaDeg)=>kinematics.solveAngles({...solution.outputs,[output]:solution.outputs[output]+deltaDeg});
 
+  function perturbations(solution,stepDeg){return Object.fromEntries(OUTPUTS.map(output=>[output,{lo:solvePerturbed(solution,output,-stepDeg),hi:solvePerturbed(solution,output,stepDeg)}]))}
+  function jacobianFromPerturbations(group,sets,stepDeg){const denominator=2*stepDeg*Math.PI/180,values={};for(const output of OUTPUTS){const {lo,hi}=sets[output];if(group.planar_joint_type==="prismatic"){const rod=model.joints[group.joint_id].rod;values[output]=(hi.rod_lengths_m[rod]-lo.rod_lengths_m[rod])/denominator}else values[output]=wrap(relativeAngle(hi,group)-relativeAngle(lo,group))/denominator}return{joint_id:group.joint_id,rate_type:group.planar_joint_type==="prismatic"?"linear":"angular",units:group.planar_joint_type==="prismatic"?"m_per_rad":"rad_per_rad",step_deg:stepDeg,values}}
+
   function relativeRateJacobian(solution,group,options={}){
-    const stepDeg=Number(options.step_deg??.001),denominator=2*stepDeg*Math.PI/180,values={};
-    for(const output of OUTPUTS){const lo=solvePerturbed(solution,output,-stepDeg),hi=solvePerturbed(solution,output,stepDeg);if(group.planar_joint_type==="prismatic"){const joint=model.joints[group.joint_id],rod=joint.rod;values[output]=(hi.rod_lengths_m[rod]-lo.rod_lengths_m[rod])/denominator}else values[output]=wrap(relativeAngle(hi,group)-relativeAngle(lo,group))/denominator}
-    return{joint_id:group.joint_id,rate_type:group.planar_joint_type==="prismatic"?"linear":"angular",units:group.planar_joint_type==="prismatic"?"m_per_rad":"rad_per_rad",step_deg:stepDeg,values};
+    const stepDeg=Number(options.step_deg??.001);return jacobianFromPerturbations(group,perturbations(solution,stepDeg),stepDeg);
   }
+
+  function allRelativeRateJacobians(solution,options={}){const stepDeg=Number(options.step_deg??.001),sets=perturbations(solution,stepDeg);return new Map(catalog.groups.map(group=>[group.joint_id,jacobianFromPerturbations(group,sets,stepDeg)]))}
 
   function relativeVelocity(solution,group,outputRates,options={}){const jacobian=relativeRateJacobian(solution,group,options),value=OUTPUTS.reduce((sum,output)=>sum+jacobian.values[output]*Number(outputRates[output]??0),0);return{joint_id:group.joint_id,jacobian,...(jacobian.rate_type==="angular"?{value_rad_s:value}:{value_m_s:value})}}
 
@@ -31,5 +34,5 @@ export function createLegPinPlanarFrictionKinematics(model,kinematics,catalog){
     return{method:"constraint_nullspace_output_aligned_projection",rank:solved.rank,nullity:solved.nullity,max_constraint_velocity_residual:maxConstraint,max_relative_rate_difference:maxDifference,outputs:columns,contacts};
   }
 
-  return Object.freeze({relativeRateJacobian,relativeVelocity,crossCheckRelativeRates,groupByJoint});
+  return Object.freeze({relativeRateJacobian,allRelativeRateJacobians,relativeVelocity,crossCheckRelativeRates,groupByJoint});
 }
