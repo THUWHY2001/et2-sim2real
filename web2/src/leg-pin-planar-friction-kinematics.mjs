@@ -23,6 +23,7 @@ export function createLegPinPlanarFrictionKinematics(model,kinematics,catalog){
   function allRelativeRateJacobians(solution,options={}){const stepDeg=Number(options.step_deg??.001),sets=perturbations(solution,stepDeg);return new Map(catalog.groups.map(group=>[group.joint_id,jacobianFromPerturbations(group,sets,stepDeg)]))}
 
   function relativeVelocity(solution,group,outputRates,options={}){const jacobian=relativeRateJacobian(solution,group,options),value=OUTPUTS.reduce((sum,output)=>sum+jacobian.values[output]*Number(outputRates[output]??0),0);return{joint_id:group.joint_id,jacobian,...(jacobian.rate_type==="angular"?{value_rad_s:value}:{value_m_s:value})}}
+  function jointCentersXZ(solution){const points=new Map();for(const marker of solution.source_solution.frame.all_joint_marker_sides){if(!points.has(marker.joint))points.set(marker.joint,[]);points.get(marker.joint).push([marker.xyz_mm[0],marker.xyz_mm[2]])}return new Map([...points].map(([jointId,items])=>[jointId,[items.reduce((sum,item)=>sum+item[0],0)/items.length,items.reduce((sum,item)=>sum+item[1],0)/items.length]]))}
 
   function bodyTwist(solution,output,stepDeg=.001){const lo=solvePerturbed(solution,output,-stepDeg),hi=solvePerturbed(solution,output,stepDeg),denominator=2*stepDeg*Math.PI/180,vector=[];for(const body of model.bodies){vector.push((hi.com_world_xz_mm[body][0]-lo.com_world_xz_mm[body][0])/denominator,(hi.com_world_xz_mm[body][1]-lo.com_world_xz_mm[body][1])/denominator,wrap(hi.poses[body].theta_rad-lo.poses[body].theta_rad)/denominator)}return vector}
   const omegaFromVector=(vector,body)=>body==="base_link"?0:vector[3*model.bodies.indexOf(body)+2];
@@ -34,5 +35,5 @@ export function createLegPinPlanarFrictionKinematics(model,kinematics,catalog){
     return{method:"constraint_nullspace_output_aligned_projection",rank:solved.rank,nullity:solved.nullity,max_constraint_velocity_residual:maxConstraint,max_relative_rate_difference:maxDifference,outputs:columns,contacts};
   }
 
-  return Object.freeze({relativeRateJacobian,allRelativeRateJacobians,relativeVelocity,crossCheckRelativeRates,groupByJoint});
+  return Object.freeze({relativeRateJacobian,allRelativeRateJacobians,relativeVelocity,jointCentersXZ,crossCheckRelativeRates,groupByJoint});
 }

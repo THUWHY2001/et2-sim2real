@@ -13,4 +13,5 @@ const contact=catalog.byJointId.get("J_LEG_L_P013_RE_L12_L11")[0],g=rates.relati
 const all=rates.allRelativeRateJacobians(solution);assert.equal(all.size,25);assert.deepEqual(all.get(contact.joint_id).values,g.values);
 const coarse=rates.relativeRateJacobian(solution,contact,{step_deg:.002}),fine=rates.relativeRateJacobian(solution,contact,{step_deg:.001});for(const output of ["J2","J3","J4"])assert.ok(Math.abs(coarse.values[output]-fine.values[output])<1e-6);
 const cross=rates.crossCheckRelativeRates(solution);assert.equal(cross.nullity,3);assert.ok(cross.max_constraint_velocity_residual<1e-7);assert.ok(cross.max_relative_rate_difference<1e-6);assert.equal(cross.contacts.length,25);
+const moved=kinematics.solveOutput("J2",5),centers=rates.jointCentersXZ(moved);assert.equal(centers.size,25);assert.notDeepEqual(centers.get("J_LEG_L_KNEE_pitch_RE"),model.joints.J_LEG_L_KNEE_pitch_RE.initial_center_xz_mm);
 console.log("leg pin planar friction relative-rate regression test passed");
