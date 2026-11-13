@@ -1,0 +1,19 @@
+<section class="friction-page" data-leg-friction-root>
+  <header class="model-heading"><div><p class="eyebrow">pin-planar-ideal-v1｜J5=0</p><h1>腿足理论摩擦圆分析</h1><p>使用已验收的平面重力准静态反力，计算已确认销轴—轴套摩擦向 J2/J3/J4 的等效折算结果。</p></div><div class="model-badge">受限工况理论工具</div></header>
+  <aside class="scope-note friction-warning"><strong>适用边界：</strong>当前为重力准静态、无摩擦反馈的一阶估算，不包含 1 Hz 惯性、装配预紧和三维支承载荷分配；合计仅覆盖已启用且参数完整的接触副，不代表实测整腿阻力。</aside>
+  <aside class="scope-note friction-warning"><strong>演示参数不是工程参数：</strong>“填入软件演示参数”使用 μs=0.15、μk=0.10、r=10 mm，仅用于检查程序、图表和导出流程。结果不能作为真实摩擦阻力、正式硬件排名或量产阈值。</aside>
+  <div class="friction-control-grid panel">
+    <label>输出轴<select data-leg-friction-output><option>J2</option><option>J3</option><option>J4</option></select></label>
+    <label>1 Hz 周期位置 <output data-leg-friction-phase-output>0.000 s</output><input data-leg-friction-phase type="range" min="0" max="1" step="0.005" value="0"></label>
+    <label>载荷模式<select disabled><option>gravity_only</option><option>gravity_plus_inertia（预留）</option></select></label>
+    <div class="button-row"><button class="button-secondary" data-leg-friction-example>填入软件演示参数（非工程）</button><button class="button-secondary" data-leg-friction-reset>恢复参数为空</button><button class="button-primary" data-leg-friction-run>计算完整周期</button><button class="button-secondary" data-leg-friction-export>导出 CSV</button></div>
+  </div>
+  <div class="friction-layout">
+    <section class="panel"><div class="panel-heading"><div><h2>机构位置与理论载荷</h2><p>横轴 X、纵轴 Z；点击接触副表格可切换摩擦圆。</p></div></div><svg class="friction-mechanism" data-leg-friction-mechanism viewBox="0 0 620 560" role="img" aria-label="腿足平面机构位置"></svg></section>
+    <section class="panel"><div class="panel-heading"><div><h2>摩擦圆</h2><p>销轴模型用 N≈平面连接副合反力、T=μNr；ρ=rμ/√(1+μ²) 仅表示同一摩擦效应的等效作用线偏移，不与 μNr 重复相加。</p></div></div><svg class="friction-circle" data-leg-friction-circle viewBox="0 0 320 230" role="img" aria-label="选中接触副摩擦圆"></svg></section>
+  </div>
+  <section class="panel"><div class="panel-heading"><div><h2>摩擦参数与物理接触界面映射</h2><p>以 joint_id 和 physical_contact_id 双重识别；P13、P16 等同坐标独立界面分开列示。</p></div><span class="friction-state" data-leg-friction-state>等待参数</span></div><div class="table-wrap"><table class="engineering-table friction-contact-table"><thead><tr><th>连接副 / 物理界面</th><th>状态</th><th>μs</th><th>μk</th><th>r / mm</th><th>轴套</th><th>A侧载荷占比</th><th>人工接触载荷 / N</th><th>连接副合反力 / N</th><th>导向接触法向载荷 / N</th><th>摩擦计算载荷 / N</th><th>结果</th></tr></thead><tbody data-leg-friction-contact-table></tbody></table></div><p class="text-muted">J2/J3/J4 输出轴及 P9/P13/P16/P17 标记 <code>real_friction_interface_unverified</code>，P10/P18 标记 <code>real_joint_type_unverified</code>，均默认禁用。三个移动副的连接副合反力可以输出，但导向接触法向载荷保持为空；待导向间距、预紧和约束力矩载荷分配完成后才能启用摩擦。</p></section>
+  <section class="panel"><div class="panel-heading"><div><h2 data-leg-friction-output-heading>输出轴等效阻力｜J2</h2><p>按耗散功率折算贡献；换向点仅显示“假设黏着状态下的理论静摩擦容量”，不作为运动中的真实静摩擦力矩。</p></div></div><div class="friction-summary" data-leg-friction-summary></div><div class="torso-contribution-bars" data-leg-friction-bars></div></section>
+  <section class="panel"><div class="panel-heading"><div><h2>完整周期曲线</h2><p>显示当前输出轴的等效动摩擦阻力与耗散功率；曲线基于用户当前输入参数。</p></div></div><svg class="torso-cycle-chart" data-leg-friction-cycle-chart viewBox="0 0 720 280" role="img" aria-label="理论摩擦完整周期曲线"><text x="360" y="140" text-anchor="middle">点击“计算完整周期”</text></svg></section>
+</section>
+<script type="module" src="./src/leg-pin-planar-friction-page.mjs?v=20261113-friction-2"></script>

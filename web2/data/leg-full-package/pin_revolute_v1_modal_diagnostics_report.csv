@@ -1,0 +1,769 @@
+section,output_or_mode,joint_or_body,component,value,unit
+near_mode,0,,singular_value,1.749703598381685e-7,
+near_mode,0,J2,output_rate,0.1447102373613615,rad/rad
+near_mode,0,J3,output_rate,-0.6305928613017321,rad/rad
+near_mode,0,J4,output_rate,0.630975588229337,rad/rad
+near_mode,0,leg_l_ball_link12,v_x,-0.008278187092271481,m/rad
+near_mode,0,leg_l_ball_link12,v_y,1.1173575966640256e-8,m/rad
+near_mode,0,leg_l_ball_link12,v_z,-0.004941894293112043,m/rad
+near_mode,0,leg_l_ball_link12,w_x,9.747791262959802e-10,rad/rad
+near_mode,0,leg_l_ball_link12,w_y,0.13035663963028324,rad/rad
+near_mode,0,leg_l_ball_link12,w_z,4.1742032981047556e-10,rad/rad
+near_mode,0,leg_l_ball_link15,v_x,-0.04482299519092655,m/rad
+near_mode,0,leg_l_ball_link15,v_y,8.909817053013715e-8,m/rad
+near_mode,0,leg_l_ball_link15,v_z,-0.03494141362268194,m/rad
+near_mode,0,leg_l_ball_link15,w_x,-7.65927763763379e-9,rad/rad
+near_mode,0,leg_l_ball_link15,w_y,-0.1261088889016848,rad/rad
+near_mode,0,leg_l_ball_link15,w_z,-6.161470171596828e-9,rad/rad
+near_mode,0,leg_l_ball_link20,v_x,0.10677846664010668,m/rad
+near_mode,0,leg_l_ball_link20,v_y,-1.4173162530733934e-7,m/rad
+near_mode,0,leg_l_ball_link20,v_z,-0.1061720407699558,m/rad
+near_mode,0,leg_l_ball_link20,w_x,8.332235167302039e-9,rad/rad
+near_mode,0,leg_l_ball_link20,w_y,0.14509296428896357,rad/rad
+near_mode,0,leg_l_ball_link20,w_z,-3.207055409123805e-9,rad/rad
+near_mode,0,leg_l_link1,v_x,3.736369017769282e-15,m/rad
+near_mode,0,leg_l_link1,v_y,3.775339513668374e-18,m/rad
+near_mode,0,leg_l_link1,v_z,-2.710852196931081e-14,m/rad
+near_mode,0,leg_l_link1,w_x,-1.4614686590002954e-17,rad/rad
+near_mode,0,leg_l_link1,w_y,3.055654207602505e-15,rad/rad
+near_mode,0,leg_l_link1,w_z,-2.3697162805814054e-17,rad/rad
+near_mode,0,leg_l_link10,v_x,-0.03209080925563026,m/rad
+near_mode,0,leg_l_link10,v_y,-1.167870037104147e-8,m/rad
+near_mode,0,leg_l_link10,v_z,-0.01930613000233589,m/rad
+near_mode,0,leg_l_link10,w_x,1.2769737805396393e-9,rad/rad
+near_mode,0,leg_l_link10,w_y,0.13777647667548365,rad/rad
+near_mode,0,leg_l_link10,w_z,2.7939499095189427e-10,rad/rad
+near_mode,0,leg_l_link11,v_x,-0.01810998524763511,m/rad
+near_mode,0,leg_l_link11,v_y,1.874096073227488e-8,m/rad
+near_mode,0,leg_l_link11,v_z,-0.008593099020478282,m/rad
+near_mode,0,leg_l_link11,w_x,1.4306239341729896e-9,rad/rad
+near_mode,0,leg_l_link11,w_y,0.13777647667548587,rad/rad
+near_mode,0,leg_l_link11,w_z,4.61581444003213e-10,rad/rad
+near_mode,0,leg_l_link13,v_x,-0.028269926311432797,m/rad
+near_mode,0,leg_l_link13,v_y,-5.8471564566494486e-8,m/rad
+near_mode,0,leg_l_link13,v_z,-0.0019216255957456754,m/rad
+near_mode,0,leg_l_link13,w_x,-1.1151471093504309e-8,rad/rad
+near_mode,0,leg_l_link13,w_y,0.1421106135484563,rad/rad
+near_mode,0,leg_l_link13,w_z,-5.864440815712608e-9,rad/rad
+near_mode,0,leg_l_link14,v_x,-0.034848531893663735,m/rad
+near_mode,0,leg_l_link14,v_y,1.4282704666015955e-7,m/rad
+near_mode,0,leg_l_link14,v_z,-0.030753100696304658,m/rad
+near_mode,0,leg_l_link14,w_x,-1.1642336002945058e-8,rad/rad
+near_mode,0,leg_l_link14,w_y,0.14211061354845766,rad/rad
+near_mode,0,leg_l_link14,w_z,-6.952242896992299e-9,rad/rad
+near_mode,0,leg_l_link16,v_x,-0.0470916225442728,m/rad
+near_mode,0,leg_l_link16,v_y,3.635062394371079e-8,m/rad
+near_mode,0,leg_l_link16,v_z,-0.030002762263270158,m/rad
+near_mode,0,leg_l_link16,w_x,-3.676219206251301e-9,rad/rad
+near_mode,0,leg_l_link16,w_y,-0.12610888890168048,rad/rad
+near_mode,0,leg_l_link16,w_z,-5.370697219173574e-9,rad/rad
+near_mode,0,leg_l_link17,v_x,-0.04415700032838229,m/rad
+near_mode,0,leg_l_link17,v_y,2.3169349481552467e-8,m/rad
+near_mode,0,leg_l_link17,v_z,-0.03410365901332613,m/rad
+near_mode,0,leg_l_link17,w_x,-4.426799000126156e-9,rad/rad
+near_mode,0,leg_l_link17,w_y,-0.03360525982079667,rad/rad
+near_mode,0,leg_l_link17,w_z,-6.314856580724453e-9,rad/rad
+near_mode,0,leg_l_link18,v_x,0.02140470473565502,m/rad
+near_mode,0,leg_l_link18,v_y,6.051513782160644e-8,m/rad
+near_mode,0,leg_l_link18,v_z,-0.08042901345838369,m/rad
+near_mode,0,leg_l_link18,w_x,9.585687473709618e-9,rad/rad
+near_mode,0,leg_l_link18,w_y,-0.43151841705577665,rad/rad
+near_mode,0,leg_l_link18,w_z,-6.0367622336498314e-9,rad/rad
+near_mode,0,leg_l_link19,v_x,0.0835829187992966,m/rad
+near_mode,0,leg_l_link19,v_y,-1.9239930377013624e-7,m/rad
+near_mode,0,leg_l_link19,v_z,-0.0906937177055489,m/rad
+near_mode,0,leg_l_link19,w_x,1.0408707342871891e-8,rad/rad
+near_mode,0,leg_l_link19,w_y,-0.43151841705578403,rad/rad
+near_mode,0,leg_l_link19,w_z,-5.589321738594113e-9,rad/rad
+near_mode,0,leg_l_link2,v_x,1.088998855134547e-14,m/rad
+near_mode,0,leg_l_link2,v_y,-6.87352238136815e-17,m/rad
+near_mode,0,leg_l_link2,v_z,-8.12480050068504e-14,m/rad
+near_mode,0,leg_l_link2,w_x,-5.074078033983656e-17,rad/rad
+near_mode,0,leg_l_link2,w_y,6.099205246291349e-15,rad/rad
+near_mode,0,leg_l_link2,w_z,-9.6843608187309e-17,rad/rad
+near_mode,0,leg_l_link3,v_x,-0.027244201568441498,m/rad
+near_mode,0,leg_l_link3,v_y,-3.874867004745496e-9,m/rad
+near_mode,0,leg_l_link3,v_z,-0.010965985277553453,m/rad
+near_mode,0,leg_l_link3,w_x,-3.978474711205193e-10,rad/rad
+near_mode,0,leg_l_link3,w_y,0.1447102373613676,rad/rad
+near_mode,0,leg_l_link3,w_z,-4.677427901060633e-10,rad/rad
+near_mode,0,leg_l_link4,v_x,-0.0013430912271556877,m/rad
+near_mode,0,leg_l_link4,v_y,9.588431519409766e-9,m/rad
+near_mode,0,leg_l_link4,v_z,-0.05748660724452434,m/rad
+near_mode,0,leg_l_link4,w_x,2.110067235193845e-11,rad/rad
+near_mode,0,leg_l_link4,w_y,-0.4858826239403645,rad/rad
+near_mode,0,leg_l_link4,w_z,-6.507389791878482e-10,rad/rad
+near_mode,0,leg_l_link5,v_x,0.10252818846002429,m/rad
+near_mode,0,leg_l_link5,v_y,-4.16466679235421e-8,m/rad
+near_mode,0,leg_l_link5,v_z,-0.1129405329579684,m/rad
+near_mode,0,leg_l_link5,w_x,2.179680366656426e-9,rad/rad
+near_mode,0,leg_l_link5,w_y,0.14509296428897245,rad/rad
+near_mode,0,leg_l_link5,w_z,-7.375971262437487e-10,rad/rad
+near_mode,0,leg_l_link6,v_x,0.09799758855209777,m/rad
+near_mode,0,leg_l_link6,v_y,-9.136697927846927e-8,m/rad
+near_mode,0,leg_l_link6,v_z,-0.11767611202323684,m/rad
+near_mode,0,leg_l_link6,w_x,6.255763016510263e-9,rad/rad
+near_mode,0,leg_l_link6,w_y,0.14509296428895882,rad/rad
+near_mode,0,leg_l_link6,w_z,-8.247890478870306e-10,rad/rad
+near_mode,0,leg_l_link7,v_x,0.09654528075481224,m/rad
+near_mode,0,leg_l_link7,v_y,-9.139655229463648e-8,m/rad
+near_mode,0,leg_l_link7,v_z,-0.13389376850375448,m/rad
+near_mode,0,leg_l_link7,w_x,6.255763031049417e-9,rad/rad
+near_mode,0,leg_l_link7,w_y,0.14509296428896293,rad/rad
+near_mode,0,leg_l_link7,w_z,-8.24788987525508e-10,rad/rad
+near_mode,0,leg_l_link8,v_x,-0.005146237957334519,m/rad
+near_mode,0,leg_l_link8,v_y,3.7213141733091853e-9,m/rad
+near_mode,0,leg_l_link8,v_z,-0.003072191988917691,m/rad
+near_mode,0,leg_l_link8,w_x,5.189342967180932e-10,rad/rad
+near_mode,0,leg_l_link8,w_y,0.13035663963028002,rad/rad
+near_mode,0,leg_l_link8,w_z,3.732592966409395e-10,rad/rad
+near_mode,0,leg_l_link9,v_x,-0.009005999614346304,m/rad
+near_mode,0,leg_l_link9,v_y,-1.1184640983251408e-11,m/rad
+near_mode,0,leg_l_link9,v_z,-0.004136235922825065,m/rad
+near_mode,0,leg_l_link9,w_x,3.479107499458069e-10,rad/rad
+near_mode,0,leg_l_link9,w_y,0.060590889221247994,rad/rad
+near_mode,0,leg_l_link9,w_z,5.625974251014027e-10,rad/rad
+near_mode,1,,singular_value,7.274723655014092e-8,
+near_mode,1,J2,output_rate,-0.24053130970525669,rad/rad
+near_mode,1,J3,output_rate,0.29545908747610755,rad/rad
+near_mode,1,J4,output_rate,0.28139220340750243,rad/rad
+near_mode,1,leg_l_ball_link12,v_x,0.013759656673579194,m/rad
+near_mode,1,leg_l_ball_link12,v_y,-1.8572251145207308e-8,m/rad
+near_mode,1,leg_l_ball_link12,v_z,0.008214210192554552,m/rad
+near_mode,1,leg_l_ball_link12,w_x,-1.6202371671314292e-9,rad/rad
+near_mode,1,leg_l_ball_link12,w_y,-0.2166733593257265,rad/rad
+near_mode,1,leg_l_ball_link12,w_z,-6.938188216379548e-10,rad/rad
+near_mode,1,leg_l_ball_link15,v_x,0.08641441381743714,m/rad
+near_mode,1,leg_l_ball_link15,v_y,-3.7021989711661715e-8,m/rad
+near_mode,1,leg_l_ball_link15,v_z,0.032147571033690994,m/rad
+near_mode,1,leg_l_ball_link15,w_x,4.063568624108201e-9,rad/rad
+near_mode,1,leg_l_ball_link15,w_y,-0.11364124033573032,rad/rad
+near_mode,1,leg_l_ball_link15,w_z,3.445211242556188e-9,rad/rad
+near_mode,1,leg_l_ball_link20,v_x,0.07909707274405063,m/rad
+near_mode,1,leg_l_ball_link20,v_y,-6.725625369785341e-8,m/rad
+near_mode,1,leg_l_ball_link20,v_z,0.06807885680211775,m/rad
+near_mode,1,leg_l_ball_link20,w_x,4.1714549458306996e-9,rad/rad
+near_mode,1,leg_l_ball_link20,w_y,0.33631998117834133,rad/rad
+near_mode,1,leg_l_ball_link20,w_z,-2.7682070126181465e-10,rad/rad
+near_mode,1,leg_l_link1,v_x,6.51141261629001e-15,m/rad
+near_mode,1,leg_l_link1,v_y,7.652499684293051e-18,m/rad
+near_mode,1,leg_l_link1,v_z,3.1952991742259774e-15,m/rad
+near_mode,1,leg_l_link1,w_x,-6.785898203827861e-19,rad/rad
+near_mode,1,leg_l_link1,w_y,-2.186031633199827e-15,rad/rad
+near_mode,1,leg_l_link1,w_z,6.615945432320908e-18,rad/rad
+near_mode,1,leg_l_link10,v_x,0.05334000220359822,m/rad
+near_mode,1,leg_l_link10,v_y,1.9411847673798126e-8,m/rad
+near_mode,1,leg_l_link10,v_z,0.03208984256696398,m/rad
+near_mode,1,leg_l_link10,w_x,-2.1225325496358425e-9,rad/rad
+near_mode,1,leg_l_link10,w_y,-0.22900630242652298,rad/rad
+near_mode,1,leg_l_link10,w_z,-4.643989615349698e-10,rad/rad
+near_mode,1,leg_l_link11,v_x,0.030101660737681297,m/rad
+near_mode,1,leg_l_link11,v_y,-3.1150441865959504e-8,m/rad
+near_mode,1,leg_l_link11,v_z,0.014283090121801236,m/rad
+near_mode,1,leg_l_link11,w_x,-2.3779234000083287e-9,rad/rad
+near_mode,1,leg_l_link11,w_y,-0.2290063024265239,rad/rad
+near_mode,1,leg_l_link11,w_z,-7.672214112338184e-10,rad/rad
+near_mode,1,leg_l_link13,v_x,0.047295768547983,m/rad
+near_mode,1,leg_l_link13,v_y,3.199119487996237e-8,m/rad
+near_mode,1,leg_l_link13,v_z,0.0033194200243147017,m/rad
+near_mode,1,leg_l_link13,w_x,5.699807058629405e-9,rad/rad
+near_mode,1,leg_l_link13,w_y,-0.23931327739506478,rad/rad
+near_mode,1,leg_l_link13,w_z,3.3060406147431003e-9,rad/rad
+near_mode,1,leg_l_link14,v_x,0.06961748751920932,m/rad
+near_mode,1,leg_l_link14,v_y,-6.224599699923771e-8,m/rad
+near_mode,1,leg_l_link14,v_z,0.025094481415325293,m/rad
+near_mode,1,leg_l_link14,w_x,5.929797758260112e-9,rad/rad
+near_mode,1,leg_l_link14,w_y,-0.23931327739506508,rad/rad
+near_mode,1,leg_l_link14,w_z,3.815721316756528e-9,rad/rad
+near_mode,1,leg_l_link16,v_x,0.08437007238159126,m/rad
+near_mode,1,leg_l_link16,v_y,-1.2294240073602545e-8,m/rad
+near_mode,1,leg_l_link16,v_z,0.03659796681081664,m/rad
+near_mode,1,leg_l_link16,w_x,2.1973394891195016e-9,rad/rad
+near_mode,1,leg_l_link16,w_y,-0.11364124033572984,rad/rad
+near_mode,1,leg_l_link16,w_z,3.0747011450334476e-9,rad/rad
+near_mode,1,leg_l_link17,v_x,0.08952553117601836,m/rad
+near_mode,1,leg_l_link17,v_y,-6.108254638136954e-9,m/rad
+near_mode,1,leg_l_link17,v_z,0.03606104401709453,m/rad
+near_mode,1,leg_l_link17,w_x,2.5490174431561537e-9,rad/rad
+near_mode,1,leg_l_link17,w_y,-0.1569830532747964,rad/rad
+near_mode,1,leg_l_link17,w_z,3.517079204632787e-9,rad/rad
+near_mode,1,leg_l_link18,v_x,0.0861078612825907,m/rad
+near_mode,1,leg_l_link18,v_y,2.298671378419164e-8,m/rad
+near_mode,1,leg_l_link18,v_z,0.050388353407025605,m/rad
+near_mode,1,leg_l_link18,w_x,4.730449130569931e-9,rad/rad
+near_mode,1,leg_l_link18,w_y,0.07917224023155821,rad/rad
+near_mode,1,leg_l_link18,w_z,-1.5387671911135763e-9,rad/rad
+near_mode,1,leg_l_link19,v_x,0.08335284356004037,m/rad
+near_mode,1,leg_l_link19,v_y,-8.983531553526216e-8,m/rad
+near_mode,1,leg_l_link19,v_z,0.0652389930471899,m/rad
+near_mode,1,leg_l_link19,w_x,5.097486265600818e-9,rad/rad
+near_mode,1,leg_l_link19,w_y,0.07917224023155953,rad/rad
+near_mode,1,leg_l_link19,w_z,-1.3392250885745591e-9,rad/rad
+near_mode,1,leg_l_link2,v_x,1.9914119370650752e-14,m/rad
+near_mode,1,leg_l_link2,v_y,-2.7473437356927126e-17,m/rad
+near_mode,1,leg_l_link2,v_z,9.582321346563754e-15,m/rad
+near_mode,1,leg_l_link2,w_x,7.436437229801853e-17,rad/rad
+near_mode,1,leg_l_link2,w_y,-6.65629666095558e-15,rad/rad
+near_mode,1,leg_l_link2,w_z,3.8098766265907564e-17,rad/rad
+near_mode,1,leg_l_link3,v_x,0.045284173425539025,m/rad
+near_mode,1,leg_l_link3,v_y,6.440641963641053e-9,m/rad
+near_mode,1,leg_l_link3,v_z,0.018227202505296934,m/rad
+near_mode,1,leg_l_link3,w_x,6.61285437573665e-10,rad/rad
+near_mode,1,leg_l_link3,w_y,-0.24053130970526335,rad/rad
+near_mode,1,leg_l_link3,w_z,7.774622033795061e-10,rad/rad
+near_mode,1,leg_l_link4,v_x,0.09073842947454383,m/rad
+near_mode,1,leg_l_link4,v_y,3.1119993646856947e-10,m/rad
+near_mode,1,leg_l_link4,v_z,0.04631843307833902,m/rad
+near_mode,1,leg_l_link4,w_x,4.6499069546276264e-10,rad/rad
+near_mode,1,leg_l_link4,w_y,0.054927777770844184,rad/rad
+near_mode,1,leg_l_link4,w_z,8.632035228564379e-10,rad/rad
+near_mode,1,leg_l_link5,v_x,0.06924508933115209,m/rad
+near_mode,1,leg_l_link5,v_y,-2.2554845301157296e-8,m/rad
+near_mode,1,leg_l_link5,v_z,0.052389748949433025,m/rad
+near_mode,1,leg_l_link5,w_x,1.4276389018808837e-9,rad/rad
+near_mode,1,leg_l_link5,w_y,0.3363199811783466,rad/rad
+near_mode,1,leg_l_link5,w_z,8.244679500450592e-10,rad/rad
+near_mode,1,leg_l_link6,v_x,0.05874333079128528,m/rad
+near_mode,1,leg_l_link6,v_y,-4.4676427917874e-8,m/rad
+near_mode,1,leg_l_link6,v_z,0.04141285648668842,m/rad
+near_mode,1,leg_l_link6,w_x,3.2454238799612558e-9,rad/rad
+near_mode,1,leg_l_link6,w_y,0.3363199811783394,rad/rad
+near_mode,1,leg_l_link6,w_z,7.855836746403911e-10,rad/rad
+near_mode,1,leg_l_link7,v_x,0.05537693646287073,m/rad
+near_mode,1,leg_l_link7,v_y,-4.455613478266414e-8,m/rad
+near_mode,1,leg_l_link7,v_z,0.0038209446162955005,m/rad
+near_mode,1,leg_l_link7,w_x,3.2454238276006357e-9,rad/rad
+near_mode,1,leg_l_link7,w_y,0.33631998117834017,rad/rad
+near_mode,1,leg_l_link7,w_z,7.855836843783089e-10,rad/rad
+near_mode,1,leg_l_link8,v_x,0.008553861692724093,m/rad
+near_mode,1,leg_l_link8,v_y,-6.18541297718976e-9,m/rad
+near_mode,1,leg_l_link8,v_z,0.005106469149678384,m/rad
+near_mode,1,leg_l_link8,w_x,-8.625509459483912e-10,rad/rad
+near_mode,1,leg_l_link8,w_y,-0.21667335932572465,rad/rad
+near_mode,1,leg_l_link8,w_z,-6.204161480471616e-10,rad/rad
+near_mode,1,leg_l_link9,v_x,0.014969396235606464,m/rad
+near_mode,1,leg_l_link9,v_y,1.8590592248552494e-11,m/rad
+near_mode,1,leg_l_link9,v_z,0.006875078514597527,m/rad
+near_mode,1,leg_l_link9,w_x,-5.782826358615677e-10,rad/rad
+near_mode,1,leg_l_link9,w_y,-0.10071164422562802,rad/rad
+near_mode,1,leg_l_link9,w_z,-9.351260025818811e-10,rad/rad
+near_mode,2,,singular_value,2.1885088299202512e-8,
+near_mode,2,J2,output_rate,0.19407724035980245,rad/rad
+near_mode,2,J3,output_rate,0.04103362187763138,rad/rad
+near_mode,2,J4,output_rate,0.020589681242735414,rad/rad
+near_mode,2,leg_l_ball_link12,v_x,-0.011102239449666111,m/rad
+near_mode,2,leg_l_ball_link12,v_y,1.498537241750407e-8,m/rad
+near_mode,2,leg_l_ball_link12,v_z,-0.006627790984260166,m/rad
+near_mode,2,leg_l_ball_link12,w_x,1.3073190114415503e-9,rad/rad
+near_mode,2,leg_l_ball_link12,w_y,0.1748270014770584,rad/rad
+near_mode,2,leg_l_ball_link12,w_z,5.598209057831459e-10,rad/rad
+near_mode,2,leg_l_ball_link15,v_x,-0.07414718337521248,m/rad
+near_mode,2,leg_l_ball_link15,v_y,-1.1363421770022529e-8,m/rad
+near_mode,2,leg_l_ball_link15,v_z,-0.01631229422055132,m/rad
+near_mode,2,leg_l_ball_link15,w_x,-6.105846659635792e-11,rad/rad
+near_mode,2,leg_l_ball_link15,w_y,0.21169984649145815,rad/rad
+near_mode,2,leg_l_ball_link15,w_z,-2.568106798302834e-10,rad/rad
+near_mode,2,leg_l_ball_link20,v_x,-0.15785236424097196,m/rad
+near_mode,2,leg_l_ball_link20,v_y,-1.1249784785095018e-8,m/rad
+near_mode,2,leg_l_ball_link20,v_z,0.019483664437863715,m/rad
+near_mode,2,leg_l_ball_link20,w_x,-2.896273642197427e-10,rad/rad
+near_mode,2,leg_l_ball_link20,w_y,0.25570054348017296,rad/rad
+near_mode,2,leg_l_ball_link20,w_z,-6.988186525895752e-10,rad/rad
+near_mode,2,leg_l_link1,v_x,-7.285685852517266e-16,m/rad
+near_mode,2,leg_l_link1,v_y,-3.11465664303683e-17,m/rad
+near_mode,2,leg_l_link1,v_z,-1.0685027897010659e-16,m/rad
+near_mode,2,leg_l_link1,w_x,1.0712504957639926e-17,rad/rad
+near_mode,2,leg_l_link1,w_y,1.3557671175322264e-15,rad/rad
+near_mode,2,leg_l_link1,w_z,3.729706585941909e-18,rad/rad
+near_mode,2,leg_l_link10,v_x,-0.04303839047454069,m/rad
+near_mode,2,leg_l_link10,v_y,-1.5662816812748323e-8,m/rad
+near_mode,2,leg_l_link10,v_z,-0.025892296918023708,m/rad
+near_mode,2,leg_l_link10,w_x,1.712605634796192e-9,rad/rad
+near_mode,2,leg_l_link10,w_y,0.1847780700750147,rad/rad
+near_mode,2,leg_l_link10,w_z,3.747091546030843e-10,rad/rad
+near_mode,2,leg_l_link11,v_x,-0.024288094773856905,m/rad
+near_mode,2,leg_l_link11,v_y,2.5134323623612538e-8,m/rad
+near_mode,2,leg_l_link11,v_z,-0.011524581635702856,m/rad
+near_mode,2,leg_l_link11,w_x,1.9186725410106403e-9,rad/rad
+near_mode,2,leg_l_link11,w_y,0.18477807007501484,rad/rad
+near_mode,2,leg_l_link11,w_z,6.190471212359073e-10,rad/rad
+near_mode,2,leg_l_link13,v_x,-0.038275338706402484,m/rad
+near_mode,2,leg_l_link13,v_y,-1.6083921360686807e-9,m/rad
+near_mode,2,leg_l_link13,v_z,-0.002724881356993837,m/rad
+near_mode,2,leg_l_link13,w_x,1.6618379739534e-10,rad/rad
+near_mode,2,leg_l_link13,w_y,0.19424640177462946,rad/rad
+near_mode,2,leg_l_link13,w_z,-2.761388310708701e-10,rad/rad
+near_mode,2,leg_l_link14,v_x,-0.0605134120698966,m/rad
+near_mode,2,leg_l_link14,v_y,-1.4800987522812906e-8,m/rad
+near_mode,2,leg_l_link14,v_z,-0.010587424733081063,m/rad
+near_mode,2,leg_l_link14,w_x,1.981250963598198e-10,rad/rad
+near_mode,2,leg_l_link14,w_y,0.19424640177462932,rad/rad
+near_mode,2,leg_l_link14,w_z,-2.0535396802914967e-10,rad/rad
+near_mode,2,leg_l_link16,v_x,-0.07033882325502076,m/rad
+near_mode,2,leg_l_link16,v_y,-7.946754097742824e-9,m/rad
+near_mode,2,leg_l_link16,v_z,-0.024602841734079516,m/rad
+near_mode,2,leg_l_link16,w_x,-3.202421052229225e-10,rad/rad
+near_mode,2,leg_l_link16,w_y,0.211699846491458,rad/rad
+near_mode,2,leg_l_link16,w_z,-3.082675232361996e-10,rad/rad
+near_mode,2,leg_l_link17,v_x,-0.07822339510953333,m/rad
+near_mode,2,leg_l_link17,v_y,-7.1008193352857544e-9,m/rad
+near_mode,2,leg_l_link17,v_z,-0.0214397589418922,m/rad
+near_mode,2,leg_l_link17,w_x,-2.714007543843219e-10,rad/rad
+near_mode,2,leg_l_link17,w_y,0.20568049681138129,rad/rad
+near_mode,2,leg_l_link17,w_z,-2.468295836687435e-10,rad/rad
+near_mode,2,leg_l_link18,v_x,-0.1189811277021457,m/rad
+near_mode,2,leg_l_link18,v_y,-4.620776671809325e-9,m/rad
+near_mode,2,leg_l_link18,v_z,-0.006629709792912683,m/rad
+near_mode,2,leg_l_link18,w_x,-2.4872542818060176e-10,rad/rad
+near_mode,2,leg_l_link18,w_y,0.23688484796955092,rad/rad
+near_mode,2,leg_l_link18,w_z,-7.911562594589545e-10,rad/rad
+near_mode,2,leg_l_link19,v_x,-0.1451190170497592,m/rad
+near_mode,2,leg_l_link19,v_y,-1.2894276059310458e-8,m/rad
+near_mode,2,leg_l_link19,v_z,0.010986738093225206,m/rad
+near_mode,2,leg_l_link19,w_x,-2.2186907770328533e-10,rad/rad
+near_mode,2,leg_l_link19,w_y,0.23688484796955095,rad/rad
+near_mode,2,leg_l_link19,w_z,-7.76555569312006e-10,rad/rad
+near_mode,2,leg_l_link2,v_x,-2.449718297203846e-15,m/rad
+near_mode,2,leg_l_link2,v_y,4.443162983585129e-17,m/rad
+near_mode,2,leg_l_link2,v_z,-3.977639197132813e-16,m/rad
+near_mode,2,leg_l_link2,w_x,-7.668520925582572e-17,rad/rad
+near_mode,2,leg_l_link2,w_y,4.105957848767505e-15,rad/rad
+near_mode,2,leg_l_link2,w_z,9.707110282853067e-19,rad/rad
+near_mode,2,leg_l_link3,v_x,-0.03653839253260921,m/rad
+near_mode,2,leg_l_link3,v_y,-5.196753843475676e-9,m/rad
+near_mode,2,leg_l_link3,v_z,-0.014706963372193816,m/rad
+near_mode,2,leg_l_link3,w_x,-5.335706600097486e-10,rad/rad
+near_mode,2,leg_l_link3,w_y,0.19407724035980656,rad/rad
+near_mode,2,leg_l_link3,w_z,-6.273099998181129e-10,rad/rad
+near_mode,2,leg_l_link4,v_x,-0.10607136559065089,m/rad
+near_mode,2,leg_l_link4,v_y,-6.283330951422126e-9,m/rad
+near_mode,2,leg_l_link4,v_z,-0.01909528505575021,m/rad
+near_mode,2,leg_l_link4,w_x,-5.608322333866399e-10,rad/rad
+near_mode,2,leg_l_link4,w_y,0.23511086223743793,rad/rad
+near_mode,2,leg_l_link4,w_z,-6.154021624459887e-10,rad/rad
+near_mode,2,leg_l_link5,v_x,-0.16534272358401478,m/rad
+near_mode,2,leg_l_link5,v_y,-8.028028651678168e-9,m/rad
+near_mode,2,leg_l_link5,v_z,0.007555400792958296,m/rad
+near_mode,2,leg_l_link5,w_x,-4.903945544941555e-10,rad/rad
+near_mode,2,leg_l_link5,w_y,0.25570054348017335,rad/rad
+near_mode,2,leg_l_link5,w_z,-6.18236505958509e-10,rad/rad
+near_mode,2,leg_l_link6,v_x,-0.17332710011597063,m/rad
+near_mode,2,leg_l_link6,v_y,-9.687403452965882e-9,m/rad
+near_mode,2,leg_l_link6,v_z,-0.0007902150728417779,m/rad
+near_mode,2,leg_l_link6,w_x,-3.573858111972526e-10,rad/rad
+near_mode,2,leg_l_link6,w_y,0.25570054348017257,rad/rad
+near_mode,2,leg_l_link6,w_z,-6.21081704340965e-10,rad/rad
+near_mode,2,leg_l_link7,v_x,-0.17588653430496592,m/rad
+near_mode,2,leg_l_link7,v_y,-9.760401769118825e-9,m/rad
+near_mode,2,leg_l_link7,v_z,-0.029370950194588668,m/rad
+near_mode,2,leg_l_link7,w_x,-3.5738582605312206e-10,rad/rad
+near_mode,2,leg_l_link7,w_y,0.25570054348017207,rad/rad
+near_mode,2,leg_l_link7,w_z,-6.210817342235767e-10,rad/rad
+near_mode,2,leg_l_link8,v_x,-0.00690184522658051,m/rad
+near_mode,2,leg_l_link8,v_y,4.990817561635379e-9,m/rad
+near_mode,2,leg_l_link8,v_z,-0.004120251296019773,m/rad
+near_mode,2,leg_l_link8,w_x,6.959655796384208e-10,rad/rad
+near_mode,2,leg_l_link8,w_y,0.17482700147705774,rad/rad
+near_mode,2,leg_l_link8,w_z,5.005945593928786e-10,rad/rad
+near_mode,2,leg_l_link9,v_x,-0.012078340714996116,m/rad
+near_mode,2,leg_l_link9,v_y,-1.5000144886470572e-11,m/rad
+near_mode,2,leg_l_link9,v_z,-0.005547287240889383,m/rad
+near_mode,2,leg_l_link9,w_x,4.665983360597253e-10,rad/rad
+near_mode,2,leg_l_link9,w_y,0.08126109655911003,rad/rad
+near_mode,2,leg_l_link9,w_z,7.545241059435698e-10,rad/rad
+finite_difference,J2,J_LEG_L_HIP_pitch_T,F_radial_2,5.0307955152748e-7,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_pitch_T,F_radial_1,-2.6299347102055955e-7,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_pitch_T,Mx,0,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_pitch_T,My,0,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_pitch_T,Mz,0,constraint velocity
+finite_difference,J2,J_LEG_L_KNEE_pitch_RE,Fz,-2.3883825472914566e-11,constraint velocity
+finite_difference,J2,J_LEG_L_KNEE_pitch_RE,Fx,3.4044433938618113e-12,constraint velocity
+finite_difference,J2,J_LEG_L_KNEE_pitch_RE,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_KNEE_pitch_RE,M_perp_1,0,constraint velocity
+finite_difference,J2,J_LEG_L_KNEE_pitch_RE,M_perp_2,0,constraint velocity
+finite_difference,J2,J_LEG_L_ANKLE_pitch_RE,Fz,-1.7365109675725188e-11,constraint velocity
+finite_difference,J2,J_LEG_L_ANKLE_pitch_RE,Fx,-9.096199488078938e-12,constraint velocity
+finite_difference,J2,J_LEG_L_ANKLE_pitch_RE,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_ANKLE_pitch_RE,M_perp_1,0,constraint velocity
+finite_difference,J2,J_LEG_L_ANKLE_pitch_RE,M_perp_2,0,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_pitch_RE,Fz,-1.4383452762167792e-11,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_pitch_RE,Fx,5.230871291672656e-12,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_pitch_RE,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_pitch_RE,M_perp_1,0,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_pitch_RE,M_perp_2,0,constraint velocity
+finite_difference,J2,J_LEG_L_P017_RE_L03_L16,Fz,-1.3242240637367786e-11,constraint velocity
+finite_difference,J2,J_LEG_L_P017_RE_L03_L16,Fx,4.098860140189231e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P017_RE_L03_L16,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_P017_RE_L03_L16,M_perp_1,0,constraint velocity
+finite_difference,J2,J_LEG_L_P017_RE_L03_L16,M_perp_2,0,constraint velocity
+finite_difference,J2,J_LEG_L_P018_S_L17_L04,Fz,-1.0172244990780399e-11,constraint velocity
+finite_difference,J2,J_LEG_L_P018_S_L17_L04,Fx,-2.73003841755326e-13,constraint velocity
+finite_difference,J2,J_LEG_L_P018_S_L17_L04,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_P010_S_L09_L03,Fz,-8.200358794785423e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P010_S_L09_L03,Fx,4.273314341274315e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P010_S_L09_L03,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_P019_RE_L18_L04,Fz,7.396377781077046e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P019_RE_L18_L04,Fx,5.204730743613162e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P019_RE_L18_L04,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_P019_RE_L18_L04,M_perp_1,0,constraint velocity
+finite_difference,J2,J_LEG_L_P019_RE_L18_L04,M_perp_2,0,constraint velocity
+finite_difference,J2,J_LEG_L_TOE_pitch_RE,Fx,8.201529733131707e-12,constraint velocity
+finite_difference,J2,J_LEG_L_TOE_pitch_RE,Fz,1.294554741182452e-12,constraint velocity
+finite_difference,J2,J_LEG_L_TOE_pitch_RE,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_TOE_pitch_RE,Mx,0,constraint velocity
+finite_difference,J2,J_LEG_L_TOE_pitch_RE,My,0,constraint velocity
+finite_difference,J2,J_LEG_L_TOE_pitch_RE,Mz,0,constraint velocity
+finite_difference,J2,J_LEG_L_P021_RE_B20_L19,Fx,4.3086298417982505e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P021_RE_B20_L19,Fz,4.182140744823926e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P021_RE_B20_L19,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_P021_RE_B20_L19,M_perp_1,0,constraint velocity
+finite_difference,J2,J_LEG_L_P021_RE_B20_L19,M_perp_2,0,constraint velocity
+finite_difference,J2,J_LEG_L_P021_F_L06_B20,Fx,-5.515490841823123e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P021_F_L06_B20,Fz,5.603295605283165e-13,constraint velocity
+finite_difference,J2,J_LEG_L_P021_F_L06_B20,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_P021_F_L06_B20,Mx,0,constraint velocity
+finite_difference,J2,J_LEG_L_P021_F_L06_B20,My,0,constraint velocity
+finite_difference,J2,J_LEG_L_P021_F_L06_B20,Mz,0,constraint velocity
+finite_difference,J2,J_LEG_L_P013_RE_L12_L11,Fz,-4.854075474902686e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P013_RE_L12_L11,Fx,1.7037066202263418e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P013_RE_L12_L11,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_P013_RE_L12_L11,M_perp_1,0,constraint velocity
+finite_difference,J2,J_LEG_L_P013_RE_L12_L11,M_perp_2,0,constraint velocity
+finite_difference,J2,J_LEG_L_ANKLE_pitch_T,F_radial_2,-4.9128322937574964e-12,constraint velocity
+finite_difference,J2,J_LEG_L_ANKLE_pitch_T,F_radial_1,1.1262328737705489e-16,constraint velocity
+finite_difference,J2,J_LEG_L_ANKLE_pitch_T,Mx,0,constraint velocity
+finite_difference,J2,J_LEG_L_ANKLE_pitch_T,My,0,constraint velocity
+finite_difference,J2,J_LEG_L_ANKLE_pitch_T,Mz,0,constraint velocity
+finite_difference,J2,J_LEG_L_P014_RE_L03_L13,Fx,-4.625952398917832e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P014_RE_L03_L13,Fz,-9.685585666829866e-13,constraint velocity
+finite_difference,J2,J_LEG_L_P014_RE_L03_L13,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_P014_RE_L03_L13,M_perp_1,0,constraint velocity
+finite_difference,J2,J_LEG_L_P014_RE_L03_L13,M_perp_2,0,constraint velocity
+finite_difference,J2,J_LEG_L_P009_RE_L02_L08,Fz,-3.706351198173863e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P009_RE_L02_L08,Fx,2.0260113031689286e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P009_RE_L02_L08,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_P009_RE_L02_L08,M_perp_1,0,constraint velocity
+finite_difference,J2,J_LEG_L_P009_RE_L02_L08,M_perp_2,0,constraint velocity
+finite_difference,J2,J_LEG_L_P011_RE_L10_L03,Fx,-3.52928797298091e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P011_RE_L10_L03,Fz,1.4104412082716067e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P011_RE_L10_L03,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_P011_RE_L10_L03,M_perp_1,0,constraint velocity
+finite_difference,J2,J_LEG_L_P011_RE_L10_L03,M_perp_2,0,constraint velocity
+finite_difference,J2,J_LEG_L_P013_RE_L08_L09,Fz,-3.3008352995356205e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P013_RE_L08_L09,Fx,1.730541925037965e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P013_RE_L08_L09,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_P013_RE_L08_L09,M_perp_1,0,constraint velocity
+finite_difference,J2,J_LEG_L_P013_RE_L08_L09,M_perp_2,0,constraint velocity
+finite_difference,J2,J_LEG_L_P016_F_L16_B15,Fx,-2.9774065157806007e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P016_F_L16_B15,Fz,-1.898002588429648e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P016_F_L16_B15,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_P016_F_L16_B15,Mx,0,constraint velocity
+finite_difference,J2,J_LEG_L_P016_F_L16_B15,My,0,constraint velocity
+finite_difference,J2,J_LEG_L_P016_F_L16_B15,Mz,0,constraint velocity
+finite_difference,J2,J_LEG_L_P016_RE_B15_L14,Fx,-2.1513069103917815e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P016_RE_B15_L14,Fz,2.136898297200318e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P016_RE_B15_L14,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_P016_RE_B15_L14,M_perp_1,0,constraint velocity
+finite_difference,J2,J_LEG_L_P016_RE_B15_L14,M_perp_2,0,constraint velocity
+finite_difference,J2,J_LEG_L_P013_F_L8_L12,Fz,-2.0888655388739963e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P013_F_L8_L12,Fx,1.1733773674915682e-12,constraint velocity
+finite_difference,J2,J_LEG_L_P013_F_L8_L12,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_P013_F_L8_L12,Mx,0,constraint velocity
+finite_difference,J2,J_LEG_L_P013_F_L8_L12,My,0,constraint velocity
+finite_difference,J2,J_LEG_L_P013_F_L8_L12,Mz,0,constraint velocity
+finite_difference,J2,J_LEG_L_ANKLE_roll_RE,Fx,2.3663189463452028e-12,constraint velocity
+finite_difference,J2,J_LEG_L_ANKLE_roll_RE,Fz,-2.133015986061082e-14,constraint velocity
+finite_difference,J2,J_LEG_L_ANKLE_roll_RE,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_ANKLE_roll_RE,Mx,0,constraint velocity
+finite_difference,J2,J_LEG_L_ANKLE_roll_RE,My,0,constraint velocity
+finite_difference,J2,J_LEG_L_ANKLE_roll_RE,Mz,0,constraint velocity
+finite_difference,J2,J_LEG_L_P016_RE_L16_L17,Fz,-6.098420379796465e-13,constraint velocity
+finite_difference,J2,J_LEG_L_P016_RE_L16_L17,Fx,-2.8171215360472956e-13,constraint velocity
+finite_difference,J2,J_LEG_L_P016_RE_L16_L17,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_P016_RE_L16_L17,M_perp_1,0,constraint velocity
+finite_difference,J2,J_LEG_L_P016_RE_L16_L17,M_perp_2,0,constraint velocity
+finite_difference,J2,J_LEG_L_KNEE_pitch_T,F_radial_2,-2.123891340577444e-13,constraint velocity
+finite_difference,J2,J_LEG_L_KNEE_pitch_T,F_radial_1,1.3178337116729417e-16,constraint velocity
+finite_difference,J2,J_LEG_L_KNEE_pitch_T,Mx,0,constraint velocity
+finite_difference,J2,J_LEG_L_KNEE_pitch_T,My,0,constraint velocity
+finite_difference,J2,J_LEG_L_KNEE_pitch_T,Mz,0,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_roll_RE,Fx,0,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_roll_RE,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_roll_RE,Fz,0,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_roll_RE,Mx,0,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_roll_RE,My,0,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_roll_RE,Mz,0,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_yaw_RE,Fx,0,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_yaw_RE,Fy,0,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_yaw_RE,Fz,0,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_yaw_RE,Mx,0,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_yaw_RE,My,0,constraint velocity
+finite_difference,J2,J_LEG_L_HIP_yaw_RE,Mz,0,constraint velocity
+finite_difference,J3,J_LEG_L_KNEE_pitch_T,F_radial_2,-7.155980635832582e-7,constraint velocity
+finite_difference,J3,J_LEG_L_KNEE_pitch_T,F_radial_1,-4.0547377033163887e-7,constraint velocity
+finite_difference,J3,J_LEG_L_KNEE_pitch_T,Mx,0,constraint velocity
+finite_difference,J3,J_LEG_L_KNEE_pitch_T,My,0,constraint velocity
+finite_difference,J3,J_LEG_L_KNEE_pitch_T,Mz,0,constraint velocity
+finite_difference,J3,J_LEG_L_P018_S_L17_L04,Fz,1.0151358920129638e-11,constraint velocity
+finite_difference,J3,J_LEG_L_P018_S_L17_L04,Fx,5.620351406498969e-12,constraint velocity
+finite_difference,J3,J_LEG_L_P018_S_L17_L04,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_KNEE_pitch_RE,Fz,1.0607556499842019e-11,constraint velocity
+finite_difference,J3,J_LEG_L_KNEE_pitch_RE,Fx,4.5472237086841005e-12,constraint velocity
+finite_difference,J3,J_LEG_L_KNEE_pitch_RE,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_KNEE_pitch_RE,M_perp_1,0,constraint velocity
+finite_difference,J3,J_LEG_L_KNEE_pitch_RE,M_perp_2,0,constraint velocity
+finite_difference,J3,J_LEG_L_ANKLE_pitch_RE,Fz,6.720453837524842e-12,constraint velocity
+finite_difference,J3,J_LEG_L_ANKLE_pitch_RE,Fx,6.234224941836786e-12,constraint velocity
+finite_difference,J3,J_LEG_L_ANKLE_pitch_RE,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_ANKLE_pitch_RE,M_perp_1,0,constraint velocity
+finite_difference,J3,J_LEG_L_ANKLE_pitch_RE,M_perp_2,0,constraint velocity
+finite_difference,J3,J_LEG_L_TOE_pitch_RE,Fz,6.273898067732375e-12,constraint velocity
+finite_difference,J3,J_LEG_L_TOE_pitch_RE,Fx,-4.583679139372188e-12,constraint velocity
+finite_difference,J3,J_LEG_L_TOE_pitch_RE,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_TOE_pitch_RE,Mx,0,constraint velocity
+finite_difference,J3,J_LEG_L_TOE_pitch_RE,My,0,constraint velocity
+finite_difference,J3,J_LEG_L_TOE_pitch_RE,Mz,0,constraint velocity
+finite_difference,J3,J_LEG_L_P021_RE_B20_L19,Fz,-4.602457304159202e-12,constraint velocity
+finite_difference,J3,J_LEG_L_P021_RE_B20_L19,Fx,-2.4615517957293775e-12,constraint velocity
+finite_difference,J3,J_LEG_L_P021_RE_B20_L19,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_P021_RE_B20_L19,M_perp_1,0,constraint velocity
+finite_difference,J3,J_LEG_L_P021_RE_B20_L19,M_perp_2,0,constraint velocity
+finite_difference,J3,J_LEG_L_P019_RE_L18_L04,Fz,-4.107973509970275e-12,constraint velocity
+finite_difference,J3,J_LEG_L_P019_RE_L18_L04,Fx,-2.5560924904466376e-12,constraint velocity
+finite_difference,J3,J_LEG_L_P019_RE_L18_L04,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_P019_RE_L18_L04,M_perp_1,0,constraint velocity
+finite_difference,J3,J_LEG_L_P019_RE_L18_L04,M_perp_2,0,constraint velocity
+finite_difference,J3,J_LEG_L_P021_F_L06_B20,Fx,3.391148473141925e-12,constraint velocity
+finite_difference,J3,J_LEG_L_P021_F_L06_B20,Fz,-2.9717894811653878e-12,constraint velocity
+finite_difference,J3,J_LEG_L_P021_F_L06_B20,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_P021_F_L06_B20,Mx,0,constraint velocity
+finite_difference,J3,J_LEG_L_P021_F_L06_B20,My,0,constraint velocity
+finite_difference,J3,J_LEG_L_P021_F_L06_B20,Mz,0,constraint velocity
+finite_difference,J3,J_LEG_L_ANKLE_pitch_T,F_radial_2,-3.6006241391217664e-12,constraint velocity
+finite_difference,J3,J_LEG_L_ANKLE_pitch_T,F_radial_1,4.5379856323598145e-17,constraint velocity
+finite_difference,J3,J_LEG_L_ANKLE_pitch_T,Mx,0,constraint velocity
+finite_difference,J3,J_LEG_L_ANKLE_pitch_T,My,0,constraint velocity
+finite_difference,J3,J_LEG_L_ANKLE_pitch_T,Mz,0,constraint velocity
+finite_difference,J3,J_LEG_L_ANKLE_roll_RE,Fx,-1.5350359872101649e-12,constraint velocity
+finite_difference,J3,J_LEG_L_ANKLE_roll_RE,Fz,1.432631790976302e-12,constraint velocity
+finite_difference,J3,J_LEG_L_ANKLE_roll_RE,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_ANKLE_roll_RE,Mx,0,constraint velocity
+finite_difference,J3,J_LEG_L_ANKLE_roll_RE,My,0,constraint velocity
+finite_difference,J3,J_LEG_L_ANKLE_roll_RE,Mz,0,constraint velocity
+finite_difference,J3,J_LEG_L_P016_RE_L16_L17,Fz,-1.985978222152074e-12,constraint velocity
+finite_difference,J3,J_LEG_L_P016_RE_L16_L17,Fx,2.6187732538041075e-13,constraint velocity
+finite_difference,J3,J_LEG_L_P016_RE_L16_L17,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_P016_RE_L16_L17,M_perp_1,0,constraint velocity
+finite_difference,J3,J_LEG_L_P016_RE_L16_L17,M_perp_2,0,constraint velocity
+finite_difference,J3,J_LEG_L_P016_F_L16_B15,Fx,1.2441792388018236e-12,constraint velocity
+finite_difference,J3,J_LEG_L_P016_F_L16_B15,Fz,1.2239098623467726e-12,constraint velocity
+finite_difference,J3,J_LEG_L_P016_F_L16_B15,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_P016_F_L16_B15,Mx,0,constraint velocity
+finite_difference,J3,J_LEG_L_P016_F_L16_B15,My,0,constraint velocity
+finite_difference,J3,J_LEG_L_P016_F_L16_B15,Mz,0,constraint velocity
+finite_difference,J3,J_LEG_L_P017_RE_L03_L16,Fz,1.5543573372855946e-12,constraint velocity
+finite_difference,J3,J_LEG_L_P017_RE_L03_L16,Fx,-1.898897705743252e-13,constraint velocity
+finite_difference,J3,J_LEG_L_P017_RE_L03_L16,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_P017_RE_L03_L16,M_perp_1,0,constraint velocity
+finite_difference,J3,J_LEG_L_P017_RE_L03_L16,M_perp_2,0,constraint velocity
+finite_difference,J3,J_LEG_L_P016_RE_B15_L14,Fx,-8.728903017063416e-13,constraint velocity
+finite_difference,J3,J_LEG_L_P016_RE_B15_L14,Fz,6.420112515616652e-13,constraint velocity
+finite_difference,J3,J_LEG_L_P016_RE_B15_L14,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_P016_RE_B15_L14,M_perp_1,0,constraint velocity
+finite_difference,J3,J_LEG_L_P016_RE_B15_L14,M_perp_2,0,constraint velocity
+finite_difference,J3,J_LEG_L_P014_RE_L03_L13,Fx,7.8769884495275e-13,constraint velocity
+finite_difference,J3,J_LEG_L_P014_RE_L03_L13,Fz,1.8022638503117916e-13,constraint velocity
+finite_difference,J3,J_LEG_L_P014_RE_L03_L13,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_P014_RE_L03_L13,M_perp_1,0,constraint velocity
+finite_difference,J3,J_LEG_L_P014_RE_L03_L13,M_perp_2,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_roll_RE,Fx,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_roll_RE,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_roll_RE,Fz,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_roll_RE,Mx,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_roll_RE,My,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_roll_RE,Mz,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_yaw_RE,Fx,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_yaw_RE,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_yaw_RE,Fz,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_yaw_RE,Mx,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_yaw_RE,My,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_yaw_RE,Mz,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_pitch_RE,Fx,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_pitch_RE,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_pitch_RE,Fz,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_pitch_RE,M_perp_1,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_pitch_RE,M_perp_2,0,constraint velocity
+finite_difference,J3,J_LEG_L_P009_RE_L02_L08,Fx,0,constraint velocity
+finite_difference,J3,J_LEG_L_P009_RE_L02_L08,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_P009_RE_L02_L08,Fz,0,constraint velocity
+finite_difference,J3,J_LEG_L_P009_RE_L02_L08,M_perp_1,0,constraint velocity
+finite_difference,J3,J_LEG_L_P009_RE_L02_L08,M_perp_2,0,constraint velocity
+finite_difference,J3,J_LEG_L_P010_S_L09_L03,Fx,0,constraint velocity
+finite_difference,J3,J_LEG_L_P010_S_L09_L03,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_P010_S_L09_L03,Fz,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_pitch_T,F_radial_1,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_pitch_T,F_radial_2,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_pitch_T,Mx,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_pitch_T,My,0,constraint velocity
+finite_difference,J3,J_LEG_L_HIP_pitch_T,Mz,0,constraint velocity
+finite_difference,J3,J_LEG_L_P013_F_L8_L12,Fx,0,constraint velocity
+finite_difference,J3,J_LEG_L_P013_F_L8_L12,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_P013_F_L8_L12,Fz,0,constraint velocity
+finite_difference,J3,J_LEG_L_P013_F_L8_L12,Mx,0,constraint velocity
+finite_difference,J3,J_LEG_L_P013_F_L8_L12,My,0,constraint velocity
+finite_difference,J3,J_LEG_L_P013_F_L8_L12,Mz,0,constraint velocity
+finite_difference,J3,J_LEG_L_P013_RE_L08_L09,Fx,0,constraint velocity
+finite_difference,J3,J_LEG_L_P013_RE_L08_L09,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_P013_RE_L08_L09,Fz,0,constraint velocity
+finite_difference,J3,J_LEG_L_P013_RE_L08_L09,M_perp_1,0,constraint velocity
+finite_difference,J3,J_LEG_L_P013_RE_L08_L09,M_perp_2,0,constraint velocity
+finite_difference,J3,J_LEG_L_P011_RE_L10_L03,Fx,0,constraint velocity
+finite_difference,J3,J_LEG_L_P011_RE_L10_L03,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_P011_RE_L10_L03,Fz,0,constraint velocity
+finite_difference,J3,J_LEG_L_P011_RE_L10_L03,M_perp_1,0,constraint velocity
+finite_difference,J3,J_LEG_L_P011_RE_L10_L03,M_perp_2,0,constraint velocity
+finite_difference,J3,J_LEG_L_P013_RE_L12_L11,Fx,0,constraint velocity
+finite_difference,J3,J_LEG_L_P013_RE_L12_L11,Fy,0,constraint velocity
+finite_difference,J3,J_LEG_L_P013_RE_L12_L11,Fz,0,constraint velocity
+finite_difference,J3,J_LEG_L_P013_RE_L12_L11,M_perp_1,0,constraint velocity
+finite_difference,J3,J_LEG_L_P013_RE_L12_L11,M_perp_2,0,constraint velocity
+finite_difference,J4,J_LEG_L_ANKLE_pitch_T,F_radial_2,-6.194563144198864e-7,constraint velocity
+finite_difference,J4,J_LEG_L_ANKLE_pitch_T,F_radial_1,-4.827950045382322e-7,constraint velocity
+finite_difference,J4,J_LEG_L_ANKLE_pitch_T,Mx,0,constraint velocity
+finite_difference,J4,J_LEG_L_ANKLE_pitch_T,My,0,constraint velocity
+finite_difference,J4,J_LEG_L_ANKLE_pitch_T,Mz,0,constraint velocity
+finite_difference,J4,J_LEG_L_P021_F_L06_B20,Fz,-9.54789025620073e-12,constraint velocity
+finite_difference,J4,J_LEG_L_P021_F_L06_B20,Fx,6.9338701447207995e-12,constraint velocity
+finite_difference,J4,J_LEG_L_P021_F_L06_B20,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_P021_F_L06_B20,Mx,0,constraint velocity
+finite_difference,J4,J_LEG_L_P021_F_L06_B20,My,0,constraint velocity
+finite_difference,J4,J_LEG_L_P021_F_L06_B20,Mz,0,constraint velocity
+finite_difference,J4,J_LEG_L_TOE_pitch_RE,Fx,-9.676814471254458e-12,constraint velocity
+finite_difference,J4,J_LEG_L_TOE_pitch_RE,Fz,-4.155363553248748e-12,constraint velocity
+finite_difference,J4,J_LEG_L_TOE_pitch_RE,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_TOE_pitch_RE,Mx,0,constraint velocity
+finite_difference,J4,J_LEG_L_TOE_pitch_RE,My,0,constraint velocity
+finite_difference,J4,J_LEG_L_TOE_pitch_RE,Mz,0,constraint velocity
+finite_difference,J4,J_LEG_L_ANKLE_roll_RE,Fz,7.206936436521261e-12,constraint velocity
+finite_difference,J4,J_LEG_L_ANKLE_roll_RE,Fx,-2.8139955643435854e-12,constraint velocity
+finite_difference,J4,J_LEG_L_ANKLE_roll_RE,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_ANKLE_roll_RE,Mx,0,constraint velocity
+finite_difference,J4,J_LEG_L_ANKLE_roll_RE,My,0,constraint velocity
+finite_difference,J4,J_LEG_L_ANKLE_roll_RE,Mz,0,constraint velocity
+finite_difference,J4,J_LEG_L_P021_RE_B20_L19,Fz,4.088997369866565e-12,constraint velocity
+finite_difference,J4,J_LEG_L_P021_RE_B20_L19,Fx,-8.414623164920698e-14,constraint velocity
+finite_difference,J4,J_LEG_L_P021_RE_B20_L19,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_P021_RE_B20_L19,M_perp_1,0,constraint velocity
+finite_difference,J4,J_LEG_L_P021_RE_B20_L19,M_perp_2,0,constraint velocity
+finite_difference,J4,J_LEG_L_ANKLE_pitch_RE,Fz,-2.8818763781607304e-12,constraint velocity
+finite_difference,J4,J_LEG_L_ANKLE_pitch_RE,Fx,-1.6215119524876087e-12,constraint velocity
+finite_difference,J4,J_LEG_L_ANKLE_pitch_RE,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_ANKLE_pitch_RE,M_perp_1,0,constraint velocity
+finite_difference,J4,J_LEG_L_ANKLE_pitch_RE,M_perp_2,0,constraint velocity
+finite_difference,J4,J_LEG_L_P019_RE_L18_L04,Fz,1.6768999383520722e-12,constraint velocity
+finite_difference,J4,J_LEG_L_P019_RE_L18_L04,Fx,2.340792490396204e-13,constraint velocity
+finite_difference,J4,J_LEG_L_P019_RE_L18_L04,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_P019_RE_L18_L04,M_perp_1,0,constraint velocity
+finite_difference,J4,J_LEG_L_P019_RE_L18_L04,M_perp_2,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_roll_RE,Fx,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_roll_RE,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_roll_RE,Fz,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_roll_RE,Mx,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_roll_RE,My,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_roll_RE,Mz,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_yaw_RE,Fx,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_yaw_RE,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_yaw_RE,Fz,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_yaw_RE,Mx,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_yaw_RE,My,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_yaw_RE,Mz,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_pitch_RE,Fx,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_pitch_RE,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_pitch_RE,Fz,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_pitch_RE,M_perp_1,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_pitch_RE,M_perp_2,0,constraint velocity
+finite_difference,J4,J_LEG_L_KNEE_pitch_RE,Fx,0,constraint velocity
+finite_difference,J4,J_LEG_L_KNEE_pitch_RE,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_KNEE_pitch_RE,Fz,0,constraint velocity
+finite_difference,J4,J_LEG_L_KNEE_pitch_RE,M_perp_1,0,constraint velocity
+finite_difference,J4,J_LEG_L_KNEE_pitch_RE,M_perp_2,0,constraint velocity
+finite_difference,J4,J_LEG_L_P009_RE_L02_L08,Fx,0,constraint velocity
+finite_difference,J4,J_LEG_L_P009_RE_L02_L08,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_P009_RE_L02_L08,Fz,0,constraint velocity
+finite_difference,J4,J_LEG_L_P009_RE_L02_L08,M_perp_1,0,constraint velocity
+finite_difference,J4,J_LEG_L_P009_RE_L02_L08,M_perp_2,0,constraint velocity
+finite_difference,J4,J_LEG_L_P010_S_L09_L03,Fx,0,constraint velocity
+finite_difference,J4,J_LEG_L_P010_S_L09_L03,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_P010_S_L09_L03,Fz,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_pitch_T,F_radial_1,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_pitch_T,F_radial_2,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_pitch_T,Mx,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_pitch_T,My,0,constraint velocity
+finite_difference,J4,J_LEG_L_HIP_pitch_T,Mz,0,constraint velocity
+finite_difference,J4,J_LEG_L_P013_F_L8_L12,Fx,0,constraint velocity
+finite_difference,J4,J_LEG_L_P013_F_L8_L12,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_P013_F_L8_L12,Fz,0,constraint velocity
+finite_difference,J4,J_LEG_L_P013_F_L8_L12,Mx,0,constraint velocity
+finite_difference,J4,J_LEG_L_P013_F_L8_L12,My,0,constraint velocity
+finite_difference,J4,J_LEG_L_P013_F_L8_L12,Mz,0,constraint velocity
+finite_difference,J4,J_LEG_L_P013_RE_L08_L09,Fx,0,constraint velocity
+finite_difference,J4,J_LEG_L_P013_RE_L08_L09,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_P013_RE_L08_L09,Fz,0,constraint velocity
+finite_difference,J4,J_LEG_L_P013_RE_L08_L09,M_perp_1,0,constraint velocity
+finite_difference,J4,J_LEG_L_P013_RE_L08_L09,M_perp_2,0,constraint velocity
+finite_difference,J4,J_LEG_L_KNEE_pitch_T,F_radial_1,0,constraint velocity
+finite_difference,J4,J_LEG_L_KNEE_pitch_T,F_radial_2,0,constraint velocity
+finite_difference,J4,J_LEG_L_KNEE_pitch_T,Mx,0,constraint velocity
+finite_difference,J4,J_LEG_L_KNEE_pitch_T,My,0,constraint velocity
+finite_difference,J4,J_LEG_L_KNEE_pitch_T,Mz,0,constraint velocity
+finite_difference,J4,J_LEG_L_P016_F_L16_B15,Fx,0,constraint velocity
+finite_difference,J4,J_LEG_L_P016_F_L16_B15,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_P016_F_L16_B15,Fz,0,constraint velocity
+finite_difference,J4,J_LEG_L_P016_F_L16_B15,Mx,0,constraint velocity
+finite_difference,J4,J_LEG_L_P016_F_L16_B15,My,0,constraint velocity
+finite_difference,J4,J_LEG_L_P016_F_L16_B15,Mz,0,constraint velocity
+finite_difference,J4,J_LEG_L_P016_RE_L16_L17,Fx,0,constraint velocity
+finite_difference,J4,J_LEG_L_P016_RE_L16_L17,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_P016_RE_L16_L17,Fz,0,constraint velocity
+finite_difference,J4,J_LEG_L_P016_RE_L16_L17,M_perp_1,0,constraint velocity
+finite_difference,J4,J_LEG_L_P016_RE_L16_L17,M_perp_2,0,constraint velocity
+finite_difference,J4,J_LEG_L_P017_RE_L03_L16,Fx,0,constraint velocity
+finite_difference,J4,J_LEG_L_P017_RE_L03_L16,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_P017_RE_L03_L16,Fz,0,constraint velocity
+finite_difference,J4,J_LEG_L_P017_RE_L03_L16,M_perp_1,0,constraint velocity
+finite_difference,J4,J_LEG_L_P017_RE_L03_L16,M_perp_2,0,constraint velocity
+finite_difference,J4,J_LEG_L_P018_S_L17_L04,Fx,0,constraint velocity
+finite_difference,J4,J_LEG_L_P018_S_L17_L04,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_P018_S_L17_L04,Fz,0,constraint velocity
+finite_difference,J4,J_LEG_L_P011_RE_L10_L03,Fx,0,constraint velocity
+finite_difference,J4,J_LEG_L_P011_RE_L10_L03,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_P011_RE_L10_L03,Fz,0,constraint velocity
+finite_difference,J4,J_LEG_L_P011_RE_L10_L03,M_perp_1,0,constraint velocity
+finite_difference,J4,J_LEG_L_P011_RE_L10_L03,M_perp_2,0,constraint velocity
+finite_difference,J4,J_LEG_L_P013_RE_L12_L11,Fx,0,constraint velocity
+finite_difference,J4,J_LEG_L_P013_RE_L12_L11,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_P013_RE_L12_L11,Fz,0,constraint velocity
+finite_difference,J4,J_LEG_L_P013_RE_L12_L11,M_perp_1,0,constraint velocity
+finite_difference,J4,J_LEG_L_P013_RE_L12_L11,M_perp_2,0,constraint velocity
+finite_difference,J4,J_LEG_L_P014_RE_L03_L13,Fx,0,constraint velocity
+finite_difference,J4,J_LEG_L_P014_RE_L03_L13,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_P014_RE_L03_L13,Fz,0,constraint velocity
+finite_difference,J4,J_LEG_L_P014_RE_L03_L13,M_perp_1,0,constraint velocity
+finite_difference,J4,J_LEG_L_P014_RE_L03_L13,M_perp_2,0,constraint velocity
+finite_difference,J4,J_LEG_L_P016_RE_B15_L14,Fx,0,constraint velocity
+finite_difference,J4,J_LEG_L_P016_RE_B15_L14,Fy,0,constraint velocity
+finite_difference,J4,J_LEG_L_P016_RE_B15_L14,Fz,0,constraint velocity
+finite_difference,J4,J_LEG_L_P016_RE_B15_L14,M_perp_1,0,constraint velocity
+finite_difference,J4,J_LEG_L_P016_RE_B15_L14,M_perp_2,0,constraint velocity
+prismatic,hip,J_LEG_L_HIP_pitch_T,axis_y,0.000007148000001785557,
+prismatic,hip,J_LEG_L_HIP_pitch_T,axis_to_endpoint_angle,0.0008840070623170829,deg
+prismatic,hip,J_LEG_L_HIP_pitch_T,marker_line_offset,0.0014678271090626561,mm
+prismatic,hip,J_LEG_L_HIP_pitch_T,max_lateral_gap,0.00033869701177266856,mm
+prismatic,knee,J_LEG_L_KNEE_pitch_T,axis_y,0.00001070100000198022,
+prismatic,knee,J_LEG_L_KNEE_pitch_T,axis_to_endpoint_angle,0.001243709392620022,deg
+prismatic,knee,J_LEG_L_KNEE_pitch_T,marker_line_offset,0.002312543264211965,mm
+prismatic,knee,J_LEG_L_KNEE_pitch_T,max_lateral_gap,0.0007635066232800076,mm
+prismatic,ankle,J_LEG_L_ANKLE_pitch_T,axis_y,0.000012300000005185777,
+prismatic,ankle,J_LEG_L_ANKLE_pitch_T,axis_to_endpoint_angle,0.0011464097893183957,deg
+prismatic,ankle,J_LEG_L_ANKLE_pitch_T,marker_line_offset,0.0012200395644299646,mm
+prismatic,ankle,J_LEG_L_ANKLE_pitch_T,max_lateral_gap,0.000490516191659671,mm

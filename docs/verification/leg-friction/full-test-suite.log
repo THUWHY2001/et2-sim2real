@@ -1,0 +1,137 @@
+Command: node --test web2/tests/*.test.mjs
+Executed: 2026-11-13T10:14:12.527Z
+Exit code: 0
+
+arm blackbox runtime acceptance test passed
+✔ web2\tests\arm-blackbox-runtime.test.mjs (1169.3739ms)
+arm dynamics runtime regression test passed
+✔ web2\tests\arm-dynamics-runtime.test.mjs (1411.3427ms)
+arm fixed J0 installation-point regression test passed
+✔ web2\tests\arm-fixed-installation-point.test.mjs (1167.581ms)
+arm J3 model regression test passed
+✔ web2\tests\arm-j3-model.test.mjs (1164.3226ms)
+arm J3 page regression test passed
+✔ web2\tests\arm-j3-page.test.mjs (1186.4398ms)
+arm J3 tolerance analysis regression test passed
+✔ web2\tests\arm-j3-tolerance-analysis.test.mjs (1366.1901ms)
+arm J5 model regression test passed
+✔ web2\tests\arm-j5-model.test.mjs (1200.559ms)
+arm J5 page regression test passed
+✔ web2\tests\arm-j5-page.test.mjs (1205.8843ms)
+arm J6 model regression test passed
+✔ web2\tests\arm-j6-model.test.mjs (1234.3385ms)
+arm J6 page regression test passed
+✔ web2\tests\arm-j6-page.test.mjs (1233.1935ms)
+arm unified page regression test passed
+✔ web2\tests\arm-unified-pages.test.mjs (1239.6706ms)
+chart resize controls regression test passed
+✔ web2\tests\chart-resize.test.mjs (1250.3753ms)
+directional friction regression test passed
+✔ web2\tests\directional-friction.test.mjs (1279.5537ms)
+engineering shell regression test passed
+✔ web2\tests\engineering-shell.test.mjs (1279.196ms)
+analytic gravity statics benchmark passed
+✔ web2\tests\gravity-statics-analytic.test.mjs (1281.9947ms)
+J2 clearance model regression test passed
+✔ web2\tests\j2-clearance-model.test.mjs (1441.777ms)
+J2 clearance page regression test passed
+✔ web2\tests\j2-clearance-page.test.mjs (1238.1318ms)
+J2 full closed-chain direct-page regression test passed
+✔ web2\tests\j2-direct-page.test.mjs (1246.8224ms)
+J2 link-length variation regression test passed
+✔ web2\tests\j2-length-variation.test.mjs (1249.7569ms)
+J2 full 3D replacement test passed
+✔ web2\tests\j2-restore-2d.test.mjs (1255.4193ms)
+J2 tolerance analysis regression test passed
+✔ web2\tests\j2-tolerance-analysis.test.mjs (1359.5764ms)
+J3 tolerance analysis regression test passed
+✔ web2\tests\j3-tolerance-analysis.test.mjs (1230.6659ms)
+J4 tolerance analysis regression test passed
+✔ web2\tests\j4-tolerance-analysis.test.mjs (1170.9085ms)
+joint link length page regression test passed
+✔ web2\tests\joint-link-length-pages.test.mjs (1163.789ms)
+leg full dynamics regression test passed
+✔ web2\tests\leg-full-dynamics.test.mjs (1335.7855ms)
+leg full page structure regression test passed
+✔ web2\tests\leg-full-pages.test.mjs (1164.7622ms)
+leg full closed-chain runtime acceptance test passed
+✔ web2\tests\leg-full-runtime.test.mjs (1172.8835ms)
+leg gravity physical audit regression test passed
+✔ web2\tests\leg-gravity-physical-audit.test.mjs (2771.6431ms)
+leg gravity statics assembly regression test passed
+✔ web2\tests\leg-gravity-statics-assembly.test.mjs (1170.3269ms)
+nominal leg gravity statics regression test passed
+✔ web2\tests\leg-gravity-statics-nominal.test.mjs (1728.3513ms)
+leg gravity statics report regression test passed
+✔ web2\tests\leg-gravity-statics-report.test.mjs (2670.471ms)
+leg gravity virtual-work regression test passed
+✔ web2\tests\leg-gravity-virtual-work.test.mjs (1324.6767ms)
+leg joint unified-code regression test passed
+✔ web2\tests\leg-joint-labels.test.mjs (1171.6733ms)
+leg pin-joint gravity statics regression test passed
+✔ web2\tests\leg-pin-gravity-statics.test.mjs (2122.0869ms)
+leg pin-joint kinematics report regression test passed
+✔ web2\tests\leg-pin-kinematics-report.test.mjs (1162.5533ms)
+leg pin near-mode diagnostics regression test passed
+✔ web2\tests\leg-pin-modal-diagnostics.test.mjs (3128.1088ms)
+leg pin-joint model regression test passed
+✔ web2\tests\leg-pin-model.test.mjs (1189.9735ms)
+leg pin planar friction contact catalog regression test passed
+✔ web2\tests\leg-pin-planar-friction-catalog.test.mjs (1197.7313ms)
+leg pin planar friction relative-rate regression test passed
+✔ web2\tests\leg-pin-planar-friction-kinematics.test.mjs (3763.0434ms)
+leg pin planar friction simultaneous multi-output virtual-work test passed
+✔ web2\tests\leg-pin-planar-friction-multioutput.test.mjs (1519.7956ms)
+leg pin planar friction page regression test passed
+✔ web2\tests\leg-pin-planar-friction-page.test.mjs (1165.6027ms)
+leg pin planar friction report regression test passed
+✔ web2\tests\leg-pin-planar-friction-report.test.mjs (6658.8327ms)
+leg pin planar friction engine regression test passed
+✔ web2\tests\leg-pin-planar-friction.test.mjs (4798.374ms)
+leg pin planar ideal kinematics regression test passed
+✔ web2\tests\leg-pin-planar-kinematics.test.mjs (1914.9264ms)
+leg pin planar ideal report regression test passed
+✔ web2\tests\leg-pin-planar-report.test.mjs (1223.0404ms)
+leg pin planar ideal statics regression test passed
+✔ web2\tests\leg-pin-planar-statics.test.mjs (1771.1429ms)
+leg pin-joint runtime regression test passed
+✔ web2\tests\leg-pin-runtime.test.mjs (1220.5251ms)
+Leg pushrod sliding-bearing regression test passed
+✔ web2\tests\leg-sleeve-bearing.test.mjs (1283.9833ms)
+link length controls regression test passed
+✔ web2\tests\link-length-controls.test.mjs (1197.116ms)
+shared link tolerance regression test passed
+✔ web2\tests\link-tolerance.test.mjs (1193.8634ms)
+neck 3D camera regression test passed
+✔ web2\tests\neck-3d-view.test.mjs (1246.2127ms)
+neck blackbox runtime acceptance test passed
+✔ web2\tests\neck-blackbox-runtime.test.mjs (1199.3138ms)
+neck dynamics runtime regression test passed
+✔ web2\tests\neck-dynamics-runtime.test.mjs (1280.9722ms)
+neck model regression test passed
+✔ web2\tests\neck-model.test.mjs (1227.1323ms)
+neck page regression test passed
+✔ web2\tests\neck-pages.test.mjs (1175.0701ms)
+neck tolerance model regression test passed
+✔ web2\tests\neck-tolerance-model.test.mjs (12637.1523ms)
+neck tolerance page regression test passed
+✔ web2\tests\neck-tolerance-pages.test.mjs (1174.4908ms)
+rank-revealing SVD regression test passed
+✔ web2\tests\rank-revealing-svd.test.mjs (1232.1967ms)
+torso dynamics data regression test passed
+✔ web2\tests\torso-dynamics-data.test.mjs (1175.5875ms)
+torso source geometry regression test passed
+✔ web2\tests\torso-model.test.mjs (1739.9017ms)
+torso page source regression test passed
+✔ web2\tests\torso-pages.test.mjs (1202.0171ms)
+web copy regression test passed
+✔ web2\tests\web-copy.test.mjs (1312.2785ms)
+ℹ tests 62
+ℹ suites 0
+ℹ pass 62
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16040.8332
+
