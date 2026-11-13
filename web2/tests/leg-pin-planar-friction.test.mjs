@@ -1,0 +1,22 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import {createLegPinPlanarModel} from "../src/leg-pin-planar-model.mjs";
+import {createLegPinPlanarKinematics} from "../src/leg-pin-planar-kinematics.mjs";
+import {createLegPinPlanarStatics} from "../src/leg-pin-planar-statics.mjs";
+import {createLegPinPlanarFriction} from "../src/leg-pin-planar-friction.mjs";
+
+const legacy=JSON.parse(fs.readFileSync(new URL("../data/leg-full-package/model.json",import.meta.url),"utf8")),model=createLegPinPlanarModel(legacy),kinematics=createLegPinPlanarKinematics(model),statics=createLegPinPlanarStatics(model,kinematics),engine=createLegPinPlanarFriction(model,kinematics,statics),solution=kinematics.solveOutput("J2",0),jointId="J_LEG_L_HIP_pitch_RE",contactId="leg.j2.output_pin.surface_unspecified";
+const parameters=mu=>({[contactId]:{mu_static:mu*1.5,mu_kinetic:mu,effective_radius_m:.01,provenance:"test_fixture"}});
+const forward=engine.evaluatePose(solution,{output_rates_rad_s:{J2:1,J3:0,J4:0},parameters:parameters(.1)}),item=forward.contacts.find(value=>value.physical_contact_id===contactId);
+assert.equal(item.status,"computed");assert.equal(item.load_source,"planar_gravity_estimate");assert.ok(item.kinetic_torque_Nm<0);assert.ok(item.signed_friction_power_W<=0);assert.ok(Math.abs(item.equivalent_output_torque_Nm.J2-item.kinetic_torque_Nm*item.relative_rate_jacobian.J2)<1e-12);assert.ok(Math.abs(forward.power_balance_residual_W)<1e-12);assert.ok(forward.total_dissipated_power_W>=0);assert.equal(forward.totals.included_contact_count,1);
+const reverse=engine.evaluatePose(solution,{output_rates_rad_s:{J2:-1,J3:0,J4:0},parameters:parameters(.1)}),reverseItem=reverse.contacts.find(value=>value.physical_contact_id===contactId);assert.ok(reverseItem.kinetic_torque_Nm>0);assert.ok(Math.abs(reverseItem.kinetic_torque_Nm+item.kinetic_torque_Nm)<1e-12);
+const zero=engine.evaluatePose(solution,{output_rates_rad_s:{J2:1,J3:0,J4:0},parameters:parameters(0)});assert.equal(zero.totals.equivalent_output_torque_Nm.J2,0);assert.equal(zero.total_dissipated_power_W,0);
+const missing=engine.evaluatePose(solution,{output_rates_rad_s:{J2:1,J3:0,J4:0}});assert.equal(missing.contacts.find(value=>value.physical_contact_id===contactId).status,"missing_parameters");assert.equal(missing.totals.included_contact_count,0);
+const reversal=engine.evaluatePose(solution,{output_rates_rad_s:{J2:0,J3:0,J4:0},parameters:parameters(.1)}),reversalItem=reversal.contacts.find(value=>value.physical_contact_id===contactId);assert.equal(reversalItem.motion_state,"reversal_or_stick_candidate");assert.equal(reversalItem.kinetic_torque_Nm,null);assert.ok(reversalItem.static_limit_Nm>0);
+const manual=engine.evaluatePose(solution,{output_rates_rad_s:{J2:1,J3:0,J4:0},parameters:parameters(.1),load_overrides_N:{[contactId]:50}}).contacts.find(value=>value.physical_contact_id===contactId);assert.equal(manual.load_N,50);assert.equal(manual.load_source,"manual_override");
+const splitIdA="leg.j2.output_pin.side_a",splitIdB="leg.j2.output_pin.side_b",split=engine.evaluatePose(solution,{output_rates_rad_s:{J2:1,J3:0,J4:0},contact_overrides:{[jointId]:{contacts:[{physical_contact_id:splitIdA,load_fraction:.4},{physical_contact_id:splitIdB,load_fraction:.6}]}},parameters:{[splitIdA]:parameters(.1)[contactId],[splitIdB]:parameters(.1)[contactId]}});assert.ok(Math.abs(split.totals.equivalent_output_torque_Nm.J2-forward.totals.equivalent_output_torque_Nm.J2)<1e-12);
+for(const id of ["leg.p10.unverified.surface_unspecified","leg.p18.unverified.surface_unspecified","leg.hip_rod.guide.surface_unspecified"])assert.equal(forward.contacts.find(value=>value.physical_contact_id===id).included_in_total,false);
+const multi=engine.evaluatePose(solution,{output_rates_rad_s:{J2:.4,J3:-.3,J4:.2},parameters:parameters(.1)});assert.ok(Math.abs(multi.power_balance_residual_W)<1e-12);assert.ok(multi.contacts.filter(value=>value.status==="computed").every(value=>value.signed_friction_power_W<=1e-12));
+assert.throws(()=>engine.evaluatePose(solution,{load_mode:"gravity_plus_inertia",output_rates_rad_s:{J2:1}}),/unsupported_load_mode/);
+const cycle=engine.evaluateTrajectory({output:"J2",samples:9},{parameters:parameters(.1)});assert.equal(cycle.samples.length,9);assert.ok(cycle.samples.some(sample=>sample.contacts.some(value=>value.motion_state==="reversal_or_stick_candidate")));
+console.log("leg pin planar friction engine regression test passed");
