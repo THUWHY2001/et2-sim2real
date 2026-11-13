@@ -8,6 +8,7 @@ const model=createLegPinPlanarModel(legacy),catalog=createLegPinPlanarFrictionCa
 assert.equal(catalog.groups.length,25);
 assert.deepEqual(new Set(catalog.groups.map(item=>item.joint_id)),new Set(Object.keys(model.joints)));
 assert.equal(catalog.groups.filter(item=>item.classification==="pin_bushing_candidate").length,13);
+for(const id of ["J_LEG_L_P011_RE_L10_L03","J_LEG_L_P013_RE_L12_L11","J_LEG_L_P014_RE_L03_L13","J_LEG_L_P016_RE_B15_L14","J_LEG_L_P019_RE_L18_L04","J_LEG_L_P021_RE_B20_L19"]){const item=catalog.byJointId.get(id)[0];assert.equal(item.verification_status,"geometry_axis_assumption_pending_cad")}
 assert.equal(new Set(catalog.contacts.map(item=>item.physical_contact_id)).size,catalog.contacts.length);
 for(const id of ["J_LEG_L_P010_S_L09_L03","J_LEG_L_P018_S_L17_L04"]){const item=catalog.byJointId.get(id)[0];assert.equal(item.verification_status,"real_joint_type_unverified");assert.equal(item.enabled,false);assert.equal(item.include_in_official_total,false)}
 for(const id of ["J_LEG_L_HIP_pitch_T","J_LEG_L_KNEE_pitch_T","J_LEG_L_ANKLE_pitch_T"]){const item=catalog.byJointId.get(id)[0];assert.equal(item.contact_model,"prismatic_guide_coulomb");assert.equal(item.load_status,"guide_contact_distribution_unresolved");assert.equal(item.include_in_official_total,false)}

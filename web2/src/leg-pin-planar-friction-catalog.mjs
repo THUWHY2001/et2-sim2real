@@ -4,6 +4,7 @@ const PIN_IDS=new Set([
   "J_LEG_L_P011_RE_L10_L03","J_LEG_L_P013_RE_L12_L11","J_LEG_L_P014_RE_L03_L13","J_LEG_L_P016_RE_B15_L14","J_LEG_L_P019_RE_L18_L04","J_LEG_L_P021_RE_B20_L19"
 ]);
 const UNVERIFIED=new Set(["J_LEG_L_P010_S_L09_L03","J_LEG_L_P018_S_L17_L04"]);
+const NEW_PIN_AXIS_ASSUMPTION=new Set(["J_LEG_L_P011_RE_L10_L03","J_LEG_L_P013_RE_L12_L11","J_LEG_L_P014_RE_L03_L13","J_LEG_L_P016_RE_B15_L14","J_LEG_L_P019_RE_L18_L04","J_LEG_L_P021_RE_B20_L19"]);
 const HELD=new Set(["J_LEG_L_HIP_roll_RE","J_LEG_L_HIP_yaw_RE","J_LEG_L_ANKLE_roll_RE","J_LEG_L_TOE_pitch_RE"]);
 const PHYSICAL_IDS={
   J_LEG_L_HIP_roll_RE:"leg.hip_roll.axis",J_LEG_L_HIP_yaw_RE:"leg.hip_yaw.axis",J_LEG_L_HIP_pitch_RE:"leg.j2.output_pin",J_LEG_L_KNEE_pitch_RE:"leg.j3.output_pin",J_LEG_L_ANKLE_pitch_RE:"leg.j4.output_pin",J_LEG_L_TOE_pitch_RE:"leg.toe_pitch.axis",
@@ -20,7 +21,7 @@ const parameterTemplate=()=>({mu_static:null,mu_kinetic:null,effective_radius_m:
 const surface=(physical_contact_id)=>({physical_contact_id,load_fraction:1,parameters:parameterTemplate()});
 
 function classify(jointId,joint){
-  if(PIN_IDS.has(jointId))return{classification:"pin_bushing_candidate",contact_model:"pin_bushing_coulomb",verification_status:joint.axis_source||"source_joint_verified",enabled:true,include_in_official_total:true,load_status:"planar_reaction_available"};
+  if(PIN_IDS.has(jointId))return{classification:"pin_bushing_candidate",contact_model:"pin_bushing_coulomb",verification_status:NEW_PIN_AXIS_ASSUMPTION.has(jointId)?"geometry_axis_assumption_pending_cad":joint.axis_source||"source_joint_verified",enabled:true,include_in_official_total:true,load_status:"planar_reaction_available"};
   if(UNVERIFIED.has(jointId))return{classification:"real_joint_type_unverified",contact_model:"unverified",verification_status:"real_joint_type_unverified",enabled:false,include_in_official_total:false,load_status:"planar_reaction_available"};
   if(joint.planar_type==="prismatic")return{classification:"prismatic_interface",contact_model:"prismatic_guide_coulomb",verification_status:"guide_geometry_required",enabled:false,include_in_official_total:false,load_status:"guide_contact_distribution_unresolved",required_geometry:["support_spacing_m","guide_direction","preload_N"]};
   if(joint.source_type==="fixed")return{classification:"fixed_connection",contact_model:"none_fixed",verification_status:"not_applicable",enabled:false,include_in_official_total:false,load_status:"not_applicable"};
